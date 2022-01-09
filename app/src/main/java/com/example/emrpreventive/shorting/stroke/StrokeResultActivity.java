@@ -56,6 +56,7 @@ public class StrokeResultActivity extends AppCompatActivity {
         //Ubah Answers ke JSON
         Type answerstype = new TypeToken<List<FormAnswer>>() {}.getType();
         String json = gson.toJson(answers, answerstype);
+        // Ikutin Stackexchange yg gw kirim di LINE buat rombak line 60-87, masukin ke fungsi baru aja. trs panggil fungsinya disini.
         //Send JSON ke API & Get Respons
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
