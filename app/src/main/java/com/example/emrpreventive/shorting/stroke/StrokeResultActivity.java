@@ -11,14 +11,35 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
 import com.example.emrpreventive.MainActivity;
 import com.example.emrpreventive.R;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class StrokeResultActivity extends AppCompatActivity {
 
+    private Gson gson = new Gson();
+    private FormAnswer[] answer = new FormAnswer[17];
+    private List<FormAnswer> answers;
     private TextView tv_score;
     private Button btn_finish, btn_whatsapp;
 
@@ -30,6 +51,53 @@ public class StrokeResultActivity extends AppCompatActivity {
     }
 
     private void setupItemView() {
+
+        answers = getIntent().getParcelableArrayListExtra("Answers");
+        //Ubah Answers ke JSON
+        Type answerstype = new TypeToken<List<FormAnswer>>() {}.getType();
+        String json = gson.toJson(answers, answerstype);
+        //Send JSON ke API & Get Respons
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://www.google.com";
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        // textView.setText("Response is: "+ response.substring(0,500));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // textView.setText("That didn't work!");
+            }
+        }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("data", json);
+                return params;
+            }
+        };
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        queue.start();
+
+
+
+        //Indikator Nunggu respons bisa diatur diatas
+        //Parse JSON Respons bisa diatur diatas
+        //Tampilkan sesuatu bisa lihat contoh dibawah
+
+
+
+
+
         int ScoreHigh,ScoreMed,ScoreLow;
         tv_score = (TextView) findViewById(R.id.tv_score);
         btn_finish = (Button) findViewById(R.id.btn_finish);

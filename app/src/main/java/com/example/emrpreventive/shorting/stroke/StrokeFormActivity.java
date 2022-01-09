@@ -13,18 +13,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.emrpreventive.R;
-import com.example.emrpreventive.shorting.ShortingActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StrokeFormActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Form[] forms = new Form[10];
+    private Form[] forms = new Form[18];
+    private FormAnswer[] answer = new FormAnswer[18];
     private int CurrentForm = 1;
     private int SelectedOptionPosititon = 0;
-    private int ScoreCardHigh = 0;
-    private int ScoreCardMed = 0;
-    private int ScoreCardLow = 0;
     private TextView tv_option_one,tv_option_two, tv_option_three, tv_option_four, tv_progress, tv_question;
     private Button btn_submit;
     private ProgressBar progressBar;
@@ -57,7 +56,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
 
         defaultOptionsView();
 
-        if (CurrentForm == 10) {
+        if (CurrentForm == 18) {
             btn_submit.setText("Selesai");
         } else {
             btn_submit.setText("Submit");
@@ -77,6 +76,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void CheckSet(Form formcheck){
+        // Hide Textbar
         if(formcheck.getOpt1() != ""){
             tv_option_one.setText(formcheck.getOpt1());
             tv_option_one.setOnClickListener(this);
@@ -104,6 +104,9 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
             tv_option_four.setVisibility(View.VISIBLE);
         } else {
             tv_option_four.setVisibility(View.GONE);
+        }
+        if(formcheck.getOpt1() != "" && formcheck.getOpt2() != "" && formcheck.getOpt3() != "" && formcheck.getOpt4() != ""){
+            // Display TextBar
         }
     }
 
@@ -133,49 +136,55 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.tv_option_one:
-                selectedOptionView(tv_option_one, 3);
+                selectedOptionView(tv_option_one, 4);
                 break;
             case R.id.tv_option_two:
-                selectedOptionView(tv_option_two, 2);
+                selectedOptionView(tv_option_two, 3);
                 break;
             case R.id.tv_option_three:
-                selectedOptionView(tv_option_three, 1);
+                selectedOptionView(tv_option_three, 2);
                 break;
             case R.id.tv_option_four:
-                selectedOptionView(tv_option_four, 3);
+                selectedOptionView(tv_option_four, 1);
                 break;
             case R.id.btn_submit:
                 if (SelectedOptionPosititon == 0) {
 
                     CurrentForm++;
 
-                    if(CurrentForm <= 10){
+                    if(CurrentForm <= 18){
                         SetForm();
                     } else {
                         Intent intent = new Intent(StrokeFormActivity.this, StrokeResultActivity.class);
-                        intent.putExtra("ScoreHigh", ScoreCardHigh);
-                        intent.putExtra("ScoreMed", ScoreCardMed);
-                        intent.putExtra("ScoreLow", ScoreCardLow);
+                        ArrayList list = new ArrayList<>(Arrays.asList(answer));
+                        intent.putParcelableArrayListExtra("Answers", list);
                         startActivity(intent);
                         finish();
                     }
 
                 } else {
-                    if (CurrentForm == 10) {
-                        btn_submit.setText("Lihat Hasil");
+                    if (CurrentForm == 18) {
+                        btn_submit.setText("Kirim Hasil");
                     } else {
                         btn_submit.setText("Pertanyaan Selanjutnya");
                     }
+
+                    answer[CurrentForm-1].setQuestion(forms[CurrentForm-1].getQuestion());
                     switch (SelectedOptionPosititon){
                         case 1:
-                            ScoreCardLow++;
+                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt1());
                             break;
                         case 2:
-                            ScoreCardMed++;
+                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt2());
                             break;
                         case 3:
-                            ScoreCardHigh++;
+                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt3());
                             break;
+                        case 4:
+                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt4());
+                            break;
+                        default:
+                            // Get answer from TextBar
                     }
                     SelectedOptionPosititon = 0;
                 }
@@ -201,16 +210,24 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                 ));
     }
 
-    private final void CreateFormList() {
-        forms[0] = new Form(1,"Apakah anda aktif melakukan aktivitas fisik ?","Tidak","Jarang","Ya","",R.drawable.default_image);
-        forms[1] = new Form(2,"Apakah anda merokok ?","Perokok Aktif","Sedang berusaha berhenti merokok","Tidak Merokok","",R.drawable.default_image);
-        forms[2] = new Form(3,"Apakah anda pernah mengalami tekanan darah tinggi ?","Ya","","Tidak","",R.drawable.default_image);
-        forms[3] = new Form(4,"Masukkan tekanan darah anda saat ini","> 140/90","120 - 139 / 80 - 89","< 120/80","Tidak diketahui",R.drawable.default_image);
-        forms[4] = new Form(5,"Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?","Iya","","Tidak","",R.drawable.default_image);
-        forms[5] = new Form(6,"Masukkan kadar gula anda saat ini","> 150","120 - 150","< 120","",R.drawable.default_image);
-        forms[6] = new Form(7,"Berapa kadar Cholesterol anda saat ini ?","> 240","200 - 239","< 200","Tidak diketahui",R.drawable.default_image);
-        forms[7] = new Form(8,"Apakah keluarga memiliki riwayat stroke ?","Ya","","Tidak","Tidak diketahui",R.drawable.default_image);
-        forms[8] = new Form(9,"Apakah menderita gangguan irama jantung ?\n","Ya","","Tidak","Tidak diketahui",R.drawable.default_image);
-        forms[9] = new Form(10,"Apakah menderita obesitas ?\n","Obesitas","Kelebihan berat badan","Berat badan normal","",R.drawable.default_image);
+    private final void CreateFormList(){
+        forms[0] = new Form(1,"Jenis Kelamin","Laki-laki","Perempuan","","",R.drawable.default_image);
+        forms[1] = new Form(2,"Tanggal Lahir","","","","",R.drawable.default_image);
+        forms[2] = new Form(3,"Masukkan tinggi badan (cm)","","","","",R.drawable.default_image);
+        forms[3] = new Form(4,"Masukkan berat badan (kg)","","","","",R.drawable.default_image);
+        forms[4] = new Form(5,"Apakah anda aktif melakukan aktivitas fisik?","Ya","Tidak","Jarang","",R.drawable.default_image);
+        forms[5] = new Form(6,"Apakah anda merokok?","Perokok Aktif","Sedang berusaha berhenti merokok","Tidak Merokok","",R.drawable.default_image);
+        forms[6] = new Form(7,"Ukuran lingkar pinggang (cm)","","","","", R.drawable.default_image);
+        forms[7] = new Form(8,"Apakah anda pernah mengalami tekanan darah tinggi?","Ya","Tidak","","",R.drawable.default_image);
+        forms[8] = new Form(9,"Masukkan tekanan darah anda saat ini:","> 140/90","120 - 139 / 80 - 89","< 120/80","Tidak diketahui",R.drawable.default_image);
+        forms[9] = new Form(10,"Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?","Ya","Tidak","","",R.drawable.default_image);
+        forms[10] = new Form(11,"Masukkan kadar gula anda saat ini:","< 120","120 - 150","> 150","",R.drawable.default_image);
+        forms[11] = new Form(12,"Berapa kadar kolesterol anda saat ini? (mmol/L)","> 240","200 - 239","< 200","Tidak diketahui",R.drawable.default_image);
+        forms[12] = new Form(13,"Apakah keluarga memiliki riwayat stroke?","Ya","Tidak","Tidak diketahui","",R.drawable.default_image);
+        forms[13] = new Form(14,"Apakah anda menderita gangguan irama jantung?","Ya","Tidak diketahui","Tidak pernah","",R.drawable.default_image);
+        forms[14] = new Form(15,"Seberapa sering anda makan sayuran, buah-buahan atau beri?","Setiap Hari","Tidak setiap hari","","",R.drawable.default_image);
+        forms[15] = new Form(16,"Apakah mengonsumsi obat anti hipertensi secara reguler?","Tidak","Ya","","",R.drawable.default_image);
+        forms[16] = new Form(17,"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)","Tidak","Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)","Ya (Orang tua, Kakak, Adik, Anak kandung)","",R.drawable.default_image);
+        forms[17] = new Form(18,"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)","< 30","30 - 50","> 50","Tidak Diketahui",R.drawable.default_image);
     }
 }

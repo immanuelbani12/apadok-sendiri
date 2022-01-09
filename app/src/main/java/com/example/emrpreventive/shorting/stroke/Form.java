@@ -2,7 +2,6 @@ package com.example.emrpreventive.shorting.stroke;
 
 class Form {
     int id;
-    int choosenopt;
     int image;
     String question;
     String opt1;
@@ -12,10 +11,6 @@ class Form {
 
     public int getId() {
         return id;
-    }
-
-    public int getChoosenopt() {
-        return choosenopt;
     }
 
     public int getImage() {
