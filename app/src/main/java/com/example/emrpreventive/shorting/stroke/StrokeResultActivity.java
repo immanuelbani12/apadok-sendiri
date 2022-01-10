@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 
 import com.example.emrpreventive.MainActivity;
 import com.example.emrpreventive.R;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
@@ -38,6 +39,7 @@ import java.util.Map;
 public class StrokeResultActivity extends AppCompatActivity {
 
     private Gson gson = new Gson();
+    private RequestQueue queue;
     private FormAnswer[] answer = new FormAnswer[17];
     private List<FormAnswer> answers;
     private TextView tv_score;
@@ -53,52 +55,29 @@ public class StrokeResultActivity extends AppCompatActivity {
     private void setupItemView() {
 
         answers = getIntent().getParcelableArrayListExtra("Answers");
-        //Ubah Answers ke JSON
+        //Ubah Answers ke string trus ke JSON
         Type answerstype = new TypeToken<List<FormAnswer>>() {}.getType();
         String json = gson.toJson(answers, answerstype);
-        // Ikutin Stackexchange yg gw kirim di LINE buat rombak line 60-87, masukin ke fungsi baru aja. trs panggil fungsinya disini.
-        //Send JSON ke API & Get Respons
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
+        Log.e("bobo", json);
+
+        // Send JSON ke API & Parse Respons di createcall
+        // Parse JSON Respons di createcall
+        // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
+        // Handling Callback need Test
+        queue = Volley.newRequestQueue(this);
         String url ="http://www.google.com";
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        // textView.setText("Response is: "+ response.substring(0,500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // textView.setText("That didn't work!");
-            }
-        }
-        ) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("data", json);
-                return params;
-            }
-        };
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
         queue.start();
+        createCall(Request.Method.POST,url, json, new VolleyCallBack() {
+
+            @Override
+            public void onSuccess() {
+                //Tampilkan sesuatu bisa lihat contoh dibawah
+            }
+            });
 
 
 
-        //Indikator Nunggu respons bisa diatur diatas
-        //Parse JSON Respons bisa diatur diatas
-        //Tampilkan sesuatu bisa lihat contoh dibawah
-
-
-
-
-
+        //Tampilkan sesuatu bisa lihat contoh dibawah(Rujukan atas)
         int ScoreHigh,ScoreMed,ScoreLow;
         tv_score = (TextView) findViewById(R.id.tv_score);
         btn_finish = (Button) findViewById(R.id.btn_finish);
@@ -124,6 +103,35 @@ public class StrokeResultActivity extends AppCompatActivity {
         btn_finish.setOnClickListener(RedirectToFinish);
         btn_whatsapp.setOnClickListener(openWhatsApp);
 
+    }
+
+
+    private void createCall(int type, String url, String json, final VolleyCallBack callback) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        // textView.setText("Response is: "+ response.substring(0,500));
+                        // Olah Respons API Success disini ya
+                        callback.onSuccess();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // textView.setText("That didn't work!");
+                // Olah Respons API Error disini ya
+            }
+        }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("data", json);
+                return params;
+            }
+        };
+        queue.add(stringRequest);
     }
 
     private View.OnClickListener openWhatsApp = v ->{
