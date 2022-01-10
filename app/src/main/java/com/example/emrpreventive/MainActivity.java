@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.emrpreventive.screening.ScreeningActivity;
 import com.example.emrpreventive.shorting.ShortingActivity;
+import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,9 +27,13 @@ public class MainActivity extends AppCompatActivity {
         //Button
         btn_screening = findViewById(R.id.btn_screening);
 
-        btn_screening.setOnClickListener(RedirectToShorting);
+        btn_screening.setOnClickListener(RedirectToStroke);
 
     }
+
+    private final View.OnClickListener RedirectToStroke = v -> {
+        startActivity(new Intent(MainActivity.this, StrokeFormActivity.class));
+    };
 
     private final View.OnClickListener RedirectToScreening = v -> {
         startActivity(new Intent(MainActivity.this, ScreeningActivity.class));

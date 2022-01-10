@@ -32,8 +32,4 @@ public class ShortingActivity extends AppCompatActivity {
     private final View.OnClickListener RedirectToStroke = v -> {
         startActivity(new Intent(ShortingActivity.this, StrokeFormActivity.class));
     };
-
-    private final View.OnClickListener RedirectToShorting = v -> {
-        startActivity(new Intent(ShortingActivity.this, ShortingActivity.class));
-    };
 }

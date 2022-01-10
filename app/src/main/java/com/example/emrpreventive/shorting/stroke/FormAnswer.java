@@ -52,7 +52,7 @@ class FormAnswer implements Parcelable {
         this.answer = answer;
     }
 
-//    public FormAnswer(String question) {
-//        this.question = question;
-//    }
+    public FormAnswer(String question) {
+        this.question = question;
+    }
 }

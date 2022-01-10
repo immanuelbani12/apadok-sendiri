@@ -20,10 +20,16 @@ import java.util.List;
 
 public class StrokeFormActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // Question Length is 18 as for Now, Check Res/Layout to adjust Progress Bar
+    // Use FormAnswer[18] to put Identifier or Primary Key for User
     private Form[] forms = new Form[18];
-    private FormAnswer[] answer = new FormAnswer[18];
+    private FormAnswer[] answer = new FormAnswer[19];
+
+    // Iterative Variables
     private int CurrentForm = 1;
     private int SelectedOptionPosititon = 0;
+
+    // Res/Layout Variables
     private TextView tv_option_one,tv_option_two, tv_option_three, tv_option_four, tv_progress, tv_question;
     private Button btn_submit;
     private ProgressBar progressBar;
@@ -56,7 +62,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
 
         defaultOptionsView();
 
-        if (CurrentForm == 18) {
+        if (CurrentForm == 10) {
             btn_submit.setText("Selesai");
         } else {
             btn_submit.setText("Submit");
@@ -64,19 +70,10 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
 
         CheckSet(FormQ);
         btn_submit.setOnClickListener(this);
-//        tv_option_one.setText(FormQ.getOpt1());
-//        tv_option_two.setText(FormQ.getOpt2());
-//        tv_option_three.setText(FormQ.getOpt3());
-//        tv_option_four.setText(FormQ.getOpt4());
-//        tv_option_one.setOnClickListener(this);
-//        tv_option_two.setOnClickListener(this);
-//        tv_option_three.setOnClickListener(this);
-//        tv_option_four.setOnClickListener(this);
-
     }
 
     private void CheckSet(Form formcheck){
-        // Hide Textbar
+        // Hide Textbar here
         if(formcheck.getOpt1() != ""){
             tv_option_one.setText(formcheck.getOpt1());
             tv_option_one.setOnClickListener(this);
@@ -106,7 +103,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
             tv_option_four.setVisibility(View.GONE);
         }
         if(formcheck.getOpt1() != "" && formcheck.getOpt2() != "" && formcheck.getOpt3() != "" && formcheck.getOpt4() != ""){
-            // Display TextBar
+            // Display Textbar here
         }
     }
 
@@ -152,7 +149,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
 
                     CurrentForm++;
 
-                    if(CurrentForm <= 18){
+                    if(CurrentForm <= 10){
                         SetForm();
                     } else {
                         Intent intent = new Intent(StrokeFormActivity.this, StrokeResultActivity.class);
@@ -163,13 +160,13 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                     }
 
                 } else {
-                    if (CurrentForm == 18) {
+                    if (CurrentForm == 10) {
                         btn_submit.setText("Kirim Hasil");
                     } else {
                         btn_submit.setText("Pertanyaan Selanjutnya");
                     }
 
-                    answer[CurrentForm-1].setQuestion(forms[CurrentForm-1].getQuestion());
+                    answer[CurrentForm-1] = new FormAnswer(forms[CurrentForm-1].getQuestion());
                     switch (SelectedOptionPosititon){
                         case 1:
                             answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt1());
@@ -184,7 +181,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                             answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt4());
                             break;
                         default:
-                            // Get answer from TextBar
+                            // Get answer from Textbar here
                     }
                     SelectedOptionPosititon = 0;
                 }
