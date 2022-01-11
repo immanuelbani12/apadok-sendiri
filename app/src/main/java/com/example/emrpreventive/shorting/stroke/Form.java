@@ -8,6 +8,7 @@ class Form {
     String opt2;
     String opt3;
     String opt4;
+    String hint;
 
     public int getId() {
         return id;
@@ -37,7 +38,9 @@ class Form {
         return opt4;
     }
 
-    public Form(int id, String question, String opt1, String opt2, String opt3, String opt4, int image) {
+    public String getHint() { return  hint; }
+
+    public Form(int id, String question, String opt1, String opt2, String opt3, String opt4, int image, String hint) {
         this.id = id;
         this.question = question;
         this.opt1 = opt1;

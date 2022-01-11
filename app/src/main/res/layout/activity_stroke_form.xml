@@ -61,6 +61,15 @@
                 tools:text="0/8" />
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:hint="Pilih Tanggal Lahir"
+            android:gravity="center"/>
+
         <TextView
             android:id="@+id/tv_option_one"
             android:layout_width="match_parent"
