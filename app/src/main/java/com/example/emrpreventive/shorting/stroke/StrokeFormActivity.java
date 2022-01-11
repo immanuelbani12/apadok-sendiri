@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -70,7 +74,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
 
         defaultOptionsView();
 
-        if (CurrentForm == 10) {
+        if (CurrentForm == 18) {
             btn_submit.setText("Selesai");
         } else {
             btn_submit.setText("Submit");
@@ -83,6 +87,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
     private void CheckSet(Form formcheck){
         // Hide Textbar here
         edit_text.setVisibility(View.GONE);
+        edit_text.setText(null);
         if(formcheck.getOpt1() != ""){
             tv_option_one.setText(formcheck.getOpt1());
             tv_option_one.setOnClickListener(this);
@@ -111,27 +116,48 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
         } else {
             tv_option_four.setVisibility(View.GONE);
         }
-        if(formcheck.getOpt1() != "" && formcheck.getOpt2() != "" && formcheck.getOpt3() != "" && formcheck.getOpt4() != ""){
+        if(formcheck.getOpt1() == "" && formcheck.getOpt2() == "" && formcheck.getOpt3() == "" && formcheck.getOpt4() == ""){
             // Display Textbar here
+            SelectedOptionPosititon = -1;
             edit_text.setVisibility(View.VISIBLE);
             edit_text.setHint(formcheck.getHint());
-            if(formcheck.getHint() == "Tanggal Lahir"){
-                edit_text.setOnClickListener(new View.OnClickListener() {
+            if(formcheck.getHint() == "Tanggal Lahir") {
+                edit_text.setInputType(InputType.TYPE_CLASS_TEXT);
+                edit_text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                     @Override
-                    public void onClick(View v) {
-                        final Calendar cldr = Calendar.getInstance();
-                        int day = cldr.get(Calendar.DAY_OF_MONTH);
-                        int month = cldr.get(Calendar.MONTH);
-                        int year = cldr.get(Calendar.YEAR);
-                        // date picker dialog
-                        picker = new DatePickerDialog(StrokeFormActivity.this,
-                                new DatePickerDialog.OnDateSetListener() {
-                                    @Override
-                                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                        edit_text.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                                    }
-                                }, year, month, day);
-                        picker.show();
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if(hasFocus){
+                            btn_submit.setEnabled(true);
+                            final Calendar cldr = Calendar.getInstance();
+                            int day = cldr.get(Calendar.DAY_OF_MONTH);
+                            int month = cldr.get(Calendar.MONTH);
+                            int year = cldr.get(Calendar.YEAR);
+                            // date picker dialog
+                            picker = new DatePickerDialog(StrokeFormActivity.this,
+                                    new DatePickerDialog.OnDateSetListener() {
+                                        @Override
+                                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                            edit_text.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                        }
+                                    }, year, month, day);
+                            picker.show();
+                        } else {
+                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                        }
+                    }
+                });
+            } else {
+                edit_text.setInputType(InputType.TYPE_CLASS_NUMBER);
+                edit_text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if(hasFocus){
+                            btn_submit.setEnabled(true);
+                        } else {
+                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                        }
                     }
                 });
             }
@@ -163,26 +189,33 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
+            case R.id.editText:
+                selectedOptionView(tv_option_one, 1);
+                break;
             case R.id.tv_option_one:
-                selectedOptionView(tv_option_one, 4);
+                selectedOptionView(tv_option_one, 1);
                 break;
             case R.id.tv_option_two:
-                selectedOptionView(tv_option_two, 3);
+                selectedOptionView(tv_option_two, 2);
                 break;
             case R.id.tv_option_three:
-                selectedOptionView(tv_option_three, 2);
+                selectedOptionView(tv_option_three, 3);
                 break;
             case R.id.tv_option_four:
-                selectedOptionView(tv_option_four, 1);
+                selectedOptionView(tv_option_four, 4);
                 break;
             case R.id.btn_submit:
                 if (SelectedOptionPosititon == 0) {
 
                     CurrentForm++;
 
-                    if(CurrentForm <= 10){
+                    if(CurrentForm <= 18){
                         SetForm();
                     } else {
+                        //Fake ID Setup
+                        answer[CurrentForm-1] = new FormAnswer("ID");
+                        answer[CurrentForm-1].setAnswer("69");
+
                         Intent intent = new Intent(StrokeFormActivity.this, StrokeResultActivity.class);
                         ArrayList list = new ArrayList<>(Arrays.asList(answer));
                         intent.putParcelableArrayListExtra("Answers", list);
@@ -191,12 +224,13 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                     }
 
                 } else {
-                    if (CurrentForm == 10) {
+                    if (CurrentForm == 18) {
                         btn_submit.setText("Kirim Hasil");
                     } else {
                         btn_submit.setText("Pertanyaan Selanjutnya");
                     }
 
+                    // Setup Answer Form to be Packaged into JSON
                     answer[CurrentForm-1] = new FormAnswer(forms[CurrentForm-1].getQuestion());
                     switch (SelectedOptionPosititon){
                         case 1:
@@ -211,9 +245,10 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                         case 4:
                             answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt4());
                             break;
-                        default:
+                        case -1:
                             // Get answer from Textbar here
                             answer[CurrentForm-1].setAnswer(edit_text.getText().toString());
+                            break;
                     }
                     SelectedOptionPosititon = 0;
                 }
@@ -258,5 +293,24 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
         forms[15] = new Form(16,"Apakah mengonsumsi obat anti hipertensi secara reguler?","Tidak","Ya","","",R.drawable.default_image, null);
         forms[16] = new Form(17,"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)","Tidak","Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)","Ya (Orang tua, Kakak, Adik, Anak kandung)","",R.drawable.default_image, null);
         forms[17] = new Form(18,"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)","< 30","30 - 50","> 50","Tidak Diketahui",R.drawable.default_image, null);
+
+//        answer[0] = new FormAnswer("jenis_kelamin");
+//        answer[1] = new FormAnswer("tanggal_lahir");
+//        answer[2] = new FormAnswer("tinggi_badan");
+//        answer[3] = new FormAnswer("berat_badan");
+//        answer[4] = new FormAnswer("aktivitas_fisik");
+//        answer[5] = new FormAnswer("merokok");
+//        answer[6] = new FormAnswer("lingkar_pinggang");
+//        answer[7] = new FormAnswer("histori_hipertensi");
+//        answer[8] = new FormAnswer("tekanan_darah");
+//        answer[9] = new FormAnswer("gula_darah");
+//        answer[10] = new FormAnswer("kadar_gula");
+//        answer[11] = new FormAnswer("kadar_kolesterol");
+//        answer[12] = new FormAnswer("riwayat_stroke");
+//        answer[13] = new FormAnswer("irama_jantung");
+//        answer[14] = new FormAnswer("buah_sayur");
+//        answer[15] = new FormAnswer("obat_hipertensi");
+//        answer[16] = new FormAnswer("keturunan");
+//        answer[17] = new FormAnswer("kolesterol_hdl");
     }
 }

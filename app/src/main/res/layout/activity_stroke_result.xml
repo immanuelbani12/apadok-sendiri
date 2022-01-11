@@ -59,12 +59,12 @@
             android:layout_marginTop="10dp"
             android:textColor="@android:color/secondary_text_dark"
             android:textSize="20sp"
-            android:text="Edukasi Menurunkan Resiko
-            \n1. Tiba-tiba mati rasa
-            \n2. Gangguan penglihatan
-            \n3. Sakit kepala sebagai gejala stroke
-            \n4. Kesulitan berjalan
-            \n5. Kehilangan kesadaran diri\n" />
+            android:text="Edukasi Menurunkan Risiko
+            \n1. Mempelajari Kapan Saat Mati Rasa
+            \n2. Mengalami Gangguan penglihatan
+            \n3. Mengalami Sakit Kepala
+            \n4. Mengalami Kesulitan berjalan
+            \n5. Mengalami Kehilangan kesadaran\n" />
 
         <Button
             android:id="@+id/btn_whatsapp"

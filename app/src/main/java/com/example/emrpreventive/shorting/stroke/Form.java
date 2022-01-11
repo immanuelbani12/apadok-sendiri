@@ -48,6 +48,7 @@ class Form {
         this.opt3 = opt3;
         this.opt4 = opt4;
         this.image = image;
+        this.hint = hint;
     }
 
 

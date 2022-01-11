@@ -11,10 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -22,9 +26,11 @@ import com.google.gson.Gson;
 
 import com.example.emrpreventive.MainActivity;
 import com.example.emrpreventive.R;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
@@ -35,11 +41,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class StrokeResultActivity extends AppCompatActivity {
 
     private Gson gson = new Gson();
     private RequestQueue queue;
+    private JsonObject returnvalue;
+    private String hasil_gabung = "";
     private FormAnswer[] answer = new FormAnswer[17];
     private List<FormAnswer> answers;
     private TextView tv_score;
@@ -49,11 +58,10 @@ public class StrokeResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stroke_result);
-        setupItemView();
+        setupJson();
     }
 
-    private void setupItemView() {
-
+    private void setupJson() {
         answers = getIntent().getParcelableArrayListExtra("Answers");
         //Ubah Answers ke string trus ke JSON
         Type answerstype = new TypeToken<List<FormAnswer>>() {}.getType();
@@ -64,74 +72,104 @@ public class StrokeResultActivity extends AppCompatActivity {
         // Parse JSON Respons di createcall
         // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
         // Handling Callback need Test
-        queue = Volley.newRequestQueue(this);
-        String url ="http://www.google.com";
-        queue.start();
-        createCall(Request.Method.POST,url, json, new VolleyCallBack() {
+//        queue = Volley.newRequestQueue(this);
+//        String url ="http://localhost:8080/pemeriksaan/";
+//        createCall(Request.Method.POST,url, json, new VolleyCallBack() {
+//
+//            @Override
+//            public void onSuccess() {
+//                //Tampilkan sesuatu bisa lihat contoh dibawah
+//            }
+//            });
+        createCalls(json,new VolleyCallBack() {
 
             @Override
             public void onSuccess() {
-                //Tampilkan sesuatu bisa lihat contoh dibawah
-            }
-            });
+                // this is where you will call the geofire, here you have the response from the volley.
+                String hasil_diabet = returnvalue.get("hasil_diabetes").isJsonNull() ? "" : returnvalue.get("hasil_diabetes").getAsString();
+                String hasil_stroke = returnvalue.get("hasil_stroke").isJsonNull() ? "" : returnvalue.get("hasil_stroke").getAsString();
+                String hasil_koles = returnvalue.get("hasil_kolesterol").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
+                hasil_gabung = "Anda Memiliki Risiko Diabetes "+hasil_diabet+" \ndan Risiko Stroke " + hasil_stroke+" \ndan Risiko Kolesterol " + hasil_koles;
+                setupItemView();
+            }});
+        VolleyLog.DEBUG = true;
+    }
 
+    private void setupItemView() {
 
-
-        //Tampilkan sesuatu bisa lihat contoh dibawah(Rujukan atas)
-        int ScoreHigh,ScoreMed,ScoreLow;
+//        int ScoreHigh,ScoreMed,ScoreLow;
         tv_score = (TextView) findViewById(R.id.tv_score);
         btn_finish = (Button) findViewById(R.id.btn_finish);
         btn_whatsapp = (Button) findViewById(R.id.btn_whatsapp);
-
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-
-        if(bundle != null){
-            ScoreHigh = bundle.getInt("ScoreHigh");
-            ScoreMed = bundle.getInt("ScoreMed");
-            ScoreLow = bundle.getInt("ScoreLow");
-            if(ScoreHigh >= 3) {
-                tv_score.setText("Berresiko Tinggi");
-            }
-            else if (3 > ScoreMed && ScoreMed > 7) {
-                tv_score.setText("Berresiko Sedang");
-            }
-            else {
-                tv_score.setText("Berresiko Rendah");
-            }
-        }
+//
+//        Intent intent = getIntent();
+//        Bundle bundle = intent.getExtras();
+//
+//        if(bundle != null){
+//            ScoreHigh = bundle.getInt("ScoreHigh");
+//            ScoreMed = bundle.getInt("ScoreMed");
+//            ScoreLow = bundle.getInt("ScoreLow");
+//            if(ScoreHigh >= 3) {
+//                tv_score.setText("Berresiko Tinggi");
+//            }
+//            else if (3 > ScoreMed && ScoreMed > 7) {
+//                tv_score.setText("Berresiko Sedang");
+//            }
+//            else {
+//                tv_score.setText("Berresiko Rendah");
+//            }
+//        }
+        tv_score.setText(hasil_gabung);
         btn_finish.setOnClickListener(RedirectToFinish);
         btn_whatsapp.setOnClickListener(openWhatsApp);
 
     }
 
+    private void createCalls(String json, final VolleyCallBack callback) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String URL = "http://192.168.67.78:8080/pemeriksaan/";
 
-    private void createCall(int type, String url, String json, final VolleyCallBack callback) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        // textView.setText("Response is: "+ response.substring(0,500));
-                        // Olah Respons API Success disini ya
-                        callback.onSuccess();
-                    }
-                }, new Response.ErrorListener() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("VOLLEY", response);
+                returnvalue = gson.fromJson(response, JsonObject.class);
+                callback.onSuccess();
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // textView.setText("That didn't work!");
-                // Olah Respons API Error disini ya
+                Log.e("VOLLEY", error.toString());
             }
-        }
-        ) {
+        }) {
             @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("data", json);
-                return params;
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
             }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return json == null ? null : json.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
+                    return null;
+                }
+            }
+
+//            @Override
+//            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+//                String responseString = "";
+//                if (response != null) {
+//                    responseString = String.valueOf(response.data);
+//
+//                    // can get more details such as response.headers
+//                }
+//                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+//            }
         };
-        queue.add(stringRequest);
+
+        requestQueue.add(stringRequest);
     }
 
     private View.OnClickListener openWhatsApp = v ->{
