@@ -58,6 +58,7 @@ public class StrokeResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stroke_result);
+        setupItemView();
         setupJson();
     }
 
@@ -90,7 +91,7 @@ public class StrokeResultActivity extends AppCompatActivity {
                 String hasil_stroke = returnvalue.get("hasil_stroke").isJsonNull() ? "" : returnvalue.get("hasil_stroke").getAsString();
                 String hasil_koles = returnvalue.get("hasil_kolesterol").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
                 hasil_gabung = "Anda Memiliki Risiko Diabetes "+hasil_diabet+" \ndan Risiko Stroke " + hasil_stroke+" \ndan Risiko Kolesterol " + hasil_koles;
-                setupItemView();
+                tv_score.setText(hasil_gabung);
             }});
         VolleyLog.DEBUG = true;
     }
@@ -119,7 +120,7 @@ public class StrokeResultActivity extends AppCompatActivity {
 //                tv_score.setText("Berresiko Rendah");
 //            }
 //        }
-        tv_score.setText(hasil_gabung);
+        tv_score.setText("Mengolah Data....");
         btn_finish.setOnClickListener(RedirectToFinish);
         btn_whatsapp.setOnClickListener(openWhatsApp);
 
@@ -127,7 +128,7 @@ public class StrokeResultActivity extends AppCompatActivity {
 
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL = "http://192.168.67.78:8080/pemeriksaan/";
+        String URL = "http://192.168.1.194:8080/pemeriksaan/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override

@@ -231,19 +231,29 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                     }
 
                     // Setup Answer Form to be Packaged into JSON
-                    answer[CurrentForm-1] = new FormAnswer(forms[CurrentForm-1].getQuestion());
+//                    answer[CurrentForm-1] = new FormAnswer(forms[CurrentForm-1].getQuestion());
                     switch (SelectedOptionPosititon){
                         case 1:
-                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt1());
+                            if (CurrentForm == 1) {
+                                answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt1());
+                            } else {
+                                answer[CurrentForm-1].setAnswer("1");
+                            }
                             break;
                         case 2:
-                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt2());
+                            if (CurrentForm == 1) {
+                                answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt2());
+                            } else {
+                                answer[CurrentForm - 1].setAnswer("2");
+                            }
                             break;
                         case 3:
-                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt3());
+//                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt3());
+                            answer[CurrentForm-1].setAnswer("3");
                             break;
                         case 4:
-                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt4());
+//                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt4());
+                            answer[CurrentForm-1].setAnswer("4");
                             break;
                         case -1:
                             // Get answer from Textbar here
@@ -285,7 +295,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
         forms[7] = new Form(8,"Apakah anda pernah mengalami tekanan darah tinggi?","Ya","Tidak","","",R.drawable.default_image, null);
         forms[8] = new Form(9,"Masukkan tekanan darah anda saat ini:","> 140/90","120 - 139 / 80 - 89","< 120/80","Tidak diketahui",R.drawable.default_image, null);
         forms[9] = new Form(10,"Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?","Ya","Tidak","","",R.drawable.default_image, null);
-        forms[10] = new Form(11,"Masukkan kadar gula anda saat ini:","< 120","120 - 150","> 150","",R.drawable.default_image, null);
+        forms[10] = new Form(11,"Masukkan kadar gula anda saat ini:","< 120","120 - 150","> 150","Tidak diketahui",R.drawable.default_image, null);
         forms[11] = new Form(12,"Berapa kadar kolesterol anda saat ini? (mmol/L)","> 240","200 - 239","< 200","Tidak diketahui",R.drawable.default_image, null);
         forms[12] = new Form(13,"Apakah keluarga memiliki riwayat stroke?","Ya","Tidak","Tidak diketahui","",R.drawable.default_image, null);
         forms[13] = new Form(14,"Apakah anda menderita gangguan irama jantung?","Ya","Tidak diketahui","Tidak pernah","",R.drawable.default_image, null);
@@ -294,23 +304,23 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
         forms[16] = new Form(17,"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)","Tidak","Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)","Ya (Orang tua, Kakak, Adik, Anak kandung)","",R.drawable.default_image, null);
         forms[17] = new Form(18,"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)","< 30","30 - 50","> 50","Tidak Diketahui",R.drawable.default_image, null);
 
-//        answer[0] = new FormAnswer("jenis_kelamin");
-//        answer[1] = new FormAnswer("tanggal_lahir");
-//        answer[2] = new FormAnswer("tinggi_badan");
-//        answer[3] = new FormAnswer("berat_badan");
-//        answer[4] = new FormAnswer("aktivitas_fisik");
-//        answer[5] = new FormAnswer("merokok");
-//        answer[6] = new FormAnswer("lingkar_pinggang");
-//        answer[7] = new FormAnswer("histori_hipertensi");
-//        answer[8] = new FormAnswer("tekanan_darah");
-//        answer[9] = new FormAnswer("gula_darah");
-//        answer[10] = new FormAnswer("kadar_gula");
-//        answer[11] = new FormAnswer("kadar_kolesterol");
-//        answer[12] = new FormAnswer("riwayat_stroke");
-//        answer[13] = new FormAnswer("irama_jantung");
-//        answer[14] = new FormAnswer("buah_sayur");
-//        answer[15] = new FormAnswer("obat_hipertensi");
-//        answer[16] = new FormAnswer("keturunan");
-//        answer[17] = new FormAnswer("kolesterol_hdl");
+        answer[0] = new FormAnswer("jenis_kelamin");
+        answer[1] = new FormAnswer("tanggal_lahir");
+        answer[2] = new FormAnswer("tinggi_badan");
+        answer[3] = new FormAnswer("berat_badan");
+        answer[4] = new FormAnswer("aktivitas_fisik");
+        answer[5] = new FormAnswer("merokok");
+        answer[6] = new FormAnswer("lingkar_pinggang");
+        answer[7] = new FormAnswer("histori_hipertensi");
+        answer[8] = new FormAnswer("tekanan_darah");
+        answer[9] = new FormAnswer("gula_darah");
+        answer[10] = new FormAnswer("kadar_gula");
+        answer[11] = new FormAnswer("kadar_kolesterol");
+        answer[12] = new FormAnswer("riwayat_stroke");
+        answer[13] = new FormAnswer("irama_jantung");
+        answer[14] = new FormAnswer("buah_sayur");
+        answer[15] = new FormAnswer("obat_hipertensi");
+        answer[16] = new FormAnswer("keturunan");
+        answer[17] = new FormAnswer("kolesterol_hdl");
     }
 }
