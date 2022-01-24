@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -51,7 +53,8 @@ public class StrokeResultActivity extends AppCompatActivity {
     private String hasil_gabung = "";
     private FormAnswer[] answer = new FormAnswer[17];
     private List<FormAnswer> answers;
-    private TextView tv_score;
+    private TextView tv_score, tv_informasi;
+    private ImageView iv_trophy;
     private Button btn_finish, btn_whatsapp;
 
     @Override
@@ -90,18 +93,20 @@ public class StrokeResultActivity extends AppCompatActivity {
                 String hasil_diabet = returnvalue.get("hasil_diabetes").isJsonNull() ? "" : returnvalue.get("hasil_diabetes").getAsString();
                 String hasil_stroke = returnvalue.get("hasil_stroke").isJsonNull() ? "" : returnvalue.get("hasil_stroke").getAsString();
                 String hasil_koles = returnvalue.get("hasil_kolesterol").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
-                hasil_gabung = "Anda Memiliki Risiko Diabetes "+hasil_diabet+" \ndan Risiko Stroke " + hasil_stroke+" \ndan Risiko Kolesterol " + hasil_koles;
+                hasil_gabung = "Anda Memiliki \nRisiko Diabetes "+hasil_diabet+" \nRisiko Stroke " + hasil_stroke+" \nRisiko Kolesterol " + hasil_koles;
                 tv_score.setText(hasil_gabung);
+                iv_trophy.setVisibility(View.VISIBLE);
+                tv_informasi.setVisibility(View.VISIBLE);
             }});
         VolleyLog.DEBUG = true;
     }
 
     private void setupItemView() {
-
-//        int ScoreHigh,ScoreMed,ScoreLow;
         tv_score = (TextView) findViewById(R.id.tv_score);
         btn_finish = (Button) findViewById(R.id.btn_finish);
         btn_whatsapp = (Button) findViewById(R.id.btn_whatsapp);
+        tv_informasi = (TextView) findViewById(R.id.tv_informasi);
+        iv_trophy = (ImageView) findViewById(R.id.iv_trophy);
 //
 //        Intent intent = getIntent();
 //        Bundle bundle = intent.getExtras();
@@ -121,6 +126,8 @@ public class StrokeResultActivity extends AppCompatActivity {
 //            }
 //        }
         tv_score.setText("Mengolah Data....");
+        iv_trophy.setVisibility(View.GONE);
+        tv_informasi.setVisibility(View.GONE);
         btn_finish.setOnClickListener(RedirectToFinish);
         btn_whatsapp.setOnClickListener(openWhatsApp);
 

@@ -30,7 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="image"
-            android:src="@drawable/default_image" />
+            android:adjustViewBounds="true"
+            android:src="@drawable/screening_res" />
 
     <!--    <TextView-->
     <!--        android:id="@+id/tv_"-->
@@ -48,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/secondary_text_dark"
-            android:textSize="20sp"
+            android:textSize="22sp"
+            android:gravity="center"
             android:textStyle="bold"
             tools:text="Anda berresiko tingi" />
 
@@ -59,7 +61,7 @@
             android:layout_marginTop="10dp"
             android:textColor="@android:color/secondary_text_dark"
             android:textSize="20sp"
-            android:text="Edukasi Menurunkan Risiko
+            android:text="Edukasi Mengenai Tanda Risiko
             \n1. Mempelajari Kapan Saat Mati Rasa
             \n2. Mengalami Gangguan penglihatan
             \n3. Mengalami Sakit Kepala

@@ -213,7 +213,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                         SetForm();
                     } else {
                         //Fake ID Setup
-                        answer[CurrentForm-1] = new FormAnswer("ID");
+                        answer[CurrentForm-1] = new FormAnswer("id_user");
                         answer[CurrentForm-1].setAnswer("69");
 
                         Intent intent = new Intent(StrokeFormActivity.this, StrokeResultActivity.class);
