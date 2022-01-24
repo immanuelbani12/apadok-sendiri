@@ -93,7 +93,7 @@ public class StrokeResultActivity extends AppCompatActivity {
                 String hasil_diabet = returnvalue.get("hasil_diabetes").isJsonNull() ? "" : returnvalue.get("hasil_diabetes").getAsString();
                 String hasil_stroke = returnvalue.get("hasil_stroke").isJsonNull() ? "" : returnvalue.get("hasil_stroke").getAsString();
                 String hasil_koles = returnvalue.get("hasil_kolesterol").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
-                hasil_gabung = "Anda Memiliki \nRisiko Diabetes "+hasil_diabet+" \nRisiko Stroke " + hasil_stroke+" \nRisiko Kolesterol " + hasil_koles;
+                hasil_gabung = "Anda Memiliki \nRisiko Diabetes "+hasil_diabet+" \nRisiko " + hasil_stroke+" \nRisiko Kolesterol " + hasil_koles;
                 tv_score.setText(hasil_gabung);
                 iv_trophy.setVisibility(View.VISIBLE);
                 tv_informasi.setVisibility(View.VISIBLE);
