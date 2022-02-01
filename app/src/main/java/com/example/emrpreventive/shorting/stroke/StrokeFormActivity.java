@@ -1,8 +1,5 @@
 package com.example.emrpreventive.shorting.stroke;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -19,13 +15,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.emrpreventive.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
 
 public class StrokeFormActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -137,6 +134,8 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                                     new DatePickerDialog.OnDateSetListener() {
                                         @Override
                                         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                                             edit_text.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                                         }
                                     }, year, month, day);
@@ -304,6 +303,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
         forms[16] = new Form(17,"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)","Tidak","Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)","Ya (Orang tua, Kakak, Adik, Anak kandung)","",R.drawable.default_image, null);
         forms[17] = new Form(18,"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)","< 30","30 - 50","> 50","Tidak Diketahui",R.drawable.default_image, null);
 
+        //Setup JSON Answer to be sent to API
         answer[0] = new FormAnswer("jenis_kelamin");
         answer[1] = new FormAnswer("tanggal_lahir");
         answer[2] = new FormAnswer("tinggi_badan");

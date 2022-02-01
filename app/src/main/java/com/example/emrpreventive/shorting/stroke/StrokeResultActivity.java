@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,36 +13,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
 import com.example.emrpreventive.MainActivity;
 import com.example.emrpreventive.R;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 public class StrokeResultActivity extends AppCompatActivity {
 
@@ -97,7 +84,14 @@ public class StrokeResultActivity extends AppCompatActivity {
                 tv_score.setText(hasil_gabung);
                 iv_trophy.setVisibility(View.VISIBLE);
                 tv_informasi.setVisibility(View.VISIBLE);
-            }});
+            }
+
+            @Override
+            public void onError() {
+                tv_score.setText("Gagal mengolah data, Silahkan ulangi kembali");
+            }
+        });
+
         VolleyLog.DEBUG = true;
     }
 
@@ -148,6 +142,7 @@ public class StrokeResultActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("VOLLEY", error.toString());
+                callback.onError();
             }
         }) {
             @Override
