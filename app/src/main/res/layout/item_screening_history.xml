@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:layout_marginTop="16dp"
+    >
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="10dp"
+        android:contentDescription="image"
+        tools:src="@drawable/default_image" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_risiko_diabetes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top|start"
+            android:padding="5dp"
+            android:textColorHint="#7A8089"
+            android:textSize="14sp"
+            android:text="wtf"/>
+
+        <TextView
+            android:id="@+id/tv_risiko_stroke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|start"
+            android:padding="5dp"
+            android:textColorHint="#7A8089"
+            android:textSize="14sp"
+            android:text="wtf"/>
+
+        <TextView
+            android:id="@+id/tv_risiko_kardio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|start"
+            android:padding="5dp"
+            android:textColorHint="#7A8089"
+            android:textSize="14sp"
+            android:text="wtf"/>
+    </LinearLayout>
+
+
+</LinearLayout>

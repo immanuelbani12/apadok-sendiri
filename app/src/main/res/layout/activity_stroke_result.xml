@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@android:color/white"
-            android:text="Klik untuk Whatsapp"
+            android:text="Klik untuk Konsultasi"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold" />

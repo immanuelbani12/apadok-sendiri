@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
 import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get ID Pemeriksan_1
-        String URL = "http://192.168.1.194:8080/pemeriksaan/99";
+        String URL = "http://192.168.1.194:8080/pemeriksaan/1";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirectToHistory = v -> {
-        startActivity(new Intent(MainActivity.this, StrokeFormActivity.class));
+        startActivity(new Intent(MainActivity.this, ScreeningHistoryActivity.class));
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
