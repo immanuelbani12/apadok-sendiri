@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_screening, btn_history_screening, btn_consult;
     private long differenceMinutes;
     private TextView tv_subtitle;
-    private JsonObject returnvalue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

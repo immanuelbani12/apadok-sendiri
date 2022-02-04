@@ -118,7 +118,7 @@ public class StrokeResultActivity extends AppCompatActivity {
 
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL = "http://192.168.1.194:8080/pemeriksaan/";
+        String URL = "http://178.128.25.139:8080/pemeriksaan/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
