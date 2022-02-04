@@ -35,7 +35,6 @@ import java.util.List;
 public class StrokeResultActivity extends AppCompatActivity {
 
     private Gson gson = new Gson();
-    private RequestQueue queue;
     private JsonObject returnvalue;
     private String hasil_gabung = "";
     private FormAnswer[] answer = new FormAnswer[17];
@@ -62,21 +61,11 @@ public class StrokeResultActivity extends AppCompatActivity {
         // Send JSON ke API & Parse Respons di createcall
         // Parse JSON Respons di createcall
         // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
-        // Handling Callback need Test
-//        queue = Volley.newRequestQueue(this);
-//        String url ="http://localhost:8080/pemeriksaan/";
-//        createCall(Request.Method.POST,url, json, new VolleyCallBack() {
-//
-//            @Override
-//            public void onSuccess() {
-//                //Tampilkan sesuatu bisa lihat contoh dibawah
-//            }
-//            });
         createCalls(json,new VolleyCallBack() {
 
             @Override
             public void onSuccess() {
-                // this is where you will call the geofire, here you have the response from the volley.
+                // here you have the response from the volley.
                 String hasil_diabet = returnvalue.get("hasil_diabetes").isJsonNull() ? "" : returnvalue.get("hasil_diabetes").getAsString();
                 String hasil_stroke = returnvalue.get("hasil_stroke").isJsonNull() ? "" : returnvalue.get("hasil_stroke").getAsString();
                 String hasil_koles = returnvalue.get("hasil_kolesterol").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();

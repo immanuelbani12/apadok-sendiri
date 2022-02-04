@@ -66,6 +66,10 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
+                String sch[]
+                        = { "Riwayat 1", "Riwayat 2",
+                        "Riwayat 3",
+                        "Riwayat 4" };
                 final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(),
                         android.R.layout.simple_list_item_1, sch);
                 l.setAdapter(adapter);
@@ -89,7 +93,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
                 Type screenhistory = new TypeToken<List<ScreeningHistory>>() {}.getType();
-                sch = gson.fromJson(response, screenhistory);
+                sch = gson.fromJson(response+"]", screenhistory);
                 callback.onSuccess();
             }
         }, new Response.ErrorListener() {
