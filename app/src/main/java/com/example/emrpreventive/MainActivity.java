@@ -14,24 +14,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
 import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_screening, btn_history_screening, btn_consult;
     private long differenceMinutes;
     private TextView tv_subtitle;
-    private JsonObject returnvalue;
+    private List<ScreeningHistory> sch;
+    private int UserId;
+    private String ErrorMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +76,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupJson() {
-        //NO API Form Data Yet
+        //Get User ID from Login Activity Here
+        UserId = 69;
+        //NO API Form Data Yet(No Need)
         createCalls("",new VolleyCallBack() {
 
             @Override
             public void onSuccess() {
                 // here you have the response from the volley.
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                String Time = returnvalue.get("updated_at").isJsonNull() ? "" : returnvalue.get("updated_at").getAsString();
+                String Time;
+                if (sch.isEmpty()) {
+                    Time = "";
+                } else {
+                    if (sch.get(0).getUpdated_at() == null) {
+                        Time = sch.get(0).getCreated_at();
+                    } else {
+                        Time = sch.get(0).getUpdated_at();
+                    }
+                }
                 try {
                     Date now = Calendar.getInstance().getTime();
                     Date date = formatter.parse(Time);
@@ -82,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
                     differenceMinutes = difference / (1000);
                 } catch (ParseException e) {
                     differenceMinutes = -1;
-                    e.printStackTrace();
                 }
                 long differenceHours = differenceMinutes / (60 * 60);
                 long differenceDays = differenceMinutes / (24 * 60 * 60);
@@ -110,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onError() {
                 differenceMinutes = -1;
-                tv_subtitle.setText("Tidak ada data skrining sebelumnya");
+                tv_subtitle.setText(ErrorMsg);
             }
         });
         VolleyLog.DEBUG = true;
@@ -118,20 +138,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        //Temporarily Get ID Pemeriksan_1
-        String URL = "http://192.168.1.194:8080/pemeriksaan/1";
-
+        //Temporarily Get Latest ID Pemeriksaan from User 1
+        String URL = "http://178.128.25.139:8080/pemeriksaan/user/"+UserId;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                returnvalue = gson.fromJson(response, JsonObject.class);
+                Type screenhistory = new TypeToken<List<ScreeningHistory>>() {}.getType();
+                sch = gson.fromJson(response, screenhistory);
                 callback.onSuccess();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("VOLLEY", error.toString());
+                ErrorMsg = ""; // error message, show it in toast or dialog, whatever you want
+                if (error instanceof NetworkError || error instanceof AuthFailureError || error instanceof NoConnectionError || error instanceof TimeoutError) {
+                    ErrorMsg = "Tidak ada Jaringan Internet";
+                } else if (error instanceof ServerError) {
+                    ErrorMsg = "Server sedang bermasalah";
+                }  else if (error instanceof ParseError) {
+                    ErrorMsg = "Ada masalah di aplikasi Apadok";
+                }
                 callback.onError();
             }
         }) {
@@ -154,40 +182,26 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    public static class ConfirmRescreening extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the Builder class for convenient dialog construction
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("Anda sudah melakukan skrining dalam waktu kurang dari 3 hari,\n\nLakukan kembali skrining?")
-                    .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            startActivity(new Intent(getContext(), StrokeFormActivity.class));
-                        }
-                    })
-                    .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                        }
-                    });
-            // Create the AlertDialog object and return it
-            return builder.create();
-        }
-    }
-
     private final View.OnClickListener RedirectToScreening = v -> {
         long differenceDays = differenceMinutes / (24 * 60 * 60);
         if (differenceDays <= 3 && differenceMinutes != -1) {
             DialogFragment newFragment = new ConfirmRescreening();
+            //Pass the User ID to next activity
+            ((ConfirmRescreening) newFragment).setUser_id(UserId);
             newFragment.show(getSupportFragmentManager(), "");
         } else {
-            startActivity(new Intent(MainActivity.this, StrokeFormActivity.class));
+            Intent intent = new Intent(MainActivity.this, StrokeFormActivity.class);
+            //Pass the User ID to next activity
+            intent.putExtra("user", UserId);
+            startActivity(intent);
         }
-
     };
 
     private final View.OnClickListener RedirectToHistory = v -> {
-        startActivity(new Intent(MainActivity.this, ScreeningHistoryActivity.class));
+        Intent intent = new Intent(MainActivity.this, ScreeningHistoryActivity.class);
+        //Pass the User ID to next activity
+        intent.putExtra("user", UserId);
+        startActivity(intent);
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {

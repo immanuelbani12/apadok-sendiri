@@ -16,8 +16,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -34,15 +37,9 @@ import java.util.List;
 public class ScreeningHistoryActivity extends AppCompatActivity {
 
     private Gson gson = new Gson();
-    private List<ScreeningHistory> sch;
+    private ArrayList<ScreeningHistory> sch;
     private ListView l;
     private JsonObject returnvalue;
-    String tutorials[]
-            = { "Algorithms", "Data Structures",
-            "Languages", "Interview Corner",
-            "GATE", "ISRO CS",
-            "UGC NET CS", "CS Subjects",
-            "Web Technologies" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,13 +47,31 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screening_history);
         l = findViewById(R.id.history_screening);
-        ArrayAdapter<String> arr;
-        arr
-                = new ArrayAdapter<String>(
-                this,
-                R.layout.support_simple_spinner_dropdown_item,
-                tutorials);
-        l.setAdapter(arr);
+//        String tutorials[]
+//        = { "Algorithms", "Data Structures",
+//        "Languages", "Interview Corner",
+//        "GATE", "ISRO CS",
+//        "UGC NET CS", "CS Subjects",
+//        "Web Technologies" };
+//        ArrayAdapter<String> arr;
+//        arr
+//                = new ArrayAdapter<String>(
+//                this,
+//                R.layout.support_simple_spinner_dropdown_item,
+//                tutorials);
+//        l.setAdapter(arr);
+        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                String idhistory = (String) view.getTag();
+                int id_history = Integer.parseInt(idhistory);
+                Intent intent = new Intent(getBaseContext(), ScreeningHistoryDetailActivity.class);
+                intent.putExtra("history", id_history);
+                intent.putExtra("position", position+1);
+                startActivity(intent);
+            }
+        });
         setupJson();
     }
 
@@ -66,13 +81,8 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                String sch[]
-                        = { "Riwayat 1", "Riwayat 2",
-                        "Riwayat 3",
-                        "Riwayat 4" };
-                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(),
-                        android.R.layout.simple_list_item_1, sch);
-                l.setAdapter(adapter);
+                ScreeningHistoryAdapter numbersArrayAdapter = new ScreeningHistoryAdapter(getBaseContext(), sch);
+                l.setAdapter(numbersArrayAdapter);
             }
 
             @Override
@@ -83,17 +93,24 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
         VolleyLog.DEBUG = true;
     }
 
+
+
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        //Temporarily Get ID Pemeriksan_1
-        String URL = "http://192.168.1.194:8080/pemeriksaan/";
+        //Temporarily Get ID Pemeriksan From Main Activity
+        int id_user = getIntent().getIntExtra("user", 0);
+        String URL = "http://178.128.25.139:8080/pemeriksaan/userAll/"+id_user;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
                 Type screenhistory = new TypeToken<List<ScreeningHistory>>() {}.getType();
-                sch = gson.fromJson(response+"]", screenhistory);
+                //FailSafe
+                if (response.charAt(response.length()-1) != ']'){
+                    response = response + "]";
+                }
+                sch = gson.fromJson(response, screenhistory);
                 callback.onSuccess();
             }
         }, new Response.ErrorListener() {
