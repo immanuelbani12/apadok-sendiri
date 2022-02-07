@@ -6,5 +6,15 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="black_font">#222222</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="trinidad">#ea5c07</color>
+    <color name="blue_main">#046b93</color>
+    <color name="celeste">#cfd2c8</color>
+    <color name="hippie_blue">#5d98aa</color>
+    <color name="half_baked">#79bccb</color>
+    <color name="chathams_blue">#105a6a</color>
+    <color name="teal_blue">#044854</color>
+    <color name="boston_blue">#3c94ac</color>
+
 </resources>

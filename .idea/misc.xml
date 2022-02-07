@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/drawable/button_radius.xml" value="0.1225" />
+        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/drawable/default_option_border_bg.xml" value="0.1" />
+        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/drawable/input_text.xml" value="0.1" />
+        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/layout/activity_home_page.xml" value="0.1" />
+        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/layout/activity_main.xml" value="0.14791666666666667" />
+        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/layout/activity_screening.xml" value="0.33" />
+        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/layout/activity_screening_history.xml" value="0.2" />
+        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/layout/activity_shorting.xml" value="0.11145833333333334" />
+        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/layout/activity_stroke_form.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
