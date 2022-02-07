@@ -1,6 +1,4 @@
-package com.example.emrpreventive.shorting.stroke;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.emrpreventive.shorting.screeninghistory;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -25,10 +25,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-
-import com.example.emrpreventive.MainActivity;
 import com.example.emrpreventive.R;
+import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
@@ -37,14 +36,12 @@ import java.lang.reflect.Type;
 import java.net.URLEncoder;
 import java.util.List;
 
-public class StrokeResultActivity extends AppCompatActivity {
+public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 
     private Gson gson = new Gson();
     private JsonObject returnvalue;
     private String hasil = "";
-    private FormAnswer[] answer = new FormAnswer[17];
-    private List<FormAnswer> answers;
-    private TextView tv_score, tv_informasi;
+    private TextView tv_score, tv_informasi, tv_result;
     private ImageView iv_trophy;
     private Button btn_finish, btn_whatsapp;
 
@@ -57,16 +54,10 @@ public class StrokeResultActivity extends AppCompatActivity {
     }
 
     private void setupJson() {
-        answers = getIntent().getParcelableArrayListExtra("Answers");
-        //Ubah Answers ke string trus ke JSON
-        Type answerstype = new TypeToken<List<FormAnswer>>() {}.getType();
-        String json = gson.toJson(answers, answerstype);
-        Log.e("bobo", json);
-
         // Send JSON ke API & Parse Respons di createcall
         // Parse JSON Respons di createcall
         // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
-        createCalls(json,new VolleyCallBack() {
+        createCalls("",new VolleyCallBack() {
 
             @Override
             public void onSuccess() {
@@ -74,7 +65,7 @@ public class StrokeResultActivity extends AppCompatActivity {
                 String hasil_diabet = returnvalue.get("hasil_diabetes").isJsonNull() ? "" : returnvalue.get("hasil_diabetes").getAsString();
                 String hasil_stroke = returnvalue.get("hasil_stroke").isJsonNull() ? "" : returnvalue.get("hasil_stroke").getAsString();
                 String hasil_koles = returnvalue.get("hasil_kolesterol").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
-                hasil = "Anda Memiliki \nRisiko Diabetes "+hasil_diabet+" \nRisiko " + hasil_stroke+" \nRisiko Kolesterol " + hasil_koles;
+                hasil = "Anda Memiliki\n"+hasil_diabet+" Penyakit Diabetes\n" + hasil_stroke+" Penyakit Stroke\n" + hasil_koles + " Penyakit Kardivoaskular";
                 tv_score.setText(hasil);
                 iv_trophy.setVisibility(View.VISIBLE);
                 tv_informasi.setVisibility(View.VISIBLE);
@@ -91,29 +82,15 @@ public class StrokeResultActivity extends AppCompatActivity {
 
     private void setupItemView() {
         tv_score = (TextView) findViewById(R.id.tv_score);
+        tv_result = (TextView) findViewById(R.id.tv_result);
         btn_finish = (Button) findViewById(R.id.btn_finish);
         btn_whatsapp = (Button) findViewById(R.id.btn_whatsapp);
         tv_informasi = (TextView) findViewById(R.id.tv_informasi);
         iv_trophy = (ImageView) findViewById(R.id.iv_trophy);
-//
-//        Intent intent = getIntent();
-//        Bundle bundle = intent.getExtras();
-//
-//        if(bundle != null){
-//            ScoreHigh = bundle.getInt("ScoreHigh");
-//            ScoreMed = bundle.getInt("ScoreMed");
-//            ScoreLow = bundle.getInt("ScoreLow");
-//            if(ScoreHigh >= 3) {
-//                tv_score.setText("Berresiko Tinggi");
-//            }
-//            else if (3 > ScoreMed && ScoreMed > 7) {
-//                tv_score.setText("Berresiko Sedang");
-//            }
-//            else {
-//                tv_score.setText("Berresiko Rendah");
-//            }
-//        }
-        tv_score.setText("Mengolah Data....");
+
+        int position = getIntent().getIntExtra("position", 0);
+        tv_result.setText("Riwayat Skrining "+ position);
+        tv_score.setText("Mengambil Data....");
         iv_trophy.setVisibility(View.GONE);
         tv_informasi.setVisibility(View.GONE);
         btn_finish.setOnClickListener(RedirectToFinish);
@@ -123,9 +100,10 @@ public class StrokeResultActivity extends AppCompatActivity {
 
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL = "http://178.128.25.139:8080/pemeriksaan";
+        int id_history = getIntent().getIntExtra("history", 0);
+        String URL = "http://178.128.25.139:8080/pemeriksaan/show/"+id_history;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
@@ -177,7 +155,7 @@ public class StrokeResultActivity extends AppCompatActivity {
     }
 
     private View.OnClickListener openWhatsApp = v ->{
-        PackageManager packageManager = StrokeResultActivity.this.getPackageManager();
+        PackageManager packageManager = ScreeningHistoryDetailActivity.this.getPackageManager();
         Intent i = new Intent(Intent.ACTION_VIEW);
         String numero = "+62 81282352027";
         String mensaje = "Text";

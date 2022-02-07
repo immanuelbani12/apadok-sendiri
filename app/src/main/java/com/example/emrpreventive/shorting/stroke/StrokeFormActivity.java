@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -124,8 +125,11 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onFocusChange(View v, boolean hasFocus) {
                         if(hasFocus){
+                            //Clear keyboard
+                            v.clearFocus();
                             btn_submit.setEnabled(true);
                             final Calendar cldr = Calendar.getInstance();
+                            cldr.add(Calendar.YEAR, -12);
                             int day = cldr.get(Calendar.DAY_OF_MONTH);
                             int month = cldr.get(Calendar.MONTH);
                             int year = cldr.get(Calendar.YEAR);
@@ -134,15 +138,10 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                                     new DatePickerDialog.OnDateSetListener() {
                                         @Override
                                         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                                             edit_text.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                                         }
                                     }, year, month, day);
                             picker.show();
-                        } else {
-                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                         }
                     }
                 });
@@ -188,9 +187,6 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.editText:
-                selectedOptionView(tv_option_one, 1);
-                break;
             case R.id.tv_option_one:
                 selectedOptionView(tv_option_one, 1);
                 break;
@@ -211,9 +207,10 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
                     if(CurrentForm <= 18){
                         SetForm();
                     } else {
-                        //Fake ID Setup
+                        //Get the User ID from Main Activity
                         answer[CurrentForm-1] = new FormAnswer("id_user");
-                        answer[CurrentForm-1].setAnswer("69");
+                        int id_user = getIntent().getIntExtra("user", 0);
+                        answer[CurrentForm-1].setAnswer(Integer.toString(id_user));
 
                         Intent intent = new Intent(StrokeFormActivity.this, StrokeResultActivity.class);
                         ArrayList list = new ArrayList<>(Arrays.asList(answer));

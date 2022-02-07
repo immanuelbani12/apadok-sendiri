@@ -19,7 +19,7 @@
             android:id="@+id/tv_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
             android:text="Hasil Tes"
             android:textColor="@android:color/white"
             android:textSize="25sp"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/secondary_text_dark"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:gravity="center"
             android:textStyle="bold"
             tools:text="Anda berresiko tingi" />

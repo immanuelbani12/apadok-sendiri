@@ -14,6 +14,7 @@
         android:theme="@style/Theme.EMRPreventive">
         <activity
             android:name=".HomePage"
+            android:name=".shorting.screeninghistory.ScreeningHistoryDetailActivity"
             android:exported="false" />
         <activity
             android:name=".shorting.screeninghistory.ScreeningHistoryActivity"

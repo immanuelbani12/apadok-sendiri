@@ -9,7 +9,7 @@ public class ScreeningHistory implements Parcelable {
     String hasil_diabetes;
     String hasil_kolesterol;
     String hasil_stroke;
-    String create_at;
+    String created_at;
     String updated_at;
 
     protected ScreeningHistory(Parcel in) {
@@ -18,7 +18,7 @@ public class ScreeningHistory implements Parcelable {
         hasil_diabetes = in.readString();
         hasil_kolesterol = in.readString();
         hasil_stroke = in.readString();
-        create_at = in.readString();
+        created_at = in.readString();
         updated_at = in.readString();
     }
 
@@ -29,7 +29,7 @@ public class ScreeningHistory implements Parcelable {
         dest.writeString(hasil_diabetes);
         dest.writeString(hasil_kolesterol);
         dest.writeString(hasil_stroke);
-        dest.writeString(create_at);
+        dest.writeString(created_at);
         dest.writeString(updated_at);
     }
 
@@ -90,12 +90,12 @@ public class ScreeningHistory implements Parcelable {
         this.hasil_stroke = hasil_stroke;
     }
 
-    public String getCreate_at() {
-        return create_at;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setCreate_at(String create_at) {
-        this.create_at = create_at;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
     public String getUpdated_at() {
