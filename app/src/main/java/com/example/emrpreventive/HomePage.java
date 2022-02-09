@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,11 +59,11 @@ public class HomePage extends AppCompatActivity {
         btn_consult = (Button) findViewById(R.id.btn_consult);
         tv_subtitle = (TextView) findViewById(R.id.tv_subtitle);
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "font/helvetica_neue.ttf");
-        btn_screening.setTypeface(typeface);
-        btn_history_screening.setTypeface(typeface);
-        btn_consult.setTypeface(typeface);
-        tv_subtitle.setTypeface(typeface);
+//        Typeface typeface = Typeface.createFromAsset(getBaseContext().getAssets(), "font/helvetica_neue.ttf");
+//        btn_screening.setTypeface(typeface);
+//        btn_history_screening.setTypeface(typeface);
+//        btn_consult.setTypeface(typeface);
+//        tv_subtitle.setTypeface(typeface);
 
         btn_screening.setOnClickListener(RedirectToScreening);
 
