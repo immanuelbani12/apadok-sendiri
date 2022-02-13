@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.AuthFailureError;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_page);
         getSupportActionBar().setTitle("Apadok");
         setupItemView();
         setupJson();
@@ -66,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         btn_history_screening = (Button) findViewById(R.id.btn_history_screening);
         btn_consult = (Button) findViewById(R.id.btn_consult);
         tv_subtitle = (TextView) findViewById(R.id.tv_subtitle);
+
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        btn_screening.setTypeface(helvetica_font);
+        btn_history_screening.setTypeface(helvetica_font);
+        btn_consult.setTypeface(helvetica_font);
+        tv_subtitle.setTypeface(helvetica_font);
 
         btn_screening.setOnClickListener(RedirectToScreening);
 

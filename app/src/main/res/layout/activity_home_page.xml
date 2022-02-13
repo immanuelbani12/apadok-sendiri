@@ -31,6 +31,7 @@
                 android:layout_height="260dp"
                 android:src="@drawable/apadok_logo"></ImageView>
 
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_screening"
                 android:layout_width="match_parent"
@@ -38,9 +39,15 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/button_radius"
                 android:text="Mulai Skrining"
+                android:drawableLeft="@drawable/ic_baseline_description_24"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_history_screening"
@@ -50,6 +57,11 @@
                 android:background="@drawable/button_radius"
                 android:fontFamily="@font/helvetica_neue"
                 android:text="Riwayat Skrining"
+                android:drawableLeft="@drawable/ic_baseline_view_list_24"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
@@ -61,7 +73,12 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/button_radius"
                 android:text="Konsultasi"
+                android:drawableLeft="@drawable/ic_baseline_people_24"
                 android:textAllCaps="false"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
