@@ -1,6 +1,7 @@
 package com.example.emrpreventive;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,9 +64,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void SetupPreference() {
-        UserId = getIntent().getIntExtra("user", 0);
-        String UserIdString = String.valueOf(UserId);
-        Log.e("Testing", UserIdString);
+        SharedPreferences sharedPref = this.getPreferences(getBaseContext().MODE_PRIVATE);
+        UserId = sharedPref.getInt("userlocal", 0);
+        if (UserId == 0) {
+            UserId = getIntent().getIntExtra("user", 0);
+            if (UserId == 0) {
+                startActivity(new Intent(MainActivity.this, TestLogin.class));
+                finish();
+            } else {
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("userlocal", UserId);
+                editor.apply();
+            }
+        }
+
     }
     private void setupItemView(){
         //Button
@@ -216,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        startActivity(new Intent(MainActivity.this, TestLogin.class));
+//        startActivity(new Intent(MainActivity.this, TestLogin.class));
     };
 
 

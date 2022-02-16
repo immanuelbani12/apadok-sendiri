@@ -56,6 +56,7 @@ public class TestLogin extends Activity {
                 //Pass the User ID to next activity
                 intent.putExtra("user", id);
                 startActivity(intent);
+                finish();
             }
         });
     }
