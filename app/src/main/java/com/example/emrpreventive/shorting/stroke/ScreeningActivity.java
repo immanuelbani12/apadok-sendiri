@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -40,14 +41,16 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     // Res/Layout Variables
     private TextView tv_option_one,tv_option_two, tv_option_three, tv_option_four, tv_progress, tv_question;
     private Button btn_submit;
+    private ImageView iv_image;
     private EditText edit_text;
     private ProgressBar progressBar;
     private DatePickerDialog picker;
+    private Boolean isOptionSubmitted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stroke_form);
+        setContentView(R.layout.activity_screening);
         CreateFormList();
         SetForm();
     }
@@ -65,6 +68,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         tv_question = (TextView) findViewById(R.id.tv_question);
         btn_submit = (Button) findViewById(R.id.btn_submit);
         edit_text = (EditText) findViewById(R.id.editText);
+        iv_image = (ImageView) findViewById(R.id.iv_image);
         progressBar.setProgress(CurrentForm);
         tv_progress.setText(CurrentForm + "/" + progressBar.getMax());
 
@@ -98,6 +102,12 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         // Hide Textbar here
         edit_text.setVisibility(View.GONE);
         edit_text.setText(null);
+        if(formcheck.getImage() != R.drawable.default_image){
+            iv_image.setImageResource(formcheck.getImage());
+            iv_image.setVisibility(View.VISIBLE);
+        } else {
+            iv_image.setVisibility(View.GONE);
+        }
         if(formcheck.getOpt1() != ""){
             tv_option_one.setText(formcheck.getOpt1());
             tv_option_one.setOnClickListener(this);
@@ -186,7 +196,6 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
         for (TextView option : options){
             option.setTextColor(Color.parseColor("#7A8089"));
-            option.setTypeface(Typeface.DEFAULT);
             option.setBackground(ContextCompat.getDrawable(
                     ScreeningActivity.this,
                     R.drawable.default_option_border_bg
@@ -200,20 +209,20 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.tv_option_one:
-                selectedOptionView(tv_option_one, 1);
+                if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
                 break;
             case R.id.tv_option_two:
-                selectedOptionView(tv_option_two, 2);
+                if (!isOptionSubmitted) selectedOptionView(tv_option_two, 2);
                 break;
             case R.id.tv_option_three:
-                selectedOptionView(tv_option_three, 3);
+                if (!isOptionSubmitted) selectedOptionView(tv_option_three, 3);
                 break;
             case R.id.tv_option_four:
-                selectedOptionView(tv_option_four, 4);
+                if (!isOptionSubmitted) selectedOptionView(tv_option_four, 4);
                 break;
             case R.id.btn_submit:
                 if (SelectedOptionPosititon == 0) {
-
+                    isOptionSubmitted = false;
                     CurrentForm++;
 
                     if(CurrentForm <= 18){
@@ -232,6 +241,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                     }
 
                 } else {
+                    isOptionSubmitted = true;
                     if (CurrentForm == 18) {
                         btn_submit.setText("Kirim Hasil");
                     } else {
@@ -285,7 +295,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         tv.setTextColor(
                 Color.parseColor("#363A43")
         );
-        tv.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+//        tv.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         tv.setBackground(ContextCompat.getDrawable(
                 ScreeningActivity.this,
                 R.drawable.selected_option_border_bg
@@ -293,8 +303,8 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     }
 
     private final void CreateFormList(){
-        forms[0] = new Form(1,"Jenis Kelamin","Laki-laki","Perempuan","","",R.drawable.default_image, null);
-        forms[1] = new Form(2,"Tanggal Lahir","","","","",R.drawable.default_image, "Tanggal Lahir");
+        forms[0] = new Form(1,"Jenis Kelamin","Laki-laki","Perempuan","","",R.drawable.apadok_logo, null);
+        forms[1] = new Form(2,"Tanggal Lahir","","","","",R.drawable.screening_res, "Tanggal Lahir");
         forms[2] = new Form(3,"Masukkan tinggi badan (cm)","","","","",R.drawable.default_image, "Tinggi badan (cm)");
         forms[3] = new Form(4,"Masukkan berat badan (kg)","","","","",R.drawable.default_image, "Berat badan (kg)");
         forms[4] = new Form(5,"Apakah anda aktif melakukan aktivitas fisik?","Ya","Tidak","Jarang","",R.drawable.default_image, null);

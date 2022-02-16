@@ -1,8 +1,5 @@
 package com.example.emrpreventive;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -31,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.shorting.TestLogin;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
+import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
 import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Apadok");
         SetupPreference();
         setupItemView();
@@ -203,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             ((ConfirmRescreening) newFragment).setUser_id(UserId);
             newFragment.show(getSupportFragmentManager(), "");
         } else {
-            Intent intent = new Intent(MainActivity.this, StrokeFormActivity.class);
+            Intent intent = new Intent(MainActivity.this, ScreeningActivity.class);
             //Pass the User ID to next activity
             intent.putExtra("user", UserId);
             startActivity(intent);

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,7 +46,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Apadok");
         setupItemView();
         setupJson();
@@ -200,7 +199,7 @@ public class HomePage extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        startActivity(new Intent(HomePage.this, StrokeFormActivity.class));
+//        startActivity(new Intent(HomePage.this, StrokeFormActivity.class));
     };
 
 

@@ -18,6 +18,9 @@
         <activity
             android:name=".shorting.TestLogin"
             android:exported="false" />
+        <activity   
+            android:name=".shorting.stroke.ScreeningActivity"
+            android:exported="false" />
         <activity
             android:name=".shorting.screeninghistory.ScreeningHistoryDetailActivity"
             android:exported="false" />

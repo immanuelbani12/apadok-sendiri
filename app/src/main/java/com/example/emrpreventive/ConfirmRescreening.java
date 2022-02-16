@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
 import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 
 public class ConfirmRescreening extends DialogFragment {
@@ -20,7 +21,7 @@ public class ConfirmRescreening extends DialogFragment {
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
-                        Intent intent = new Intent(getContext(), StrokeFormActivity.class);
+                        Intent intent = new Intent(getContext(), ScreeningActivity.class);
                         intent.putExtra("user", user_id);
                         startActivity(intent);
                     }

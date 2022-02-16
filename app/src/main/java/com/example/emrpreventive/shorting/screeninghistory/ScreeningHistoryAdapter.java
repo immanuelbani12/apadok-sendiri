@@ -50,10 +50,10 @@ public class ScreeningHistoryAdapter extends ArrayAdapter<ScreeningHistory> {
 
         // then according to the position of the view assign the desired TextView 2 for the same
         TextView textView2 = currentItemView.findViewById(R.id.tv_timestamp);
-        if (currentNumberPosition.getUpdated_at() == null) {
-            textView2.setText(currentNumberPosition.getCreated_at());
-        } else {
+        if (currentNumberPosition.getUpdated_at() != null) {
             textView2.setText(currentNumberPosition.getUpdated_at());
+        } else if (currentNumberPosition.getCreated_at() != null){
+            textView2.setText(currentNumberPosition.getCreated_at());
         }
 
         currentItemView.setTag(currentNumberPosition.getId_pemeriksaan());
