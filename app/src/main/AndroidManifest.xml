@@ -16,6 +16,9 @@
             android:name=".HomePage"
             android:exported="false" />
         <activity
+            android:name=".shorting.TestLogin"
+            android:exported="false" />
+        <activity
             android:name=".shorting.screeninghistory.ScreeningHistoryDetailActivity"
             android:exported="false" />
         <activity

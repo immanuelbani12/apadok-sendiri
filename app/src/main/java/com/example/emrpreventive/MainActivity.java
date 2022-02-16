@@ -28,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.emrpreventive.shorting.TestLogin;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
 import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
@@ -58,10 +59,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         getSupportActionBar().setTitle("Apadok");
+        SetupPreference();
         setupItemView();
         setupJson();
     }
 
+    private void SetupPreference() {
+        UserId = getIntent().getIntExtra("user", 0);
+        String UserIdString = String.valueOf(UserId);
+        Log.e("Testing", UserIdString);
+    }
     private void setupItemView(){
         //Button
         btn_screening = (Button) findViewById(R.id.btn_screening);
@@ -78,14 +85,12 @@ public class MainActivity extends AppCompatActivity {
         btn_screening.setOnClickListener(RedirectToScreening);
 
         btn_history_screening.setOnClickListener(RedirectToHistory);
-        btn_history_screening.setEnabled(false);
+        btn_history_screening.setEnabled(true);
         btn_consult.setOnClickListener(RedirectToConsult);
-        btn_consult.setEnabled(false);
+        btn_consult.setEnabled(true);
     }
 
     private void setupJson() {
-        //Get User ID from Login Activity Here
-        UserId = 69;
         //NO API Form Data Yet(No Need)
         createCalls("",new VolleyCallBack() {
 
@@ -213,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        startActivity(new Intent(MainActivity.this, HomePage.class));
+        startActivity(new Intent(MainActivity.this, TestLogin.class));
     };
 
 
