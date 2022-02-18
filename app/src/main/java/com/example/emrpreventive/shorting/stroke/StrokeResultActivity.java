@@ -203,7 +203,7 @@ public class StrokeResultActivity extends AppCompatActivity {
 
     private final View.OnClickListener RedirectToFinish = v -> {
 //        Use Finisih Instead of Adding New Activity to the Stack
-//        startActivity(new Intent(StrokeResultActivity.this, MainActivity.class));
+        startActivity(new Intent(StrokeResultActivity.this, MainActivity.class));
         finish();
     };
 }

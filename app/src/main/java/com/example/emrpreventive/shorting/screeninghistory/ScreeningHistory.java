@@ -22,6 +22,9 @@ public class ScreeningHistory implements Parcelable {
         updated_at = in.readString();
     }
 
+    public ScreeningHistory() {
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id_pemeriksaan);

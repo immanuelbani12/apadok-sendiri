@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:contentDescription="image"
+            android:adjustViewBounds="true"
             tools:src="@drawable/default_image" />
 
         <LinearLayout
@@ -133,6 +134,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/button_radius"
             android:text="SUBMIT"
+            android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold" />

@@ -1,9 +1,7 @@
 package com.example.emrpreventive;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,8 +26,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.emrpreventive.TestEncyclopedia.Encyclopedia;
+import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
+import com.example.emrpreventive.shorting.TestLogin;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
+import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
 import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
@@ -56,12 +58,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Apadok");
+        SetupPreference();
         setupItemView();
         setupJson();
     }
 
+    private void SetupPreference() {
+        SharedPreferences sharedPref = this.getPreferences(getBaseContext().MODE_PRIVATE);
+        UserId = sharedPref.getInt("userlocal", 0);
+        if (UserId == 0) {
+            UserId = getIntent().getIntExtra("user", 0);
+            if (UserId == 0) {
+                startActivity(new Intent(MainActivity.this, TestLogin.class));
+                finish();
+            } else {
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("userlocal", UserId);
+                editor.apply();
+            }
+        }
+
+    }
     private void setupItemView(){
         //Button
         btn_screening = (Button) findViewById(R.id.btn_screening);
@@ -78,14 +97,12 @@ public class MainActivity extends AppCompatActivity {
         btn_screening.setOnClickListener(RedirectToScreening);
 
         btn_history_screening.setOnClickListener(RedirectToHistory);
-        btn_history_screening.setEnabled(false);
+        btn_history_screening.setEnabled(true);
         btn_consult.setOnClickListener(RedirectToConsult);
-        btn_consult.setEnabled(false);
+        btn_consult.setEnabled(true);
     }
 
     private void setupJson() {
-        //Get User ID from Login Activity Here
-        UserId = 69;
         //NO API Form Data Yet(No Need)
         createCalls("",new VolleyCallBack() {
 
@@ -198,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
             ((ConfirmRescreening) newFragment).setUser_id(UserId);
             newFragment.show(getSupportFragmentManager(), "");
         } else {
-            Intent intent = new Intent(MainActivity.this, StrokeFormActivity.class);
+            Intent intent = new Intent(MainActivity.this, ScreeningActivity.class);
             //Pass the User ID to next activity
             intent.putExtra("user", UserId);
             startActivity(intent);
@@ -213,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        startActivity(new Intent(MainActivity.this, HomePage.class));
+        startActivity(new Intent(MainActivity.this, EncyclopediaActivity.class));
     };
 
 
