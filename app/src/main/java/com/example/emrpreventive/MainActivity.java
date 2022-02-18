@@ -26,6 +26,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.emrpreventive.TestEncyclopedia.Encyclopedia;
+import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
 import com.example.emrpreventive.shorting.TestLogin;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
@@ -228,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-//        startActivity(new Intent(MainActivity.this, TestLogin.class));
+        startActivity(new Intent(MainActivity.this, EncyclopediaActivity.class));
     };
 
 
