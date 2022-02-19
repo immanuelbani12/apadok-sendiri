@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
@@ -54,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().setTitle("Apadok");
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
         setupItemView();
     }
 
@@ -70,8 +72,6 @@ public class LoginActivity extends AppCompatActivity {
         btn_masuk.setTypeface(helvetica_font);
         phone_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
-
-
     }
 
 

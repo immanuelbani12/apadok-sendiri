@@ -171,7 +171,6 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                             //Clear keyboard
                             v.clearFocus();
                             btn_submit.setEnabled(true);
-                            btn_backquestion.setEnabled(false);
                             final Calendar cldr = Calendar.getInstance();
                             cldr.add(Calendar.YEAR, -12);
                             int day = cldr.get(Calendar.DAY_OF_MONTH);
@@ -196,7 +195,6 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                     public void onFocusChange(View v, boolean hasFocus) {
                         if(hasFocus){
                             btn_submit.setEnabled(true);
-                            btn_backquestion.setEnabled(false);
                         } else {
                             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -252,6 +250,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.btn_submit:
+                btn_backquestion.setEnabled(false);
                 if (SelectedOptionPosititon == 0) {
                     isOptionSubmitted = false;
                     CurrentForm++;
@@ -321,7 +320,6 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
         SelectedOptionPosititon = selectedOptionNum;
         btn_submit.setEnabled(true);
-        btn_backquestion.setEnabled(false);
 
 
         tv.setTextColor(
