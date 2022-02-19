@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -51,6 +52,8 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screening);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
         CreateFormList();
         SetForm();
     }
@@ -303,7 +306,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     }
 
     private final void CreateFormList(){
-        forms[0] = new Form(1,"Jenis Kelamin","Laki-laki","Perempuan","","",R.drawable.apadok_logo, null);
+        forms[0] = new Form(1,"Jenis Kelamin","Laki-laki","Perempuan","","",R.drawable.default_image, null);
         forms[1] = new Form(2,"Tanggal Lahir","","","","",R.drawable.screening_res, "Tanggal Lahir");
         forms[2] = new Form(3,"Masukkan tinggi badan (cm)","","","","",R.drawable.default_image, "Tinggi badan (cm)");
         forms[3] = new Form(4,"Masukkan berat badan (kg)","","","","",R.drawable.default_image, "Berat badan (kg)");

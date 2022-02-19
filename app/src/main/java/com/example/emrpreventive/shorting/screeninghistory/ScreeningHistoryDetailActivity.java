@@ -50,8 +50,21 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stroke_result);
         setupItemView();
-        setupJson();
+        setupItemData();
+//        setupJson();
     }
+
+    private void setupItemData() {
+        ScreeningHistory sch = getIntent().getParcelableExtra("data");
+        String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
+        String hasil_koles = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
+        String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
+        hasil = "Anda Memiliki\n"+hasil_diabet+" Penyakit Diabetes\n" + hasil_stroke+" Penyakit Stroke\n" + hasil_koles + " Penyakit Kardivoaskular";
+        tv_score.setText(hasil);
+        iv_trophy.setVisibility(View.VISIBLE);
+        tv_informasi.setVisibility(View.VISIBLE);
+    }
+
 
     private void setupJson() {
         // Send JSON ke API & Parse Respons di createcall

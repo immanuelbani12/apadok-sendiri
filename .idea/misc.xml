@@ -32,13 +32,15 @@
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/selected_option_border_bg.xml" value="0.1245" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_home_page.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_login.xml" value="0.2" />
-        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_screening.xml" value="0.2" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_screening.xml" value="0.536" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_screening_history.xml" value="0.1980018165304269" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_stroke_form.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_stroke_result.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/item_screening_history.xml" value="0.176" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/item_screening_history_old.xml" value="0.11354166666666667" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/toolbar.xml" value="0.4" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/toolbar_with_back_button.xml" value="0.11354166666666667" />
       </map>
     </option>
   </component>
