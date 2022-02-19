@@ -68,7 +68,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
                 int id_history = Integer.parseInt(idhistory);
                 Intent intent = new Intent(getBaseContext(), ScreeningHistoryDetailActivity.class);
 //                intent.putExtra("history", id_history);
-//                intent.putExtra("position", position+1);
+                intent.putExtra("position", position+1);
                 intent.putExtra("data",sch.get(position));
                 startActivity(intent);
             }
