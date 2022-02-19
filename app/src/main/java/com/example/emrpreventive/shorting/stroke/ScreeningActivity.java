@@ -17,10 +17,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.DialogFragment;
 
 import com.example.emrpreventive.R;
 
@@ -41,7 +43,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
     // Res/Layout Variables
     private TextView tv_option_one,tv_option_two, tv_option_three, tv_option_four, tv_progress, tv_question;
-    private Button btn_submit;
+    private Button btn_submit, btn_backquestion;
     private ImageView iv_image;
     private EditText edit_text;
     private ProgressBar progressBar;
@@ -54,6 +56,15 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_screening);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        // This callback will only be called when MyFragment is at least Started.
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                DialogFragment newFragment = new ConfirmExit();
+                newFragment.show(getSupportFragmentManager(), "");
+            }
+        };
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
         CreateFormList();
         SetForm();
     }
@@ -70,6 +81,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         tv_progress = (TextView) findViewById(R.id.tv_progress);
         tv_question = (TextView) findViewById(R.id.tv_question);
         btn_submit = (Button) findViewById(R.id.btn_submit);
+        btn_backquestion = (Button) findViewById(R.id.btn_backquestion);
         edit_text = (EditText) findViewById(R.id.editText);
         iv_image = (ImageView) findViewById(R.id.iv_image);
         progressBar.setProgress(CurrentForm);
@@ -99,12 +111,18 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
         CheckSet(FormQ);
         btn_submit.setOnClickListener(this);
+        btn_backquestion.setOnClickListener(this);
     }
 
     private void CheckSet(Form formcheck){
         // Hide Textbar here
         edit_text.setVisibility(View.GONE);
         edit_text.setText(null);
+        if(CurrentForm == 1){
+            btn_backquestion.setVisibility(View.GONE);
+        } else {
+            btn_backquestion.setVisibility(View.VISIBLE);
+        }
         if(formcheck.getImage() != R.drawable.default_image){
             iv_image.setImageResource(formcheck.getImage());
             iv_image.setVisibility(View.VISIBLE);
@@ -153,6 +171,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                             //Clear keyboard
                             v.clearFocus();
                             btn_submit.setEnabled(true);
+                            btn_backquestion.setEnabled(false);
                             final Calendar cldr = Calendar.getInstance();
                             cldr.add(Calendar.YEAR, -12);
                             int day = cldr.get(Calendar.DAY_OF_MONTH);
@@ -177,6 +196,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                     public void onFocusChange(View v, boolean hasFocus) {
                         if(hasFocus){
                             btn_submit.setEnabled(true);
+                            btn_backquestion.setEnabled(false);
                         } else {
                             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -190,6 +210,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private void defaultOptionsView() {
 
         btn_submit.setEnabled(false);
+        btn_backquestion.setEnabled(true);
 
         ArrayList<TextView> options = new ArrayList<TextView>();
         options.add(0,tv_option_one);
@@ -223,6 +244,13 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
             case R.id.tv_option_four:
                 if (!isOptionSubmitted) selectedOptionView(tv_option_four, 4);
                 break;
+
+            case R.id.btn_backquestion:
+                SelectedOptionPosititon = 0;
+                CurrentForm--;
+                SetForm();
+                break;
+
             case R.id.btn_submit:
                 if (SelectedOptionPosititon == 0) {
                     isOptionSubmitted = false;
@@ -293,6 +321,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
         SelectedOptionPosititon = selectedOptionNum;
         btn_submit.setEnabled(true);
+        btn_backquestion.setEnabled(false);
 
 
         tv.setTextColor(
