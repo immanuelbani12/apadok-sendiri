@@ -19,6 +19,8 @@
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,29 +28,60 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
+            <TextView
+                android:id="@+id/clinic"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="16dp"
+                android:text="@string/clinic_name"
+                android:gravity="center"
+                android:textColor="@color/black_font"
+                android:textSize="19dp" />
+
+            <LinearLayout
+                android:id="@+id/footer"
+                android:layout_width="159dp"
+                android:layout_height="36dp"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/support_by"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="By"
+                    android:textColor="@color/black_font"
+                    android:textSize="18dp" />
+
+                <ImageView
+                    android:layout_width="127dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/apadok_logo_crop" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/phone_text"
                 android:layout_width="wrap_content"
-                android:layout_height="260dp"
-                android:src="@drawable/apadok_logo"></ImageView>
+                android:layout_height="match_parent"
+                android:text="Nomor Handphone"
+                android:textColor="@color/black_font"
+                android:textSize="14dp"
+                android:layout_marginBottom="10dp"/>
 
             <EditText
-                android:id="@+id/username_text"
+                android:id="@+id/phone_input"
                 android:layout_width="320dp"
                 android:layout_height="52dp"
                 android:layout_gravity="center"
                 android:ems="10"
                 android:layout_marginBottom="10dp"
-                android:hint="Username"
-                android:background="@drawable/input_text"
-                android:gravity="center"/>
-
-            <EditText
-                android:id="@+id/password_text"
-                android:layout_width="320dp"
-                android:layout_height="52dp"
-                android:layout_gravity="center"
-                android:ems="10"
-                android:hint="Password"
+                android:hint="0812345xxx"
                 android:background="@drawable/input_text"
                 android:gravity="center"/>
 
@@ -66,28 +99,5 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/footer"
-        android:layout_width="159dp"
-        android:layout_height="36dp"
-        android:layout_below="@+id/cv_main"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:layout_marginTop="50dp">
 
-        <TextView
-            android:id="@+id/support_by"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="By"
-            android:textColor="@color/black_font"
-            android:textSize="21sp" />
-
-        <ImageView
-            android:layout_width="127dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/apadok_logo_crop" />
-    </LinearLayout>
 </LinearLayout>

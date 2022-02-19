@@ -32,7 +32,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="19"
                 android:gravity="center"
-                android:text="KLINIK X"
+                android:text="@string/clinic_name"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
         </LinearLayout>

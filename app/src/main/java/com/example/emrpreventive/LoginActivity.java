@@ -47,8 +47,8 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity {
 
     private Button btn_masuk;
-    private TextView tv_support_by;
-    private EditText username, password;
+    private TextView tv_support_by, phone_text;
+    private EditText phone_input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +62,14 @@ public class LoginActivity extends AppCompatActivity {
         //Button
         btn_masuk = (Button) findViewById(R.id.btn_masuk);
         tv_support_by = (TextView) findViewById(R.id.support_by);
-        username = (EditText) findViewById(R.id.username_text);
-        password = (EditText) findViewById(R.id.password_text);
+        phone_text = (TextView) findViewById(R.id.phone_text);
+        phone_input = (EditText) findViewById(R.id.phone_input);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
         tv_support_by.setTypeface(helvetica_font);
         btn_masuk.setTypeface(helvetica_font);
-        username.setTypeface(helvetica_font);
-        password.setTypeface(helvetica_font);
+        phone_input.setTypeface(helvetica_font);
+        phone_text.setTypeface(helvetica_font);
 
 
     }

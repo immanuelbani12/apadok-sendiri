@@ -6,39 +6,49 @@
     android:gravity="center"
     android:orientation="horizontal"
     android:layout_marginTop="16dp"
+    android:weightSum="5"
     >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="1737dp"
         android:layout_height="wrap_content"
+        android:layout_weight="4"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
         android:paddingLeft="60dp"
+        android:paddingTop="20dp"
         android:paddingRight="60dp"
-        >
+        android:paddingBottom="20dp">
 
         <TextView
             android:id="@+id/tv_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="top|start"
-            android:textColorHint="#7A8089"
             android:padding="5dp"
-            android:textSize="20sp"
-            android:text="Riwayat "/>
+            android:text="Riwayat "
+            android:textColorHint="#7A8089"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center|start"
-            android:textColorHint="#7A8089"
             android:padding="5dp"
-            android:textSize="14sp"
-            android:text="Kamis, 27/01/2022 | 13:55 WIB"/>
+            android:text="Kamis, 27/01/2022 | 13:55 WIB"
+            android:textColorHint="#7A8089"
+            android:textSize="14sp" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_chevron_right_24"/>
+    </LinearLayout>
 
 </LinearLayout>
