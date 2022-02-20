@@ -42,6 +42,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
     private String hasil = "";
     private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result;
     private Button btn_consult, btn_education;
+    private int stroke,kardiio,diabet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,20 +74,20 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         String dangtext = "";
         String safetext = "";
         if (hasil_diabet.contains("Tinggi")) {
-            diabetes_result.setTextColor(1);
+//            diabetes_result.setTextColor(1);
             dangtext = "penyakit diabetes";
             diabetval = 3;
         } else if (hasil_diabet.contains("Rendah")) {
-            diabetes_result.setTextColor(2);
+//            diabetes_result.setTextColor(2);
             safetext = "penyakit diabetes";
             diabetval = 1;
         } else {
-            diabetes_result.setTextColor(3);
+//            diabetes_result.setTextColor(3);
             diabetval = 2;
             safetext = "penyakit diabetes";
         }
         if (hasil_stroke.contains("Tinggi")) {
-            stroke_result.setTextColor(1);
+//            stroke_result.setTextColor(1);
             if (dangtext == ""){
                 dangtext = "penyakit stroke";
             } else  {
@@ -94,7 +95,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             }
             strokeval = 3;
         } else if (hasil_stroke.contains("Rendah")) {
-            stroke_result.setTextColor(3);
+//            stroke_result.setTextColor(3);
             strokeval = 1;
             if (dangtext == ""){
                 dangtext = "penyakit stroke";
@@ -102,7 +103,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
                 dangtext += ", penyakit stroke";
             }
         } else {
-            stroke_result.setTextColor(3);
+//            stroke_result.setTextColor(3);
             strokeval = 2;
             if (safetext == ""){
                 safetext = "penyakit stroke";
@@ -111,7 +112,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             }
         }
         if (hasil_kardio.contains("Tinggi")) {
-            cardiovascular_result.setTextColor(1);
+//            cardiovascular_result.setTextColor(1);
             if (safetext == ""){
                 safetext = "penyakit cardiovascular";
             } else {
@@ -119,7 +120,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             }
             cardioval = 3;
         } else if (hasil_kardio.contains("Rendah") || hasil_kardio.contains("Tidak")) {
-            cardiovascular_result.setTextColor(3);
+//            cardiovascular_result.setTextColor(3);
             cardioval = 1;
             if (safetext == ""){
                 safetext = "penyakit cardiovascular";
@@ -127,7 +128,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
                 safetext += ", penyakit cardiovascular";
             }
         } else {
-            cardiovascular_result.setTextColor(3);
+//            cardiovascular_result.setTextColor(3);
             cardioval = 2;
             if (safetext == ""){
                 safetext = "penyakit cardiovascular";
@@ -147,6 +148,10 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             btn_education.setVisibility(View.VISIBLE);
         }
 
+        // Please Change those 3 Val into Var Global and revamp the code
+        stroke = strokeval;
+        diabet = diabetval;
+        kardiio = cardioval;
     }
 
 
@@ -268,8 +273,10 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 
     private final View.OnClickListener RedirectToEducation = v -> {
         Intent intent = new Intent(ScreeningHistoryDetailActivity.this, EncyclopediaActivity.class);
-        //Pass the User ID to next activity
-        intent.putExtra("category", 0);
+        //Pass the Category to next activity
+        intent.putExtra("categorydiabetes", diabet);
+        intent.putExtra("categorystroke", stroke);
+        intent.putExtra("categorykardio", kardiio);
         startActivity(intent);
     };
 
