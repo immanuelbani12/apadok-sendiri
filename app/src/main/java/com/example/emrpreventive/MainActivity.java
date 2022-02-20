@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        startActivity(new Intent(MainActivity.this, EncyclopediaActivity.class));
     };
 
 

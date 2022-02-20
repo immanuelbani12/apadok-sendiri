@@ -40,7 +40,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_screening_history);
+        setContentView(R.layout.activity_encyclopedia);
         CreateFormList();
         eclnew = FilterEncyclopedia();
         l = findViewById(R.id.history_screening);
@@ -53,8 +53,10 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 String idhistory = (String) view.getTag();
                 int id_history = Integer.parseInt(idhistory);
                 Intent intent = new Intent(getBaseContext(), EncyclopediaDetailActivity.class);
-                intent.putExtra("history", id_history);
                 intent.putExtra("position", position+1);
+                intent.putExtra("judul_artikel", eclnew.get(id_history).judul_artikel);
+                intent.putExtra("isi_artikel", eclnew.get(id_history).isi_artikel);
+                intent.putExtra("kategori_artikel", eclnew.get(id_history).kategori_artikel);
                 startActivity(intent);
             }
         });

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/title_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Judul Artikel"
+            android:textColor="@color/black_font"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:text="Isi Artikel"
+            android:textColor="@color/grey_font"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/diabetes_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="35dp"
+            android:text="Kategori Penyakit:"
+            android:textColor="@color/black_font"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/diabetes_title"
+            android:drawableLeft="@drawable/ic_baseline_opacity_24"
+            android:paddingLeft="15dp"
+            android:drawablePadding="5dp"
+            android:text="Penyakit Diabetes"
+            android:textColor="@color/grey_font"
+            android:layout_marginBottom="10dp"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/stroke_title"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/ic_brain"
+            android:paddingLeft="15dp"
+            android:text="Penyakit Stroke"
+            android:textColor="@color/grey_font"
+            android:layout_marginBottom="10dp"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/cardiovascular_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/ic_baseline_favorite_24"
+            android:drawablePadding="5dp"
+            android:paddingLeft="15dp"
+            android:text="Penyakit Kardiovaskular"
+            android:textColor="@color/grey_font"
+            android:textSize="18dp" />
+
+
+    </LinearLayout>
+</ScrollView>

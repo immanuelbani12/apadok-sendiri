@@ -59,8 +59,8 @@ public class EncyclopediaAdapter extends ArrayAdapter<Encyclopedia> {
         } else if (currentNumberPosition.getCreated_at() != null){
             textView2.setText(currentNumberPosition.getCreated_at());
         }
-
-        currentItemView.setTag(currentNumberPosition.getId_artikel());
+        String positionstring = Integer.toString(position);
+        currentItemView.setTag(positionstring);
 
         // then return the recyclable view
         return currentItemView;

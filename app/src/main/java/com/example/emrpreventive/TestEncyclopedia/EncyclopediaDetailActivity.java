@@ -38,14 +38,14 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
     private Gson gson = new Gson();
     private JsonObject returnvalue;
     private String hasil = "";
-    private TextView tv_score, tv_informasi, tv_result;
+    private TextView tv_title, tv_diabetes, tv_cardiovascular, tv_stroke, tv_result;
     private ImageView iv_trophy;
     private Button btn_finish, btn_whatsapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stroke_result);
+        setContentView(R.layout.activity_encyclopedia_detail);
         setupItemView();
        // setupJson();
     }
@@ -78,19 +78,34 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
 //    }
 
     private void setupItemView() {
-        tv_score = (TextView) findViewById(R.id.tv_score);
-        tv_result = (TextView) findViewById(R.id.tv_result);
-        btn_finish = (Button) findViewById(R.id.btn_finish);
-        btn_whatsapp = (Button) findViewById(R.id.btn_whatsapp);
-        tv_informasi = (TextView) findViewById(R.id.tv_informasi);
-        iv_trophy = (ImageView) findViewById(R.id.iv_trophy);
+        tv_title = (TextView) findViewById(R.id.title_result);
+        tv_result = (TextView) findViewById(R.id.result);
+        tv_diabetes = (TextView) findViewById(R.id.diabetes_title);
+        tv_stroke = (TextView) findViewById(R.id.stroke_title);
+        tv_cardiovascular = (TextView) findViewById(R.id.cardiovascular_title);
 
         int position = getIntent().getIntExtra("position", 0);
-        tv_result.setText("Riwayat Skrining "+ position);
-        tv_score.setText("Mengambil Data....");
-        iv_trophy.setVisibility(View.GONE);
-        tv_informasi.setVisibility(View.GONE);
-        btn_finish.setOnClickListener(RedirectToFinish);
+        tv_title.setText(getIntent().getStringExtra("judul_artikel"));
+        tv_result.setText(getIntent().getStringExtra("isi_artikel"));
+        String kategori = getIntent().getStringExtra("kategori_artikel");
+        int kategoriint = Integer.parseInt(kategori);
+
+        Log.e("kategori", kategori);
+
+        if (kategoriint == 1){
+            tv_diabetes.setVisibility(View.GONE);
+            tv_cardiovascular.setVisibility(View.GONE);
+        }
+
+        if (kategoriint == 2){
+            tv_stroke.setVisibility(View.GONE);
+            tv_cardiovascular.setVisibility(View.GONE);
+        }
+
+        if (kategoriint == 3){
+            tv_stroke.setVisibility(View.GONE);
+            tv_diabetes.setVisibility(View.GONE);
+        }
     }
 
     private void createCalls(String json, final VolleyCallBack callback) {

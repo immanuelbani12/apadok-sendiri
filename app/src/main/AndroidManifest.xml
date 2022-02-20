@@ -24,7 +24,10 @@
         <activity
             android:name=".TestEncyclopedia.EncyclopediaActivity"
             android:exported="false" />
-        <activity   
+        <activity
+            android:name=".TestEncyclopedia.EncyclopediaDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".shorting.stroke.ScreeningActivity"
             android:exported="false" />
         <activity
