@@ -45,6 +45,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,19 +71,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void SetupPreference() {
         SharedPreferences sharedPref = this.getPreferences(getBaseContext().MODE_PRIVATE);
+//        Deleted when done
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.clear();
+//        editor.apply();
+//
         UserId = sharedPref.getInt("userlocal", 0);
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("user", 0);
             if (UserId == 0) {
-                startActivity(new Intent(MainActivity.this, TestLogin.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             } else {
-                SharedPreferences.Editor editor = sharedPref.edit();
+//                SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt("userlocal", UserId);
+                editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
             }
         }
-
     }
     private void setupItemView(){
         //Button
@@ -100,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
         btn_screening.setOnClickListener(RedirectToScreening);
 
         btn_history_screening.setOnClickListener(RedirectToHistory);
-        btn_history_screening.setEnabled(true);
+        btn_history_screening.setEnabled(false);
         btn_consult.setOnClickListener(RedirectToConsult);
-        btn_consult.setEnabled(true);
+        btn_consult.setEnabled(false);
     }
 
     private void setupJson() {

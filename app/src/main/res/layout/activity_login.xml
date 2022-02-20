@@ -65,25 +65,36 @@
                     android:src="@drawable/apadok_logo_crop" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/phone_text"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:paddingHorizontal="20dp"
                 android:layout_height="match_parent"
-                android:text="Nomor Handphone"
-                android:textColor="@color/black_font"
-                android:textSize="14dp"
-                android:layout_marginBottom="10dp"/>
+                android:orientation="vertical"
+                android:layout_gravity="center">
 
-            <EditText
-                android:id="@+id/phone_input"
-                android:layout_width="320dp"
-                android:layout_height="52dp"
-                android:layout_gravity="center"
-                android:ems="10"
-                android:layout_marginBottom="10dp"
-                android:hint="0812345xxx"
-                android:background="@drawable/input_text"
-                android:gravity="center"/>
+                <TextView
+                    android:id="@+id/phone_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomor Handphone"
+                    android:textColor="@color/black_font"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="left"/>
+
+                <EditText
+                    android:id="@+id/phone_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:layout_marginBottom="10dp"
+                    android:hint="0812345xxx"
+                    android:background="@drawable/input_text"
+                    android:gravity="center"
+                    android:inputType="phone"/>
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_masuk"
@@ -94,7 +105,8 @@
                 android:text="Masuk"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

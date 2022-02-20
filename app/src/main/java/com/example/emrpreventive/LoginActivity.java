@@ -30,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.emrpreventive.shorting.TestLogin;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
 import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
@@ -72,6 +73,38 @@ public class LoginActivity extends AppCompatActivity {
         btn_masuk.setTypeface(helvetica_font);
         phone_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
+
+        btn_masuk.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                phone_input = (EditText)findViewById(R.id.phone_input);
+                String count = phone_input.getText().toString();
+                Integer id = 0;
+
+                // Creating array of string length & convert to uppercase
+                char[] ch = new char[count.length()];
+                count.toUpperCase();
+
+                // Copy character by character into array
+                for (int i = 0; i < count.length(); i++) {
+                    ch[i] = count.charAt(i);
+                }
+
+                for (int i = 0; i < count.length(); i++){
+                    id = id + (i+1) * (ch[i] - 64);
+                }
+
+                id = Math. abs(id);
+                id = id % 200;
+
+                Log.e("login", String.valueOf(id));
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                //Pass the User ID to next activity
+                intent.putExtra("user", id);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
 
