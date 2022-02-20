@@ -25,6 +25,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.emrpreventive.R;
+import com.example.emrpreventive.SetupToolbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,6 +57,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_screening);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        SetupToolbar.changeToolbarFont(myToolbar, this);
         // This callback will only be called when MyFragment is at least Started.
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
@@ -335,20 +337,20 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private final void CreateFormList(){
         forms[0] = new Form(1,"Jenis Kelamin","Laki-laki","Perempuan","","",R.drawable.default_image, null);
         forms[1] = new Form(2,"Tanggal Lahir","","","","",R.drawable.screening_res, "Tanggal Lahir");
-        forms[2] = new Form(3,"Masukkan tinggi badan (cm)","","","","",R.drawable.default_image, "Tinggi badan (cm)");
-        forms[3] = new Form(4,"Masukkan berat badan (kg)","","","","",R.drawable.default_image, "Berat badan (kg)");
+        forms[2] = new Form(3,"Masukkan tinggi badan (cm)","","","","",R.drawable.tinggi_badan, "Tinggi badan (cm)");
+        forms[3] = new Form(4,"Masukkan berat badan (kg)","","","","",R.drawable.berat_badan, "Berat badan (kg)");
         forms[4] = new Form(5,"Apakah anda aktif melakukan aktivitas fisik?","Ya","Tidak","Jarang","",R.drawable.default_image, null);
         forms[5] = new Form(6,"Apakah anda merokok?","Perokok Aktif","Sedang berusaha berhenti merokok","Tidak Merokok","",R.drawable.default_image, null);
-        forms[6] = new Form(7,"Ukuran lingkar pinggang (cm)","","","","", R.drawable.default_image, "Lingkar pinggang (cm)");
-        forms[7] = new Form(8,"Apakah anda pernah mengalami tekanan darah tinggi?","Ya","Tidak","","",R.drawable.default_image, null);
+        forms[6] = new Form(7,"Ukuran lingkar pinggang (cm)","","","","", R.drawable.lingkar_pinggang, "Lingkar pinggang (cm)");
+        forms[7] = new Form(8,"Apakah anda pernah mengalami tekanan darah tinggi?","Ya","Tidak","","",R.drawable.darah_tinggi, null);
         forms[8] = new Form(9,"Masukkan tekanan darah anda saat ini:","> 140/90","120 - 139 / 80 - 89","< 120/80","Tidak diketahui",R.drawable.default_image, null);
         forms[9] = new Form(10,"Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?","Ya","Tidak","","",R.drawable.default_image, null);
         forms[10] = new Form(11,"Masukkan kadar gula anda saat ini:","< 120","120 - 150","> 150","Tidak diketahui",R.drawable.default_image, null);
         forms[11] = new Form(12,"Berapa kadar kolesterol anda saat ini? (mmol/L)","> 240","200 - 239","< 200","Tidak diketahui",R.drawable.default_image, null);
         forms[12] = new Form(13,"Apakah keluarga memiliki riwayat stroke?","Ya","Tidak","Tidak diketahui","",R.drawable.default_image, null);
         forms[13] = new Form(14,"Apakah anda menderita gangguan irama jantung?","Ya","Tidak diketahui","Tidak pernah","",R.drawable.default_image, null);
-        forms[14] = new Form(15,"Seberapa sering anda makan sayuran, buah-buahan atau beri?","Setiap Hari","Tidak setiap hari","","",R.drawable.default_image, null);
-        forms[15] = new Form(16,"Apakah mengonsumsi obat anti hipertensi secara reguler?","Tidak","Ya","","",R.drawable.default_image, null);
+        forms[14] = new Form(15,"Seberapa sering anda makan sayuran, buah-buahan atau beri?","Setiap Hari","Tidak setiap hari","","",R.drawable.sayuran, null);
+        forms[15] = new Form(16,"Apakah mengonsumsi obat anti hipertensi secara reguler?","Tidak","Ya","","",R.drawable.obat, null);
         forms[16] = new Form(17,"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)","Tidak","Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)","Ya (Orang tua, Kakak, Adik, Anak kandung)","",R.drawable.default_image, null);
         forms[17] = new Form(18,"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)","< 30","30 - 50","> 50","Tidak Diketahui",R.drawable.default_image, null);
 

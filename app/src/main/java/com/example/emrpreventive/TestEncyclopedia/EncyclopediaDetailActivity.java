@@ -90,8 +90,6 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
         String kategori = getIntent().getStringExtra("kategori_artikel");
         int kategoriint = Integer.parseInt(kategori);
 
-        Log.e("kategori", kategori);
-
         if (kategoriint == 1){
             tv_diabetes.setVisibility(View.GONE);
             tv_cardiovascular.setVisibility(View.GONE);
