@@ -1,6 +1,7 @@
 package com.example.emrpreventive.shorting.screeninghistory;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -11,6 +12,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.R;
+import com.example.emrpreventive.SetupToolbar;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -47,6 +49,9 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screening_history);
         l = findViewById(R.id.history_screening);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        SetupToolbar.changeToolbarFont(myToolbar, this);
 //        String tutorials[]
 //        = { "Algorithms", "Data Structures",
 //        "Languages", "Interview Corner",
