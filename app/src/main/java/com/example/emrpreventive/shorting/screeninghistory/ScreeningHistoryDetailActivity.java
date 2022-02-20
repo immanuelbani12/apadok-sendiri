@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.emrpreventive.MainActivity;
 import com.example.emrpreventive.R;
 import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
@@ -57,18 +58,95 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         String hasil_kardio = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
+
         time_result.setText(timestamp);
         diabetes_result.setText(hasil_diabet);
         stroke_result.setText(hasil_stroke);
         cardiovascular_result.setText(hasil_kardio);
-
-
-
         diabetes_result.setVisibility(View.VISIBLE);
         stroke_result.setVisibility(View.VISIBLE);
         cardiovascular_result.setVisibility(View.VISIBLE);
-        dangerous_result.setVisibility(View.VISIBLE);
-        safe_result.setVisibility(View.VISIBLE);
+
+        //Handling IF Else results in here
+        // Need to Change SetTextColor 1=Merah, 2=Menengah(Kuning/Itam), 3=Hijau
+        int diabetval, strokeval, cardioval;
+        String dangtext = "";
+        String safetext = "";
+        if (hasil_diabet.contains("Tinggi")) {
+            diabetes_result.setTextColor(1);
+            dangtext = "penyakit diabetes";
+            diabetval = 3;
+        } else if (hasil_diabet.contains("Rendah")) {
+            diabetes_result.setTextColor(2);
+            safetext = "penyakit diabetes";
+            diabetval = 1;
+        } else {
+            diabetes_result.setTextColor(3);
+            diabetval = 2;
+            safetext = "penyakit diabetes";
+        }
+        if (hasil_stroke.contains("Tinggi")) {
+            stroke_result.setTextColor(1);
+            if (dangtext == ""){
+                dangtext = "penyakit stroke";
+            } else  {
+                dangtext += ", penyakit stroke";
+            }
+            strokeval = 3;
+        } else if (hasil_stroke.contains("Rendah")) {
+            stroke_result.setTextColor(3);
+            strokeval = 1;
+            if (dangtext == ""){
+                dangtext = "penyakit stroke";
+            } else  {
+                dangtext += ", penyakit stroke";
+            }
+        } else {
+            stroke_result.setTextColor(3);
+            strokeval = 2;
+            if (safetext == ""){
+                safetext = "penyakit stroke";
+            } else  {
+                safetext += ", penyakit stroke";
+            }
+        }
+        if (hasil_kardio.contains("Tinggi")) {
+            cardiovascular_result.setTextColor(1);
+            if (safetext == ""){
+                safetext = "penyakit cardiovascular";
+            } else {
+                safetext += ", penyakit cardiovascular";
+            }
+            cardioval = 3;
+        } else if (hasil_kardio.contains("Rendah") || hasil_kardio.contains("Tidak")) {
+            cardiovascular_result.setTextColor(3);
+            cardioval = 1;
+            if (safetext == ""){
+                safetext = "penyakit cardiovascular";
+            } else  {
+                safetext += ", penyakit cardiovascular";
+            }
+        } else {
+            cardiovascular_result.setTextColor(3);
+            cardioval = 2;
+            if (safetext == ""){
+                safetext = "penyakit cardiovascular";
+            } else  {
+                safetext += ", penyakit cardiovascular";
+            }
+        }
+
+        if (diabetval== 3 || strokeval == 3 || cardioval == 3) {
+            dangerous_result.setText("Tubuh anda memiliki resiko tinggi untuk "+ dangtext +" sehingga membutuhkan konsultasi secara offline ke dokter");
+            dangerous_result.setVisibility(View.VISIBLE);
+            btn_consult.setVisibility(View.VISIBLE);
+        }
+        if (diabetval <= 2 || strokeval <= 2 || cardioval <= 2){
+            safe_result.setText("Untuk "+ safetext +" silahkan melihat edukasi pencegahan penyakit tersebut berikut.");
+            safe_result.setVisibility(View.VISIBLE);
+            btn_education.setVisibility(View.VISIBLE);
+        }
+
     }
 
 
@@ -100,8 +178,8 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         cardiovascular_result = (TextView) findViewById(R.id.cardiovascular_result);
         dangerous_result = (TextView) findViewById(R.id.dangerous_result);
         safe_result = (TextView) findViewById(R.id.safe_result);
-        btn_consult = (Button) findViewById(R.id.btn_finish);
-        btn_education = (Button) findViewById(R.id.btn_whatsapp);
+        btn_consult = (Button) findViewById(R.id.btn_consult);
+        btn_education = (Button) findViewById(R.id.btn_education);
 
         int position = getIntent().getIntExtra("position", 0);
         title_result.setText("Riwayat Skrining "+ position);
@@ -111,7 +189,9 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         cardiovascular_result.setVisibility(View.GONE);
         dangerous_result.setVisibility(View.GONE);
         safe_result.setVisibility(View.GONE);
-//        btn_education.setOnClickListener(RedirectToEducation);
+        btn_consult.setVisibility(View.GONE);
+        btn_education.setVisibility(View.GONE);
+        btn_education.setOnClickListener(RedirectToEducation);
 
     }
 
@@ -185,5 +265,12 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 //        }
 //
 //    };
+
+    private final View.OnClickListener RedirectToEducation = v -> {
+        Intent intent = new Intent(ScreeningHistoryDetailActivity.this, EncyclopediaActivity.class);
+        //Pass the User ID to next activity
+        intent.putExtra("category", 0);
+        startActivity(intent);
+    };
 
 }
