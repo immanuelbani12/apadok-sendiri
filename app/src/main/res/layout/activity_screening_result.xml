@@ -1,150 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <include layout="@layout/toolbar" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="20dp"
-        android:background="@color/white">
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/title_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="5dp"
-            android:text="Hasil Skrining"
-            android:textColor="@color/black_font"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/time_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:text="Kamis, 25 Oktober 2015 12:11 WIB"
-            android:textColor="@color/grey_font"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/diabetes_title"
-            android:drawableLeft="@drawable/ic_baseline_opacity_24"
-            android:paddingLeft="15dp"
-            android:drawablePadding="5dp"
-            android:text="Penyakit Diabetes"
-            android:textColor="@color/grey_font"
-            android:layout_marginBottom="10dp"
-            android:textSize="18dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="20dp"
+            android:background="@color/white">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/diabetes_result"
-            android:paddingLeft="35dp"
-            android:text="Risiko"
-            android:textColor="@color/black_font"
-            android:layout_marginBottom="20dp"
-            android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/title_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Hasil Skrining"
+                android:textColor="@color/black_font"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/stroke_title"
-            android:drawablePadding="5dp"
-            android:drawableLeft="@drawable/ic_brain"
-            android:paddingLeft="15dp"
-            android:text="Penyakit Stroke"
-            android:textColor="@color/grey_font"
-            android:layout_marginBottom="10dp"
-            android:textSize="18dp"/>
+            <TextView
+                android:id="@+id/time_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:text="Kamis, 25 Oktober 2015 12:11 WIB"
+                android:textColor="@color/grey_font"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/stroke_result"
-            android:paddingLeft="35dp"
-            android:text="Risiko"
-            android:textColor="@color/black_font"
-            android:layout_marginBottom="20dp"
-            android:textSize="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/diabetes_title"
+                android:drawableLeft="@drawable/ic_baseline_opacity_24"
+                android:paddingLeft="15dp"
+                android:drawablePadding="5dp"
+                android:text="Penyakit Diabetes"
+                android:textColor="@color/grey_font"
+                android:layout_marginBottom="10dp"
+                android:textSize="18dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cardiovascular_title"
-            android:drawableLeft="@drawable/ic_baseline_favorite_24"
-            android:drawablePadding="5dp"
-            android:paddingLeft="15dp"
-            android:text="Penyakit Kardiovaskular"
-            android:textColor="@color/grey_font"
-            android:layout_marginBottom="10dp"
-            android:textSize="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/diabetes_result"
+                android:paddingLeft="35dp"
+                android:text="Risiko"
+                android:textColor="@color/black_font"
+                android:layout_marginBottom="20dp"
+                android:textSize="20dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cardiovascular_result"
-            android:paddingLeft="35dp"
-            android:text="Risiko"
-            android:textColor="@color/black_font"
-            android:layout_marginBottom="20dp"
-            android:textSize="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stroke_title"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/ic_brain"
+                android:paddingLeft="15dp"
+                android:text="Penyakit Stroke"
+                android:textColor="@color/grey_font"
+                android:layout_marginBottom="10dp"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stroke_result"
+                android:paddingLeft="35dp"
+                android:text="Risiko"
+                android:textColor="@color/black_font"
+                android:layout_marginBottom="20dp"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardiovascular_title"
+                android:drawableLeft="@drawable/ic_baseline_favorite_24"
+                android:drawablePadding="5dp"
+                android:paddingLeft="15dp"
+                android:text="Penyakit Kardiovaskular"
+                android:textColor="@color/grey_font"
+                android:layout_marginBottom="10dp"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardiovascular_result"
+                android:paddingLeft="35dp"
+                android:text="Risiko"
+                android:textColor="@color/black_font"
+                android:layout_marginBottom="20dp"
+                android:textSize="20dp"/>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dangerous_result"
-            android:text="Risiko"
-            android:textColor="@color/black_font"
-            android:layout_marginBottom="7dp"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:textSize="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dangerous_result"
+                android:text="Risiko"
+                android:textColor="@color/black_font"
+                android:layout_marginBottom="7dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textSize="18dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_consult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/button_radius"
-            android:text="Konsultasi ke Dokter"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_consult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_radius"
+                android:text="Konsultasi ke Dokter"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/safe_result"
-            android:text="Risiko"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:textColor="@color/black_font"
-            android:layout_marginBottom="7dp"
-            android:textSize="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/safe_result"
+                android:text="Risiko"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textColor="@color/black_font"
+                android:layout_marginBottom="7dp"
+                android:textSize="18dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_education"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_radius"
-            android:text="Lihat Saran"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-</ScrollView>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_education"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_radius"
+                android:text="Lihat Saran"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
