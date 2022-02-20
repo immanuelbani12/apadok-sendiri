@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             } else {
-//                SharedPreferences.Editor editor = sharedPref.edit();
+                SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt("userlocal", UserId);
                 editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
