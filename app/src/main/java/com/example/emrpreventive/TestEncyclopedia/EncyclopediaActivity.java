@@ -135,10 +135,10 @@ public class EncyclopediaActivity extends AppCompatActivity {
     }
 
     private final void CreateFormList(){
-        ecl.add(new Encyclopedia("1","Judul Artikel Struk","Ini isi artikel 1","1","",""));
+        ecl.add(new Encyclopedia("1","Judul Artikel Struk","Ini isi artikel 1. Artikel 1 babibu babibu babibu babibu babibu babibu babibu babibu babibu babibu","1","",""));
         ecl.add(new Encyclopedia("2","Judul Artikel Diabetes","Ini isi artikel 2","2","",""));
         ecl.add(new Encyclopedia("3","Judul Artikel Kardiovaskular","Ini isi artikel 3","3","",""));
-        ecl.add(new Encyclopedia("4","Judul Artikel Struk 2","Ini isi artikel 4","1","",""));
+        ecl.add(new Encyclopedia("4","Judul Artikel Struk 2","Ini isi artikel 4. Artikel 4 babibu babibu babibu babibu babibu babibu babibu babibu babibu babibu","1","",""));
         ecl.add(new Encyclopedia("5","Judul Artikel Diabetes 2","Ini isi artikel 5","2","",""));
         ecl.add(new Encyclopedia("6","Judul Artikel Kardiovaskular 2","Ini isi artikel 6","3","",""));
     }
