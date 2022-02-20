@@ -26,29 +26,26 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.R;
+import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
 import java.net.URLEncoder;
-import java.util.List;
 
 public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 
     private Gson gson = new Gson();
     private JsonObject returnvalue;
     private String hasil = "";
-    private TextView tv_score, tv_informasi, tv_result;
-    private ImageView iv_trophy;
-    private Button btn_finish, btn_whatsapp;
+    private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result;
+    private Button btn_consult, btn_education;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stroke_result);
+        setContentView(R.layout.activity_screening_result);
         setupItemView();
         setupItemData();
 //        setupJson();
@@ -57,12 +54,21 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
     private void setupItemData() {
         ScreeningHistory sch = getIntent().getParcelableExtra("data");
         String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
-        String hasil_koles = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
+        String hasil_kardio = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
-        hasil = "Anda Memiliki\n"+hasil_diabet+" Penyakit Diabetes\n" + hasil_stroke+" Penyakit Stroke\n" + hasil_koles + " Penyakit Kardivoaskular";
-        tv_score.setText(hasil);
-        iv_trophy.setVisibility(View.VISIBLE);
-        tv_informasi.setVisibility(View.VISIBLE);
+        String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
+        time_result.setText(timestamp);
+        diabetes_result.setText(hasil_diabet);
+        stroke_result.setText(hasil_stroke);
+        cardiovascular_result.setText(hasil_kardio);
+
+
+
+        diabetes_result.setVisibility(View.VISIBLE);
+        stroke_result.setVisibility(View.VISIBLE);
+        cardiovascular_result.setVisibility(View.VISIBLE);
+        dangerous_result.setVisibility(View.VISIBLE);
+        safe_result.setVisibility(View.VISIBLE);
     }
 
 
@@ -75,18 +81,11 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 // here you have the response from the volley.
-                String hasil_diabet = returnvalue.get("hasil_diabetes").isJsonNull() ? "" : returnvalue.get("hasil_diabetes").getAsString();
-                String hasil_stroke = returnvalue.get("hasil_stroke").isJsonNull() ? "" : returnvalue.get("hasil_stroke").getAsString();
-                String hasil_koles = returnvalue.get("hasil_kolesterol").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
-                hasil = "Anda Memiliki\n"+hasil_diabet+" Penyakit Diabetes\n" + hasil_stroke+" Penyakit Stroke\n" + hasil_koles + " Penyakit Kardivoaskular";
-                tv_score.setText(hasil);
-                iv_trophy.setVisibility(View.VISIBLE);
-                tv_informasi.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onError() {
-                tv_score.setText(hasil);
+                // here you have the error response from the volley.
             }
         });
 
@@ -94,20 +93,25 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
     }
 
     private void setupItemView() {
-        tv_score = (TextView) findViewById(R.id.tv_score);
-        tv_result = (TextView) findViewById(R.id.tv_result);
-        btn_finish = (Button) findViewById(R.id.btn_finish);
-        btn_whatsapp = (Button) findViewById(R.id.btn_whatsapp);
-        tv_informasi = (TextView) findViewById(R.id.tv_informasi);
-        iv_trophy = (ImageView) findViewById(R.id.iv_trophy);
+        title_result = (TextView) findViewById(R.id.title_result);
+        time_result = (TextView) findViewById(R.id.time_result);
+        diabetes_result = (TextView) findViewById(R.id.diabetes_result);
+        stroke_result = (TextView) findViewById(R.id.stroke_result);
+        cardiovascular_result = (TextView) findViewById(R.id.cardiovascular_result);
+        dangerous_result = (TextView) findViewById(R.id.dangerous_result);
+        safe_result = (TextView) findViewById(R.id.safe_result);
+        btn_consult = (Button) findViewById(R.id.btn_finish);
+        btn_education = (Button) findViewById(R.id.btn_whatsapp);
 
         int position = getIntent().getIntExtra("position", 0);
-        tv_result.setText("Riwayat Skrining "+ position);
-        tv_score.setText("Mengambil Data....");
-        iv_trophy.setVisibility(View.GONE);
-        tv_informasi.setVisibility(View.GONE);
-        btn_finish.setOnClickListener(RedirectToFinish);
-        btn_whatsapp.setOnClickListener(openWhatsApp);
+        title_result.setText("Riwayat Skrining "+ position);
+        time_result.setText("Mengambil Data....");
+        diabetes_result.setVisibility(View.GONE);
+        stroke_result.setVisibility(View.GONE);
+        cardiovascular_result.setVisibility(View.GONE);
+        dangerous_result.setVisibility(View.GONE);
+        safe_result.setVisibility(View.GONE);
+//        btn_education.setOnClickListener(RedirectToEducation);
 
     }
 
@@ -152,49 +156,34 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
                 }
             }
 
-//            @Override
-//            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-//                String responseString = "";
-//                if (response != null) {
-//                    responseString = String.valueOf(response.data);
-//
-//                    // can get more details such as response.headers
-//                }
-//                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-//            }
         };
 
         requestQueue.add(stringRequest);
     }
 
-    private View.OnClickListener openWhatsApp = v ->{
-        PackageManager packageManager = ScreeningHistoryDetailActivity.this.getPackageManager();
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        String numero = "+62 81282352027";
-        String mensaje = "Text";
-        String url = null;
-        try {
-            url = "https://api.whatsapp.com/send?phone="+ numero +"&text=" + URLEncoder.encode(mensaje, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        i.setPackage("com.whatsapp");
-        i.setData(Uri.parse(url));
-        if (i.resolveActivity(packageManager) != null) {
-            startActivity(i);
-        }else {
-            Intent viewIntent =
-                    new Intent("android.intent.action.VIEW",
-                            Uri.parse("https://play.google.com/store/apps/details?id=com.whatsapp"));
-            startActivity(viewIntent);
-//                KToast.errorToast(StrokeResultActivity.this, getString(R.string.no_whatsapp), Gravity.BOTTOM, KToast.LENGTH_SHORT);
-        }
+//    private View.OnClickListener openWhatsApp = v ->{
+//        PackageManager packageManager = ScreeningHistoryDetailActivity.this.getPackageManager();
+//        Intent i = new Intent(Intent.ACTION_VIEW);
+//        String numero = "+62 81282352027";
+//        String mensaje = "Text";
+//        String url = null;
+//        try {
+//            url = "https://api.whatsapp.com/send?phone="+ numero +"&text=" + URLEncoder.encode(mensaje, "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        i.setPackage("com.whatsapp");
+//        i.setData(Uri.parse(url));
+//        if (i.resolveActivity(packageManager) != null) {
+//            startActivity(i);
+//        }else {
+//            Intent viewIntent =
+//                    new Intent("android.intent.action.VIEW",
+//                            Uri.parse("https://play.google.com/store/apps/details?id=com.whatsapp"));
+//            startActivity(viewIntent);
+////                KToast.errorToast(StrokeResultActivity.this, getString(R.string.no_whatsapp), Gravity.BOTTOM, KToast.LENGTH_SHORT);
+//        }
+//
+//    };
 
-    };
-
-    private final View.OnClickListener RedirectToFinish = v -> {
-//        Use Finisih Instead of Adding New Activity to the Stack
-//        startActivity(new Intent(StrokeResultActivity.this, MainActivity.class));
-        finish();
-    };
 }
