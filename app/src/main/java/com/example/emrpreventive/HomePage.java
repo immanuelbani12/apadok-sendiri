@@ -127,7 +127,7 @@ public class HomePage extends AppCompatActivity {
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get ID Pemeriksan_1
-        String URL = "http://192.168.1.194:8080/pemeriksaan/1";
+        String URL = "http://178.128.25.139:8080/pemeriksaan/1";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
