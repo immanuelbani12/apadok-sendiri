@@ -56,12 +56,15 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
         setupItemView();
     }
 
     private void setupItemView(){
+        // Code to Setup Toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        SetupToolbar.changeToolbarFont(myToolbar, this);
+
         //Button
         btn_masuk = (Button) findViewById(R.id.btn_masuk);
         tv_support_by = (TextView) findViewById(R.id.support_by);

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".HomePage">
+    tools:context=".LoginActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_main"

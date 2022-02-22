@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -61,21 +62,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-        SetupToolbar.changeToolbarFont(myToolbar, this);
-        SetupPreference();
         setupItemView();
+        SetupPreference();
         setupJson();
     }
 
     private void SetupPreference() {
-        SharedPreferences sharedPref = this.getPreferences(getBaseContext().MODE_PRIVATE);
-//        Deleted when done
-//        SharedPreferences.Editor editor = sharedPref.edit();
-//        editor.clear();
-//        editor.apply();
-//
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         UserId = sharedPref.getInt("userlocal", 0);
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("user", 0);
@@ -89,8 +82,15 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
             }
         }
+        // For development only
+        UserId = 69;
     }
     private void setupItemView(){
+        // Code to Setup Toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        SetupToolbar.changeToolbarFont(myToolbar, this);
+
         //Button
         btn_screening = (Button) findViewById(R.id.btn_screening);
         btn_history_screening = (Button) findViewById(R.id.btn_history_screening);
@@ -158,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
                         tv_subtitle.setText("Terakhir diperbarui " + dayDifference + " menit yang lalu.");
                     }
                 }
-//                tv_subtitle.setText("Terakhir diperbarui " + Time + "\n" + dayDifference + " hari yang lalu.");
             }
 
             @Override
@@ -173,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get Latest ID Pemeriksaan from User 1
-        String URL = "http://178.128.25.139:8080/pemeriksaan/user/"+UserId;
+        String URL = "http://178.128.25.139:8080/api/pemeriksaan/user/"+UserId;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -187,13 +186,20 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e("VOLLEY", error.toString());
                 ErrorMsg = ""; // error message, show it in toast or dialog, whatever you want
-                if (error instanceof NetworkError || error instanceof AuthFailureError || error instanceof NoConnectionError || error instanceof TimeoutError) {
+                if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
                     ErrorMsg = "Tidak ada Jaringan Internet";
-                } else if (error instanceof ServerError) {
-                    ErrorMsg = "Server sedang bermasalah";
+                } else if (error instanceof ServerError || error instanceof AuthFailureError) {
+//                    ErrorMsg = "Server sedang bermasalah";
+                    ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
+                    DialogFragment newFragment = new LogOutAuthError();
+                    newFragment.show(getSupportFragmentManager(), "");
                 }  else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }
+//                else if (error instanceof AuthFailureError) {
+//                    DialogFragment newFragment = new LogOutAuthError();
+//                    newFragment.show(getSupportFragmentManager(), "");
+//                }
                 callback.onError();
             }
         }) {

@@ -55,6 +55,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screening);
+        // Code to Setup Toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);

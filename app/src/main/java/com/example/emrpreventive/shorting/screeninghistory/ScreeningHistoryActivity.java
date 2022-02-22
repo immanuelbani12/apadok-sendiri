@@ -48,10 +48,17 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screening_history);
-        l = findViewById(R.id.history_screening);
+        setupItemView();
+        setupJson();
+    }
+
+    private void setupItemView() {
+        // Code to Setup Toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
+
+        l = findViewById(R.id.history_screening);
 //        String tutorials[]
 //        = { "Algorithms", "Data Structures",
 //        "Languages", "Interview Corner",
@@ -78,7 +85,6 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        setupJson();
     }
 
     private void setupJson() {
@@ -105,7 +111,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get ID Pemeriksan From Main Activity
         int id_user = getIntent().getIntExtra("user", 0);
-        String URL = "http://178.128.25.139:8080/pemeriksaan/userAll/"+id_user;
+        String URL = "http://178.128.25.139:8080/api/pemeriksaan/userAll/"+id_user;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override

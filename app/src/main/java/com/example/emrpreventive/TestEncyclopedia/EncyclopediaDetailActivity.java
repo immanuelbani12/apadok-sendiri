@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -26,6 +27,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.R;
+import com.example.emrpreventive.SetupToolbar;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -78,6 +80,11 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
 //    }
 
     private void setupItemView() {
+        // Code to Setup Toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        SetupToolbar.changeToolbarFont(myToolbar, this);
+
         tv_title = (TextView) findViewById(R.id.title_result);
         tv_result = (TextView) findViewById(R.id.result);
         tv_diabetes = (TextView) findViewById(R.id.diabetes_title);

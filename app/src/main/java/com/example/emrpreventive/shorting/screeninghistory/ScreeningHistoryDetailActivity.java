@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.android.volley.AuthFailureError;
@@ -28,6 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.MainActivity;
 import com.example.emrpreventive.R;
+import com.example.emrpreventive.SetupToolbar;
 import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
@@ -39,11 +41,11 @@ import java.net.URLEncoder;
 public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 
     private Gson gson = new Gson();
-    private JsonObject returnvalue;
-    private String hasil = "";
+//    private JsonObject returnvalue;
+//    private String hasil = "";
     private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result;
     private Button btn_consult, btn_education;
-    private int stroke,kardiio,diabet;
+    private int diabetval,strokeval,cardioval;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,35 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         setupItemView();
         setupItemData();
 //        setupJson();
+    }
+
+    private void setupItemView() {
+        // Code to Setup Toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        SetupToolbar.changeToolbarFont(myToolbar, this);
+
+        title_result = (TextView) findViewById(R.id.title_result);
+        time_result = (TextView) findViewById(R.id.time_result);
+        diabetes_result = (TextView) findViewById(R.id.diabetes_result);
+        stroke_result = (TextView) findViewById(R.id.stroke_result);
+        cardiovascular_result = (TextView) findViewById(R.id.cardiovascular_result);
+        dangerous_result = (TextView) findViewById(R.id.dangerous_result);
+        safe_result = (TextView) findViewById(R.id.safe_result);
+        btn_consult = (Button) findViewById(R.id.btn_consult);
+        btn_education = (Button) findViewById(R.id.btn_education);
+
+        int position = getIntent().getIntExtra("position", 0);
+        title_result.setText("Riwayat Skrining "+ position);
+        time_result.setText("Mengambil Data....");
+        diabetes_result.setVisibility(View.GONE);
+        stroke_result.setVisibility(View.GONE);
+        cardiovascular_result.setVisibility(View.GONE);
+        dangerous_result.setVisibility(View.GONE);
+        safe_result.setVisibility(View.GONE);
+        btn_consult.setVisibility(View.GONE);
+        btn_education.setVisibility(View.GONE);
+        btn_education.setOnClickListener(RedirectToEducation);
     }
 
     private void setupItemData() {
@@ -71,7 +102,6 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 
         //Handling IF Else results in here
         // Need to Change SetTextColor 1=Merah, 2=Menengah(Kuning/Itam), 3=Hijau
-        int diabetval, strokeval, cardioval;
         String dangtext = "";
         String safetext = "";
         if (hasil_diabet.contains("Tinggi")) {
@@ -149,103 +179,75 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             btn_education.setVisibility(View.VISIBLE);
         }
 
-        // Please Change those 3 Val into Var Global and revamp the code
-        stroke = strokeval;
-        diabet = diabetval;
-        kardiio = cardioval;
     }
 
 
-    private void setupJson() {
-        // Send JSON ke API & Parse Respons di createcall
-        // Parse JSON Respons di createcall
-        // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
-        createCalls("",new VolleyCallBack() {
+//    private void setupJson() {
+//        // Send JSON ke API & Parse Respons di createcall
+//        // Parse JSON Respons di createcall
+//        // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
+//        createCalls("",new VolleyCallBack() {
+//
+//            @Override
+//            public void onSuccess() {
+//                // here you have the response from the volley.
+//            }
+//
+//            @Override
+//            public void onError() {
+//                // here you have the error response from the volley.
+//            }
+//        });
+//
+//        VolleyLog.DEBUG = true;
+//    }
 
-            @Override
-            public void onSuccess() {
-                // here you have the response from the volley.
-            }
 
-            @Override
-            public void onError() {
-                // here you have the error response from the volley.
-            }
-        });
-
-        VolleyLog.DEBUG = true;
-    }
-
-    private void setupItemView() {
-        title_result = (TextView) findViewById(R.id.title_result);
-        time_result = (TextView) findViewById(R.id.time_result);
-        diabetes_result = (TextView) findViewById(R.id.diabetes_result);
-        stroke_result = (TextView) findViewById(R.id.stroke_result);
-        cardiovascular_result = (TextView) findViewById(R.id.cardiovascular_result);
-        dangerous_result = (TextView) findViewById(R.id.dangerous_result);
-        safe_result = (TextView) findViewById(R.id.safe_result);
-        btn_consult = (Button) findViewById(R.id.btn_consult);
-        btn_education = (Button) findViewById(R.id.btn_education);
-
-        int position = getIntent().getIntExtra("position", 0);
-        title_result.setText("Riwayat Skrining "+ position);
-        time_result.setText("Mengambil Data....");
-        diabetes_result.setVisibility(View.GONE);
-        stroke_result.setVisibility(View.GONE);
-        cardiovascular_result.setVisibility(View.GONE);
-        dangerous_result.setVisibility(View.GONE);
-        safe_result.setVisibility(View.GONE);
-        btn_consult.setVisibility(View.GONE);
-        btn_education.setVisibility(View.GONE);
-        btn_education.setOnClickListener(RedirectToEducation);
-
-    }
-
-    private void createCalls(String json, final VolleyCallBack callback) {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        int id_history = getIntent().getIntExtra("history", 0);
-        String URL = "http://178.128.25.139:8080/pemeriksaan/show/"+id_history;
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("VOLLEY", response);
-                returnvalue = gson.fromJson(response, JsonObject.class);
-                callback.onSuccess();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("VOLLEY", error.toString());
-                if (error instanceof NetworkError || error instanceof AuthFailureError || error instanceof NoConnectionError || error instanceof TimeoutError) {
-                    hasil = "Tidak ada Jaringan Internet";
-                } else if (error instanceof ServerError) {
-                    hasil = "Server sedang bermasalah";
-                }  else if (error instanceof ParseError) {
-                    hasil = "Ada masalah di aplikasi Apadok";
-                }
-                callback.onError();
-            }
-        }) {
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-
-            @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return json == null ? null : json.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
-                    return null;
-                }
-            }
-
-        };
-
-        requestQueue.add(stringRequest);
-    }
+//    private void createCalls(String json, final VolleyCallBack callback) {
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        int id_history = getIntent().getIntExtra("history", 0);
+//        String URL = "http://178.128.25.139:8080/pemeriksaan/show/"+id_history;
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Log.i("VOLLEY", response);
+//                returnvalue = gson.fromJson(response, JsonObject.class);
+//                callback.onSuccess();
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("VOLLEY", error.toString());
+//                if (error instanceof NetworkError || error instanceof AuthFailureError || error instanceof NoConnectionError || error instanceof TimeoutError) {
+//                    hasil = "Tidak ada Jaringan Internet";
+//                } else if (error instanceof ServerError) {
+//                    hasil = "Server sedang bermasalah";
+//                }  else if (error instanceof ParseError) {
+//                    hasil = "Ada masalah di aplikasi Apadok";
+//                }
+//                callback.onError();
+//            }
+//        }) {
+//            @Override
+//            public String getBodyContentType() {
+//                return "application/json; charset=utf-8";
+//            }
+//
+//            @Override
+//            public byte[] getBody() throws AuthFailureError {
+//                try {
+//                    return json == null ? null : json.getBytes("utf-8");
+//                } catch (UnsupportedEncodingException uee) {
+//                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
+//                    return null;
+//                }
+//            }
+//
+//        };
+//
+//        requestQueue.add(stringRequest);
+//    }
 
 //    private View.OnClickListener openWhatsApp = v ->{
 //        PackageManager packageManager = ScreeningHistoryDetailActivity.this.getPackageManager();
@@ -275,9 +277,9 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
     private final View.OnClickListener RedirectToEducation = v -> {
         Intent intent = new Intent(ScreeningHistoryDetailActivity.this, EncyclopediaActivity.class);
         //Pass the Category to next activity
-        intent.putExtra("categorydiabetes", diabet);
-        intent.putExtra("categorystroke", stroke);
-        intent.putExtra("categorykardio", kardiio);
+        intent.putExtra("categorydiabetes", diabetval);
+        intent.putExtra("categorystroke", strokeval);
+        intent.putExtra("categorykardio", cardioval);
         startActivity(intent);
     };
 
