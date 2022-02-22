@@ -42,7 +42,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StrokeResultActivity extends AppCompatActivity {
 
@@ -255,7 +257,15 @@ public class StrokeResultActivity extends AppCompatActivity {
                 }
             }
 
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                // Basic Authentication
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
 
+                headers.put("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiaWRfbG9naW4iOiIyIiwidXNlcm5hbWUiOiJ1c2VyQGdtYWlsLmNvbSJ9.QhtyvpX5N6lgQPZmX7an2vU0zP0W2ir-bZfrbkz08MU");
+                return headers;
+            }
 
 //            @Override
 //            protected Response<String> parseNetworkResponse(NetworkResponse response) {

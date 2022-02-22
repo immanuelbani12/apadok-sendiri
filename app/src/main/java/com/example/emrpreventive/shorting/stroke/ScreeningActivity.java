@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.emrpreventive.ConfirmExiting;
 import com.example.emrpreventive.R;
 import com.example.emrpreventive.SetupToolbar;
 
@@ -63,7 +64,9 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
-                DialogFragment newFragment = new ConfirmExit();
+                DialogFragment newFragment = new ConfirmExiting();
+                //Pass the User ID to next activity
+                ((ConfirmExiting) newFragment).setMessage("Anda ingin membatalkan proses skrining?");
                 newFragment.show(getSupportFragmentManager(), "");
             }
         };

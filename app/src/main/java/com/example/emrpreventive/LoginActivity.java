@@ -1,8 +1,5 @@
 package com.example.emrpreventive;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -13,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
@@ -30,24 +27,22 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.emrpreventive.shorting.TestLogin;
-import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
-import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
-import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.JsonObject;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
+    // API Variables
+    private Gson gson = new Gson();
+    private JsonObject returnvalue;
+    private String login_res = "";
+
+    // Res/Layout Variables
     private Button btn_masuk;
     private TextView tv_support_by, phone_text;
     private EditText phone_input;
@@ -76,6 +71,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 phone_input = (EditText)findViewById(R.id.phone_input);
                 String count = phone_input.getText().toString();
+                setupJson(count);
+
+                //Removable Code Starts from here
                 Integer id = 0;
 
                 // Creating array of string length & convert to uppercase
@@ -105,5 +103,76 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void setupJson(String phonenum) {
+        //Construct Obj with Phonenum + Change Obj to string then to JSON
+        //Type answerstype = new TypeToken<List<FormAnswer>>() {}.getType();
+        //String json = gson.toJson(Obj, ObjClassType);
+        //Log.e("bobo", json);
 
+        // Send JSON ke API & Parse Respons di createcall
+        // Parse JSON Respons di createcall
+        // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
+//        createCalls(json,new VolleyCallBack() {
+//
+//            @Override
+//            public void onSuccess() {
+//                // here you have the response from the volley.
+//            }
+//
+//            @Override
+//            public void onError() {
+//
+//            }
+//        });
+//
+//        VolleyLog.DEBUG = true;
+    }
+
+    private void createCalls(String json, final VolleyCallBack callback) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String URL = "http://178.128.25.139:8080/api/pemeriksaan";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("VOLLEY", response);
+                returnvalue = gson.fromJson(response, JsonObject.class);
+                callback.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VOLLEY", error.toString());
+                callback.onError();
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return json == null ? null : json.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
+                    return null;
+                }
+            }
+
+//            @Override
+//            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+//                String responseString = "";
+//                if (response != null) {
+//                    responseString = String.valueOf(response.data);
+//
+//                    // can get more details such as response.headers
+//                }
+//                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+//            }
+        };
+
+        requestQueue.add(stringRequest);
+    }
 }

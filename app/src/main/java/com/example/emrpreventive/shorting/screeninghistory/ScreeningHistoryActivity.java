@@ -34,7 +34,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ScreeningHistoryActivity extends AppCompatActivity {
 
@@ -145,6 +147,16 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
                     VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
                     return null;
                 }
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                // Basic Authentication
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
+
+                headers.put("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiaWRfbG9naW4iOiIyIiwidXNlcm5hbWUiOiJ1c2VyQGdtYWlsLmNvbSJ9.QhtyvpX5N6lgQPZmX7an2vU0zP0W2ir-bZfrbkz08MU");
+                return headers;
             }
         };
 

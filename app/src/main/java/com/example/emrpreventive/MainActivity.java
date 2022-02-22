@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
@@ -28,13 +29,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.emrpreventive.TestEncyclopedia.Encyclopedia;
 import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
-import com.example.emrpreventive.shorting.TestLogin;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
 import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
-import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -45,7 +43,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
@@ -109,6 +109,18 @@ public class MainActivity extends AppCompatActivity {
         btn_history_screening.setEnabled(false);
         btn_consult.setOnClickListener(RedirectToConsult);
         btn_consult.setEnabled(false);
+
+        // This callback will only be called when MyFragment is at least Started.
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                DialogFragment newFragment = new ConfirmExiting();
+                //Pass the User ID to next activity
+                ((ConfirmExiting) newFragment).setMessage("Anda ingin keluar dari aplikasi?");
+                newFragment.show(getSupportFragmentManager(), "");
+            }
+        };
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     private void setupJson() {
@@ -216,6 +228,15 @@ public class MainActivity extends AppCompatActivity {
                     VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
                     return null;
                 }
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                // Basic Authentication
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
+
+                headers.put("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiaWRfbG9naW4iOiIyIiwidXNlcm5hbWUiOiJ1c2VyQGdtYWlsLmNvbSJ9.QhtyvpX5N6lgQPZmX7an2vU0zP0W2ir-bZfrbkz08MU");
+                return headers;
             }
         };
 

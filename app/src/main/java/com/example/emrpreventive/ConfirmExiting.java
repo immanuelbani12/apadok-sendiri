@@ -1,4 +1,4 @@
-package com.example.emrpreventive.shorting.stroke;
+package com.example.emrpreventive;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,14 +9,14 @@ import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
-import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 
-public class ConfirmExit extends DialogFragment {
+public class ConfirmExiting extends DialogFragment {
+    private String message;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Anda ingin membatalkan proses skrining?")
+        builder.setMessage(this.message)
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         getActivity().finish();
@@ -31,4 +31,7 @@ public class ConfirmExit extends DialogFragment {
         return builder.create();
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
