@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="20dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/title_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Penjadwalan"
+                android:textColor="@color/black_font"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/time_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:text="Halo Aul, saya Putri, asisten virtual APADOK. Apakah ada yang bisa kami bantu?"
+                android:textColor="@color/grey_font"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_penjadwalan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_radius"
+                android:text="Penjadwalan"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:onClick="show_question1"/>
+
+
+            <TextView
+                android:id="@+id/time_result2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:text="Kapankah anda ingin pertemuan dengan Dokter dijadwalkan?"
+                android:textColor="@color/grey_font"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_education"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_radius"
+                android:text="Pagi Hari"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:onClick="show_question2"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_education2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_radius"
+                android:text="Siang Hari"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_education3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_radius"
+                android:text="Sore Hari"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/time_result4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:text="Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada pagi hari"
+                android:textColor="@color/grey_font"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

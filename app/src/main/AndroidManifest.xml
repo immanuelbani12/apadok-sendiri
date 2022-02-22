@@ -22,6 +22,9 @@
             android:name=".shorting.TestLogin"
             android:exported="false" />
         <activity
+            android:name=".TestChatbot.TestChatbotActivity"
+            android:exported="false" />
+        <activity
             android:name=".TestEncyclopedia.EncyclopediaActivity"
             android:exported="false" />
         <activity
