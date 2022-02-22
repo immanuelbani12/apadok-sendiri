@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -74,20 +75,20 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         String dangtext = "";
         String safetext = "";
         if (hasil_diabet.contains("Tinggi")) {
-//            diabetes_result.setTextColor(1);
+            diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
             dangtext = "penyakit diabetes";
             diabetval = 3;
         } else if (hasil_diabet.contains("Rendah")) {
-//            diabetes_result.setTextColor(2);
+            diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green_font));
             safetext = "penyakit diabetes";
             diabetval = 1;
         } else {
-//            diabetes_result.setTextColor(3);
+            diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
             diabetval = 2;
             safetext = "penyakit diabetes";
         }
         if (hasil_stroke.contains("Tinggi")) {
-//            stroke_result.setTextColor(1);
+            stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
             if (dangtext == ""){
                 dangtext = "penyakit stroke";
             } else  {
@@ -95,7 +96,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             }
             strokeval = 3;
         } else if (hasil_stroke.contains("Rendah")) {
-//            stroke_result.setTextColor(3);
+            stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green_font));
             strokeval = 1;
             if (dangtext == ""){
                 dangtext = "penyakit stroke";
@@ -103,7 +104,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
                 dangtext += ", penyakit stroke";
             }
         } else {
-//            stroke_result.setTextColor(3);
+            stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
             strokeval = 2;
             if (safetext == ""){
                 safetext = "penyakit stroke";
@@ -112,7 +113,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             }
         }
         if (hasil_kardio.contains("Tinggi")) {
-//            cardiovascular_result.setTextColor(1);
+            cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
             if (safetext == ""){
                 safetext = "penyakit cardiovascular";
             } else {
@@ -120,7 +121,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             }
             cardioval = 3;
         } else if (hasil_kardio.contains("Rendah") || hasil_kardio.contains("Tidak")) {
-//            cardiovascular_result.setTextColor(3);
+            cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green_font));
             cardioval = 1;
             if (safetext == ""){
                 safetext = "penyakit cardiovascular";
@@ -128,7 +129,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
                 safetext += ", penyakit cardiovascular";
             }
         } else {
-//            cardiovascular_result.setTextColor(3);
+            cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
             cardioval = 2;
             if (safetext == ""){
                 safetext = "penyakit cardiovascular";

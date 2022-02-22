@@ -17,5 +17,11 @@
     <color name="chathams_blue">#105a6a</color>
     <color name="teal_blue">#044854</color>
     <color name="boston_blue">#3c94ac</color>
+    <color name="red_font">#FC0000</color>
+    <color name="green_font">#0CFF50</color>
+    <color name="yellow_font">#FAE315</color>
+
+
+
 
 </resources>
