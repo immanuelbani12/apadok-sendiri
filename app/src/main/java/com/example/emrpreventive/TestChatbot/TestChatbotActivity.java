@@ -66,7 +66,24 @@ public class TestChatbotActivity extends AppCompatActivity {
         tv_test4.setVisibility(View.VISIBLE);
     }
     public void show_question2(View view) {
+        tv_test3.setVisibility(View.GONE);
+        tv_test4.setVisibility(View.GONE);
         tv_test5 = (TextView) findViewById(R.id.time_result4);
+        tv_test5.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada pagi hari");
+        tv_test5.setVisibility(View.VISIBLE);
+    }
+    public void show_question3(View view) {
+        tv_test2.setVisibility(View.GONE);
+        tv_test4.setVisibility(View.GONE);
+        tv_test5 = (TextView) findViewById(R.id.time_result4);
+        tv_test5.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada siang hari");
+        tv_test5.setVisibility(View.VISIBLE);
+    }
+    public void show_question4(View view) {
+        tv_test2.setVisibility(View.GONE);
+        tv_test3.setVisibility(View.GONE);
+        tv_test5 = (TextView) findViewById(R.id.time_result4);
+        tv_test5.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada sore hari");
         tv_test5.setVisibility(View.VISIBLE);
     }
 }
