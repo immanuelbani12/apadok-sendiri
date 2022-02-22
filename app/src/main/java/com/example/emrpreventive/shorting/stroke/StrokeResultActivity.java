@@ -30,6 +30,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.LogOutAuthError;
 import com.example.emrpreventive.SetupToolbar;
+import com.example.emrpreventive.TestChatbot.TestChatbotActivity;
 import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryDetailActivity;
 import com.google.gson.Gson;
@@ -89,6 +90,7 @@ public class StrokeResultActivity extends AppCompatActivity {
         dangerous_result.setVisibility(View.GONE);
         safe_result.setVisibility(View.GONE);
         btn_consult.setVisibility(View.GONE);
+        btn_consult.setOnClickListener(RedirectToConsult);
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
     }
@@ -213,7 +215,7 @@ public class StrokeResultActivity extends AppCompatActivity {
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String URL = "http://178.128.25.139:8080/api/pemeriksaan";
-
+        String token = getIntent().getStringExtra("token");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -309,6 +311,15 @@ public class StrokeResultActivity extends AppCompatActivity {
 
     private final View.OnClickListener RedirectToEducation = v -> {
         Intent intent = new Intent(StrokeResultActivity.this, EncyclopediaActivity.class);
+        //Pass the Category to next activity
+        intent.putExtra("categorydiabetes", diabetval);
+        intent.putExtra("categorystroke", strokeval);
+        intent.putExtra("categorykardio", cardioval);
+        startActivity(intent);
+    };
+
+    private final View.OnClickListener RedirectToConsult = v -> {
+        Intent intent = new Intent(StrokeResultActivity.this, TestChatbotActivity.class);
         //Pass the Category to next activity
         intent.putExtra("categorydiabetes", diabetval);
         intent.putExtra("categorystroke", strokeval);

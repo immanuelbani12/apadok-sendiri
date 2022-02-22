@@ -13,6 +13,7 @@ import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 
 public class ConfirmRescreening extends DialogFragment {
     private int user_id;
+    private String Token;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
@@ -23,6 +24,7 @@ public class ConfirmRescreening extends DialogFragment {
                         dialog.dismiss();
                         Intent intent = new Intent(getContext(), ScreeningActivity.class);
                         intent.putExtra("user", user_id);
+                        intent.putExtra("token", Token);
                         startActivity(intent);
                     }
                 })
@@ -37,5 +39,9 @@ public class ConfirmRescreening extends DialogFragment {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public void setToken(String token) {
+        this.Token = token;
     }
 }

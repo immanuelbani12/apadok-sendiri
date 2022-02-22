@@ -29,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.emrpreventive.TestChatbot.TestChatbotActivity;
 import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_subtitle;
     private List<ScreeningHistory> sch;
     private int UserId;
-    private String ErrorMsg;
+    private String ErrorMsg,Token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +71,17 @@ public class MainActivity extends AppCompatActivity {
     private void SetupPreference() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         UserId = sharedPref.getInt("userlocal", 0);
+        Token = sharedPref.getString("tokenlocal", "");
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("user", 0);
+            Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             } else {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt("userlocal", UserId);
+                editor.putString("tokenlocal", Token);
                 editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
             }
@@ -249,11 +253,13 @@ public class MainActivity extends AppCompatActivity {
             DialogFragment newFragment = new ConfirmRescreening();
             //Pass the User ID to next activity
             ((ConfirmRescreening) newFragment).setUser_id(UserId);
+            ((ConfirmRescreening) newFragment).setToken(Token);
             newFragment.show(getSupportFragmentManager(), "");
         } else {
             Intent intent = new Intent(MainActivity.this, ScreeningActivity.class);
             //Pass the User ID to next activity
             intent.putExtra("user", UserId);
+            intent.putExtra("token", Token);
             startActivity(intent);
         }
     };
@@ -262,11 +268,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ScreeningHistoryActivity.class);
         //Pass the User ID to next activity
         intent.putExtra("user", UserId);
+        intent.putExtra("token", Token);
         startActivity(intent);
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        startActivity(new Intent(MainActivity.this, EncyclopediaActivity.class));
+        startActivity(new Intent(MainActivity.this, TestChatbotActivity.class));
     };
 
 

@@ -30,7 +30,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.MainActivity;
 import com.example.emrpreventive.R;
 import com.example.emrpreventive.SetupToolbar;
+import com.example.emrpreventive.TestChatbot.TestChatbotActivity;
 import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
+import com.example.emrpreventive.shorting.stroke.StrokeResultActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -81,6 +83,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         dangerous_result.setVisibility(View.GONE);
         safe_result.setVisibility(View.GONE);
         btn_consult.setVisibility(View.GONE);
+        btn_consult.setOnClickListener(RedirectToConsult);
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
     }
@@ -276,6 +279,15 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 
     private final View.OnClickListener RedirectToEducation = v -> {
         Intent intent = new Intent(ScreeningHistoryDetailActivity.this, EncyclopediaActivity.class);
+        //Pass the Category to next activity
+        intent.putExtra("categorydiabetes", diabetval);
+        intent.putExtra("categorystroke", strokeval);
+        intent.putExtra("categorykardio", cardioval);
+        startActivity(intent);
+    };
+
+    private final View.OnClickListener RedirectToConsult = v -> {
+        Intent intent = new Intent(ScreeningHistoryDetailActivity.this, TestChatbotActivity.class);
         //Pass the Category to next activity
         intent.putExtra("categorydiabetes", diabetval);
         intent.putExtra("categorystroke", strokeval);

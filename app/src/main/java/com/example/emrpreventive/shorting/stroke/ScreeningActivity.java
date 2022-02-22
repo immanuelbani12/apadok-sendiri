@@ -39,6 +39,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private Form[] forms = new Form[18];
     private FormAnswer[] answer = new FormAnswer[19];
 
+
     // Iterative Variables
     private int CurrentForm = 1;
     private int SelectedOptionPosititon = 0;
@@ -267,11 +268,13 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         //Get the User ID from Main Activity
                         answer[CurrentForm-1] = new FormAnswer("id_user");
                         int id_user = getIntent().getIntExtra("user", 0);
+                        String token = getIntent().getStringExtra("token");
                         answer[CurrentForm-1].setAnswer(Integer.toString(id_user));
 
                         Intent intent = new Intent(ScreeningActivity.this, StrokeResultActivity.class);
                         ArrayList list = new ArrayList<>(Arrays.asList(answer));
                         intent.putParcelableArrayListExtra("Answers", list);
+                        intent.putExtra("token", token);
                         startActivity(intent);
                         finish();
                     }

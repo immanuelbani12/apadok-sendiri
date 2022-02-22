@@ -113,6 +113,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get ID Pemeriksan From Main Activity
         int id_user = getIntent().getIntExtra("user", 0);
+        String token = getIntent().getStringExtra("token");
         String URL = "http://178.128.25.139:8080/api/pemeriksaan/userAll/"+id_user;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
