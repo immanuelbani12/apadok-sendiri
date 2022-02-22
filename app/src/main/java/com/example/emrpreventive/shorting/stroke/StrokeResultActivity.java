@@ -61,7 +61,7 @@ public class StrokeResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stroke_result);
+        setContentView(R.layout.activity_screening_result);
         setupItemView();
         setupJson();
     }
