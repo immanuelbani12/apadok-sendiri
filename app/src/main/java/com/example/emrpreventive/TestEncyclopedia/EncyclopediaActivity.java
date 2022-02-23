@@ -38,6 +38,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
     private ListView l;
     private JsonObject returnvalue;
     private ArrayList<Encyclopedia> eclnew;
+    private int diabetval, strokeval, cardioval;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,6 +50,9 @@ public class EncyclopediaActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
         String clinicname = getIntent().getStringExtra("clinicname");
+        diabetval = getIntent().getIntExtra("categorydiabetes", 0);
+        strokeval = getIntent().getIntExtra("categorystroke", 0);
+        cardioval = getIntent().getIntExtra("categorykardio", 0);
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
         clinic.setText(clinicname);
 
@@ -76,30 +80,32 @@ public class EncyclopediaActivity extends AppCompatActivity {
 
     private ArrayList<Encyclopedia> FilterEncyclopedia() {
         ArrayList<Encyclopedia> eclparsed = new ArrayList<Encyclopedia>();
-        String filtered = "1";
-        for (int counter = 0; counter < ecl.size(); counter++) {
-            if(ecl.get(counter).kategori_artikel == filtered){
-                eclparsed.add(ecl.get(counter));
+        if (strokeval <= 2) {
+            String filtered = "1";
+            for (int counter = 0; counter < ecl.size(); counter++) {
+                if (ecl.get(counter).kategori_artikel == filtered) {
+                    eclparsed.add(ecl.get(counter));
+                }
+            }
+        }
+        if (diabetval <= 2) {
+            String filtered = "2";
+            for (int counter = 0; counter < ecl.size(); counter++) {
+                if (ecl.get(counter).kategori_artikel == filtered) {
+                    eclparsed.add(ecl.get(counter));
+                }
+            }
+        }
+        if (cardioval <= 2) {
+            String filtered = "3";
+            for (int counter = 0; counter < ecl.size(); counter++) {
+                if (ecl.get(counter).kategori_artikel == filtered) {
+                    eclparsed.add(ecl.get(counter));
+                }
             }
         }
         return eclparsed;
     }
-
-//    private void setupJson() {
-//        //NO API Form Data Yet
-//        createCalls("",new VolleyCallBack() {
-//
-//            @Override
-//
-//
-//            @Override
-//            public void onError() {
-//
-//            }
-//        });
-//        VolleyLog.DEBUG = true;
-//    }
-
 
 
     private void createCalls(String json, final VolleyCallBack callback) {
@@ -147,10 +153,10 @@ public class EncyclopediaActivity extends AppCompatActivity {
     }
 
     private final void CreateFormList(){
-        ecl.add(new Encyclopedia("1","Judul Artikel Struk","Ini isi artikel 1. Artikel 1 babibu babibu babibu babibu babibu babibu babibu babibu babibu babibu","1","",""));
+        ecl.add(new Encyclopedia("1","Judul Artikel Stroke","Ini isi artikel 1. Artikel 1 Merupakan artikel yang berhubungan dengan penyakit stroke.","1","",""));
         ecl.add(new Encyclopedia("2","Judul Artikel Diabetes","Ini isi artikel 2","2","",""));
         ecl.add(new Encyclopedia("3","Judul Artikel Kardiovaskular","Ini isi artikel 3","3","",""));
-        ecl.add(new Encyclopedia("4","Judul Artikel Struk 2","Ini isi artikel 4. Artikel 4 babibu babibu babibu babibu babibu babibu babibu babibu babibu babibu","1","",""));
+        ecl.add(new Encyclopedia("4","Judul Artikel Stroke 2","Ini isi artikel 4. Artikel 4 Merupakan artikel yang berhubungan dengan penyakit stroke.","1","",""));
         ecl.add(new Encyclopedia("5","Judul Artikel Diabetes 2","Ini isi artikel 5","2","",""));
         ecl.add(new Encyclopedia("6","Judul Artikel Kardiovaskular 2","Ini isi artikel 6","3","",""));
     }
