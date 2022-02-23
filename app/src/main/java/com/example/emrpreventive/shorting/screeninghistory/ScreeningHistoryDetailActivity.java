@@ -152,26 +152,26 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         if (hasil_kardio.contains("Tinggi")) {
             cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
             if (safetext == ""){
-                safetext = "penyakit cardiovascular";
+                safetext = "penyakit kardiovaskular";
             } else {
-                safetext += ", penyakit cardiovascular";
+                safetext += ", penyakit kardiovaskular";
             }
             cardioval = 3;
         } else if (hasil_kardio.contains("Rendah") || hasil_kardio.contains("Tidak")) {
             cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green_font));
             cardioval = 1;
             if (safetext == ""){
-                safetext = "penyakit cardiovascular";
+                safetext = "penyakit kardiovaskular";
             } else  {
-                safetext += ", penyakit cardiovascular";
+                safetext += ", penyakit kardiovaskular";
             }
         } else {
             cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
             cardioval = 2;
             if (safetext == ""){
-                safetext = "penyakit cardiovascular";
+                safetext = "penyakit kardiovaskular";
             } else  {
-                safetext += ", penyakit cardiovascular";
+                safetext += ", penyakit kardiovaskular";
             }
         }
 
