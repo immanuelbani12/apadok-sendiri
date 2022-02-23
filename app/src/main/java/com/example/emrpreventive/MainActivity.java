@@ -243,8 +243,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if (error instanceof ServerError || error instanceof AuthFailureError) {
 //                    ErrorMsg = "Server sedang bermasalah";
                     ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
-                    DialogFragment newFragment = new LogOutAuthError();
-                    newFragment.show(getSupportFragmentManager(), "");
+//                    DialogFragment newFragment = new LogOutAuthError();
+//                    newFragment.show(getSupportFragmentManager(), "");
                 }  else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }

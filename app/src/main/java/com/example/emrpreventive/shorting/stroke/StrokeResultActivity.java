@@ -236,8 +236,8 @@ public class StrokeResultActivity extends AppCompatActivity {
                 } else if (error instanceof ServerError || error instanceof AuthFailureError) {
 //                    hasil = "Server sedang bermasalah";
                     hasil = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
-                    DialogFragment newFragment = new LogOutAuthError();
-                    newFragment.show(getSupportFragmentManager(), "");
+//                    DialogFragment newFragment = new LogOutAuthError();
+//                    newFragment.show(getSupportFragmentManager(), "");
                 }  else if (error instanceof ParseError) {
                     hasil = "Ada masalah di aplikasi Apadok";
                 }
