@@ -352,7 +352,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
     private final void CreateFormList(){
         forms[0] = new Form(1,"Jenis Kelamin","Laki-laki","Perempuan","","",R.drawable.default_image, null);
-        forms[1] = new Form(2,"Tanggal Lahir","","","","",R.drawable.screening_res, "Tanggal Lahir");
+        forms[1] = new Form(2,"Tanggal Lahir","","","","",R.drawable.birthdate, "Tanggal Lahir");
         forms[2] = new Form(3,"Masukkan tinggi badan (cm)","","","","",R.drawable.tinggi_badan, "Tinggi badan (cm)");
         forms[3] = new Form(4,"Masukkan berat badan (kg)","","","","",R.drawable.berat_badan, "Berat badan (kg)");
         forms[4] = new Form(5,"Apakah anda aktif melakukan aktivitas fisik?","Ya","Tidak","Jarang","",R.drawable.default_image, null);
