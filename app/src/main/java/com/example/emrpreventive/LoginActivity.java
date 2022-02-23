@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -74,35 +75,20 @@ public class LoginActivity extends AppCompatActivity {
                 phone_input = (EditText)findViewById(R.id.phone_input);
                 String count = phone_input.getText().toString();
                 setupJson(count);
-//
-//                //Removable Code Starts from here
-//                Integer id = 0;
-//
-//                // Creating array of string length & convert to uppercase
-//                char[] ch = new char[count.length()];
-//                count.toUpperCase();
-//
-//                // Copy character by character into array
-//                for (int i = 0; i < count.length(); i++) {
-//                    ch[i] = count.charAt(i);
-//                }
-//
-//                for (int i = 0; i < count.length(); i++){
-//                    id = id + (i+1) * (ch[i] - 64);
-//                }
-//
-//                id = Math. abs(id);
-//                id = id % 200;
-//
-//                Log.e("login", String.valueOf(id));
-//
-//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                //Pass the User ID to next activity
-//                intent.putExtra("user", id);
-//                startActivity(intent);
-//                finish();
             }
         });
+
+        // This callback will only be called when MyFragment is at least Started.
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                DialogFragment newFragment = new ConfirmExiting();
+                //Pass the User ID to next activity
+                ((ConfirmExiting) newFragment).setMessage("Anda ingin keluar dari aplikasi?");
+                newFragment.show(getSupportFragmentManager(), "");
+            }
+        };
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     private void setupJson(String phonenum) {
