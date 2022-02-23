@@ -48,6 +48,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
     private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result;
     private Button btn_consult, btn_education;
     private int diabetval,strokeval,cardioval;
+    private String ClinicName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,9 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
+        ClinicName = getIntent().getStringExtra("clinicname");
+        TextView clinic = (TextView) findViewById(R.id.tv_clinic);
+        clinic.setText(ClinicName);
 
         title_result = (TextView) findViewById(R.id.title_result);
         time_result = (TextView) findViewById(R.id.time_result);
@@ -283,6 +287,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         intent.putExtra("categorydiabetes", diabetval);
         intent.putExtra("categorystroke", strokeval);
         intent.putExtra("categorykardio", cardioval);
+        intent.putExtra("clinicname", ClinicName);
         startActivity(intent);
     };
 
@@ -292,6 +297,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         intent.putExtra("categorydiabetes", diabetval);
         intent.putExtra("categorystroke", strokeval);
         intent.putExtra("categorykardio", cardioval);
+        intent.putExtra("clinicname", ClinicName);
         startActivity(intent);
     };
 

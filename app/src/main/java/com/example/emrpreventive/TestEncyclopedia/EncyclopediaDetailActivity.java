@@ -84,6 +84,9 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
+        String clinicname = getIntent().getStringExtra("clinicname");
+        TextView clinic = (TextView) findViewById(R.id.tv_clinic);
+        clinic.setText(clinicname);
 
         tv_title = (TextView) findViewById(R.id.title_result);
         tv_result = (TextView) findViewById(R.id.result);

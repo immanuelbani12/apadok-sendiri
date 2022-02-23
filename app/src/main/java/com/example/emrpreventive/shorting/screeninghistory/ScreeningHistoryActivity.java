@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
@@ -59,21 +60,11 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
+        String clinicname = getIntent().getStringExtra("clinicname");
+        TextView clinic = (TextView) findViewById(R.id.tv_clinic);
+        clinic.setText(clinicname);
 
         l = findViewById(R.id.history_screening);
-//        String tutorials[]
-//        = { "Algorithms", "Data Structures",
-//        "Languages", "Interview Corner",
-//        "GATE", "ISRO CS",
-//        "UGC NET CS", "CS Subjects",
-//        "Web Technologies" };
-//        ArrayAdapter<String> arr;
-//        arr
-//                = new ArrayAdapter<String>(
-//                this,
-//                R.layout.support_simple_spinner_dropdown_item,
-//                tutorials);
-//        l.setAdapter(arr);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -84,6 +75,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
 //                intent.putExtra("history", id_history);
                 intent.putExtra("position", position+1);
                 intent.putExtra("data",sch.get(position));
+                intent.putExtra("clinicname", clinicname);
                 startActivity(intent);
             }
         });
@@ -112,7 +104,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get ID Pemeriksan From Main Activity
-        int id_user = getIntent().getIntExtra("user", 0);
+        int id_user = getIntent().getIntExtra("userid", 0);
         String token = getIntent().getStringExtra("token");
         String URL = "http://178.128.25.139:8080/api/pemeriksaan/userAll/"+id_user;
 
@@ -156,7 +148,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
                 // Basic Authentication
                 //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
 
-                headers.put("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiaWRfbG9naW4iOiIyIiwidXNlcm5hbWUiOiJ1c2VyQGdtYWlsLmNvbSJ9.QhtyvpX5N6lgQPZmX7an2vU0zP0W2ir-bZfrbkz08MU");
+                headers.put("Authorization", "Bearer " + token);
                 return headers;
             }
         };

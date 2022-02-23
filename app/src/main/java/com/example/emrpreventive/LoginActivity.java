@@ -30,8 +30,10 @@ import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,65 +74,79 @@ public class LoginActivity extends AppCompatActivity {
                 phone_input = (EditText)findViewById(R.id.phone_input);
                 String count = phone_input.getText().toString();
                 setupJson(count);
-
-                //Removable Code Starts from here
-                Integer id = 0;
-
-                // Creating array of string length & convert to uppercase
-                char[] ch = new char[count.length()];
-                count.toUpperCase();
-
-                // Copy character by character into array
-                for (int i = 0; i < count.length(); i++) {
-                    ch[i] = count.charAt(i);
-                }
-
-                for (int i = 0; i < count.length(); i++){
-                    id = id + (i+1) * (ch[i] - 64);
-                }
-
-                id = Math. abs(id);
-                id = id % 200;
-
-                Log.e("login", String.valueOf(id));
-
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                //Pass the User ID to next activity
-                intent.putExtra("user", id);
-                startActivity(intent);
-                finish();
+//
+//                //Removable Code Starts from here
+//                Integer id = 0;
+//
+//                // Creating array of string length & convert to uppercase
+//                char[] ch = new char[count.length()];
+//                count.toUpperCase();
+//
+//                // Copy character by character into array
+//                for (int i = 0; i < count.length(); i++) {
+//                    ch[i] = count.charAt(i);
+//                }
+//
+//                for (int i = 0; i < count.length(); i++){
+//                    id = id + (i+1) * (ch[i] - 64);
+//                }
+//
+//                id = Math. abs(id);
+//                id = id % 200;
+//
+//                Log.e("login", String.valueOf(id));
+//
+//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                //Pass the User ID to next activity
+//                intent.putExtra("user", id);
+//                startActivity(intent);
+//                finish();
             }
         });
     }
 
     private void setupJson(String phonenum) {
         //Construct Obj with Phonenum + Change Obj to string then to JSON
-        //Type answerstype = new TypeToken<List<FormAnswer>>() {}.getType();
-        //String json = gson.toJson(Obj, ObjClassType);
-        //Log.e("bobo", json);
+        User Obj = new User(phonenum);
+        Type user = new TypeToken<User>() {}.getType();
+        String json = gson.toJson(Obj, user);
+        Log.e("phonenum", json);
 
         // Send JSON ke API & Parse Respons di createcall
         // Parse JSON Respons di createcall
         // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
-//        createCalls(json,new VolleyCallBack() {
-//
-//            @Override
-//            public void onSuccess() {
-//                // here you have the response from the volley.
-//            }
-//
-//            @Override
-//            public void onError() {
-//
-//            }
-//        });
-//
-//        VolleyLog.DEBUG = true;
+        createCalls(json,new VolleyCallBack() {
+
+            @Override
+            public void onSuccess() {
+                // here you have the response from the volley.
+                String userid = returnvalue.get("id_user").isJsonNull() ? "" : returnvalue.get("id_user").getAsString();
+                String username = returnvalue.get("nama_user").isJsonNull() ? "" : returnvalue.get("nama_user").getAsString();
+                String token = returnvalue.get("token").isJsonNull() ? "" : returnvalue.get("token").getAsString();
+                String clinicname = returnvalue.get("nama_klinik").isJsonNull() ? "" : returnvalue.get("nama_klinik").getAsString();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("userid", Integer.parseInt(userid));
+                intent.putExtra("username", username);
+                intent.putExtra("clinicname", clinicname);
+                intent.putExtra("token", token);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onError() {
+                phone_input.getText().clear();
+                DialogFragment newFragment = new LogInAuthError();
+                newFragment.show(getSupportFragmentManager(), "");
+            }
+        });
+
+        VolleyLog.DEBUG = true;
     }
 
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL = "http://178.128.25.139:8080/api/pemeriksaan";
+        String URL = "http://178.128.25.139:8080/api/login";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override

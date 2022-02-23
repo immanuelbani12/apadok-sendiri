@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -47,6 +48,9 @@ public class EncyclopediaActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
+        String clinicname = getIntent().getStringExtra("clinicname");
+        TextView clinic = (TextView) findViewById(R.id.tv_clinic);
+        clinic.setText(clinicname);
 
         CreateFormList();
         eclnew = FilterEncyclopedia();
@@ -64,6 +68,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 intent.putExtra("judul_artikel", eclnew.get(id_history).judul_artikel);
                 intent.putExtra("isi_artikel", eclnew.get(id_history).isi_artikel);
                 intent.putExtra("kategori_artikel", eclnew.get(id_history).kategori_artikel);
+                intent.putExtra("clinicname", clinicname);
                 startActivity(intent);
             }
         });

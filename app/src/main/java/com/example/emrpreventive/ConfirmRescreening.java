@@ -14,6 +14,17 @@ import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 public class ConfirmRescreening extends DialogFragment {
     private int user_id;
     private String Token;
+
+    public void setClinicname(String clinicname) {
+        this.clinicname = clinicname;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String clinicname;
+    private String username;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
@@ -23,8 +34,10 @@ public class ConfirmRescreening extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                         Intent intent = new Intent(getContext(), ScreeningActivity.class);
-                        intent.putExtra("user", user_id);
+                        intent.putExtra("userid", user_id);
                         intent.putExtra("token", Token);
+                        intent.putExtra("clinicname", clinicname);
+                        intent.putExtra("username", username);
                         startActivity(intent);
                     }
                 })

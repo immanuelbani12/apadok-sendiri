@@ -61,6 +61,10 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
+        String clinicname = getIntent().getStringExtra("clinicname");
+        TextView clinic = (TextView) findViewById(R.id.tv_clinic);
+        clinic.setText(clinicname);
+
         // This callback will only be called when MyFragment is at least Started.
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
@@ -267,14 +271,18 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                     } else {
                         //Get the User ID from Main Activity
                         answer[CurrentForm-1] = new FormAnswer("id_user");
-                        int id_user = getIntent().getIntExtra("user", 0);
+                        int id_user = getIntent().getIntExtra("userid", 0);
                         String token = getIntent().getStringExtra("token");
+                        String username = getIntent().getStringExtra("username");
+                        String clinicname = getIntent().getStringExtra("clinicname");
                         answer[CurrentForm-1].setAnswer(Integer.toString(id_user));
 
                         Intent intent = new Intent(ScreeningActivity.this, StrokeResultActivity.class);
                         ArrayList list = new ArrayList<>(Arrays.asList(answer));
                         intent.putParcelableArrayListExtra("Answers", list);
                         intent.putExtra("token", token);
+                        intent.putExtra("username", username);
+                        intent.putExtra("clinicname", clinicname);
                         startActivity(intent);
                         finish();
                     }

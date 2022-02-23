@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,43 +58,68 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_subtitle;
     private List<ScreeningHistory> sch;
     private int UserId;
-    private String ErrorMsg,Token;
+    private String ErrorMsg,Token,UserName,ClinicName;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setupJson();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupItemView();
         SetupPreference();
+        setupItemView();
         setupJson();
     }
 
     private void SetupPreference() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        UserId = sharedPref.getInt("userlocal", 0);
+        UserId = sharedPref.getInt("useridlocal", 0);
+        UserName = sharedPref.getString("usernamelocal", "");
+        ClinicName = sharedPref.getString("clinicnamelocal", "");
         Token = sharedPref.getString("tokenlocal", "");
         if (UserId == 0) {
-            UserId = getIntent().getIntExtra("user", 0);
+            UserId = getIntent().getIntExtra("userid", 0);
+            UserName = getIntent().getStringExtra("username");
+            ClinicName = getIntent().getStringExtra("clinicname");
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             } else {
+                //Name Toast
+                CharSequence text = "Hello " + UserName;
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(getBaseContext(), text, duration);
+                toast.show();
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putInt("userlocal", UserId);
+                editor.putInt("useridlocal", UserId);
+                editor.putString("usernamelocal", UserName);
+                editor.putString("clinicnamelocal", ClinicName);
                 editor.putString("tokenlocal", Token);
                 editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
             }
+        } else {
+            //Name Toast
+            CharSequence text = "Hello " + UserName;
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(getBaseContext(), text, duration);
+            toast.show();
         }
-        // For development only
-        UserId = 69;
     }
     private void setupItemView(){
         // Code to Setup Toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
+        TextView clinic = (TextView) findViewById(R.id.tv_clinic);
+        clinic.setText(ClinicName);
 
         //Button
         btn_screening = (Button) findViewById(R.id.btn_screening);
@@ -239,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                 // Basic Authentication
                 //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
 
-                headers.put("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiaWRfbG9naW4iOiIyIiwidXNlcm5hbWUiOiJ1c2VyQGdtYWlsLmNvbSJ9.QhtyvpX5N6lgQPZmX7an2vU0zP0W2ir-bZfrbkz08MU");
+                headers.put("Authorization", "Bearer " + Token);
                 return headers;
             }
         };
@@ -254,11 +280,15 @@ public class MainActivity extends AppCompatActivity {
             //Pass the User ID to next activity
             ((ConfirmRescreening) newFragment).setUser_id(UserId);
             ((ConfirmRescreening) newFragment).setToken(Token);
+            ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
+            ((ConfirmRescreening) newFragment).setUsername(UserName);
             newFragment.show(getSupportFragmentManager(), "");
         } else {
             Intent intent = new Intent(MainActivity.this, ScreeningActivity.class);
             //Pass the User ID to next activity
-            intent.putExtra("user", UserId);
+            intent.putExtra("userid", UserId);
+            intent.putExtra("clinicname", ClinicName);
+            intent.putExtra("username", UserName);
             intent.putExtra("token", Token);
             startActivity(intent);
         }
@@ -267,7 +297,9 @@ public class MainActivity extends AppCompatActivity {
     private final View.OnClickListener RedirectToHistory = v -> {
         Intent intent = new Intent(MainActivity.this, ScreeningHistoryActivity.class);
         //Pass the User ID to next activity
-        intent.putExtra("user", UserId);
+        intent.putExtra("userid", UserId);
+        intent.putExtra("clinicname", ClinicName);
+        intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
         startActivity(intent);
     };
