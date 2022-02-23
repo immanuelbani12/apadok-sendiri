@@ -45,6 +45,7 @@ public class TestChatbotActivity extends AppCompatActivity {
     private ImageButton btn_chat_send;
     private TextView tv_title_activity, tv_first_chat, tv_second_chat, tv_third_chat;
     private EditText edit_message;
+    private String ClinicName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +61,9 @@ public class TestChatbotActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
-        String clinicname = sharedPref.getString("clinicnamelocal", "");
-        clinic.setText(clinicname);
+        ClinicName = sharedPref.getString("clinicnamelocal", "");
+        clinic.setText(ClinicName);
+        clinic.setText(ClinicName);
 
         tv_title_activity = (TextView) findViewById(R.id.tv_title_activity);
         tv_first_chat = (TextView) findViewById(R.id.tv_first_chat);
@@ -110,7 +112,7 @@ public class TestChatbotActivity extends AppCompatActivity {
         btn_pagi.setEnabled(false);
         btn_siang.setEnabled(false);
         btn_sore.setEnabled(false);
-        tv_third_chat.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada pagi hari");
+        tv_third_chat.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada pagi hari di " + ClinicName);
         tv_third_chat.setVisibility(View.VISIBLE);
     }
     public void show_question3(View view) {
@@ -118,7 +120,7 @@ public class TestChatbotActivity extends AppCompatActivity {
         btn_pagi.setEnabled(false);
         btn_siang.setEnabled(false);
         btn_sore.setEnabled(false);
-        tv_third_chat.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada siang hari");
+        tv_third_chat.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada siang hari di " + ClinicName);
         tv_third_chat.setVisibility(View.VISIBLE);
     }
     public void show_question4(View view) {
@@ -126,7 +128,7 @@ public class TestChatbotActivity extends AppCompatActivity {
         btn_pagi.setEnabled(false);
         btn_siang.setEnabled(false);
         btn_sore.setEnabled(false);
-        tv_third_chat.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada sore hari");
+        tv_third_chat.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada sore hari di " + ClinicName);
         tv_third_chat.setVisibility(View.VISIBLE);
     }
 }

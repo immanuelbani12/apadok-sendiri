@@ -36,7 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:src="@drawable/ic_baseline_login_24"
-                android:rotation="180"/>
+                android:rotation="180"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

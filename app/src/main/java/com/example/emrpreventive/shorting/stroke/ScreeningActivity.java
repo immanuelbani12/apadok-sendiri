@@ -106,6 +106,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         tv_progress.setTypeface(helvetica_font);
         tv_question.setTypeface(helvetica_font);
         btn_submit.setTypeface(helvetica_font);
+        btn_backquestion.setTypeface(helvetica_font);
         edit_text.setTypeface(helvetica_font);
 
 

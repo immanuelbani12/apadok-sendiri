@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -120,6 +121,15 @@ public class MainActivity extends AppCompatActivity {
         SetupToolbar.changeToolbarFont(myToolbar, this);
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
         clinic.setText(ClinicName);
+        ImageView logout = (ImageView) findViewById(R.id.logout_icon);
+        logout.setVisibility(View.VISIBLE);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new ConfrimLogOut();
+                newFragment.show(getSupportFragmentManager(), "");
+            }
+        });
 
         //Button
         btn_screening = (Button) findViewById(R.id.btn_screening);
