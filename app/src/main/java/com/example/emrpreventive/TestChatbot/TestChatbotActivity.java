@@ -1,7 +1,9 @@
 package com.example.emrpreventive.TestChatbot;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.android.volley.AuthFailureError;
@@ -28,6 +31,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.R;
+import com.example.emrpreventive.SetupToolbar;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -50,9 +54,19 @@ public class TestChatbotActivity extends AppCompatActivity {
     }
 
     private void setupItemView() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        // Code to Setup Toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        SetupToolbar.changeToolbarFont(myToolbar, this);
+        TextView clinic = (TextView) findViewById(R.id.tv_clinic);
+        String clinicname = sharedPref.getString("clinicnamelocal", "");
+        clinic.setText(clinicname);
 
         tv_title_activity = (TextView) findViewById(R.id.tv_title_activity);
         tv_first_chat = (TextView) findViewById(R.id.tv_first_chat);
+        String username = sharedPref.getString("usernamelocal", "");
+        tv_first_chat.setText("Halo "+ username +", saya Putri, asisten virtual APADOK. Apakah ada yang bisa kami bantu?");
         tv_second_chat = (TextView) findViewById(R.id.tv_second_chat);
         tv_third_chat = (TextView) findViewById(R.id.tv_third_chat);
         btn_penjadwalan = (Button) findViewById(R.id.btn_penjadwalan);
