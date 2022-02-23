@@ -186,12 +186,12 @@ public class MainActivity extends AppCompatActivity {
                     Date date = formatter.parse(Time);
                     //Comparing dates
                     long difference = Math.abs(now.getTime() - date.getTime());
-                    differenceMinutes = difference / (1000);
+                    differenceMinutes = difference / (1000 * 60);
                 } catch (ParseException e) {
                     differenceMinutes = -1;
                 }
-                long differenceHours = differenceMinutes / (60 * 60);
-                long differenceDays = differenceMinutes / (24 * 60 * 60);
+                long differenceHours = differenceMinutes / (60);
+                long differenceDays = differenceMinutes / (24 * 60);
 
                 if (differenceMinutes == -1) {
                     tv_subtitle.setText("Tidak ada data skrining sebelumnya");
