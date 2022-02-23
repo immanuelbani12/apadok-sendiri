@@ -26,20 +26,20 @@
             android:animateLayoutChanges="true">
 
             <TextView
-                android:id="@+id/title_result"
+                android:id="@+id/tv_title_activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="30dp"
                 android:text="Penjadwalan"
                 android:textColor="@color/black_font"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/time_result"
+                android:id="@+id/tv_first_chat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="10dp"
                 android:text="Halo Aul, saya Putri, asisten virtual APADOK. Apakah ada yang bisa kami bantu?"
                 android:textColor="@color/grey_font"
                 android:textSize="15dp"
@@ -49,7 +49,7 @@
                 android:id="@+id/btn_penjadwalan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="25dp"
                 android:background="@drawable/button_radius"
                 android:text="Penjadwalan"
                 android:textAllCaps="false"
@@ -60,29 +60,30 @@
 
 
             <TextView
-                android:id="@+id/time_result2"
+                android:id="@+id/tv_second_chat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="10dp"
                 android:text="Kapankah anda ingin pertemuan dengan Dokter dijadwalkan?"
                 android:textColor="@color/grey_font"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_education"
+                android:id="@+id/btn_pagi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_radius"
                 android:text="Pagi Hari"
                 android:textAllCaps="false"
+                android:layout_marginBottom="5dp"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:onClick="show_question2"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_education2"
+                android:id="@+id/btn_siang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_radius"
@@ -90,11 +91,12 @@
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
+                android:layout_marginBottom="5dp"
                 android:textStyle="bold"
                 android:onClick="show_question3"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_education3"
+                android:id="@+id/btn_sore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_radius"
@@ -102,11 +104,12 @@
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
+                android:layout_marginBottom="25dp"
                 android:textStyle="bold"
                 android:onClick="show_question4"/>
 
             <TextView
-                android:id="@+id/time_result4"
+                android:id="@+id/tv_third_chat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"
