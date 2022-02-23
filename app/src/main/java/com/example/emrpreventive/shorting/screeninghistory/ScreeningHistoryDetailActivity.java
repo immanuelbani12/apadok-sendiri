@@ -175,7 +175,9 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             }
         }
 
-        if (diabetval== 3 || strokeval == 3 || cardioval == 3) {
+        int position = getIntent().getIntExtra("position", 0);
+
+        if ((diabetval== 3 || strokeval == 3 || cardioval == 3) && position == 1) {
             dangerous_result.setText("Tubuh anda memiliki resiko tinggi untuk "+ dangtext +" sehingga membutuhkan konsultasi secara offline ke dokter");
             dangerous_result.setVisibility(View.VISIBLE);
             btn_consult.setVisibility(View.VISIBLE);
