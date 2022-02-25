@@ -233,11 +233,12 @@ public class StrokeResultActivity extends AppCompatActivity {
                 Log.e("VOLLEY", error.toString());
                 if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
                     hasil = "Tidak ada Jaringan Internet";
+
                 } else if (error instanceof ServerError || error instanceof AuthFailureError) {
 //                    hasil = "Server sedang bermasalah";
                     hasil = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
-//                    DialogFragment newFragment = new LogOutAuthError();
-//                    newFragment.show(getSupportFragmentManager(), "");
+                    DialogFragment newFragment = new LogOutAuthError();
+                    newFragment.show(getSupportFragmentManager(), "");
                 }  else if (error instanceof ParseError) {
                     hasil = "Ada masalah di aplikasi Apadok";
                 }

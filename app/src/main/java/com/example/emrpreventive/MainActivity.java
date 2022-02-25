@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SetupPreference();
-        setupItemView();
-        setupJson();
+        SetupPreference(); //Ngambil UserID,dll
+        setupItemView(); //Setup UI
+        setupJson(); //Setup API
     }
 
     private void SetupPreference() {
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                finish();
+//                finish();
             } else {
                 //Name Toast
                 CharSequence text = "Hello " + UserName;
@@ -231,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("VOLLEY", response);
                 Type screenhistory = new TypeToken<List<ScreeningHistory>>() {}.getType();
                 sch = gson.fromJson(response, screenhistory);
+                // Panggil Fungsi API Lain, Simpen ke SQLite
                 callback.onSuccess();
             }
         }, new Response.ErrorListener() {
@@ -240,11 +241,12 @@ public class MainActivity extends AppCompatActivity {
                 ErrorMsg = ""; // error message, show it in toast or dialog, whatever you want
                 if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
                     ErrorMsg = "Tidak ada Jaringan Internet";
+                    // Panggil Fungsi Baca dari SQLite Local
                 } else if (error instanceof ServerError || error instanceof AuthFailureError) {
 //                    ErrorMsg = "Server sedang bermasalah";
                     ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
-//                    DialogFragment newFragment = new LogOutAuthError();
-//                    newFragment.show(getSupportFragmentManager(), "");
+                    DialogFragment newFragment = new LogOutAuthError();
+                    newFragment.show(getSupportFragmentManager(), "");
                 }  else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }
