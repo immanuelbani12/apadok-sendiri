@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private Gson gson = new Gson();
     private Button btn_screening, btn_history_screening, btn_consult;
     private long differenceMinutes;
-    private TextView tv_subtitle;
+    private TextView tv_subtitle, tv_greet;
     private List<ScreeningHistory> sch;
     private int UserId;
     private String ErrorMsg,Token,UserName,ClinicName;
@@ -136,12 +136,14 @@ public class MainActivity extends AppCompatActivity {
         btn_history_screening = (Button) findViewById(R.id.btn_history_screening);
         btn_consult = (Button) findViewById(R.id.btn_consult);
         tv_subtitle = (TextView) findViewById(R.id.tv_subtitle);
+        tv_greet = (TextView) findViewById(R.id.tv_greet);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
         btn_screening.setTypeface(helvetica_font);
         btn_history_screening.setTypeface(helvetica_font);
         btn_consult.setTypeface(helvetica_font);
         tv_subtitle.setTypeface(helvetica_font);
+        tv_greet.setTypeface(helvetica_font);
 
         btn_screening.setOnClickListener(RedirectToScreening);
 
