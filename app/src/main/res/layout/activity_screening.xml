@@ -35,6 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:contentDescription="image"
+                    android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
                     tools:src="@drawable/default_image" />
 

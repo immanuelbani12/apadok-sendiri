@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -97,6 +98,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         iv_image = (ImageView) findViewById(R.id.iv_image);
         progressBar.setProgress(CurrentForm);
         tv_progress.setText(CurrentForm + "/" + progressBar.getMax());
+
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
         tv_option_one.setTypeface(helvetica_font);

@@ -28,16 +28,16 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/clinic"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:padding="16dp"
-                android:text="@string/clinic_name"
-                android:gravity="center"
-                android:textColor="@color/black_font"
-                android:textSize="19dp" />
+<!--            <TextView-->
+<!--                android:id="@+id/clinic"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/white"-->
+<!--                android:padding="16dp"-->
+<!--                android:text="@string/clinic_name"-->
+<!--                android:gravity="center"-->
+<!--                android:textColor="@color/black_font"-->
+<!--                android:textSize="19dp" />-->
 
             <LinearLayout
                 android:id="@+id/footer"
@@ -53,7 +53,7 @@
                 <TextView
                     android:id="@+id/support_by"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="By"
                     android:textColor="@color/black_font"
                     android:textSize="18dp" />
@@ -67,7 +67,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:paddingHorizontal="20dp"
+                android:paddingHorizontal="10dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_gravity="center">
@@ -94,19 +94,21 @@
                     android:gravity="center"
                     android:inputType="phone"/>
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_masuk"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button_radius"
+                    android:text="Masuk"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"/>
+
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_masuk"
-                android:layout_width="320dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/button_radius"
-                android:text="Masuk"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:layout_gravity="center"/>
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
