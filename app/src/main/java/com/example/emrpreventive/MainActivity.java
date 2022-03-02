@@ -194,7 +194,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 long differenceHours = differenceMinutes / (60);
                 long differenceDays = differenceMinutes / (24 * 60);
-
+                //Add Clinic Greeting
+//                String Greeting = "Selamat Datang " + UserName + "\n\n" + "Di " + ClinicName;
+                String Greeting = "Selamat Datang " + UserName;
+                tv_greet.setText(Greeting);
                 if (differenceMinutes == -1) {
                     tv_subtitle.setText("Tidak ada data skrining sebelumnya");
                 } else {
