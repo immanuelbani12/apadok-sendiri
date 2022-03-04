@@ -125,7 +125,6 @@
                     android:layout_marginBottom="15dp"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center"
-                    android:paddingHorizontal="20dp"
                     android:textSize="18dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -146,7 +145,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/safe_result"
-                    android:paddingHorizontal="20dp"
                     android:text="Risiko"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center"
