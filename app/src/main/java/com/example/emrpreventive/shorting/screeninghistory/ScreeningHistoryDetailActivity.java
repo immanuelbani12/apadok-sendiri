@@ -116,7 +116,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             dangtext = "penyakit diabetes";
             diabetval = 3;
         } else if (hasil_diabet.contains("Rendah")) {
-            diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green_font));
+            diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
             safetext = "penyakit diabetes";
             diabetval = 1;
         } else {
@@ -133,7 +133,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             }
             strokeval = 3;
         } else if (hasil_stroke.contains("Rendah")) {
-            stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green_font));
+            stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
             strokeval = 1;
             if (dangtext == ""){
                 dangtext = "penyakit stroke";
@@ -157,8 +157,16 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
                 safetext += ", penyakit kardiovaskular";
             }
             cardioval = 3;
-        } else if (hasil_kardio.contains("Rendah") || hasil_kardio.contains("Tidak")) {
-            cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green_font));
+        } else if (hasil_kardio.contains("Rendah")) {
+            cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
+            cardioval = 1;
+            if (safetext == ""){
+                safetext = "penyakit kardiovaskular";
+            } else  {
+                safetext += ", penyakit kardiovaskular";
+            }
+        } else if (hasil_kardio.contains("Tidak")) {
+            cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.dark_green_font));
             cardioval = 1;
             if (safetext == ""){
                 safetext = "penyakit kardiovaskular";

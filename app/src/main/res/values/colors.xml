@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="black_font">#222222</color>
-    <color name="grey_font">#808080</color>
+    <color name="grey_font">#545151</color>
     <color name="white">#FFFFFFFF</color>
     <color name="trinidad">#ea5c07</color>
     <color name="blue_main">#046b93</color>
@@ -17,8 +17,9 @@
     <color name="chathams_blue">#105a6a</color>
     <color name="teal_blue">#044854</color>
     <color name="boston_blue">#3c94ac</color>
-    <color name="red_font">#FC0000</color>
-    <color name="green_font">#0CFF50</color>
+    <color name="red_font">#DD0505</color>
+    <color name="light_green_font">#0AA805</color>
+    <color name="dark_green_font">#17652D</color>
     <color name="yellow_font">#FAE315</color>
 
 

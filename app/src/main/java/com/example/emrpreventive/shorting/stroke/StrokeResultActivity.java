@@ -136,7 +136,7 @@ public class StrokeResultActivity extends AppCompatActivity {
                     dangtext = "penyakit diabetes";
                     diabetval = 3;
                 } else if (hasil_diabet.contains("Rendah")) {
-                    diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green_font));
+                    diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
                     safetext = "penyakit diabetes";
                     diabetval = 1;
                 } else {
@@ -153,7 +153,7 @@ public class StrokeResultActivity extends AppCompatActivity {
                     }
                     strokeval = 3;
                 } else if (hasil_stroke.contains("Rendah")) {
-                    stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green_font));
+                    stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
                     strokeval = 1;
                     if (dangtext == ""){
                         dangtext = "penyakit stroke";
@@ -172,26 +172,35 @@ public class StrokeResultActivity extends AppCompatActivity {
                 if (hasil_kardio.contains("Tinggi")) {
                     cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
                     if (safetext == ""){
-                        safetext = "penyakit cardiovascular";
+                        safetext = "penyakit kardiovascular";
                     } else {
-                        safetext += ", penyakit cardiovascular";
+                        safetext += ", penyakit kardiovascular";
                     }
                     cardioval = 3;
-                } else if (hasil_kardio.contains("Rendah") || hasil_kardio.contains("Tidak")) {
-                    cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green_font));
+                } else if (hasil_kardio.contains("Rendah")) {
+                    cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
                     cardioval = 1;
                     if (safetext == ""){
-                        safetext = "penyakit cardiovascular";
+                        safetext = "penyakit kardiovascular";
                     } else  {
-                        safetext += ", penyakit cardiovascular";
+                        safetext += ", penyakit kardiovascular";
                     }
-                } else {
+                }
+                else if (hasil_kardio.contains("Tidak")) {
+                    cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.dark_green_font));
+                    cardioval = 1;
+                    if (safetext == ""){
+                        safetext = "penyakit kardiovascular";
+                    } else  {
+                        safetext += ", penyakit kardiovascular";
+                    }
+                }else {
                     cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
                     cardioval = 2;
                     if (safetext == ""){
-                        safetext = "penyakit cardiovascular";
+                        safetext = "penyakit kardiovascular";
                     } else  {
-                        safetext += ", penyakit cardiovascular";
+                        safetext += ", penyakit kardiovascular";
                     }
                 }
 
