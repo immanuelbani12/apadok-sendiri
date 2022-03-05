@@ -267,7 +267,39 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.btn_submit:
-                btn_backquestion.setEnabled(false);
+                isOptionSubmitted = true;
+                switch (SelectedOptionPosititon){
+                    case 1:
+                        if (CurrentForm == 1) {
+                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt1());
+                        } else {
+                            answer[CurrentForm-1].setAnswer("1");
+                        }
+                        break;
+                    case 2:
+                        if (CurrentForm == 1) {
+                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt2());
+                        } else {
+                            answer[CurrentForm - 1].setAnswer("2");
+                        }
+                        break;
+                    case 3:
+//                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt3());
+                        answer[CurrentForm-1].setAnswer("3");
+                        break;
+                    case 4:
+//                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt4());
+                        answer[CurrentForm-1].setAnswer("4");
+                        break;
+                    case -1:
+                        // Get answer from Textbar here
+                        answer[CurrentForm-1].setAnswer(edit_text.getText().toString());
+                        // Add Date for MonthPicker
+                        if (CurrentForm == 2) answer[CurrentForm-1].setAnswer(1 + "/" + edit_text.getText().toString());
+                        break;
+                }
+                SelectedOptionPosititon = 0;
+                // legacy code
                 if (SelectedOptionPosititon == 0) {
                     isOptionSubmitted = false;
                     CurrentForm++;
@@ -293,47 +325,6 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         finish();
                     }
 
-                } else {
-                    isOptionSubmitted = true;
-                    if (CurrentForm == 18) {
-                        btn_submit.setText("Kirim Hasil");
-                    } else {
-                        btn_submit.setText("Pertanyaan Selanjutnya");
-                    }
-
-                    // Setup Answer Form to be Packaged into JSON
-//                    answer[CurrentForm-1] = new FormAnswer(forms[CurrentForm-1].getQuestion());
-                    switch (SelectedOptionPosititon){
-                        case 1:
-                            if (CurrentForm == 1) {
-                                answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt1());
-                            } else {
-                                answer[CurrentForm-1].setAnswer("1");
-                            }
-                            break;
-                        case 2:
-                            if (CurrentForm == 1) {
-                                answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt2());
-                            } else {
-                                answer[CurrentForm - 1].setAnswer("2");
-                            }
-                            break;
-                        case 3:
-//                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt3());
-                            answer[CurrentForm-1].setAnswer("3");
-                            break;
-                        case 4:
-//                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt4());
-                            answer[CurrentForm-1].setAnswer("4");
-                            break;
-                        case -1:
-                            // Get answer from Textbar here
-                            answer[CurrentForm-1].setAnswer(edit_text.getText().toString());
-                            // Add Date for MonthPicker
-                            if (CurrentForm == 2) answer[CurrentForm-1].setAnswer(1 + "/" + edit_text.getText().toString());
-                            break;
-                    }
-                    SelectedOptionPosititon = 0;
                 }
                 break;
         }
