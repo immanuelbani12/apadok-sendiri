@@ -28,6 +28,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.emrpreventive.ConfirmExiting;
 import com.example.emrpreventive.R;
 import com.example.emrpreventive.SetupToolbar;
+import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -176,7 +177,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
             SelectedOptionPosititon = -1;
             edit_text.setVisibility(View.VISIBLE);
             edit_text.setHint(formcheck.getHint());
-            if(formcheck.getHint() == "Tanggal Lahir") {
+            if(formcheck.getHint() == "Bulan dan tahun lahir") {
                 edit_text.setInputType(InputType.TYPE_CLASS_TEXT);
                 edit_text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                     @Override
@@ -184,21 +185,23 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         if(hasFocus){
                             //Clear keyboard
                             v.clearFocus();
-                            btn_submit.setEnabled(true);
-                            final Calendar cldr = Calendar.getInstance();
+                            // Set MonthPicker
+                            Calendar cldr = Calendar.getInstance();
+                            // Starts from 12 Years ago
                             cldr.add(Calendar.YEAR, -12);
-                            int day = cldr.get(Calendar.DAY_OF_MONTH);
-                            int month = cldr.get(Calendar.MONTH);
-                            int year = cldr.get(Calendar.YEAR);
-                            // date picker dialog
-                            picker = new DatePickerDialog(ScreeningActivity.this,
-                                    new DatePickerDialog.OnDateSetListener() {
-                                        @Override
-                                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                            edit_text.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                                        }
-                                    }, year, month, day);
-                            picker.show();
+
+                            MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(ScreeningActivity.this, new MonthPickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(int selectedMonth, int selectedYear) {
+                                    btn_submit.setEnabled(true);
+                                    edit_text.setText((selectedMonth+1) + "/" + selectedYear);
+                                    Log.e("TAG", "selectedMonth : " + selectedMonth + " selectedYear : " + selectedYear);
+                                }
+                            }, cldr.get(Calendar.YEAR), cldr.get(Calendar.MONTH));
+
+                            builder.setActivatedMonth(Calendar.MONTH)
+                                    .build()
+                                    .show();
                         }
                     }
                 });
@@ -326,6 +329,8 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         case -1:
                             // Get answer from Textbar here
                             answer[CurrentForm-1].setAnswer(edit_text.getText().toString());
+                            // Add Date for MonthPicker
+                            if (CurrentForm == 2) answer[CurrentForm-1].setAnswer(1 + "/" + edit_text.getText().toString());
                             break;
                     }
                     SelectedOptionPosititon = 0;
@@ -354,7 +359,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
     private final void CreateFormList(){
         forms[0] = new Form(1,"Jenis Kelamin","Laki-laki","Perempuan","","",R.drawable.default_image, null);
-        forms[1] = new Form(2,"Tanggal Lahir","","","","",R.drawable.birthdate, "Tanggal Lahir");
+        forms[1] = new Form(2,"Bulan dan tahun lahir","","","","",R.drawable.birthdate, "Bulan dan tahun lahir");
         forms[2] = new Form(3,"Masukkan tinggi badan (cm)","","","","",R.drawable.tinggi_badan, "Tinggi badan (cm)");
         forms[3] = new Form(4,"Masukkan berat badan (kg)","","","","",R.drawable.berat_badan, "Berat badan (kg)");
         forms[4] = new Form(5,"Apakah anda aktif melakukan aktivitas fisik?","Ya","Tidak","Jarang","",R.drawable.default_image, null);
