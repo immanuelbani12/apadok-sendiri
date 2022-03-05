@@ -15,15 +15,8 @@ public class ConfirmRescreening extends DialogFragment {
     private int user_id;
     private String Token;
 
-    public void setClinicname(String clinicname) {
-        this.clinicname = clinicname;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     private String clinicname;
+    private String cliniclogo;
     private String username;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -37,6 +30,7 @@ public class ConfirmRescreening extends DialogFragment {
                         intent.putExtra("userid", user_id);
                         intent.putExtra("token", Token);
                         intent.putExtra("clinicname", clinicname);
+                        intent.putExtra("cliniclogo", cliniclogo);
                         intent.putExtra("username", username);
                         startActivity(intent);
                     }
@@ -50,8 +44,20 @@ public class ConfirmRescreening extends DialogFragment {
         return builder.create();
     }
 
+    public void setClinicname(String clinicname) {
+        this.clinicname = clinicname;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public void setCliniclogo(String cliniclogo) {
+        this.cliniclogo = cliniclogo;
     }
 
     public void setToken(String token) {

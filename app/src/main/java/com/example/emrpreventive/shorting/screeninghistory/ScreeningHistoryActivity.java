@@ -17,6 +17,7 @@ import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -63,6 +65,11 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
         String clinicname = getIntent().getStringExtra("clinicname");
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
         clinic.setText(clinicname);
+        // Init Logo RS
+        String logo = getIntent().getStringExtra("cliniclogo");
+        ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
+        String url = "http://178.128.25.139:8080/media/klinik/" + logo;
+        Picasso.get().load(url).into(cliniclogo);
 
         l = findViewById(R.id.history_screening);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -76,6 +83,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
                 intent.putExtra("position", position+1);
                 intent.putExtra("data",sch.get(position));
                 intent.putExtra("clinicname", clinicname);
+                intent.putExtra("cliniclogo", logo);
                 startActivity(intent);
             }
         });

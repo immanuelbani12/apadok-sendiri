@@ -28,6 +28,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.emrpreventive.ConfirmExiting;
 import com.example.emrpreventive.R;
 import com.example.emrpreventive.SetupToolbar;
+import com.squareup.picasso.Picasso;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import java.util.ArrayList;
@@ -52,13 +53,13 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private ImageView iv_image;
     private EditText edit_text;
     private ProgressBar progressBar;
-    private DatePickerDialog picker;
     private Boolean isOptionSubmitted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screening);
+
         // Code to Setup Toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -66,6 +67,11 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         String clinicname = getIntent().getStringExtra("clinicname");
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
         clinic.setText(clinicname);
+        // Init Logo RS
+        String logo = getIntent().getStringExtra("cliniclogo");
+        ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
+        String url = "http://178.128.25.139:8080/media/klinik/" + logo;
+        Picasso.get().load(url).into(cliniclogo);
 
         // This callback will only be called when MyFragment is at least Started.
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
@@ -313,6 +319,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         String token = getIntent().getStringExtra("token");
                         String username = getIntent().getStringExtra("username");
                         String clinicname = getIntent().getStringExtra("clinicname");
+                        String cliniclogo = getIntent().getStringExtra("cliniclogo");
                         answer[CurrentForm-1].setAnswer(Integer.toString(id_user));
 
                         Intent intent = new Intent(ScreeningActivity.this, StrokeResultActivity.class);
@@ -321,6 +328,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         intent.putExtra("token", token);
                         intent.putExtra("username", username);
                         intent.putExtra("clinicname", clinicname);
+                        intent.putExtra("clinicname", cliniclogo);
                         startActivity(intent);
                         finish();
                     }

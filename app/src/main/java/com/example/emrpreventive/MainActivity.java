@@ -2,7 +2,10 @@ package com.example.emrpreventive;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -39,9 +42,12 @@ import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -49,6 +55,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
@@ -59,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_subtitle, tv_greet;
     private List<ScreeningHistory> sch;
     private int UserId;
-    private String ErrorMsg,Token,UserName,ClinicName;
+    private String ErrorMsg,Token,UserName,ClinicName,ClinicLogo;
 
     @Override
     protected void onRestart() {
@@ -81,11 +89,13 @@ public class MainActivity extends AppCompatActivity {
         UserId = sharedPref.getInt("useridlocal", 0);
         UserName = sharedPref.getString("usernamelocal", "");
         ClinicName = sharedPref.getString("clinicnamelocal", "");
+        ClinicLogo = sharedPref.getString("cliniclogolocal", "");
         Token = sharedPref.getString("tokenlocal", "");
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("userid", 0);
             UserName = getIntent().getStringExtra("username");
             ClinicName = getIntent().getStringExtra("clinicname");
+            ClinicLogo = getIntent().getStringExtra("cliniclogo");
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -101,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putInt("useridlocal", UserId);
                 editor.putString("usernamelocal", UserName);
                 editor.putString("clinicnamelocal", ClinicName);
+                editor.putString("cliniclogolocal", ClinicLogo);
                 editor.putString("tokenlocal", Token);
                 editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
@@ -121,6 +132,12 @@ public class MainActivity extends AppCompatActivity {
         SetupToolbar.changeToolbarFont(myToolbar, this);
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
         clinic.setText(ClinicName);
+
+        // Init Logo RS
+        ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
+        String url = "http://178.128.25.139:8080/media/klinik/" + ClinicLogo;
+        Picasso.get().load(url).into(cliniclogo);
+
         ImageView logout = (ImageView) findViewById(R.id.logout_icon);
         logout.setVisibility(View.VISIBLE);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -226,6 +243,18 @@ public class MainActivity extends AppCompatActivity {
         VolleyLog.DEBUG = true;
     }
 
+    public static Bitmap LoadImageFromWebOperations(String url) {
+        try {
+            url = "http://178.128.25.139:8080/media/klinik/" + url;
+            URL weburl = new URL(url);
+            Bitmap bmp = BitmapFactory.decodeStream(weburl.openConnection().getInputStream());
+            return bmp;
+        } catch (Exception e) {
+            Log.e("pic",e.toString());
+            return null;
+        }
+    }
+
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get Latest ID Pemeriksaan from User 1
@@ -298,6 +327,7 @@ public class MainActivity extends AppCompatActivity {
             ((ConfirmRescreening) newFragment).setUser_id(UserId);
             ((ConfirmRescreening) newFragment).setToken(Token);
             ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
+            ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
             ((ConfirmRescreening) newFragment).setUsername(UserName);
             newFragment.show(getSupportFragmentManager(), "");
         } else {
@@ -305,6 +335,7 @@ public class MainActivity extends AppCompatActivity {
             //Pass the User ID to next activity
             intent.putExtra("userid", UserId);
             intent.putExtra("clinicname", ClinicName);
+            intent.putExtra("cliniclogo", ClinicLogo);
             intent.putExtra("username", UserName);
             intent.putExtra("token", Token);
             startActivity(intent);
@@ -316,6 +347,7 @@ public class MainActivity extends AppCompatActivity {
         //Pass the User ID to next activity
         intent.putExtra("userid", UserId);
         intent.putExtra("clinicname", ClinicName);
+        intent.putExtra("cliniclogo", ClinicLogo);
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
         startActivity(intent);

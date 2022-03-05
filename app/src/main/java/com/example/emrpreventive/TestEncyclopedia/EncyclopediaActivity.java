@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
@@ -39,6 +41,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
     private JsonObject returnvalue;
     private ArrayList<Encyclopedia> eclnew;
     private int diabetval, strokeval, cardioval;
+    private String ClinicName,ClinicLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,11 +53,18 @@ public class EncyclopediaActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
         String clinicname = getIntent().getStringExtra("clinicname");
+
         diabetval = getIntent().getIntExtra("categorydiabetes", 0);
         strokeval = getIntent().getIntExtra("categorystroke", 0);
         cardioval = getIntent().getIntExtra("categorykardio", 0);
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
         clinic.setText(clinicname);
+
+        // Init Logo RS
+        String logo = getIntent().getStringExtra("cliniclogo");
+        ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
+        String url = "http://178.128.25.139:8080/media/klinik/" + logo;
+        Picasso.get().load(url).into(cliniclogo);
 
         CreateFormList();
         eclnew = FilterEncyclopedia();
@@ -73,6 +83,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 intent.putExtra("isi_artikel", eclnew.get(id_history).isi_artikel);
                 intent.putExtra("kategori_artikel", eclnew.get(id_history).kategori_artikel);
                 intent.putExtra("clinicname", clinicname);
+                intent.putExtra("cliniclogo", logo);
                 startActivity(intent);
             }
         });

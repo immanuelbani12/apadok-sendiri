@@ -35,6 +35,7 @@ import com.example.emrpreventive.SetupToolbar;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 
@@ -45,7 +46,7 @@ public class TestChatbotActivity extends AppCompatActivity {
     private ImageButton btn_chat_send;
     private TextView tv_title_activity, tv_first_chat, tv_second_chat, tv_third_chat;
     private EditText edit_message;
-    private String ClinicName;
+    private String ClinicName,ClinicLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +63,12 @@ public class TestChatbotActivity extends AppCompatActivity {
         SetupToolbar.changeToolbarFont(myToolbar, this);
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
         ClinicName = sharedPref.getString("clinicnamelocal", "");
+        ClinicLogo = sharedPref.getString("cliniclogolocal", "");
         clinic.setText(ClinicName);
-        clinic.setText(ClinicName);
+        // Init Logo RS
+        ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
+        String url = "http://178.128.25.139:8080/media/klinik/" + ClinicLogo;
+        Picasso.get().load(url).into(cliniclogo);
 
         tv_title_activity = (TextView) findViewById(R.id.tv_title_activity);
         tv_first_chat = (TextView) findViewById(R.id.tv_first_chat);

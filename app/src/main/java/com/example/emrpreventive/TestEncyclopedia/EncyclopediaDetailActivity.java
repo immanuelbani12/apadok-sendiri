@@ -31,6 +31,7 @@ import com.example.emrpreventive.SetupToolbar;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -87,6 +88,12 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
         String clinicname = getIntent().getStringExtra("clinicname");
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
         clinic.setText(clinicname);
+
+        // Init Logo RS
+        String logo = getIntent().getStringExtra("cliniclogo");
+        ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
+        String url = "http://178.128.25.139:8080/media/klinik/" + logo;
+        Picasso.get().load(url).into(cliniclogo);
 
         tv_title = (TextView) findViewById(R.id.title_result);
         tv_result = (TextView) findViewById(R.id.result);
