@@ -29,7 +29,7 @@
                 android:layout_marginBottom="5dp"
                 android:text="Judul Artikel"
                 android:textColor="@color/black_font"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_marginBottom="50dp"
                 android:text="Isi Artikel"
                 android:textColor="@color/grey_font"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -50,7 +50,7 @@
                 android:paddingLeft="35dp"
                 android:text="Kategori Penyakit:"
                 android:textColor="@color/black_font"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                 android:text="Penyakit Diabetes"
                 android:textColor="@color/grey_font"
                 android:layout_marginBottom="10dp"
-                android:textSize="18dp"/>
+                android:textSize="18sp"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                 android:text="Penyakit Stroke"
                 android:textColor="@color/grey_font"
                 android:layout_marginBottom="10dp"
-                android:textSize="18dp"/>
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/cardiovascular_title"
@@ -86,7 +86,7 @@
                 android:paddingLeft="15dp"
                 android:text="Penyakit Kardiovaskular"
                 android:textColor="@color/grey_font"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

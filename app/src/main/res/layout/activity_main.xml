@@ -41,7 +41,7 @@
                     android:textColor="@color/grey_font"
                     android:text="Selamat datang, Bapak / Ibu"
                     android:layout_gravity="center"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:gravity="center"/>
 
 <!--                <ImageView-->

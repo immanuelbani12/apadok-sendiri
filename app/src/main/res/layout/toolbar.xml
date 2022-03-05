@@ -24,7 +24,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="@string/clinic_name"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/logout_icon"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:text="By"
                 android:textColor="@color/white"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <ImageView
                 android:layout_width="50dp"
