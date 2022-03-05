@@ -172,44 +172,38 @@ public class StrokeResultActivity extends AppCompatActivity {
                 if (hasil_kardio.contains("Tinggi")) {
                     cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
                     if (safetext == ""){
-                        safetext = "penyakit kardiovascular";
+                        safetext = "penyakit kardiovaskular";
                     } else {
-                        safetext += ", penyakit kardiovascular";
+                        safetext += ", penyakit kardiovaskular";
                     }
                     cardioval = 3;
                 } else if (hasil_kardio.contains("Rendah")) {
                     cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
                     cardioval = 1;
                     if (safetext == ""){
-                        safetext = "penyakit kardiovascular";
+                        safetext = "penyakit kardiovaskular";
                     } else  {
-                        safetext += ", penyakit kardiovascular";
+                        safetext += ", penyakit kardiovaskular";
                     }
                 }
                 else if (hasil_kardio.contains("Tidak")) {
                     cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.dark_green_font));
                     cardioval = 1;
                     if (safetext == ""){
-                        safetext = "penyakit kardiovascular";
+                        safetext = "penyakit kardiovaskular";
                     } else  {
-                        safetext += ", penyakit kardiovascular";
+                        safetext += ", penyakit kardiovaskular";
                     }
                 }else {
                     cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
                     cardioval = 2;
                     if (safetext == ""){
-                        safetext = "penyakit kardiovascular";
+                        safetext = "penyakit kardiovaskular";
                     } else  {
-                        safetext += ", penyakit kardiovascular";
+                        safetext += ", penyakit kardiovaskular";
                     }
                 }
-                if (diabetval == 1 && strokeval == 1 && cardioval == 1){
-                    safe_result.setText("Selamat! anda tidak memiliki risiko terhadap "+ safetext +". Anda dapat melihat edukasi terkait pencegahan penyakit tersebut melalui tombol edukasi yang telah disediakan.  Namun, apabila anda masih membutuhkan konsultasi, anda masih dapat melakukan konsultasi secara offline ke dokter melalui tombol konsultasi yang telah disediakan ");
-                    safe_result.setVisibility(View.VISIBLE);
-                    btn_education.setVisibility(View.VISIBLE);
-                    btn_consult.setVisibility(View.VISIBLE);
-                }
-                if (diabetval== 3 || strokeval == 3 || cardioval == 3) {
+                if (diabetval == 3 || strokeval == 3 || cardioval == 3) {
                     dangerous_result.setText("Tubuh anda memiliki resiko tinggi untuk "+ dangtext +" sehingga membutuhkan konsultasi secara offline ke dokter");
                     dangerous_result.setVisibility(View.VISIBLE);
                     btn_consult.setVisibility(View.VISIBLE);

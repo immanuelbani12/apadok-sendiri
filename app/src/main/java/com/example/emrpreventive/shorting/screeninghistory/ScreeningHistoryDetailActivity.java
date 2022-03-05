@@ -185,12 +185,6 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 
         int position = getIntent().getIntExtra("position", 0);
 
-        if (diabetval == 1 && strokeval == 1 && cardioval == 1){
-            safe_result.setText("Selamat! anda tidak memiliki risiko terhadap "+ safetext +". Anda dapat melihat edukasi terkait pencegahan penyakit tersebut melalui tombol edukasi yang telah disediakan.  Namun, apabila anda masih membutuhkan konsultasi, anda masih dapat melakukan konsultasi secara offline ke dokter melalui tombol konsultasi yang telah disediakan ");
-            safe_result.setVisibility(View.VISIBLE);
-            btn_education.setVisibility(View.VISIBLE);
-            btn_consult.setVisibility(View.VISIBLE);
-        }
         if (diabetval== 3 || strokeval == 3 || cardioval == 3) {
             dangerous_result.setText("Tubuh anda memiliki resiko tinggi untuk "+ dangtext +" sehingga membutuhkan konsultasi secara offline ke dokter");
             dangerous_result.setVisibility(View.VISIBLE);
