@@ -36,6 +36,7 @@ import com.example.emrpreventive.shorting.stroke.StrokeResultActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -48,7 +49,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
     private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result;
     private Button btn_consult, btn_education;
     private int diabetval,strokeval,cardioval;
-    private String ClinicName;
+    private String ClinicName,ClinicLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,11 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         ClinicName = getIntent().getStringExtra("clinicname");
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
         clinic.setText(ClinicName);
+        // Init Logo RS
+        ClinicLogo = getIntent().getStringExtra("cliniclogo");
+        ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
+        String url = "http://178.128.25.139:8080/media/klinik/" + ClinicLogo;
+        Picasso.get().load(url).into(cliniclogo);
 
         title_result = (TextView) findViewById(R.id.title_result);
         time_result = (TextView) findViewById(R.id.time_result);
@@ -303,6 +309,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         intent.putExtra("categorystroke", strokeval);
         intent.putExtra("categorykardio", cardioval);
         intent.putExtra("clinicname", ClinicName);
+        intent.putExtra("cliniclogo", ClinicLogo);
         startActivity(intent);
     };
 
@@ -313,6 +320,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         intent.putExtra("categorystroke", strokeval);
         intent.putExtra("categorykardio", cardioval);
         intent.putExtra("clinicname", ClinicName);
+        intent.putExtra("cliniclogo", ClinicLogo);
         startActivity(intent);
     };
 

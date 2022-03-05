@@ -17,11 +17,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/iv_cliniclogo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="7dp"
+                android:layout_toLeftOf="@+id/tv_clinic"
+                android:layout_centerVertical="true"
+                android:src="@drawable/apadok_white_crop" />
+
             <TextView
                 android:id="@+id/tv_clinic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:text="@string/clinic_name"
                 android:textColor="@color/white"
                 android:textSize="20sp" />

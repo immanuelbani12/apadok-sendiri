@@ -1,6 +1,7 @@
 package com.example.emrpreventive;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,8 +34,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,10 +113,12 @@ public class LoginActivity extends AppCompatActivity {
                 String username = returnvalue.get("nama_user").isJsonNull() ? "" : returnvalue.get("nama_user").getAsString();
                 String token = returnvalue.get("token").isJsonNull() ? "" : returnvalue.get("token").getAsString();
                 String clinicname = returnvalue.get("nama_klinik").isJsonNull() ? "" : returnvalue.get("nama_klinik").getAsString();
+                String cliniclogo = returnvalue.get("logo_klinik").isJsonNull() ? "" : returnvalue.get("logo_klinik").getAsString();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
                 intent.putExtra("clinicname", clinicname);
+                intent.putExtra("cliniclogo", cliniclogo);
                 intent.putExtra("token", token);
                 startActivity(intent);
                 finish();
@@ -129,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
 
         VolleyLog.DEBUG = true;
     }
+
 
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
