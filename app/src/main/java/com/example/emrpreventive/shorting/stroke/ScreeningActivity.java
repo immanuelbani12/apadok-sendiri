@@ -193,7 +193,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                             // Set MonthPicker
                             Calendar cldr = Calendar.getInstance();
                             // Starts from 12 Years ago
-                            cldr.add(Calendar.YEAR, -12);
+                            cldr.add(Calendar.YEAR, -30);
                             int month = cldr.get(Calendar.MONTH);
                             int year = cldr.get(Calendar.YEAR);
 
