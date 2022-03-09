@@ -164,11 +164,70 @@ public class EncyclopediaActivity extends AppCompatActivity {
     }
 
     private final void CreateFormList(){
-        ecl.add(new Encyclopedia("1","Judul Artikel Stroke","Ini isi artikel 1. Artikel 1 Merupakan artikel yang berhubungan dengan penyakit stroke.","1","",""));
-        ecl.add(new Encyclopedia("2","Judul Artikel Diabetes","Ini isi artikel 2","2","",""));
-        ecl.add(new Encyclopedia("3","Judul Artikel Kardiovaskular","Ini isi artikel 3","3","",""));
-        ecl.add(new Encyclopedia("4","Judul Artikel Stroke 2","Ini isi artikel 4. Artikel 4 Merupakan artikel yang berhubungan dengan penyakit stroke.","1","",""));
-        ecl.add(new Encyclopedia("5","Judul Artikel Diabetes 2","Ini isi artikel 5","2","",""));
-        ecl.add(new Encyclopedia("6","Judul Artikel Kardiovaskular 2","Ini isi artikel 6","3","",""));
+        ecl.add(new Encyclopedia("1","Artikel Stroke","Stroke merupakan penyebab kematian tersering kedua di dunia. Setiap tahun, lebih dari 795.000 orang di Amerika Serikat mengalami stroke. Stroke terjadi ketika pembuluh darah di otak pecah dan berdarah, atau ketika ada penyumbatan suplai darah ke otak. Pecahnya atau penyumbatan mencegah darah dan oksigen mencapai jaringan otak. Tanpa oksigen, sel-sel otak dan jaringan menjadi rusak dan mulai mati dalam beberapa menit. \n\n" +
+                "Hilangnya aliran darah ke otak akan merusak jaringan di dalam otak. Gejala stroke muncul di bagian tubuh yang dikendalikan oleh area otak yang rusak. Gejala stroke dapat meliputi:\n" +
+                "•\tmati rasa atau kelemahan pada lengan, wajah, dan kaki, terutama pada satu sisi tubuh,\n" +
+                "•\tkesulitan berbicara atau memahami orang lain\n" +
+                "•\tbicara tidak jelas\n" +
+                "•\tkebingungan, disorientasi, atau kurang responsif\n" +
+                "•\tperubahan perilaku yang tiba-tiba, terutama peningkatan agitasi\n" +
+                "•\tmasalah penglihatan, seperti kesulitan melihat pada satu atau kedua mata dengan penglihatan menghitam atau kabur, atau penglihatan ganda\n" +
+                "•\tkesulitan berjalan\n" +
+                "•\tkehilangan keseimbangan atau koordinasi\n" +
+                "•\tpusing parah, sakit kepala mendadak dengan penyebab yang tidak diketahui\n" +
+                "•\tkejang\n" +
+                "•\tmual atau muntah\n\n" +
+                "Perubahan gaya hidup dapat mencegah dan menurunkan risiko stroke. Perubahan gaya hidup tersebut antara lain sebagai berikut:\n" +
+                "•\tBerhenti merokok. Jika Anda merokok, berhenti sekarang akan menurunkan risiko stroke. Anda dapat berkonsultasi dengan dokter untuk membuat rencana berhenti merokok.\n" +
+                "•\tBatasi penggunaan alkohol. Konsumsi alkohol berat dapat meningkatkan tekanan darah Anda, yang pada gilirannya meningkatkan risiko stroke. Jika mengurangi asupan Anda sulit, hubungi dokter Anda untuk meminta bantuan.\n" +
+                "•\tPertahankan berat badan yang ideal. Kegemukan dan obesitas meningkatkan risiko stroke. Untuk membantu mengelola berat badan Anda, makan makanan yang seimbang dan tetap aktif secara fisik lebih sering daripada tidak. Kedua langkah tersebut juga dapat menurunkan tekanan darah dan kadar kolesterol.\n" +
+                "•\tPeriksa rutin. Bicarakan dengan dokter Anda tentang seberapa sering Anda harus memeriksakan tekanan darah, kolesterol, dan kondisi apa pun yang mungkin Anda miliki\n","1","",""));
+        ecl.add(new Encyclopedia("2","Artikel Diabetes","Diabetes mellitus dapat menyebabkan berbagai komplikasi yang membahayakan bila tidak segera ditangani. Komplikasi tersebut diantaranya adalah stroke, penyakit jantung, penyakit ginjal, gangguan penglihatan, infeksi kaki yang tidak segera sembuh hingga menyebabkan bagian tersebut harus diamputasi.\n" +
+                "\n" +
+                "Diabetes mellitus, yang biasa dikenal dengan penyakit kencing manis, adalah penyakit metabolik yang menyebabkan gula darah tinggi. Hormon insulin memindahkan gula dari darah ke sel-sel Anda untuk disimpan atau digunakan untuk energi. Dengan diabetes, tubuh Anda tidak membuat cukup insulin atau tidak dapat secara efektif menggunakan insulin yang dihasilkannya.\n" +
+                " \n" +
+                "Gejala umum diabetes yang sering ditemukan antara lain:\n" +
+                "•\tpeningkatan rasa lapar\n" +
+                "•\tpeningkatan rasa haus\n" +
+                "•\tpenurunan berat badan\n" +
+                "•\tsering buang air kecil\n" +
+                "•\tpenglihatan kabur\n" +
+                "•\tkelelahan ekstrim\n" +
+                "•\tLuka yang tak kunjung sembuh\n" +
+                " \n" +
+                "Diabetes tipe 1 tidak dapat dicegah karena disebabkan oleh masalah pada sistem kekebalan tubuh. Beberapa penyebab diabetes tipe 2, seperti gen atau usia Anda, juga tidak dapat Anda kendalikan.  Namun banyak faktor risiko diabetes lainnya dapat dikendalikan. Sebagian besar strategi pencegahan diabetes melibatkan penyesuaian sederhana pada diet dan rutinitas kebugaran Anda. Berikut adalah beberapa hal yang dapat Anda lakukan untuk mencegah diabetes tipe 2: \n" +
+                "•\tLakukan olah raga aerobic setidaknya 150 menit per minggu, seperti berjalan kaki atau bersepeda.\n" +
+                "•\tKurangi lemak jenuh dan trans , bersama dengan karbohidrat olahan, dari diet Anda. \n" +
+                "•\tMakan lebih banyak buah, sayuran, dan biji-bijian.\n" +
+                "•\tMakan dengan porsi yang lebih kecil.\n" +
+                "•\tCobalah untuk menurunkan 7 persen berat badan Anda jika Anda kelebihan berat badan atau obesitas. \n" +
+                "•\tMengurangi konsumsi makanan dan minuman yang manis\n" +
+                "•\tHindari makanan junkfood, alcohol, dan mengandung kolesterol tinggi\n","2","",""));
+        ecl.add(new Encyclopedia("3","Judul Artikel Kardiovaskular","Penyakit jantung merupakan penyebab kematian utama di dunia. Penyakit jantung mengacu pada setiap kondisi yang mempengaruhi jantung. Ada banyak jenis penyakit jantung, diantaranya adalah: penyakit jantung coroner, gagal jantung, kardiomiopati, aritmia, dan penyakit jantung bawaaan.\n" +
+                "\n" +
+                "Gejala yang sering muncul pada penyakit jantung:\n" +
+                "•\tangina, atau nyeri dada\n" +
+                "•\tkesulitan bernapas\n" +
+                "•\tkelelahan dan pusing\n" +
+                "•\tbengkak karena retensi cairan, atau edema.\n" +
+                "•\tjantung berdebar\n" +
+                "•\tmual\n" +
+                "•\tnyeri perut\n" +
+                "•\tberkeringat\n" +
+                "•\tlengan, rahang, punggung, atau kaki nyeri\n" +
+                "•\tdetak jantung tidak teratur\n" +
+                "\n" +
+                "Serangan jantung dapat menyebabkan henti jantung, yaitu ketika jantung jantung berhenti dan tubuh tidak dapat berfungsi lagi. Seseorang membutuhkan perhatian medis segera jika mereka memiliki gejala serangan jantung.\n" +
+                "Jika serangan jantung terjadi, orang tersebut akan membutuhkan:\n" +
+                "•\tbantuan medis segera \n" +
+                "•\tresusitasi kardiopulmoner segera\n" +
+                "•\tkejutan dari defibrillator eksternal otomatis, jika tersedia\n\n" +
+                "Beberapa tindakan gaya hidup dapat membantu mengurangi risiko penyakit jantung. Diantaranya adalah :\n" +
+                "•\tMakan makanan seimbang: Pilihlah makanan sehat jantung yang kaya serat dan menyukai biji-bijian dan buah-buahan dan sayuran segar. Diet Mediterania dan DASH mungkin baik untuk kesehatan jantung. Juga, mungkin membantu membatasi asupan makanan olahan dan menambahkan lemak, garam, dan gula.\n" +
+                "•\tBerolahraga secara teratur: Ini dapat membantu memperkuat jantung dan sistem peredaran darah, mengurangi kolesterol, dan menjaga tekanan darah. Seseorang mungkin ingin berolahraga 150 menit per minggu. \n" +
+                "•\tMempertahankan berat badan sedang: Indeks massa tubuh (BMI) yang sehat biasanya antara 20 dan 25. Orang dapat memeriksa BMI mereka di sini.\n" +
+                "•\tBerhenti atau menghindari merokok: Merokok merupakan faktor risiko utama untuk kondisi jantung dan kardiovaskular.\n" +
+                "•\tMembatasi asupan alkohol: Wanita tidak boleh mengonsumsi lebih dari satu minuman standar per hari, dan pria tidak boleh mengonsumsi lebih dari dua minuman standar per hari.\n" +
+                "•\tMengelola kondisi yang mendasari: Carilah pengobatan untuk kondisi yang mempengaruhi kesehatan jantung, seperti tekanan darah tinggi, obesitas, dan diabetes.\n","3","",""));
     }
 }
