@@ -1,21 +1,18 @@
 package com.example.emrpreventive.shorting.stroke;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
@@ -53,6 +50,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private ImageView iv_image;
     private EditText edit_text;
     private ProgressBar progressBar;
+    private ScrollView sv_screening;
     private Boolean isOptionSubmitted = false;
 
     @Override
@@ -92,6 +90,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private void SetForm() {
         Form FormQ = forms[CurrentForm-1];
 
+        sv_screening = (ScrollView) findViewById(R.id.sv_screening);
         tv_option_one = (TextView) findViewById(R.id.tv_option_one);
         tv_option_two = (TextView) findViewById(R.id.tv_option_two);
         tv_option_three = (TextView) findViewById(R.id.tv_option_three);
@@ -190,20 +189,25 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                     public void onFocusChange(View v, boolean hasFocus) {
                         if(hasFocus){
                             //Clear keyboard
-                            v.clearFocus();
+//                            v.clearFocus();
                             // Set MonthPicker
                             Calendar cldr = Calendar.getInstance();
                             // Starts from 12 Years ago
                             cldr.add(Calendar.YEAR, -12);
+                            int month = cldr.get(Calendar.MONTH);
+                            int year = cldr.get(Calendar.YEAR);
 
                             MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(ScreeningActivity.this, new MonthPickerDialog.OnDateSetListener() {
                                 @Override
                                 public void onDateSet(int selectedMonth, int selectedYear) {
                                     btn_submit.setEnabled(true);
                                     edit_text.setText((selectedMonth+1) + "/" + selectedYear);
-                                    Log.e("TAG", "selectedMonth : " + selectedMonth + " selectedYear : " + selectedYear);
+//                                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                                    imm.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT);
+//                                    edit_text.clearFocus();
+//                                    edit_text.requestFocus();
                                 }
-                            }, cldr.get(Calendar.YEAR), cldr.get(Calendar.MONTH));
+                            }, year, month);
 
                             builder.setActivatedMonth(Calendar.MONTH)
                                     .build()
@@ -227,6 +231,19 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
             }
         }
     }
+
+//    public static void scrollToView(ScrollView scrollView, View view) {
+//        int vTop = view.getTop();
+//
+//        while (!(view.getParent() instanceof ScrollView)) {
+//            view = (View) view.getParent();
+//            vTop += view.getTop();
+//        }
+//
+//        final int scrollPosition = vTop;
+//
+//        new Handler().post(() -> scrollView.smoothScrollTo(0, scrollPosition));
+//    }
 
     private void defaultOptionsView() {
 
