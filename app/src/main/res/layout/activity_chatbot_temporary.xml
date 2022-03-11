@@ -40,7 +40,7 @@
             android:layout_height="48dp"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_baseline_send_24"
-            android:background="@color/blue_main"/>
+            android:background="@color/orange_main"/>
 
     </RelativeLayout>
 

@@ -9,7 +9,9 @@
     <color name="black_font">#222222</color>
     <color name="grey_font">#545151</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="trinidad">#ea5c07</color>
+    <color name="orange_dark">	#e2631f</color>
+    <color name="orange_main">#FB6F22</color>
+    <color name="orange_light">#fc8b4e</color>
     <color name="blue_main">#046b93</color>
     <color name="celeste">#cfd2c8</color>
     <color name="hippie_blue">#5d98aa</color>
