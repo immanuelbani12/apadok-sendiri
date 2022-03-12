@@ -183,7 +183,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
             edit_text.setVisibility(View.VISIBLE);
             edit_text.setHint(formcheck.getHint());
             if(formcheck.getHint() == "Bulan dan tahun lahir") {
-                edit_text.setInputType(InputType.TYPE_CLASS_TEXT);
+                edit_text.setInputType(InputType.TYPE_CLASS_DATETIME);
                 edit_text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                     @Override
                     public void onFocusChange(View v, boolean hasFocus) {
