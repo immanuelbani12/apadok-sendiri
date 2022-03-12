@@ -8,6 +8,7 @@ public class Encyclopedia implements Parcelable {
     String judul_artikel;
     String isi_artikel;
     String kategori_artikel;
+    String link_artikel;
     String created_at;
     String updated_at;
 
@@ -16,15 +17,17 @@ public class Encyclopedia implements Parcelable {
         judul_artikel = in.readString();
         isi_artikel = in.readString();
         kategori_artikel = in.readString();
+        link_artikel = in.readString();
         created_at = in.readString();
         updated_at = in.readString();
     }
 
-    public Encyclopedia(String id_artikel, String judul_artikel, String isi_artikel, String kategori_artikel, String created_at, String updated_at ) {
+    public Encyclopedia(String id_artikel, String judul_artikel, String isi_artikel, String kategori_artikel, String link_artikel, String created_at, String updated_at ) {
         this.id_artikel = id_artikel;
         this.judul_artikel = judul_artikel;
         this.isi_artikel = isi_artikel;
         this.kategori_artikel = kategori_artikel;
+        this.link_artikel = link_artikel;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
@@ -35,6 +38,7 @@ public class Encyclopedia implements Parcelable {
         dest.writeString(judul_artikel);
         dest.writeString(isi_artikel);
         dest.writeString(kategori_artikel);
+        dest.writeString(link_artikel);
         dest.writeString(created_at);
         dest.writeString(updated_at);
     }
@@ -87,6 +91,15 @@ public class Encyclopedia implements Parcelable {
     public void setKategori_artikel(String kategori_artikel) {
         this.kategori_artikel = kategori_artikel;
     }
+
+    public String getLink_artikel() {
+        return link_artikel;
+    }
+
+    public void setLink_artikel(String link_artikel) {
+        this.link_artikel = link_artikel;
+    }
+
 
     public String getCreated_at() {
         return created_at;
