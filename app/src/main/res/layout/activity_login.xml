@@ -28,6 +28,12 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <ImageView
+                android:layout_width="310dp"
+                android:layout_height="136dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_medicine" />
+
 <!--            <TextView-->
 <!--                android:id="@+id/clinic"-->
 <!--                android:layout_width="fill_parent"-->
@@ -50,13 +56,7 @@
                 android:gravity="center"
                 android:layout_gravity="center">
 
-                <TextView
-                    android:id="@+id/support_by"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="By"
-                    android:textColor="@color/black_font"
-                    android:textSize="18sp" />
+
 
                 <ImageView
                     android:layout_width="127dp"
