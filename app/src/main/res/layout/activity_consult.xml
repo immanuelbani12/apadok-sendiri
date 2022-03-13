@@ -39,10 +39,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/activity_horizontal_margin"
-                android:contentDescription="image"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                tools:src="@drawable/consult" />
+                tools:src="@drawable/ic_doctor" />
 
             <TextView
                 android:id="@+id/tv_subtitle_consult"
@@ -52,24 +51,25 @@
                 android:layout_marginBottom="15dp"
                 android:text="Hubungi kontak dibawah ini untuk Telemedicine"
                 android:textColor="@color/grey_font"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:gravity="center" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
+                android:paddingLeft="20dp"
                 android:drawablePadding="5dp"
                 android:text="Nomor Telepon"
                 android:textColor="@color/grey_font"
-                android:layout_marginBottom="10dp"
-                android:textSize="18sp"/>
+                android:layout_marginBottom="5dp"
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_phone_consult"
-                android:paddingLeft="45dp"
+                android:paddingLeft="20dp"
                 android:text="08123456789"
                 android:textColor="@color/black_font"
                 android:layout_marginBottom="20dp"
@@ -79,18 +79,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:paddingLeft="15dp"
+                android:paddingLeft="20dp"
                 android:text="Jam Aktif"
                 android:textColor="@color/grey_font"
-                android:layout_marginBottom="10dp"
-                android:textSize="18sp"/>
+                android:layout_marginBottom="5dp"
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_time_consult"
-                android:paddingLeft="45dp"
-                android:text="10:00 - 20:00"
+                android:paddingLeft="20dp"
+                android:text="10:00 - 20:00 WIB"
                 android:textColor="@color/black_font"
                 android:layout_marginBottom="20dp"
                 android:textSize="20sp"/>

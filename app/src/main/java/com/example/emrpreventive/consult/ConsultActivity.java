@@ -3,9 +3,11 @@ package com.example.emrpreventive.consult;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -56,6 +58,7 @@ public class ConsultActivity extends AppCompatActivity {
         String url = "http://178.128.25.139:8080/media/klinik/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
         title_consult = (TextView) findViewById(R.id.title_consult);
         tv_subtitle_consult = (TextView) findViewById(R.id.tv_subtitle_consult);
         tv_phone_consult = (TextView) findViewById(R.id.tv_phone_consult);
@@ -64,22 +67,25 @@ public class ConsultActivity extends AppCompatActivity {
         btn_call = (Button) findViewById(R.id.btn_call);
         btn_penjadwalanbeta = (Button) findViewById(R.id.btn_penjadwalanbeta);
         btn_whatsapp.setOnClickListener(openWhatsApp);
+        title_consult.setTypeface(helvetica_font);
+        tv_subtitle_consult.setTypeface(helvetica_font);
+        tv_phone_consult.setTypeface(helvetica_font);
+        tv_time_consult.setTypeface(helvetica_font);
+        btn_call.setTypeface(helvetica_font);
+        btn_whatsapp.setTypeface(helvetica_font);
+        btn_penjadwalanbeta.setTypeface(helvetica_font);
 //        Disable call temporarily, bad layout
 //        btn_call.setOnClickListener(RedirecttoCall);
         btn_call.setVisibility(View.GONE);
         btn_penjadwalanbeta.setOnClickListener(RedirectToConsult);
 
         iv_image_consult = (ImageView) findViewById(R.id.iv_image_consult);
-        iv_image_consult.setImageResource(R.drawable.consult);
+        iv_image_consult.setImageResource(R.drawable.ic_doctor);
         iv_image_consult.setVisibility(View.VISIBLE);
     }
 
     private void setupItemData() {
         sch = getIntent().getParcelableExtra("data");
-        if (sch == null){
-            Toast toast = Toast.makeText(getBaseContext(), "a", Toast.LENGTH_LONG);
-            toast.show();
-        }
     }
 
 
