@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:animateLayoutChanges="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="20dp"
+            android:background="@color/white"
+            android:animateLayoutChanges="true">
+
+            <TextView
+                android:id="@+id/title_consult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Konsultasi"
+                android:textColor="@color/black_font"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_image_consult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:contentDescription="image"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                tools:src="@drawable/consult" />
+
+            <TextView
+                android:id="@+id/tv_subtitle_consult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:text="Hubungi kontak dibawah ini untuk Telemedicine"
+                android:textColor="@color/grey_font"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:drawablePadding="5dp"
+                android:text="Nomor Telepon"
+                android:textColor="@color/grey_font"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_phone_consult"
+                android:paddingLeft="45dp"
+                android:text="08123456789"
+                android:textColor="@color/black_font"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:paddingLeft="15dp"
+                android:text="Jam Aktif"
+                android:textColor="@color/grey_font"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_time_consult"
+                android:paddingLeft="45dp"
+                android:text="10:00 - 20:00"
+                android:textColor="@color/black_font"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_whatsapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/button_radius"
+                    android:text="Whatsapp"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="20dp"/>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_call"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_radius"
+                    android:layout_marginBottom="20dp"
+                    android:text="Telepon"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="20dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_penjadwalanbeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_radius"
+                    android:text="Prototip Penjadwalan"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

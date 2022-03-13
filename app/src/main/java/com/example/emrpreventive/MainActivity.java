@@ -36,6 +36,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.TestChatbot.TestChatbotActivity;
 import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
+import com.example.emrpreventive.consult.ConsultActivity;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryActivity;
 import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
@@ -354,7 +355,17 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        startActivity(new Intent(MainActivity.this, TestChatbotActivity.class));
+        Intent intent = new Intent(MainActivity.this, ConsultActivity.class);
+        //Pass the User ID to next activity
+        intent.putExtra("userid", UserId);
+        intent.putExtra("clinicname", ClinicName);
+        intent.putExtra("cliniclogo", ClinicLogo);
+        intent.putExtra("username", UserName);
+        intent.putExtra("token", Token);
+        if (!sch.isEmpty()) {
+            intent.putExtra("data",sch.get(0));
+        }
+        startActivity(intent);
     };
 
 

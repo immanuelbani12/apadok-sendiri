@@ -32,6 +32,8 @@ import com.example.emrpreventive.LogOutAuthError;
 import com.example.emrpreventive.SetupToolbar;
 import com.example.emrpreventive.TestChatbot.TestChatbotActivity;
 import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
+import com.example.emrpreventive.consult.ConsultActivity;
+import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
 import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryDetailActivity;
 import com.google.gson.Gson;
 
@@ -52,6 +54,7 @@ public class StrokeResultActivity extends AppCompatActivity {
 
     private Gson gson = new Gson();
     private JsonObject returnvalue;
+    private ScreeningHistory sch;
     private String hasil = "";
     private FormAnswer[] answer = new FormAnswer[17];
     private List<FormAnswer> answers;
@@ -244,6 +247,7 @@ public class StrokeResultActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
                 returnvalue = gson.fromJson(response, JsonObject.class);
+                sch = gson.fromJson(response, ScreeningHistory.class);
                 callback.onSuccess();
             }
         }, new Response.ErrorListener() {
@@ -340,18 +344,20 @@ public class StrokeResultActivity extends AppCompatActivity {
         intent.putExtra("categorystroke", strokeval);
         intent.putExtra("categorykardio", cardioval);
         intent.putExtra("clinicname", ClinicName);
-        intent.putExtra("clinicname", ClinicLogo);
+        intent.putExtra("cliniclogo", ClinicLogo);
         startActivity(intent);
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        Intent intent = new Intent(StrokeResultActivity.this, TestChatbotActivity.class);
-        //Pass the Category to next activity
+        Intent intent = new Intent(StrokeResultActivity.this, ConsultActivity.class);
+        //Pass the Category to next activity (Unused)
         intent.putExtra("categorydiabetes", diabetval);
         intent.putExtra("categorystroke", strokeval);
         intent.putExtra("categorykardio", cardioval);
+
+        intent.putExtra("data", sch);
         intent.putExtra("clinicname", ClinicName);
-        intent.putExtra("clinicname", ClinicLogo);
+        intent.putExtra("cliniclogo", ClinicLogo);
         startActivity(intent);
     };
 }

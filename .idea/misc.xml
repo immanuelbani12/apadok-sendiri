@@ -7,7 +7,6 @@
         <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/drawable/ic_baseline_keyboard_backspace_24.xml" value="0.1" />
         <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.1" />
         <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.1" />
-        <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/drawable/ic_medicine.xml" value="0.1" />
         <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/drawable/selected_option_border_bg.xml" value="0.1" />
         <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/layout/activity_chatbot_temporary.xml" value="0.25" />
         <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/layout/activity_home_page.xml" value="0.22" />
@@ -50,7 +49,8 @@
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.1" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/ic_baseline_description_24.xml" value="0.1" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/selected_option_border_bg.xml" value="0.1245" />
-        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_chatbot_temporary.xml" value="0.11979166666666667" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_chatbot_temporary.xml" value="0.25" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_consult.xml" value="0.1" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_encyclopedia.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_encyclopedia_detail.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_home_page.xml" value="0.11302083333333333" />

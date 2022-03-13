@@ -32,6 +32,7 @@ import com.example.emrpreventive.R;
 import com.example.emrpreventive.SetupToolbar;
 import com.example.emrpreventive.TestChatbot.TestChatbotActivity;
 import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
+import com.example.emrpreventive.consult.ConsultActivity;
 import com.example.emrpreventive.shorting.stroke.StrokeResultActivity;
 import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
@@ -50,6 +51,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
     private Button btn_consult, btn_education;
     private int diabetval,strokeval,cardioval;
     private String ClinicName,ClinicLogo;
+    private ScreeningHistory sch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +101,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
     }
 
     private void setupItemData() {
-        ScreeningHistory sch = getIntent().getParcelableExtra("data");
+        sch = getIntent().getParcelableExtra("data");
         String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
         String hasil_kardio = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
@@ -189,7 +191,18 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             }
         }
 
+        // Saran
+        if (diabetval <= 2 || strokeval <= 2 || cardioval <= 2){
+            safe_result.setText("Untuk "+ safetext +" pada tubuh anda memiliki risiko yang tidak terlalu membahayakan. Silahkan melihat edukasi pencegahan penyakit tersebut berikut untuk mempertahankan capaian anda tersebut.");
+            safe_result.setVisibility(View.VISIBLE);
+            btn_education.setVisibility(View.VISIBLE);
+        }
+
+        // Skip Consultation for Past Histories
         int position = getIntent().getIntExtra("position", 0);
+        if (position > 1){
+            return;
+        }
 
         if (diabetval== 3 || strokeval == 3 || cardioval == 3) {
             dangerous_result.setText("Tubuh anda memiliki resiko tinggi untuk "+ dangtext +" sehingga membutuhkan konsultasi secara offline ke dokter");
@@ -201,12 +214,6 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             dangerous_result.setVisibility(View.VISIBLE);
             btn_consult.setVisibility(View.VISIBLE);
         }
-        if (diabetval <= 2 || strokeval <= 2 || cardioval <= 2){
-            safe_result.setText("Untuk "+ safetext +" pada tubuh anda memiliki risiko yang tidak terlalu membahayakan. Silahkan melihat edukasi pencegahan penyakit tersebut berikut untuk mempertahankan capaian anda tersebut.");
-            safe_result.setVisibility(View.VISIBLE);
-            btn_education.setVisibility(View.VISIBLE);
-        }
-
     }
 
 
@@ -314,11 +321,12 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        Intent intent = new Intent(ScreeningHistoryDetailActivity.this, TestChatbotActivity.class);
+        Intent intent = new Intent(ScreeningHistoryDetailActivity.this, ConsultActivity.class);
         //Pass the Category to next activity
         intent.putExtra("categorydiabetes", diabetval);
         intent.putExtra("categorystroke", strokeval);
         intent.putExtra("categorykardio", cardioval);
+        intent.putExtra("data", sch);
         intent.putExtra("clinicname", ClinicName);
         intent.putExtra("cliniclogo", ClinicLogo);
         startActivity(intent);

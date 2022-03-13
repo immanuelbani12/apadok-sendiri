@@ -53,6 +53,8 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private ScrollView sv_screening;
     private Boolean isOptionSubmitted = false;
 
+    private String ClinicName,ClinicLogo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,13 +64,13 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
-        String clinicname = getIntent().getStringExtra("clinicname");
+        ClinicName = getIntent().getStringExtra("clinicname");
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
-        clinic.setText(clinicname);
+        clinic.setText(ClinicName);
         // Init Logo RS
-        String logo = getIntent().getStringExtra("cliniclogo");
+        ClinicLogo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://178.128.25.139:8080/media/klinik/" + logo;
+        String url = "http://178.128.25.139:8080/media/klinik/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
         // This callback will only be called when MyFragment is at least Started.
@@ -335,8 +337,6 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         int id_user = getIntent().getIntExtra("userid", 0);
                         String token = getIntent().getStringExtra("token");
                         String username = getIntent().getStringExtra("username");
-                        String clinicname = getIntent().getStringExtra("clinicname");
-                        String cliniclogo = getIntent().getStringExtra("cliniclogo");
                         answer[CurrentForm-1].setAnswer(Integer.toString(id_user));
 
                         Intent intent = new Intent(ScreeningActivity.this, StrokeResultActivity.class);
@@ -344,8 +344,8 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         intent.putParcelableArrayListExtra("Answers", list);
                         intent.putExtra("token", token);
                         intent.putExtra("username", username);
-                        intent.putExtra("clinicname", clinicname);
-                        intent.putExtra("clinicname", cliniclogo);
+                        intent.putExtra("clinicname", ClinicName);
+                        intent.putExtra("cliniclogo", ClinicLogo);
                         startActivity(intent);
                         finish();
                     }
