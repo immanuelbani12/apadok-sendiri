@@ -76,10 +76,6 @@ public class ConsultActivity extends AppCompatActivity {
 
     private void setupItemData() {
         sch = getIntent().getParcelableExtra("data");
-        if (sch == null){
-            Toast toast = Toast.makeText(getBaseContext(), "a", Toast.LENGTH_LONG);
-            toast.show();
-        }
     }
 
 
