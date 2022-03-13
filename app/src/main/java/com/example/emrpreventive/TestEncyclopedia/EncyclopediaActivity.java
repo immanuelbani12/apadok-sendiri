@@ -182,7 +182,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 "•\tBerhenti merokok. Jika Anda merokok, berhenti sekarang akan menurunkan risiko stroke. Anda dapat berkonsultasi dengan dokter untuk membuat rencana berhenti merokok.\n" +
                 "•\tBatasi penggunaan alkohol. Konsumsi alkohol berat dapat meningkatkan tekanan darah Anda, yang pada gilirannya meningkatkan risiko stroke. Jika mengurangi asupan Anda sulit, hubungi dokter Anda untuk meminta bantuan.\n" +
                 "•\tPertahankan berat badan yang ideal. Kegemukan dan obesitas meningkatkan risiko stroke. Untuk membantu mengelola berat badan Anda, makan makanan yang seimbang dan tetap aktif secara fisik lebih sering daripada tidak. Kedua langkah tersebut juga dapat menurunkan tekanan darah dan kadar kolesterol.\n" +
-                "•\tPeriksa rutin. Bicarakan dengan dokter Anda tentang seberapa sering Anda harus memeriksakan tekanan darah, kolesterol, dan kondisi apa pun yang mungkin Anda miliki\n","1","https://www.youtube.com/watch?v=TGJvLtPgVc4&ab_channel=MPPLNew","",""));
+                "•\tPeriksa rutin. Bicarakan dengan dokter Anda tentang seberapa sering Anda harus memeriksakan tekanan darah, kolesterol, dan kondisi apa pun yang mungkin Anda miliki\n","1","https://www.youtube.com/watch?v=6iCdi5ANXLg","",""));
         ecl.add(new Encyclopedia("2","Artikel Diabetes","Diabetes mellitus dapat menyebabkan berbagai komplikasi yang membahayakan bila tidak segera ditangani. Komplikasi tersebut diantaranya adalah stroke, penyakit jantung, penyakit ginjal, gangguan penglihatan, infeksi kaki yang tidak segera sembuh hingga menyebabkan bagian tersebut harus diamputasi.\n" +
                 "\n" +
                 "Diabetes mellitus, yang biasa dikenal dengan penyakit kencing manis, adalah penyakit metabolik yang menyebabkan gula darah tinggi. Hormon insulin memindahkan gula dari darah ke sel-sel Anda untuk disimpan atau digunakan untuk energi. Dengan diabetes, tubuh Anda tidak membuat cukup insulin atau tidak dapat secara efektif menggunakan insulin yang dihasilkannya.\n" +
@@ -203,7 +203,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 "•\tMakan dengan porsi yang lebih kecil.\n" +
                 "•\tCobalah untuk menurunkan 7 persen berat badan Anda jika Anda kelebihan berat badan atau obesitas. \n" +
                 "•\tMengurangi konsumsi makanan dan minuman yang manis\n" +
-                "•\tHindari makanan junkfood, alcohol, dan mengandung kolesterol tinggi\n","2","https://www.youtube.com/watch?v=TGJvLtPgVc4&ab_channel=MPPLNew","",""));
+                "•\tHindari makanan junkfood, alcohol, dan mengandung kolesterol tinggi\n","2","https://www.youtube.com/watch?v=Fa7Cuqe1c-Q","",""));
         ecl.add(new Encyclopedia("3","Judul Artikel Kardiovaskular","Penyakit jantung merupakan penyebab kematian utama di dunia. Penyakit jantung mengacu pada setiap kondisi yang mempengaruhi jantung. Ada banyak jenis penyakit jantung, diantaranya adalah: penyakit jantung coroner, gagal jantung, kardiomiopati, aritmia, dan penyakit jantung bawaaan.\n" +
                 "\n" +
                 "Gejala yang sering muncul pada penyakit jantung:\n" +
@@ -229,6 +229,6 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 "•\tMempertahankan berat badan sedang: Indeks massa tubuh (BMI) yang sehat biasanya antara 20 dan 25. Orang dapat memeriksa BMI mereka di sini.\n" +
                 "•\tBerhenti atau menghindari merokok: Merokok merupakan faktor risiko utama untuk kondisi jantung dan kardiovaskular.\n" +
                 "•\tMembatasi asupan alkohol: Wanita tidak boleh mengonsumsi lebih dari satu minuman standar per hari, dan pria tidak boleh mengonsumsi lebih dari dua minuman standar per hari.\n" +
-                "•\tMengelola kondisi yang mendasari: Carilah pengobatan untuk kondisi yang mempengaruhi kesehatan jantung, seperti tekanan darah tinggi, obesitas, dan diabetes.\n","3","https://www.youtube.com/watch?v=TGJvLtPgVc4&ab_channel=MPPLNew","",""));
+                "•\tMengelola kondisi yang mendasari: Carilah pengobatan untuk kondisi yang mempengaruhi kesehatan jantung, seperti tekanan darah tinggi, obesitas, dan diabetes.\n","3","https://www.youtube.com/watch?v=LYCYMf6TgLc","",""));
     }
 }
