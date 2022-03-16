@@ -1,9 +1,5 @@
 package com.example.emrpreventive.consult;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
-
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -14,9 +10,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
+
 import com.example.emrpreventive.R;
-import com.example.emrpreventive.common.SetupToolbar;
 import com.example.emrpreventive.chatbot.TestChatbotActivity;
+import com.example.emrpreventive.common.SetupToolbar;
 import com.example.emrpreventive.screeninghistory.ScreeningHistory;
 import com.squareup.picasso.Picasso;
 

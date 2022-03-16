@@ -10,8 +10,6 @@ import android.preference.PreferenceManager;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.example.emrpreventive.user.LoginActivity;
-
 public class LogOutAuthError extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

@@ -22,8 +22,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.emrpreventive.common.ConfirmExiting;
 import com.example.emrpreventive.R;
+import com.example.emrpreventive.common.ConfirmExiting;
 import com.example.emrpreventive.common.SetupToolbar;
 import com.squareup.picasso.Picasso;
 import com.whiteelephant.monthpicker.MonthPickerDialog;

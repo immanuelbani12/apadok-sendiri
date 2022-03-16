@@ -13,8 +13,8 @@ import androidx.core.content.ContextCompat;
 
 import com.example.emrpreventive.R;
 import com.example.emrpreventive.common.SetupToolbar;
-import com.example.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.example.emrpreventive.consult.ConsultActivity;
+import com.example.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
