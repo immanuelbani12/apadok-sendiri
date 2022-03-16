@@ -1,4 +1,4 @@
-package com.example.emrpreventive;
+package com.example.emrpreventive.user;
 
 import android.os.Parcel;
 import android.os.Parcelable;

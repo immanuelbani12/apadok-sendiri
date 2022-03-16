@@ -1,37 +1,27 @@
-package com.example.emrpreventive;
+package com.example.emrpreventive.user;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
-
-public class ConfirmExiting extends DialogFragment {
-    private String message;
+public class LogInAuthError extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(this.message)
-                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        getActivity().finish();
-                    }
-                })
-                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+        builder.setMessage("Akun tidak dapat ditemukan, silahkan coba lagi")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                     }
                 });
         // Create the AlertDialog object and return it
         return builder.create();
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }

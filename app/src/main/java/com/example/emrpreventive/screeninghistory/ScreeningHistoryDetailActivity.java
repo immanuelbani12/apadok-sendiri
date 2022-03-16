@@ -1,10 +1,7 @@
-package com.example.emrpreventive.shorting.screeninghistory;
+package com.example.emrpreventive.screeninghistory;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,33 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkError;
-import com.android.volley.NoConnectionError;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.emrpreventive.MainActivity;
 import com.example.emrpreventive.R;
-import com.example.emrpreventive.SetupToolbar;
-import com.example.emrpreventive.TestChatbot.TestChatbotActivity;
-import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
+import com.example.emrpreventive.common.SetupToolbar;
+import com.example.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.example.emrpreventive.consult.ConsultActivity;
-import com.example.emrpreventive.shorting.stroke.StrokeResultActivity;
-import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 
@@ -284,30 +260,6 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 //        requestQueue.add(stringRequest);
 //    }
 
-//    private View.OnClickListener openWhatsApp = v ->{
-//        PackageManager packageManager = ScreeningHistoryDetailActivity.this.getPackageManager();
-//        Intent i = new Intent(Intent.ACTION_VIEW);
-//        String numero = "+62 81282352027";
-//        String mensaje = "Text";
-//        String url = null;
-//        try {
-//            url = "https://api.whatsapp.com/send?phone="+ numero +"&text=" + URLEncoder.encode(mensaje, "UTF-8");
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-//        i.setPackage("com.whatsapp");
-//        i.setData(Uri.parse(url));
-//        if (i.resolveActivity(packageManager) != null) {
-//            startActivity(i);
-//        }else {
-//            Intent viewIntent =
-//                    new Intent("android.intent.action.VIEW",
-//                            Uri.parse("https://play.google.com/store/apps/details?id=com.whatsapp"));
-//            startActivity(viewIntent);
-////                KToast.errorToast(StrokeResultActivity.this, getString(R.string.no_whatsapp), Gravity.BOTTOM, KToast.LENGTH_SHORT);
-//        }
-//
-//    };
 
     private final View.OnClickListener RedirectToEducation = v -> {
         Intent intent = new Intent(ScreeningHistoryDetailActivity.this, EncyclopediaActivity.class);

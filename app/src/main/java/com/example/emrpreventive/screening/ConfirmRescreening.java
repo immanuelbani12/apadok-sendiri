@@ -1,4 +1,4 @@
-package com.example.emrpreventive;
+package com.example.emrpreventive.screening;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -7,9 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
-
-import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
-import com.example.emrpreventive.shorting.stroke.StrokeFormActivity;
 
 public class ConfirmRescreening extends DialogFragment {
     private int user_id;

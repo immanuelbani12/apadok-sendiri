@@ -1,4 +1,4 @@
-package com.example.emrpreventive.shorting.screeninghistory;
+package com.example.emrpreventive.screeninghistory;
 
 import android.content.Context;
 import android.view.LayoutInflater;

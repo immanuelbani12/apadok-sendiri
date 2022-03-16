@@ -1,4 +1,4 @@
-package com.example.emrpreventive;
+package com.example.emrpreventive.user;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,15 +10,15 @@ import android.preference.PreferenceManager;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
+import com.example.emrpreventive.user.LoginActivity;
 
-public class ConfrimLogOut extends DialogFragment {
+public class LogOutAuthError extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Anda yakin ingin Sign Out?")
-                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+        builder.setMessage("Untuk keamanan, Anda perlu login kembali")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -28,14 +28,8 @@ public class ConfrimLogOut extends DialogFragment {
                         startActivity(new Intent(getActivity(), LoginActivity.class));
                         getActivity().finish();
                     }
-                })
-                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
                 });
         // Create the AlertDialog object and return it
         return builder.create();
     }
-
 }

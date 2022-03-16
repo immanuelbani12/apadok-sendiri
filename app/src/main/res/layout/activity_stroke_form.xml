@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".shorting.stroke.StrokeFormActivity">
+    tools:context=".screening.StrokeFormActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

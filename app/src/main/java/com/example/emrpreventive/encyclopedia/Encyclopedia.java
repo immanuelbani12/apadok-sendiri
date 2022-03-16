@@ -1,4 +1,4 @@
-package com.example.emrpreventive.TestEncyclopedia;
+package com.example.emrpreventive.encyclopedia;
 
 import android.os.Parcel;
 import android.os.Parcelable;

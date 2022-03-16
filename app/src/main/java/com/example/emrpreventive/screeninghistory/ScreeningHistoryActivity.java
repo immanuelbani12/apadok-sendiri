@@ -1,4 +1,4 @@
-package com.example.emrpreventive.shorting.screeninghistory;
+package com.example.emrpreventive.screeninghistory;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,8 +12,8 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.R;
-import com.example.emrpreventive.SetupToolbar;
-import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
+import com.example.emrpreventive.common.SetupToolbar;
+import com.example.emrpreventive.common.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -24,19 +24,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,10 +70,11 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
+//                Get Current ID of HistoryList (Not Position)
 //                String idhistory = (String) view.getTag();
 //                int id_history = Integer.parseInt(idhistory);
-                Intent intent = new Intent(getBaseContext(), ScreeningHistoryDetailActivity.class);
 //                intent.putExtra("history", id_history);
+                Intent intent = new Intent(getBaseContext(), ScreeningHistoryDetailActivity.class);
                 intent.putExtra("position", position+1);
                 intent.putExtra("data",sch.get(position));
                 intent.putExtra("clinicname", clinicname);
@@ -154,8 +149,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
                 // Basic Authentication
-                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
-
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP)
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
             }

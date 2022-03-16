@@ -1,4 +1,4 @@
-package com.example.emrpreventive.shorting.stroke;
+package com.example.emrpreventive.screening;
 
 import android.os.Parcel;
 import android.os.Parcelable;

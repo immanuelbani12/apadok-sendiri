@@ -1,4 +1,4 @@
-package com.example.emrpreventive.TestEncyclopedia;
+package com.example.emrpreventive.encyclopedia;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
-
-import com.example.emrpreventive.shorting.stroke.ScreeningActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,4 +1,4 @@
-package com.example.emrpreventive.shorting.stroke;
+package com.example.emrpreventive.screening;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -6,8 +6,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,16 +26,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.emrpreventive.LogOutAuthError;
-import com.example.emrpreventive.SetupToolbar;
-import com.example.emrpreventive.TestChatbot.TestChatbotActivity;
-import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
+import com.example.emrpreventive.user.LogOutAuthError;
+import com.example.emrpreventive.common.SetupToolbar;
+import com.example.emrpreventive.common.VolleyCallBack;
+import com.example.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.example.emrpreventive.consult.ConsultActivity;
-import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
-import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryDetailActivity;
+import com.example.emrpreventive.screeninghistory.ScreeningHistory;
 import com.google.gson.Gson;
 
-import com.example.emrpreventive.MainActivity;
 import com.example.emrpreventive.R;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -45,12 +41,11 @@ import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StrokeResultActivity extends AppCompatActivity {
+public class ScreeningResultActivity extends AppCompatActivity {
 
     private Gson gson = new Gson();
     private JsonObject returnvalue;
@@ -296,49 +291,13 @@ public class StrokeResultActivity extends AppCompatActivity {
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
             }
-
-//            @Override
-//            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-//                String responseString = "";
-//                if (response != null) {
-//                    responseString = String.valueOf(response.data);
-//
-//                    // can get more details such as response.headers
-//                }
-//                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-//            }
         };
 
         requestQueue.add(stringRequest);
     }
 
-//    private View.OnClickListener openWhatsApp = v ->{
-//        PackageManager packageManager = StrokeResultActivity.this.getPackageManager();
-//        Intent i = new Intent(Intent.ACTION_VIEW);
-//        String numero = "+62 81282352027";
-//        String mensaje = "Text";
-//        String url = null;
-//        try {
-//            url = "https://api.whatsapp.com/send?phone="+ numero +"&text=" + URLEncoder.encode(mensaje, "UTF-8");
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-//        i.setPackage("com.whatsapp");
-//        i.setData(Uri.parse(url));
-//        if (i.resolveActivity(packageManager) != null) {
-//            startActivity(i);
-//        }else {
-//            Intent viewIntent =
-//                    new Intent("android.intent.action.VIEW",
-//                            Uri.parse("https://play.google.com/store/apps/details?id=com.whatsapp"));
-//            startActivity(viewIntent);
-////                KToast.errorToast(StrokeResultActivity.this, getString(R.string.no_whatsapp), Gravity.BOTTOM, KToast.LENGTH_SHORT);
-//        }
-//
-//    };
-
     private final View.OnClickListener RedirectToEducation = v -> {
-        Intent intent = new Intent(StrokeResultActivity.this, EncyclopediaActivity.class);
+        Intent intent = new Intent(ScreeningResultActivity.this, EncyclopediaActivity.class);
         //Pass the Category to next activity
         intent.putExtra("categorydiabetes", diabetval);
         intent.putExtra("categorystroke", strokeval);
@@ -349,7 +308,7 @@ public class StrokeResultActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        Intent intent = new Intent(StrokeResultActivity.this, ConsultActivity.class);
+        Intent intent = new Intent(ScreeningResultActivity.this, ConsultActivity.class);
         //Pass the Category to next activity (Unused)
         intent.putExtra("categorydiabetes", diabetval);
         intent.putExtra("categorystroke", strokeval);

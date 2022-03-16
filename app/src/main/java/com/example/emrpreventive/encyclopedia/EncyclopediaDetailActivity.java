@@ -1,8 +1,5 @@
-package com.example.emrpreventive.TestEncyclopedia;
+package com.example.emrpreventive.encyclopedia;
 
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,14 +24,13 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.R;
-import com.example.emrpreventive.SetupToolbar;
-import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
+import com.example.emrpreventive.common.SetupToolbar;
+import com.example.emrpreventive.common.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 public class EncyclopediaDetailActivity extends AppCompatActivity {
 

@@ -2,7 +2,6 @@ package com.example.emrpreventive.consult;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
@@ -14,15 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.emrpreventive.R;
-import com.example.emrpreventive.SetupToolbar;
-import com.example.emrpreventive.TestChatbot.TestChatbotActivity;
-import com.example.emrpreventive.TestEncyclopedia.EncyclopediaActivity;
-import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistory;
-import com.example.emrpreventive.shorting.screeninghistory.ScreeningHistoryDetailActivity;
-import com.google.gson.Gson;
+import com.example.emrpreventive.common.SetupToolbar;
+import com.example.emrpreventive.chatbot.TestChatbotActivity;
+import com.example.emrpreventive.screeninghistory.ScreeningHistory;
 import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;

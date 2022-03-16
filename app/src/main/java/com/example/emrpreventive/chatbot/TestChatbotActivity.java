@@ -1,11 +1,10 @@
-package com.example.emrpreventive.TestChatbot;
+package com.example.emrpreventive.chatbot;
 
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,27 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkError;
-import com.android.volley.NoConnectionError;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.emrpreventive.R;
-import com.example.emrpreventive.SetupToolbar;
-import com.example.emrpreventive.shorting.stroke.VolleyCallBack;
+import com.example.emrpreventive.common.SetupToolbar;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
-
-import java.io.UnsupportedEncodingException;
 
 public class TestChatbotActivity extends AppCompatActivity {
 
@@ -96,7 +78,6 @@ public class TestChatbotActivity extends AppCompatActivity {
         edit_message.setTypeface(helvetica_font);
         edit_message.setEnabled(false);
         edit_message.setInputType(InputType.TYPE_NULL);
-
 
         tv_second_chat.setVisibility(View.GONE);
         btn_pagi.setVisibility(View.GONE);

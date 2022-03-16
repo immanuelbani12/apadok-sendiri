@@ -1,4 +1,4 @@
-package com.example.emrpreventive.shorting.stroke;
+package com.example.emrpreventive.common;
 
 public interface VolleyCallBack {
     void onSuccess();
