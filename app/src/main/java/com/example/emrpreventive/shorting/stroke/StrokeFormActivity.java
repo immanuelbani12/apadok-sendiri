@@ -292,7 +292,7 @@ public class StrokeFormActivity extends AppCompatActivity implements View.OnClic
         forms[8] = new Form(9,"Masukkan tekanan darah anda saat ini:","> 140/90","120 - 139 / 80 - 89","< 120/80","Tidak diketahui",R.drawable.default_image, null);
         forms[9] = new Form(10,"Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?","Ya","Tidak","","",R.drawable.default_image, null);
         forms[10] = new Form(11,"Masukkan kadar gula anda saat ini:","< 120","120 - 150","> 150","Tidak diketahui",R.drawable.default_image, null);
-        forms[11] = new Form(12,"Berapa kadar kolesterol anda saat ini? (mmol/L)","> 240","200 - 239","< 200","Tidak diketahui",R.drawable.default_image, null);
+        forms[11] = new Form(12,"Berapa kadar kolesterol total anda saat ini? (mmol/L)","> 240","200 - 239","< 200","Tidak diketahui",R.drawable.default_image, null);
         forms[12] = new Form(13,"Apakah keluarga memiliki riwayat stroke?","Ya","Tidak","Tidak diketahui","",R.drawable.default_image, null);
         forms[13] = new Form(14,"Apakah anda menderita gangguan irama jantung?","Ya","Tidak diketahui","Tidak pernah","",R.drawable.default_image, null);
         forms[14] = new Form(15,"Seberapa sering anda makan sayuran, buah-buahan atau beri?","Setiap Hari","Tidak setiap hari","","",R.drawable.default_image, null);
