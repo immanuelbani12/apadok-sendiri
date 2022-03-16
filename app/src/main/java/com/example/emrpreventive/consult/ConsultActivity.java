@@ -99,7 +99,7 @@ public class ConsultActivity extends AppCompatActivity {
         String mensaje = "Risiko Diabetes : " + hasil_diabet + "\nRisiko Stroke : " + hasil_stroke + "\nRisiko Kardiovaskular : " + hasil_kardio + "\ndata diperoleh pada " + timestamp;
         String url = null;
         try {
-            url = "https://api.whatsapp.com/send?phone="+ numero +"&text=" + URLEncoder.encode(mensaje, "UTF-8");
+            url = "https://wa.me/"+ numero +"?text=" + URLEncoder.encode(mensaje, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
