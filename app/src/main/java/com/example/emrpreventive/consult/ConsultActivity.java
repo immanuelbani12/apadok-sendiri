@@ -25,9 +25,12 @@ import java.net.URLEncoder;
 
 public class ConsultActivity extends AppCompatActivity {
 
+    // Res/Layout Variables
     private TextView title_consult, tv_subtitle_consult, tv_phone_consult, tv_time_consult;
     private ImageView iv_image_consult;
     private Button btn_whatsapp, btn_call, btn_penjadwalanbeta;
+
+    // Intent Variables
     private ScreeningHistory sch;
     private String ClinicName,ClinicLogo;
 

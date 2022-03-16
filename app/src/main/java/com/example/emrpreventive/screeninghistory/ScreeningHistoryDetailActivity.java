@@ -20,11 +20,16 @@ import com.squareup.picasso.Picasso;
 
 public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 
-    private Gson gson = new Gson();
+    // Gson related
+//    private Gson gson = new Gson();
+    // API return variables
 //    private JsonObject returnvalue;
 //    private String hasil = "";
+
+    // Res/Layout Variables
     private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result;
     private Button btn_consult, btn_education;
+    // Intent Variables
     private int diabetval,strokeval,cardioval;
     private String ClinicName,ClinicLogo;
     private ScreeningHistory sch;

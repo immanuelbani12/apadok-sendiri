@@ -9,9 +9,9 @@ import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 
 public class ConfirmRescreening extends DialogFragment {
+    // Intent Variables
     private int user_id;
     private String Token;
-
     private String clinicname;
     private String cliniclogo;
     private String username;

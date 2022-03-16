@@ -15,6 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ConfirmArticleFormat extends DialogFragment {
+    // Intent Variables
     private Encyclopedia data;
     private String clinicname;
     private String cliniclogo;

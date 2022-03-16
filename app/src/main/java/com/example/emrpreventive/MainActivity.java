@@ -62,13 +62,20 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Gson related
+    // API return variables
     private Gson gson = new Gson();
-    private Button btn_screening, btn_history_screening, btn_consult;
-    private long differenceMinutes;
-    private TextView tv_subtitle, tv_greet;
     private List<ScreeningHistory> sch;
+    private long differenceMinutes;
+    private String ErrorMsg;
+
+    // Res/Layout Variables
+    private Button btn_screening, btn_history_screening, btn_consult;
+    private TextView tv_subtitle, tv_greet;
+
+    // Intent Variables
     private int UserId;
-    private String ErrorMsg,Token,UserName,ClinicName,ClinicLogo;
+    private String Token,UserName,ClinicName,ClinicLogo;
 
     @Override
     protected void onRestart() {
@@ -80,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SetupPreference(); //Ngambil UserID,dll
+        SetupPreference(); //Get UserID,etc
         setupItemView(); //Setup UI
         setupJson(); //Setup API
     }

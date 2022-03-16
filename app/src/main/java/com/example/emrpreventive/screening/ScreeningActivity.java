@@ -40,9 +40,10 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private FormAnswer[] answer = new FormAnswer[19];
 
 
-    // Iterative Variables
+    // Iterative or Boolean Variables
     private int CurrentForm = 1;
     private int SelectedOptionPosititon = 0;
+    private Boolean isOptionSubmitted = false;
 
     // Res/Layout Variables
     private TextView tv_option_one,tv_option_two, tv_option_three, tv_option_four, tv_progress, tv_question;
@@ -50,9 +51,8 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private ImageView iv_image;
     private EditText edit_text;
     private ProgressBar progressBar;
-    private ScrollView sv_screening;
-    private Boolean isOptionSubmitted = false;
 
+    // Intent Variables
     private String ClinicName,ClinicLogo;
 
     @Override
@@ -92,7 +92,6 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private void SetForm() {
         Form FormQ = forms[CurrentForm-1];
 
-        sv_screening = (ScrollView) findViewById(R.id.sv_screening);
         tv_option_one = (TextView) findViewById(R.id.tv_option_one);
         tv_option_two = (TextView) findViewById(R.id.tv_option_two);
         tv_option_three = (TextView) findViewById(R.id.tv_option_three);

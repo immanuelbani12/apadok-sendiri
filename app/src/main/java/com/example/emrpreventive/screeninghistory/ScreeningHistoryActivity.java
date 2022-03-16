@@ -37,10 +37,11 @@ import java.util.Map;
 
 public class ScreeningHistoryActivity extends AppCompatActivity {
 
+    // Gson related
+    // API return variables
     private Gson gson = new Gson();
     private ArrayList<ScreeningHistory> sch;
     private ListView l;
-    private JsonObject returnvalue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -101,8 +102,6 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
         });
         VolleyLog.DEBUG = true;
     }
-
-
 
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);

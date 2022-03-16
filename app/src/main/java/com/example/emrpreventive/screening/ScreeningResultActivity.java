@@ -46,14 +46,21 @@ import java.util.Map;
 
 public class ScreeningResultActivity extends AppCompatActivity {
 
+    // Gson related
+    // API return variables
     private Gson gson = new Gson();
     private JsonObject returnvalue;
     private ScreeningHistory sch;
     private String hasil = "";
+    // API input Variables
     private FormAnswer[] answer = new FormAnswer[17];
     private List<FormAnswer> answers;
+
+    // Res/Layout Variables
     private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result;
     private Button btn_consult, btn_education;
+
+    // Intent Variables
     private int diabetval,strokeval,cardioval;
     private String ClinicName,ClinicLogo;
 
