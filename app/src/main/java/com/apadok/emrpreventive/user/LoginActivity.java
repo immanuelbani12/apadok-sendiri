@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
 //        tv_support_by.setTypeface(helvetica_font);
         btn_masuk.setTypeface(helvetica_font);
+        btn_masuk.setEnabled(false);
         phone_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
 
