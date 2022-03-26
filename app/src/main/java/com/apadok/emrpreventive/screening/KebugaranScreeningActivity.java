@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.emrpreventive.R;
+import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.squareup.picasso.Picasso;
@@ -208,7 +208,8 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
                 SelectedOptionPosititon = 0;
                 CurrentForm--;
                 SetForm();
-                break;
+//                Ku-komen line 212, appnya jadi gabisa kebuild
+//                break;
 
 //            case R.id.btn_submit:
 //                isOptionSubmitted = true;
