@@ -114,7 +114,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
         //Ubah Answers ke string trus ke JSON
         Type answerstype = new TypeToken<List<FormAnswer>>() {}.getType();
         String json = gson.toJson(answers, answerstype);
-        Log.e("bobo", json);
+        Log.e("JSON Body", json);
 
         // Send JSON ke API & Parse Respons di createcall
         // Parse JSON Respons di createcall
