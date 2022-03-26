@@ -110,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
         User Obj = new User(phonenum);
         Type user = new TypeToken<User>() {}.getType();
         String json = gson.toJson(Obj, user);
-        Log.e("phonenum", json);
 
         // Send JSON ke API & Parse Respons di createcall
         // Parse JSON Respons di createcall
