@@ -26,13 +26,14 @@ import com.apadok.emrpreventive.common.SetupToolbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class KebugaranScreeningActivity extends AppCompatActivity implements View.OnClickListener {
     // Question Length is 18 as for Now, Check Res/Layout to adjust Progress Bar
     // Use FormAnswer[18] to put Identifier or Primary Key for User
     private FormKebugaran[] forms = new FormKebugaran[13];
-//    private FormAnswer[] answer = new FormAnswer[19];
+    private FormAnswer[] answer = new FormAnswer[14];
 
 
     // Iterative or Boolean Variables
@@ -208,54 +209,55 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
                 SelectedOptionPosititon = 0;
                 CurrentForm--;
                 SetForm();
-//                Ku-komen line 212, appnya jadi gabisa kebuild
-//                break;
+                break;
 
-//            case R.id.btn_submit:
-//                isOptionSubmitted = true;
-//                switch (SelectedOptionPosititon){
-//                    case 1:
-//                        if (CurrentForm == 1) {
-//                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt1());
-//                        } else {
-//                            answer[CurrentForm-1].setAnswer("1");
-//                        }
-//                        break;
-//                    case 2:
-//                        if (CurrentForm == 1) {
-//                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt2());
-//                        } else {
-//                            answer[CurrentForm - 1].setAnswer("2");
-//                        }
-//                        break;
-//                    case 3:
-////                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt3());
-//                        answer[CurrentForm-1].setAnswer("3");
-//                        break;
-//                    case 4:
-////                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt4());
-//                        answer[CurrentForm-1].setAnswer("4");
-//                        break;
-//                }
+            case R.id.btn_submit:
+                isOptionSubmitted = true;
+                switch (SelectedOptionPosititon){
+                    case 1:
+                        answer[CurrentForm-1].setAnswer("1");
+                        SelectedOptionPosititon = 0;
+                        break;
+                    case 2:
+                        answer[CurrentForm-1].setAnswer("2");
+                        SelectedOptionPosititon = 0;
+                        break;
+                    case 3:
+                        answer[CurrentForm-1].setAnswer("3");
+                        SelectedOptionPosititon = 0;
+                        break;
+                    case 4:
+                        answer[CurrentForm-1].setAnswer("4");
+                        SelectedOptionPosititon = 0;
+                        break;
+                    case 5:
+                        answer[CurrentForm-1].setAnswer("5");
+                        SelectedOptionPosititon = 0;
+                        break;
+                    default:
+                        // Failsafe Case
+                        SelectedOptionPosititon = 1;
+                        break;
+                }
             SelectedOptionPosititon = 0;
             // legacy code
             if (SelectedOptionPosititon == 0) {
                 isOptionSubmitted = false;
                 CurrentForm++;
 
-                if(CurrentForm <= 18){
+                if(CurrentForm <= 13){
                     SetForm();
                 } else {
                     //Get the User ID from Main Activity
-//                        answer[CurrentForm-1] = new FormAnswer("id_user");
-//                        int id_user = getIntent().getIntExtra("userid", 0);
+                    answer[CurrentForm-1] = new FormAnswer("id_user");
+                    int id_user = getIntent().getIntExtra("userid", 0);
                     String token = getIntent().getStringExtra("token");
                     String username = getIntent().getStringExtra("username");
-//                        answer[CurrentForm-1].setAnswer(Integer.toString(id_user));
+                    answer[CurrentForm-1].setAnswer(Integer.toString(id_user));
 
                     Intent intent = new Intent(KebugaranScreeningActivity.this, ScreeningResultActivity.class);
-//                        ArrayList list = new ArrayList<>(Arrays.asList(answer));
-//                        intent.putParcelableArrayListExtra("Answers", list);
+                    ArrayList list = new ArrayList<>(Arrays.asList(answer));
+                    intent.putParcelableArrayListExtra("Answers", list);
                     intent.putExtra("token", token);
                     intent.putExtra("username", username);
                     intent.putExtra("clinicname", ClinicName);
@@ -303,23 +305,18 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         forms[12] = new FormKebugaran(13,"Saya harus membatasi aktivitas sosial saya karena saya lelah");
 
         //Setup JSON Answer to be sent to API
-//        answer[0] = new FormAnswer("jenis_kelamin");
-//        answer[1] = new FormAnswer("tanggal_lahir");
-//        answer[2] = new FormAnswer("tinggi_badan");
-//        answer[3] = new FormAnswer("berat_badan");
-//        answer[4] = new FormAnswer("aktivitas_fisik");
-//        answer[5] = new FormAnswer("merokok");
-//        answer[6] = new FormAnswer("lingkar_pinggang");
-//        answer[7] = new FormAnswer("histori_hipertensi");
-//        answer[8] = new FormAnswer("tekanan_darah");
-//        answer[9] = new FormAnswer("gula_darah");
-//        answer[10] = new FormAnswer("kadar_gula");
-//        answer[11] = new FormAnswer("kadar_kolesterol");
-//        answer[12] = new FormAnswer("riwayat_stroke");
-//        answer[13] = new FormAnswer("irama_jantung");
-//        answer[14] = new FormAnswer("buah_sayur");
-//        answer[15] = new FormAnswer("obat_hipertensi");
-//        answer[16] = new FormAnswer("keturunan");
-//        answer[17] = new FormAnswer("kolesterol_hdl");
+        answer[0] = new FormAnswer("lelah_fisik");
+        answer[1] = new FormAnswer("lemah_keseluruhan");
+        answer[2] = new FormAnswer("lesu");
+        answer[3] = new FormAnswer("lelah_fisik_dan_psikis");
+        answer[4] = new FormAnswer("kesulitan_memulai_hal");
+        answer[5] = new FormAnswer("kesulitan_menyelesaikan_hal");
+        answer[6] = new FormAnswer("memiliki_energi");
+        answer[7] = new FormAnswer("mengerjakan_aktivitas");
+        answer[8] = new FormAnswer("tidur_seharian");
+        answer[9] = new FormAnswer("lelah_makan");
+        answer[10] = new FormAnswer("bantuan_aktivitas");
+        answer[11] = new FormAnswer("merasa_frustasi");
+        answer[12] = new FormAnswer("membatasi_aktivitas_sosial");
     }
 }
