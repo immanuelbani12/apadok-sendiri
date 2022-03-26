@@ -336,6 +336,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         break;
                     case 4:
                         answer[CurrentForm-1].setAnswer("4");
+                        SelectedOptionPosititon = 0;
                         break;
                     case -1:
                         // Get answer from Textbar here
