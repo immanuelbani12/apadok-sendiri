@@ -1,16 +1,11 @@
 package com.apadok.emrpreventive.screening;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,7 +22,6 @@ import androidx.fragment.app.DialogFragment;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.EmptyTextWatcher;
-import com.apadok.emrpreventive.common.PopUpMessage;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.squareup.picasso.Picasso;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
