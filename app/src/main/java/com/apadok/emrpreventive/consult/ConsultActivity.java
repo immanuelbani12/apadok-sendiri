@@ -17,7 +17,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.chatbot.TestChatbotActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
-import com.apadok.emrpreventive.screeninghistory.ScreeningHistory;
+import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
@@ -31,7 +31,7 @@ public class ConsultActivity extends AppCompatActivity {
     private Button btn_whatsapp, btn_call, btn_penjadwalanbeta;
 
     // Intent Variables
-    private ScreeningHistory sch;
+    private PemeriksaanEntity sch;
     private String ClinicName,ClinicLogo;
 
     @Override

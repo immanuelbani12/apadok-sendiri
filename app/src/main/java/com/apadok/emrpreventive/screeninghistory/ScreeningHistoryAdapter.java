@@ -11,13 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 
 import java.util.ArrayList;
 
-public class ScreeningHistoryAdapter extends ArrayAdapter<ScreeningHistory> {
+public class ScreeningHistoryAdapter extends ArrayAdapter<PemeriksaanEntity> {
 
     // invoke the suitable constructor of the ArrayAdapter class
-    public ScreeningHistoryAdapter(@NonNull Context context, ArrayList<ScreeningHistory> arrayList) {
+    public ScreeningHistoryAdapter(@NonNull Context context, ArrayList<PemeriksaanEntity> arrayList) {
 
         // pass the context and arrayList for the super
         // constructor of the ArrayAdapter class
@@ -37,7 +38,7 @@ public class ScreeningHistoryAdapter extends ArrayAdapter<ScreeningHistory> {
         }
 
         // get the position of the view from the ArrayAdapter
-        ScreeningHistory currentNumberPosition = getItem(position);
+        PemeriksaanEntity currentNumberPosition = getItem(position);
 
         // then according to the position of the view assign the desired image for the same
 //        ImageView numbersImage = currentItemView.findViewById(R.id.imageView);

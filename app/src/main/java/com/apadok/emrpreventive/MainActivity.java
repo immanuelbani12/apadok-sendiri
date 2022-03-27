@@ -39,7 +39,7 @@ import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.consult.ConsultActivity;
 import com.apadok.emrpreventive.screening.ConfirmRescreening;
 import com.apadok.emrpreventive.screening.ScreeningActivity;
-import com.apadok.emrpreventive.screeninghistory.ScreeningHistory;
+import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.screeninghistory.ScreeningHistoryActivity;
 import com.apadok.emrpreventive.user.ConfirmLogOut;
 import com.apadok.emrpreventive.user.LogOutAuthError;
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     // Gson related
     // API return variables
     private Gson gson = new Gson();
-    private List<ScreeningHistory> sch;
+    private List<PemeriksaanEntity> sch;
     private long differenceMinutes;
     private String ErrorMsg;
 
@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                Type screenhistory = new TypeToken<List<ScreeningHistory>>() {}.getType();
+                Type screenhistory = new TypeToken<List<PemeriksaanEntity>>() {}.getType();
                 sch = gson.fromJson(response, screenhistory);
                 // Panggil Fungsi API Lain, Simpen ke SQLite
                 callback.onSuccess();

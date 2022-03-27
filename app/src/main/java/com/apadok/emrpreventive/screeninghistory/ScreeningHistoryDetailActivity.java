@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.consult.ConsultActivity;
+import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.squareup.picasso.Picasso;
 
@@ -31,7 +32,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
     // Intent Variables
     private int diabetval,strokeval,cardioval;
     private String ClinicName,ClinicLogo;
-    private ScreeningHistory sch;
+    private PemeriksaanEntity sch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

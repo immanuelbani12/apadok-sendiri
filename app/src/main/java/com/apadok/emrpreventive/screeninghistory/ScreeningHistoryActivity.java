@@ -23,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
+import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
@@ -39,7 +40,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
     // Gson related
     // API return variables
     private Gson gson = new Gson();
-    private ArrayList<ScreeningHistory> sch;
+    private ArrayList<PemeriksaanEntity> sch;
     private ListView l;
 
     @Override
@@ -113,7 +114,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                Type screenhistory = new TypeToken<List<ScreeningHistory>>() {}.getType();
+                Type screenhistory = new TypeToken<List<PemeriksaanEntity>>() {}.getType();
                 //FailSafe
                 if (response.charAt(response.length()-1) != ']'){
                     response = response + "]";

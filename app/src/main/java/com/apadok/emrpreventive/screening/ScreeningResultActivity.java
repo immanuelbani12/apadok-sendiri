@@ -31,7 +31,7 @@ import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.consult.ConsultActivity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
-import com.apadok.emrpreventive.screeninghistory.ScreeningHistory;
+import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.user.LogOutAuthError;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -50,7 +50,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
     // API return variables
     private Gson gson = new Gson();
     private JsonObject returnvalue;
-    private ScreeningHistory sch;
+    private PemeriksaanEntity sch;
     private String hasil = "";
     // API input Variables
     private FormAnswer[] answer = new FormAnswer[17];
@@ -248,7 +248,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
                 returnvalue = gson.fromJson(response, JsonObject.class);
-                sch = gson.fromJson(response, ScreeningHistory.class);
+                sch = gson.fromJson(response, PemeriksaanEntity.class);
                 callback.onSuccess();
             }
         }, new Response.ErrorListener() {
