@@ -6,16 +6,19 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Date;
 
 
 @Entity(tableName = "users")
 public class UserEntity {
     @PrimaryKey
+    @NonNull
     int userid;
 
     @ColumnInfo(name = "username")
     String username;
+
 
     @ColumnInfo(name = "clinicname")
     String clinicname;
@@ -23,22 +26,12 @@ public class UserEntity {
     @ColumnInfo(name = "token")
     String token;
 
-    @ColumnInfo(name = "cliniclogo")
-    Blob cliniclogo;
+    @ColumnInfo(name = "cliniclogo",typeAffinity = ColumnInfo.BLOB)
+    byte[] cliniclogo;
 
     @ColumnInfo(name = "isonline")
     Boolean isonline;
 
-    @ColumnInfo(name = "tokendate")
-    Date tokendate;
-
-    public UserEntity(int userid, String username, String clinicname, String token, Blob cliniclogo) {
-        this.userid = userid;
-        this.username = username;
-        this.clinicname = clinicname;
-        this.token = token;
-        this.cliniclogo = cliniclogo;
-    }
 
     public int getUserid() {
         return userid;
@@ -72,14 +65,6 @@ public class UserEntity {
         this.token = token;
     }
 
-    public Blob getCliniclogo() {
-        return cliniclogo;
-    }
-
-    public void setCliniclogo(Blob cliniclogo) {
-        this.cliniclogo = cliniclogo;
-    }
-
     public Boolean getIsonline() {
         return isonline;
     }
@@ -88,12 +73,21 @@ public class UserEntity {
         this.isonline = isonline;
     }
 
-    public Date getTokendate() {
-        return tokendate;
+    public byte[] getCliniclogo() {
+        return cliniclogo;
     }
 
-    public void setTokendate(Date tokendate) {
-        this.tokendate = tokendate;
+    public void setCliniclogo(byte[] cliniclogo) {
+        this.cliniclogo = cliniclogo;
+    }
+
+    public UserEntity(int userid, String username, String clinicname, String token, byte[] cliniclogo, Boolean isonline) {
+        this.userid = userid;
+        this.username = username;
+        this.clinicname = clinicname;
+        this.token = token;
+        this.cliniclogo = cliniclogo;
+        this.isonline = isonline;
     }
 }
 

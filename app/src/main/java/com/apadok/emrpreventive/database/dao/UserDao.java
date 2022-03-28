@@ -1,6 +1,7 @@
 package com.apadok.emrpreventive.database.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -10,9 +11,10 @@ import com.apadok.emrpreventive.database.entity.UserEntity;
 
 import java.util.List;
 
+@Dao
 public interface UserDao {
     @Query("SELECT * FROM users ORDER BY userid DESC")
-    LiveData<List<UserEntity>> getAllUsers();
+    List<UserEntity> getAllUsers();
 
     @Query("SELECT * FROM users WHERE userid=:id")
     UserEntity getUserById(int id);

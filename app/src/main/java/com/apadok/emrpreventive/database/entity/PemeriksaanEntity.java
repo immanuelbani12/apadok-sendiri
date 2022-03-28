@@ -3,6 +3,7 @@ package com.apadok.emrpreventive.database.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -10,6 +11,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "pemeriksaans")
 public class PemeriksaanEntity implements Parcelable {
     @PrimaryKey
+    @NonNull
     String id_pemeriksaan;
 
     @ColumnInfo(name = "id_user")
@@ -40,7 +42,7 @@ public class PemeriksaanEntity implements Parcelable {
         updated_at = in.readString();
     }
 
-    public PemeriksaanEntity(String id_pemeriksaan, String id_user, String hasil_diabetes, String hasil_kolesterol, String hasil_stroke, String created_at, String updated_at) {
+    public PemeriksaanEntity(@NonNull String id_pemeriksaan, String id_user, String hasil_diabetes, String hasil_kolesterol, String hasil_stroke, String created_at, String updated_at) {
         this.id_pemeriksaan = id_pemeriksaan;
         this.id_user = id_user;
         this.hasil_diabetes = hasil_diabetes;
