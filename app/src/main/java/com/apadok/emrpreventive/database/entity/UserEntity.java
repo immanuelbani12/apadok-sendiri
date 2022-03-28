@@ -19,7 +19,6 @@ public class UserEntity {
     @ColumnInfo(name = "username")
     String username;
 
-
     @ColumnInfo(name = "clinicname")
     String clinicname;
 

@@ -53,6 +53,8 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     // Gson related
     // API return variables
     private Gson gson = new Gson();
-    private List<PemeriksaanEntity> sch;
+    private ArrayList<PemeriksaanEntity> sch;
     private long differenceMinutes;
     private String ErrorMsg;
 
@@ -110,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
 //                finish();
             } else {
                 //Name Toast
-                CharSequence text = "Hello " + UserName;
-                int duration = Toast.LENGTH_LONG;
+                CharSequence text = "Anda berhasil Sign-In";
+                int duration = Toast.LENGTH_SHORT;
 
                 Toast toast = Toast.makeText(getBaseContext(), text, duration);
                 toast.show();
@@ -125,12 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
             }
         } else {
-            //Name Toast
-            CharSequence text = "Hello " + UserName;
-            int duration = Toast.LENGTH_LONG;
-
-            Toast toast = Toast.makeText(getBaseContext(), text, duration);
-            toast.show();
+//            Jika User Ada dan Sudah Login sebelumnya
         }
     }
     private void setupItemView(){
@@ -251,21 +248,10 @@ public class MainActivity extends AppCompatActivity {
         VolleyLog.DEBUG = true;
     }
 
-    public static Bitmap LoadImageFromWebOperations(String url) {
-        try {
-            url = "http://178.128.25.139:8080/media/klinik/" + url;
-            URL weburl = new URL(url);
-            Bitmap bmp = BitmapFactory.decodeStream(weburl.openConnection().getInputStream());
-            return bmp;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get Latest ID Pemeriksaan from User 1
-        String URL = "http://178.128.25.139:8080/api/pemeriksaan/user/"+UserId;
+        String URL = "http://178.128.25.139:8080/api/pemeriksaan/userAll/"+UserId;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -357,6 +343,9 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("cliniclogo", ClinicLogo);
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
+        if (!sch.isEmpty()) {
+            intent.putParcelableArrayListExtra("history",sch);
+        }
         startActivity(intent);
     };
 

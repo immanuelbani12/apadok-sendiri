@@ -49,7 +49,14 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screening_history);
         setupItemView();
+//        setupContent();
         setupJson();
+    }
+
+    private void setupContent() {
+        sch = getIntent().getParcelableArrayListExtra("history");
+        ScreeningHistoryAdapter numbersArrayAdapter = new ScreeningHistoryAdapter(getBaseContext(), sch);
+        l.setAdapter(numbersArrayAdapter);
     }
 
     private void setupItemView() {
@@ -97,7 +104,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
 
             @Override
             public void onError() {
-
+                setupContent();
             }
         });
         VolleyLog.DEBUG = true;

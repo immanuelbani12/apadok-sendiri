@@ -32,37 +32,37 @@ public class PemeriksaanRepository {
         return mAllPemeriksaans;
     }
 
-    public PemeriksaanEntity getPemeriksaan(int noteId) throws ExecutionException, InterruptedException {
-        return new getNoteAsync(mPemeriksaanDao).execute(noteId).get();
+    public PemeriksaanEntity getPemeriksaan(int pemeriksaanId) throws ExecutionException, InterruptedException {
+        return new getpemeriksaanAsync(mPemeriksaanDao).execute(pemeriksaanId).get();
     }
 
-    public void insertNote(PemeriksaanEntity note) {
-        new insertNotesAsync(mPemeriksaanDao).execute(note);
+    public void insertpemeriksaan(PemeriksaanEntity pemeriksaan) {
+        new insertpemeriksaansAsync(mPemeriksaanDao).execute(pemeriksaan);
     }
 
-    public void updateNote(PemeriksaanEntity note) {
-        new updateNotesAsync(mPemeriksaanDao).execute(note);
+    public void updatepemeriksaan(PemeriksaanEntity pemeriksaan) {
+        new updatepemeriksaansAsync(mPemeriksaanDao).execute(pemeriksaan);
     }
 
-    public void deleteNote(PemeriksaanEntity note) {
-        new deleteNotesAsync(mPemeriksaanDao).execute(note);
+    public void deletepemeriksaan(PemeriksaanEntity pemeriksaan) {
+        new deletepemeriksaansAsync(mPemeriksaanDao).execute(pemeriksaan);
     }
 
-    public void deleteAllNotes() {
-        new deleteAllNotesAsync(mPemeriksaanDao).execute();
+    public void deleteAllpemeriksaans() {
+        new deleteAllpemeriksaansAsync(mPemeriksaanDao).execute();
     }
 
     /**
-     * NOTE: all write operations should be done in background thread,
+     * pemeriksaan: all write operations should be done in background thread,
      * otherwise the following error will be thrown
      * `java.lang.IllegalStateException: Cannot access database on the main thread since it may potentially lock the UI for a long period of time.`
      */
 
-    private static class getNoteAsync extends AsyncTask<Integer, Void, PemeriksaanEntity> {
+    private static class getpemeriksaanAsync extends AsyncTask<Integer, Void, PemeriksaanEntity> {
 
         private PemeriksaanDao mPemeriksaanDaoAsync;
 
-        getNoteAsync(PemeriksaanDao animalDao) {
+        getpemeriksaanAsync(PemeriksaanDao animalDao) {
             mPemeriksaanDaoAsync = animalDao;
         }
 
@@ -72,61 +72,61 @@ public class PemeriksaanRepository {
         }
     }
 
-    private static class insertNotesAsync extends AsyncTask<PemeriksaanEntity, Void, Long> {
+    private static class insertpemeriksaansAsync extends AsyncTask<PemeriksaanEntity, Void, Long> {
 
         private PemeriksaanDao mPemeriksaanDaoAsync;
 
-        insertNotesAsync(PemeriksaanDao PemeriksaanDao) {
+        insertpemeriksaansAsync(PemeriksaanDao PemeriksaanDao) {
             mPemeriksaanDaoAsync = PemeriksaanDao;
         }
 
         @Override
-        protected Long doInBackground(PemeriksaanEntity... notes) {
-            long id = mPemeriksaanDaoAsync.insert(notes[0]);
+        protected Long doInBackground(PemeriksaanEntity... pemeriksaans) {
+            long id = mPemeriksaanDaoAsync.insert(pemeriksaans[0]);
             return id;
         }
     }
 
-    private static class updateNotesAsync extends AsyncTask<PemeriksaanEntity, Void, Void> {
+    private static class updatepemeriksaansAsync extends AsyncTask<PemeriksaanEntity, Void, Void> {
 
         private PemeriksaanDao mPemeriksaanDaoAsync;
 
-        updateNotesAsync(PemeriksaanDao PemeriksaanDao) {
+        updatepemeriksaansAsync(PemeriksaanDao PemeriksaanDao) {
             mPemeriksaanDaoAsync = PemeriksaanDao;
         }
 
         @Override
-        protected Void doInBackground(PemeriksaanEntity... notes) {
-            mPemeriksaanDaoAsync.update(notes[0]);
+        protected Void doInBackground(PemeriksaanEntity... pemeriksaans) {
+            mPemeriksaanDaoAsync.update(pemeriksaans[0]);
             return null;
         }
     }
 
-    private static class deleteNotesAsync extends AsyncTask<PemeriksaanEntity, Void, Void> {
+    private static class deletepemeriksaansAsync extends AsyncTask<PemeriksaanEntity, Void, Void> {
 
         private PemeriksaanDao mPemeriksaanDaoAsync;
 
-        deleteNotesAsync(PemeriksaanDao PemeriksaanDao) {
+        deletepemeriksaansAsync(PemeriksaanDao PemeriksaanDao) {
             mPemeriksaanDaoAsync = PemeriksaanDao;
         }
 
         @Override
-        protected Void doInBackground(PemeriksaanEntity... notes) {
-            mPemeriksaanDaoAsync.delete(notes[0]);
+        protected Void doInBackground(PemeriksaanEntity... pemeriksaans) {
+            mPemeriksaanDaoAsync.delete(pemeriksaans[0]);
             return null;
         }
     }
 
-    private static class deleteAllNotesAsync extends AsyncTask<PemeriksaanEntity, Void, Void> {
+    private static class deleteAllpemeriksaansAsync extends AsyncTask<PemeriksaanEntity, Void, Void> {
 
         private PemeriksaanDao mPemeriksaanDaoAsync;
 
-        deleteAllNotesAsync(PemeriksaanDao PemeriksaanDao) {
+        deleteAllpemeriksaansAsync(PemeriksaanDao PemeriksaanDao) {
             mPemeriksaanDaoAsync = PemeriksaanDao;
         }
 
         @Override
-        protected Void doInBackground(PemeriksaanEntity... notes) {
+        protected Void doInBackground(PemeriksaanEntity... pemeriksaans) {
             mPemeriksaanDaoAsync.deleteAll();
             return null;
         }
