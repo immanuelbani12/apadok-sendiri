@@ -24,15 +24,15 @@ public class PemeriksaanRepository {
         mLatestPemeriksaans = mPemeriksaanDao.getPemeriksaanLatest();
     }
 
-    public PemeriksaanEntity getmLatestPemeriksaans() {
+    public PemeriksaanEntity getmLatestPemeriksaan() {
         return mLatestPemeriksaans;
     }
 
-    public LiveData<List<PemeriksaanEntity>> getAllNotes() {
+    public LiveData<List<PemeriksaanEntity>> getAllPemeriksaans() {
         return mAllPemeriksaans;
     }
 
-    public PemeriksaanEntity getNote(int noteId) throws ExecutionException, InterruptedException {
+    public PemeriksaanEntity getPemeriksaan(int noteId) throws ExecutionException, InterruptedException {
         return new getNoteAsync(mPemeriksaanDao).execute(noteId).get();
     }
 
