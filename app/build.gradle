@@ -3,27 +3,36 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\MSI-p\\AndroidStudioProjects\\EMRPreventive2\\keygen.jks')
+            storePassword 'keydokks'
+            keyAlias 'key0'
+            keyPassword 'keydokks'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
         applicationId "com.apadok.emrpreventive"
         minSdk 21
         targetSdk 31
-        versionCode 3
+        versionCode 4
         versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
         release {
             // Enables code shrinking, obfuscation, and optimization for only
             // your project's release build type.
-            minifyEnabled true
+            minifyEnabled false
 
             // Enables resource shrinking, which is performed by the
             // Android Gradle plugin.
-            shrinkResources true
+            shrinkResources false
 
             // Includes the default ProGuard rules files that are packaged with
             // the Android Gradle plugin. To learn more, go to the section about
