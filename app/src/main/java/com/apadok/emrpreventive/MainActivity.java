@@ -104,7 +104,9 @@ public class MainActivity extends AppCompatActivity {
             ClinicLogo = getIntent().getStringExtra("cliniclogo");
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
 //                finish();
             } else {
                 //Name Toast

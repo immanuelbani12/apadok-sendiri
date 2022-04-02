@@ -10,6 +10,8 @@ import android.preference.PreferenceManager;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.apadok.emrpreventive.MainActivity;
+
 public class ConfirmLogOut extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -23,7 +25,9 @@ public class ConfirmLogOut extends DialogFragment {
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.clear();
                         editor.apply();
-                        startActivity(new Intent(getActivity(), LoginActivity.class));
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                         getActivity().finish();
                     }
                 })

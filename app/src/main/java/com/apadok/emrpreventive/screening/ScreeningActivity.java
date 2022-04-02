@@ -137,6 +137,9 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         // Hide Textbar here
         edit_text.setVisibility(View.GONE);
         edit_text.setText(null);
+        // Reset the OnFocus Code
+        edit_text.setOnFocusChangeListener(null);
+        iv_image.setOnClickListener(null);
         if(CurrentForm == 1){
             btn_backquestion.setVisibility(View.GONE);
         } else {
@@ -228,14 +231,18 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         btn_submit.setEnabled(true);
                     }
                 });
+                iv_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        edit_text.clearFocus();
+                        edit_text.requestFocus();
+                    }
+                });
             } else {
                 edit_text.setInputType(InputType.TYPE_CLASS_NUMBER);
-                // Reset the OnFocus Code
-                edit_text.setOnFocusChangeListener(null);
                 // Check Null
                 edit_text.addTextChangedListener(new EmptyTextWatcher()
                 {
-
                     @Override
                     public void onEmptyField()
                     {
@@ -246,6 +253,13 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                     public void onFilledField()
                     {
                         btn_submit.setEnabled(true);
+                    }
+                });
+                iv_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        edit_text.clearFocus();
+//                        edit_text.requestFocus();
                     }
                 });
             }
@@ -290,6 +304,9 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
+            case R.id.iv_image:
+                if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
+                break;
             case R.id.tv_option_one:
                 if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
                 break;
