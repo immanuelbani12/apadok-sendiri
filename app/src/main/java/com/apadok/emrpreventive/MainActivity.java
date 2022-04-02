@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SetupPreference(); //Get UserID,etc
         setupItemView(); //Setup UI
-        setupJson(); //Setup API
+//        setupJson(); //Setup API
     }
 
     private void SetupPreference() {
@@ -113,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(getBaseContext(), text, duration);
                 toast.show();
+
+                setupJson();
+
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt("useridlocal", UserId);
                 editor.putString("usernamelocal", UserName);
@@ -124,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
 //            Jika User Ada dan Sudah Login sebelumnya
+            setupJson();
         }
     }
     private void setupItemView(){
