@@ -4,11 +4,13 @@ plugins {
 
 android {
     signingConfigs {
-        debug {
-            storeFile file('C:\\Users\\MSI-p\\AndroidStudioProjects\\EMRPreventive2\\keygen.jks')
-            storePassword 'keydokks'
-            keyAlias 'key0'
-            keyPassword 'keydokks'
+        release {
+            Properties properties = new Properties()
+            properties.load(rootProject.file('local.properties').newDataInputStream())
+            storeFile file(properties.getProperty('storeFile'))
+            keyAlias properties.getProperty('keyAlias')
+            storePassword properties.getProperty('storePassword')
+            keyPassword properties.getProperty('keyPassword')
         }
     }
     compileSdk 31
@@ -21,11 +23,11 @@ android {
         versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.debug
     }
 
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             // Enables code shrinking, obfuscation, and optimization for only
             // your project's release build type.
             minifyEnabled false
