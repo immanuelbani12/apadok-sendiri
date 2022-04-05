@@ -1,6 +1,8 @@
 package com.apadok.emrpreventive.screening;
 
 import android.content.Intent;
+import android.graphics.text.LineBreaker;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -95,6 +97,13 @@ public class ScreeningResultActivity extends AppCompatActivity {
         safe_result = (TextView) findViewById(R.id.safe_result);
         btn_consult = (Button) findViewById(R.id.btn_consult);
         btn_education = (Button) findViewById(R.id.btn_education);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            safe_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            dangerous_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+        }
 
         title_result.setText("Hasil Skrining");
         time_result.setText("Mengolah Data....");

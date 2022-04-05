@@ -124,6 +124,7 @@
                     android:textColor="@color/black_font"
                     android:layout_marginBottom="15dp"
                     android:layout_gravity="center_horizontal"
+                    android:justificationMode="inter_word"
                     android:gravity="center"
                     android:textSize="18sp"/>
 
@@ -149,6 +150,7 @@
                     android:layout_gravity="center_horizontal"
                     android:gravity="center"
                     android:textColor="@color/black_font"
+                    android:justificationMode="inter_word"
                     android:layout_marginBottom="15dp"
                     android:textSize="18sp"/>
 
