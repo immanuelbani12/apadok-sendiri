@@ -1,5 +1,6 @@
 package com.apadok.emrpreventive;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     // Res/Layout Variables
     private Button btn_screening, btn_history_screening, btn_consult;
     private TextView tv_subtitle, tv_greet;
+    private CardView cv_risiko, cv_kebugaran;
 
     // Intent Variables
     private int UserId;
@@ -315,26 +318,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private final View.OnClickListener RedirectToScreening = v -> {
-        long differenceDays = differenceMinutes / (24 * 60);
-        if (differenceDays <= 3 && differenceMinutes != -1) {
-            DialogFragment newFragment = new ConfirmRescreening();
-            //Pass the User ID to next activity
-            ((ConfirmRescreening) newFragment).setUser_id(UserId);
-            ((ConfirmRescreening) newFragment).setToken(Token);
-            ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
-            ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
-            ((ConfirmRescreening) newFragment).setUsername(UserName);
-            newFragment.show(getSupportFragmentManager(), "");
-        } else {
-            Intent intent = new Intent(MainActivity.this, ScreeningActivity.class);
-            //Pass the User ID to next activity
-            intent.putExtra("userid", UserId);
-            intent.putExtra("clinicname", ClinicName);
-            intent.putExtra("cliniclogo", ClinicLogo);
-            intent.putExtra("username", UserName);
-            intent.putExtra("token", Token);
-            startActivity(intent);
-        }
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.screening_option_dialog);
+        dialog.show();
+//        long differenceDays = differenceMinutes / (24 * 60);
+//        if (differenceDays <= 3 && differenceMinutes != -1) {
+//            DialogFragment newFragment = new ConfirmRescreening();
+//            //Pass the User ID to next activity
+//            ((ConfirmRescreening) newFragment).setUser_id(UserId);
+//            ((ConfirmRescreening) newFragment).setToken(Token);
+//            ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
+//            ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
+//            ((ConfirmRescreening) newFragment).setUsername(UserName);
+//            newFragment.show(getSupportFragmentManager(), "");
+//        } else {
+//            Intent intent = new Intent(MainActivity.this, ScreeningActivity.class);
+//            //Pass the User ID to next activity
+//            intent.putExtra("userid", UserId);
+//            intent.putExtra("clinicname", ClinicName);
+//            intent.putExtra("cliniclogo", ClinicLogo);
+//            intent.putExtra("username", UserName);
+//            intent.putExtra("token", Token);
+//            startActivity(intent);
+//        }
     };
 
     private final View.OnClickListener RedirectToHistory = v -> {
