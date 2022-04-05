@@ -215,23 +215,23 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
                 isOptionSubmitted = true;
                 switch (SelectedOptionPosititon){
                     case 1:
-                        answer[CurrentForm-1].setAnswer("1");
+                        answer[CurrentForm-1].setAnswer("0");
                         SelectedOptionPosititon = 0;
                         break;
                     case 2:
-                        answer[CurrentForm-1].setAnswer("2");
+                        answer[CurrentForm-1].setAnswer("1");
                         SelectedOptionPosititon = 0;
                         break;
                     case 3:
-                        answer[CurrentForm-1].setAnswer("3");
+                        answer[CurrentForm-1].setAnswer("2");
                         SelectedOptionPosititon = 0;
                         break;
                     case 4:
-                        answer[CurrentForm-1].setAnswer("4");
+                        answer[CurrentForm-1].setAnswer("3");
                         SelectedOptionPosititon = 0;
                         break;
                     case 5:
-                        answer[CurrentForm-1].setAnswer("5");
+                        answer[CurrentForm-1].setAnswer("4");
                         SelectedOptionPosititon = 0;
                         break;
                     default:
@@ -255,7 +255,7 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
                     String username = getIntent().getStringExtra("username");
                     answer[CurrentForm-1].setAnswer(Integer.toString(id_user));
 
-                    Intent intent = new Intent(KebugaranScreeningActivity.this, ScreeningResultActivity.class);
+                    Intent intent = new Intent(KebugaranScreeningActivity.this, KebugaranScreeningResultActivity.class);
                     ArrayList list = new ArrayList<>(Arrays.asList(answer));
                     intent.putParcelableArrayListExtra("Answers", list);
                     intent.putExtra("token", token);

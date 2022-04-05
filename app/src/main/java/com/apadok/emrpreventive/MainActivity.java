@@ -39,6 +39,7 @@ import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.consult.ConsultActivity;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.screening.ConfirmRescreening;
+import com.apadok.emrpreventive.screening.KebugaranScreeningActivity;
 import com.apadok.emrpreventive.screening.ScreeningActivity;
 import com.apadok.emrpreventive.screeninghistory.ScreeningHistoryActivity;
 import com.apadok.emrpreventive.user.ConfirmLogOut;

@@ -75,23 +75,21 @@
                     android:textColor="@color/black_font"
                     android:textSize="18sp"
                     tools:text="Opsi 1" />
-
-                <TextView
-                    android:id="@+id/tv_option_two"
-                    android:layout_width="match_parent"
-                    android:layout_height="77dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/default_option_border_bg"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:textColor="@color/black_font"
-                    android:textSize="18sp"
-                    tools:text="Opsi 2" />
             </LinearLayout>
-
+            <TextView
+                android:id="@+id/tv_option_two"
+                android:layout_width="match_parent"
+                android:layout_height="77dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/default_option_border_bg"
+                android:gravity="center"
+                android:padding="15dp"
+                android:textColor="@color/black_font"
+                android:textSize="18sp"
+                tools:text="Opsi 2" />
 
             <TextView
                 android:id="@+id/tv_option_three"
