@@ -15,9 +15,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.DialogFragment;
 
-import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.common.PopUpMessage;
+import com.apadok.emrpreventive.common.SetupToolbar;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -28,7 +30,7 @@ public class TestChatbotActivity extends AppCompatActivity {
     private ImageButton btn_chat_send;
     private TextView tv_title_activity, tv_first_chat, tv_second_chat, tv_third_chat;
     private EditText edit_message;
-    private String ClinicName,ClinicLogo;
+    private String ClinicName, ClinicLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class TestChatbotActivity extends AppCompatActivity {
         tv_title_activity = (TextView) findViewById(R.id.tv_title_activity);
         tv_first_chat = (TextView) findViewById(R.id.tv_first_chat);
         String username = sharedPref.getString("usernamelocal", "");
-        tv_first_chat.setText("Halo "+ username +", saya Putri, asisten virtual APADOK. Apakah ada yang bisa kami bantu?");
+        tv_first_chat.setText("Halo " + username + ", saya Putri, asisten virtual APADOK. Apakah ada yang bisa kami bantu?");
         tv_second_chat = (TextView) findViewById(R.id.tv_second_chat);
         tv_third_chat = (TextView) findViewById(R.id.tv_third_chat);
         btn_penjadwalan = (Button) findViewById(R.id.btn_penjadwalan);
@@ -65,7 +67,7 @@ public class TestChatbotActivity extends AppCompatActivity {
         edit_message = (EditText) findViewById(R.id.edit_message);
         btn_chat_send = (ImageButton) findViewById(R.id.btn_chat_send);
 
-        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_title_activity.setTypeface(helvetica_font);
         tv_first_chat.setTypeface(helvetica_font);
         tv_second_chat.setTypeface(helvetica_font);
@@ -84,6 +86,11 @@ public class TestChatbotActivity extends AppCompatActivity {
         btn_siang.setVisibility(View.GONE);
         btn_sore.setVisibility(View.GONE);
         tv_third_chat.setVisibility(View.GONE);
+
+        DialogFragment newFragment = new PopUpMessage();
+        // Set Message
+        ((PopUpMessage) newFragment).setMessage("Fitur masih dalam tahap pengembangan");
+        newFragment.show(getSupportFragmentManager(), "");
     }
 
     public void show_question1(View view) {
@@ -93,6 +100,7 @@ public class TestChatbotActivity extends AppCompatActivity {
         btn_siang.setVisibility(View.VISIBLE);
         btn_sore.setVisibility(View.VISIBLE);
     }
+
     public void show_question2(View view) {
         btn_penjadwalan.setEnabled(false);
         btn_pagi.setEnabled(false);
@@ -101,6 +109,7 @@ public class TestChatbotActivity extends AppCompatActivity {
         tv_third_chat.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada pagi hari di " + ClinicName);
         tv_third_chat.setVisibility(View.VISIBLE);
     }
+
     public void show_question3(View view) {
         btn_penjadwalan.setEnabled(false);
         btn_pagi.setEnabled(false);
@@ -109,6 +118,7 @@ public class TestChatbotActivity extends AppCompatActivity {
         tv_third_chat.setText("Terima Kasih, kami sudah menjadwalkan anda untuk bertemu dengan Dokter pada siang hari di " + ClinicName);
         tv_third_chat.setVisibility(View.VISIBLE);
     }
+
     public void show_question4(View view) {
         btn_penjadwalan.setEnabled(false);
         btn_pagi.setEnabled(false);

@@ -32,7 +32,7 @@ public class ConsultActivity extends AppCompatActivity {
 
     // Intent Variables
     private PemeriksaanEntity sch;
-    private String ClinicName,ClinicLogo;
+    private String ClinicName, ClinicLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class ConsultActivity extends AppCompatActivity {
         String url = "http://178.128.25.139:8080/media/klinik/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
-        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         title_consult = (TextView) findViewById(R.id.title_consult);
         tv_subtitle_consult = (TextView) findViewById(R.id.tv_subtitle_consult);
         tv_phone_consult = (TextView) findViewById(R.id.tv_phone_consult);
@@ -87,8 +87,7 @@ public class ConsultActivity extends AppCompatActivity {
     }
 
 
-
-    private View.OnClickListener openWhatsApp = v ->{
+    private View.OnClickListener openWhatsApp = v -> {
         PackageManager packageManager = ConsultActivity.this.getPackageManager();
         Intent i = new Intent(Intent.ACTION_VIEW);
         String numero = "+62 8123456789";
@@ -99,7 +98,7 @@ public class ConsultActivity extends AppCompatActivity {
         String mensaje = "Risiko Diabetes : " + hasil_diabet + "\nRisiko Stroke : " + hasil_stroke + "\nRisiko Kardiovaskular : " + hasil_kardio + "\ndata diperoleh pada " + timestamp;
         String url = null;
         try {
-            url = "https://wa.me/"+ numero +"?text=" + URLEncoder.encode(mensaje, "UTF-8");
+            url = "https://wa.me/" + numero + "?text=" + URLEncoder.encode(mensaje, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -107,7 +106,7 @@ public class ConsultActivity extends AppCompatActivity {
         i.setData(Uri.parse(url));
         if (i.resolveActivity(packageManager) != null) {
             startActivity(i);
-        }else {
+        } else {
             Intent viewIntent =
                     new Intent("android.intent.action.VIEW",
                             Uri.parse("https://play.google.com/store/apps/details?id=com.whatsapp"));
@@ -126,7 +125,7 @@ public class ConsultActivity extends AppCompatActivity {
     private final View.OnClickListener RedirectToConsult = v -> {
         Intent intent = new Intent(ConsultActivity.this, TestChatbotActivity.class);
         //Pass the Data to next activity
-        intent.putExtra("data",sch);
+        intent.putExtra("data", sch);
         intent.putExtra("clinicname", ClinicName);
         intent.putExtra("cliniclogo", ClinicLogo);
         startActivity(intent);

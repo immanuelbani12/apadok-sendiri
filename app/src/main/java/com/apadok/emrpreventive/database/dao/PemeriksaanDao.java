@@ -8,7 +8,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
-import com.apadok.emrpreventive.database.entity.UserEntity;
 
 import java.util.List;
 

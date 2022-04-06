@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
@@ -49,6 +50,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private ImageView iv_image;
     private EditText edit_text;
     private ProgressBar progressBar;
+    private ScrollView sv_screening;
 
     // Intent Variables
     private String ClinicName,ClinicLogo;
@@ -90,6 +92,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private void SetForm() {
         Form FormQ = forms[CurrentForm-1];
 
+        sv_screening = (ScrollView) findViewById(R.id.sv_screening);
         tv_option_one = (TextView) findViewById(R.id.tv_option_one);
         tv_option_two = (TextView) findViewById(R.id.tv_option_two);
         tv_option_three = (TextView) findViewById(R.id.tv_option_three);
@@ -131,6 +134,9 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         CheckSet(FormQ);
         btn_submit.setOnClickListener(this);
         btn_backquestion.setOnClickListener(this);
+
+        // Reset ScrollView
+        sv_screening.scrollTo(0,0);
     }
 
     private void CheckSet(Form formcheck){

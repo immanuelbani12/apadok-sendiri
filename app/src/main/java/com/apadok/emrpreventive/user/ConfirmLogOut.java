@@ -10,8 +10,6 @@ import android.preference.PreferenceManager;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.apadok.emrpreventive.MainActivity;
-
 public class ConfirmLogOut extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment;
 
 public class PopUpMessage extends DialogFragment {
     private String message;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
@@ -22,6 +23,7 @@ public class PopUpMessage extends DialogFragment {
         // Create the AlertDialog object and return it
         return builder.create();
     }
+
     public void setMessage(String message) {
         this.message = message;
     }

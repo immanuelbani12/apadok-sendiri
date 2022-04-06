@@ -1,12 +1,10 @@
 package com.apadok.emrpreventive.screening;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -45,6 +43,7 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
     private TextView tv_option_one,tv_option_two, tv_option_three, tv_option_four, tv_option_five, tv_progress, tv_question;
     private Button btn_submit, btn_backquestion;
     private ProgressBar progressBar;
+    private ScrollView sv_bugar_screening;
 
     // Intent Variables
     private String ClinicName,ClinicLogo;
@@ -86,6 +85,7 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
     private void SetForm() {
         FormKebugaran FormQ = forms[CurrentForm-1];
 
+        sv_bugar_screening = (ScrollView) findViewById(R.id.sv_bugar_screening);
         tv_option_one = (TextView) findViewById(R.id.tv_option_one);
         tv_option_two = (TextView) findViewById(R.id.tv_option_two);
         tv_option_three = (TextView) findViewById(R.id.tv_option_three);
@@ -124,6 +124,9 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         CheckSet();
         btn_submit.setOnClickListener(this);
         btn_backquestion.setOnClickListener(this);
+
+        // Reset ScrollView
+        sv_bugar_screening.scrollTo(0,0);
     }
 
     private void CheckSet(){
@@ -147,7 +150,6 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         tv_option_five.setText("Sangat sering merasakan");
         tv_option_five.setOnClickListener(this);
         tv_option_five.setVisibility(View.VISIBLE);
-
     }
 
 //    public static void scrollToView(ScrollView scrollView, View view) {

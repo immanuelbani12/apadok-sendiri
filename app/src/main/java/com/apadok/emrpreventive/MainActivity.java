@@ -38,6 +38,7 @@ import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.consult.ConsultActivity;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
+import com.apadok.emrpreventive.kebugaranhistory.KebugaranHistoryActivity;
 import com.apadok.emrpreventive.screening.ConfirmRescreening;
 import com.apadok.emrpreventive.screening.KebugaranScreeningActivity;
 import com.apadok.emrpreventive.screening.ScreeningActivity;
@@ -200,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 // here you have the response from the volley.
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String Time;
                 if (sch.isEmpty()) {
                     Time = "";
@@ -357,10 +358,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
             // add on click cv kebugaran
-//            cv_kebugaran.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-////                dialog.dismiss();
+            cv_kebugaran.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                dialog.dismiss();
 //                    long differenceDays = differenceMinutes / (24 * 60);
 //                    if (differenceDays <= 3 && differenceMinutes != -1) {
 //                        DialogFragment newFragment = new ConfirmRescreening();
@@ -372,33 +373,78 @@ public class MainActivity extends AppCompatActivity {
 //                        ((ConfirmRescreening) newFragment).setUsername(UserName);
 //                        newFragment.show(getSupportFragmentManager(), "");
 //                    } else {
-//                        Intent intent = new Intent(MainActivity.this, ScreeningActivity.class);
-//                        //Pass the User ID to next activity
-//                        intent.putExtra("userid", UserId);
-//                        intent.putExtra("clinicname", ClinicName);
-//                        intent.putExtra("cliniclogo", ClinicLogo);
-//                        intent.putExtra("username", UserName);
-//                        intent.putExtra("token", Token);
-//                        startActivity(intent);
+                        Intent intent = new Intent(MainActivity.this, KebugaranScreeningActivity.class);
+                        //Pass the User ID to next activity
+                        intent.putExtra("userid", UserId);
+                        intent.putExtra("clinicname", ClinicName);
+                        intent.putExtra("cliniclogo", ClinicLogo);
+                        intent.putExtra("username", UserName);
+                        intent.putExtra("token", Token);
+                        startActivity(intent);
 //                    }
-//                }
-//        });
+                }
+        });
         dialog.show();
     };
 
     private final View.OnClickListener RedirectToHistory = v -> {
-        Intent intent = new Intent(MainActivity.this, ScreeningHistoryActivity.class);
-        //Pass the User ID to next activity
-        intent.putExtra("userid", UserId);
-        intent.putExtra("clinicname", ClinicName);
-        intent.putExtra("cliniclogo", ClinicLogo);
-        intent.putExtra("username", UserName);
-        intent.putExtra("token", Token);
-        if (!sch.isEmpty()) {
-            intent.putParcelableArrayListExtra("history",sch);
-        }
-        startActivity(intent);
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.history_option_dialog);
+        TextView tv_risiko = (TextView) dialog.findViewById(R.id.text_riwayat_risiko);
+        TextView tv_kebugaran = (TextView) dialog.findViewById(R.id.text_riwayat_kebugaran);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        tv_risiko.setTypeface(helvetica_font);
+        tv_kebugaran.setTypeface(helvetica_font);
+        CardView cv_history_first = (CardView) dialog.findViewById(R.id.cv_history_first);
+        CardView cv_history_second = (CardView) dialog.findViewById(R.id.cv_history_second);
+
+        cv_history_first.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ScreeningHistoryActivity.class);
+                //Pass the User ID to next activity
+                intent.putExtra("userid", UserId);
+                intent.putExtra("clinicname", ClinicName);
+                intent.putExtra("cliniclogo", ClinicLogo);
+                intent.putExtra("username", UserName);
+                intent.putExtra("token", Token);
+                if (!sch.isEmpty()) {
+                    intent.putParcelableArrayListExtra("history",sch);
+                }
+                startActivity(intent);
+            }
+        });
+
+        // add on click cv kebugaran
+        cv_history_second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, KebugaranHistoryActivity.class);
+                //Pass the User ID to next activity
+                intent.putExtra("userid", UserId);
+                intent.putExtra("clinicname", ClinicName);
+                intent.putExtra("cliniclogo", ClinicLogo);
+                intent.putExtra("username", UserName);
+                intent.putExtra("token", Token);
+                startActivity(intent);
+            }
+        });
+        dialog.show();
     };
+
+//    private final View.OnClickListener RedirectToHistory = v -> {
+//        Intent intent = new Intent(MainActivity.this, ScreeningHistoryActivity.class);
+//        //Pass the User ID to next activity
+//        intent.putExtra("userid", UserId);
+//        intent.putExtra("clinicname", ClinicName);
+//        intent.putExtra("cliniclogo", ClinicLogo);
+//        intent.putExtra("username", UserName);
+//        intent.putExtra("token", Token);
+//        if (!sch.isEmpty()) {
+//            intent.putParcelableArrayListExtra("history",sch);
+//        }
+//        startActivity(intent);
+//    };
 
     private final View.OnClickListener RedirectToConsult = v -> {
         Intent intent = new Intent(MainActivity.this, ConsultActivity.class);

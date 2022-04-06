@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment;
 
 public class ConfirmExiting extends DialogFragment {
     private String message;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction

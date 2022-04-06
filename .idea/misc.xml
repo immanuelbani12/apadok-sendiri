@@ -60,6 +60,7 @@
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_encyclopedia.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_encyclopedia_detail.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_home_page.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_kebugaran_screening.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_main_old.xml" value="0.12360688956433637" />
@@ -70,8 +71,10 @@
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_stroke_form.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_stroke_result.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_test_login.xml" value="0.4" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/history_option_dialog.xml" value="0.13645833333333332" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/item_screening_history.xml" value="0.4" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/item_screening_history_old.xml" value="0.11354166666666667" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/screening_option_dialog.xml" value="0.13645833333333332" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/toolbar.xml" value="0.4" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/toolbar_with_back_button.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />

@@ -1,10 +1,7 @@
 package com.apadok.emrpreventive.screening;
 
 import android.content.Intent;
-import android.graphics.text.LineBreaker;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,18 +9,20 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 
-import com.android.volley.VolleyLog;
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.common.PopUpMessage;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class KebugaranScreeningResultActivity extends AppCompatActivity {
@@ -82,9 +81,20 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         // time_result.setText("Mengolah Data....");
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
+
+        DialogFragment newFragment = new PopUpMessage();
+        // Set Message
+        ((PopUpMessage) newFragment).setMessage("Fitur masih dalam tahap pengembangan");
+        newFragment.show(getSupportFragmentManager(), "");
     }
 
     private void setupJson() {
+
+        Date currentTime = Calendar.getInstance().getTime();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        time_result.setText(formatter.format(currentTime));
 
         answers = getIntent().getParcelableArrayListExtra("Answers");
         for (int i=0; i<13; i++){

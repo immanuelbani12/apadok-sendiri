@@ -5,10 +5,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Blob;
-import java.util.ArrayList;
-import java.util.Date;
-
 
 @Entity(tableName = "users")
 public class UserEntity {
@@ -25,7 +21,7 @@ public class UserEntity {
     @ColumnInfo(name = "token")
     String token;
 
-    @ColumnInfo(name = "cliniclogo",typeAffinity = ColumnInfo.BLOB)
+    @ColumnInfo(name = "cliniclogo", typeAffinity = ColumnInfo.BLOB)
     byte[] cliniclogo;
 
     @ColumnInfo(name = "isonline")

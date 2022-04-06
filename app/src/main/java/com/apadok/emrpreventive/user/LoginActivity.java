@@ -54,39 +54,36 @@ public class LoginActivity extends AppCompatActivity {
         setupItemView();
     }
 
-    private void setupItemView(){
+    private void setupItemView() {
         //Button
         btn_masuk = (Button) findViewById(R.id.btn_masuk);
 //        tv_support_by = (TextView) findViewById(R.id.support_by);
         phone_text = (TextView) findViewById(R.id.phone_text);
         phone_input = (EditText) findViewById(R.id.phone_input);
 
-        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
 //        tv_support_by.setTypeface(helvetica_font);
         btn_masuk.setTypeface(helvetica_font);
         btn_masuk.setEnabled(false);
         phone_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
 
-        phone_input.addTextChangedListener(new EmptyTextWatcher()
-        {
+        phone_input.addTextChangedListener(new EmptyTextWatcher() {
 
             @Override
-            public void onEmptyField()
-            {
+            public void onEmptyField() {
                 btn_masuk.setEnabled(false);
             }
 
             @Override
-            public void onFilledField()
-            {
+            public void onFilledField() {
                 btn_masuk.setEnabled(true);
             }
         });
 
         btn_masuk.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                phone_input = (EditText)findViewById(R.id.phone_input);
+                phone_input = (EditText) findViewById(R.id.phone_input);
                 String count = phone_input.getText().toString();
                 setupJson(count);
             }
@@ -108,13 +105,14 @@ public class LoginActivity extends AppCompatActivity {
     private void setupJson(String phonenum) {
         //Construct Obj with Phonenum + Change Obj to string then to JSON
         User Obj = new User(phonenum);
-        Type user = new TypeToken<User>() {}.getType();
+        Type user = new TypeToken<User>() {
+        }.getType();
         String json = gson.toJson(Obj, user);
 
         // Send JSON ke API & Parse Respons di createcall
         // Parse JSON Respons di createcall
         // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
-        createCalls(json,new VolleyCallBack() {
+        createCalls(json, new VolleyCallBack() {
 
             @Override
             public void onSuccess() {

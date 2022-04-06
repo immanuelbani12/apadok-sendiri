@@ -33,6 +33,9 @@
             android:name=".screening.KebugaranScreeningResultActivity"
             android:exported="false" />
         <activity
+            android:name=".kebugaranhistory.KebugaranHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".encyclopedia.EncyclopediaActivity"
             android:exported="false" />
         <activity
