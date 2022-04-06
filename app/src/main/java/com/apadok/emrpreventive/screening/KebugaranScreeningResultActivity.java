@@ -79,7 +79,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         btn_education = (Button) findViewById(R.id.btn_education);
 
         title_result.setText("Hasil Skrining");
-        time_result.setText("Mengolah Data....");
+        // time_result.setText("Mengolah Data....");
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
     }
