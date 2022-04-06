@@ -32,7 +32,7 @@
                 android:layout_marginBottom="10dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_medicine_orange" />
+                android:src="@drawable/ic_screening_history" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                 android:layout_marginBottom="10dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_fitness" />
+                android:src="@drawable/ic_fitness_history" />
 
             <LinearLayout
                 android:layout_width="match_parent"
