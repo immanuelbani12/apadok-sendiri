@@ -18,6 +18,9 @@ public interface UserDao {
     @Query("SELECT * FROM users WHERE userid=:id")
     UserEntity getUserById(int id);
 
+    @Query("SELECT * FROM users LIMIT 1")
+    UserEntity getUser();
+
     @Insert
     long insert(UserEntity user);
 

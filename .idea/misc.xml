@@ -57,7 +57,9 @@
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/ic_baseline_people_24.xml" value="0.1" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/ic_doctor.xml" value="0.1" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/ic_fitness.xml" value="0.1" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/ic_fitness_history.xml" value="0.1125" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/ic_medicine.xml" value="0.1465" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/ic_nearest_clinic.xml" value="0.1" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/drawable/selected_option_border_bg.xml" value="0.1245" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_chatbot_temporary.xml" value="0.25" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_consult.xml" value="0.1" />
@@ -68,6 +70,7 @@
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_main_old.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_nearest_clinic.xml" value="0.176" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_screening.xml" value="0.17552334943639292" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_screening_history.xml" value="0.1980018165304269" />
         <entry key="..\:/Users/MSI-p/AndroidStudioProjects/EMRPreventive2/app/src/main/res/layout/activity_screening_result.xml" value="0.2" />

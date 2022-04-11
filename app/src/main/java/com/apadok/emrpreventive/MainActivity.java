@@ -37,6 +37,7 @@ import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.consult.ConsultActivity;
+import com.apadok.emrpreventive.consult.NearestClinicActivity;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.kebugaranhistory.KebugaranHistoryActivity;
 import com.apadok.emrpreventive.screening.ConfirmRescreening;
@@ -109,13 +110,17 @@ public class MainActivity extends AppCompatActivity {
             ClinicLogo = getIntent().getStringExtra("cliniclogo");
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
+//                Change this code if cant login
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 //                finish();
             } else {
                 //Name Toast
-                CharSequence text = "Anda berhasil Sign-In";
+                CharSequence text = "Anda berhasil Sign-In sebagai member " + ClinicName;
+                if (ClinicName.contains("Apadok")){
+                    text = "Anda berhasil Sign-In sebagai non-member klinik";
+                }
                 int duration = Toast.LENGTH_SHORT;
 
                 Toast toast = Toast.makeText(getBaseContext(), text, duration);
@@ -134,6 +139,15 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
 //            Jika User Ada dan Sudah Login sebelumnya
+//            //Uncomment buat selamat datang toast kalau udah pernah login sebelumnya
+//            CharSequence text = "Selamat datang kembali member " + ClinicName;
+//            if (ClinicName.contains("Apadok")){
+//                text = "Selamat datang kembali non-member klinik";
+//            }
+//            int duration = Toast.LENGTH_SHORT;
+//
+//            Toast toast = Toast.makeText(getBaseContext(), text, duration);
+//            toast.show();
             setupJson();
         }
     }
@@ -180,6 +194,13 @@ public class MainActivity extends AppCompatActivity {
         btn_history_screening.setEnabled(false);
         btn_consult.setOnClickListener(RedirectToConsult);
         btn_consult.setEnabled(false);
+
+        if (ClinicName != null){
+            if (ClinicName.contains("Apadok")){
+                btn_consult.setText("Pencarian Klinik");
+                btn_consult.setOnClickListener(RedirectToNearestClinic);
+            }
+        }
 
         // This callback will only be called when MyFragment is at least Started.
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
@@ -460,6 +481,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     };
 
-
+    private final View.OnClickListener RedirectToNearestClinic= v -> {
+        Intent intent = new Intent(MainActivity.this, NearestClinicActivity.class);
+        //Pass the User ID to next activity
+        intent.putExtra("userid", UserId);
+        intent.putExtra("clinicname", ClinicName);
+        intent.putExtra("cliniclogo", ClinicLogo);
+        intent.putExtra("username", UserName);
+        intent.putExtra("token", Token);
+        startActivity(intent);
+    };
 
 }

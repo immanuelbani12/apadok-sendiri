@@ -31,7 +31,7 @@ public class PemeriksaanListViewModel extends AndroidViewModel {
         return pemeriksaans;
     }
 
-    public PemeriksaanEntity getNote(int id) throws ExecutionException, InterruptedException {
+    public PemeriksaanEntity getPemeriksaan(int id) throws ExecutionException, InterruptedException {
         return mRepository.getPemeriksaan(id);
     }
 
