@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Allow this application to access whatsapp directly -->
     <queries>
         <package android:name="com.whatsapp" />
+        <package android:name="com.google.android.apps.maps" />
     </queries>
 
     <application

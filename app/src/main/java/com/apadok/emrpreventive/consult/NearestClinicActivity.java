@@ -1,6 +1,7 @@
 package com.apadok.emrpreventive.consult;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -72,18 +73,36 @@ public class NearestClinicActivity extends AppCompatActivity {
 
 
     private View.OnClickListener openNearestClinic = v -> {
+        PackageManager packageManager = NearestClinicActivity.this.getPackageManager();
         // Search for Clinics nearby
         Uri gmmIntentUri = Uri.parse("geo:0,0?q=Klinik");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
-        startActivity(mapIntent);
+        if (mapIntent.resolveActivity(packageManager) != null) {
+            startActivity(mapIntent);
+        } else {
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.apps.maps"));
+            startActivity(viewIntent);
+//                KToast.errorToast(StrokeResultActivity.this, getString(R.string.no_whatsapp), Gravity.BOTTOM, KToast.LENGTH_SHORT);
+        }
     };
 
     private final View.OnClickListener openApadokClinic = v -> {
+        PackageManager packageManager = NearestClinicActivity.this.getPackageManager();
         // Search for Clinics nearby
         Uri gmmIntentUri = Uri.parse("geo:0,0?q=Klinik Permata Medika Insani");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
-        startActivity(mapIntent);
+        if (mapIntent.resolveActivity(packageManager) != null) {
+            startActivity(mapIntent);
+        } else {
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.apps.maps"));
+            startActivity(viewIntent);
+//                KToast.errorToast(StrokeResultActivity.this, getString(R.string.no_whatsapp), Gravity.BOTTOM, KToast.LENGTH_SHORT);
+        }
     };
 }
