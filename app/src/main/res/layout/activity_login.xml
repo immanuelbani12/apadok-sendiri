@@ -101,6 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/button_radius"
                     android:text="Masuk"
                     android:textAllCaps="false"
@@ -108,11 +109,30 @@
                     android:textSize="18sp"
                     android:layout_gravity="center"/>
 
+                <TextView
+                android:id="@+id/additional_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bukan member klinik dan belum punya akun?"
+                android:textColor="@color/black_font"
+                android:textSize="14sp"
+                android:layout_marginBottom="2dp"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Daftar sekarang."
+                    android:textColor="@color/orange_main"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
             </LinearLayout>
-
-
-
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 

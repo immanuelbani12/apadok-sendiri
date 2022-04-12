@@ -1,5 +1,8 @@
 package com.apadok.emrpreventive.encyclopedia;
 
+import android.graphics.Typeface;
+import android.graphics.text.LineBreaker;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -96,6 +100,17 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
         tv_diabetes = (TextView) findViewById(R.id.diabetes_title);
         tv_stroke = (TextView) findViewById(R.id.stroke_title);
         tv_cardiovascular = (TextView) findViewById(R.id.cardiovascular_title);
+
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
+        tv_title.setTypeface(helvetica_font);
+        tv_result.setTypeface(helvetica_font);
+        tv_diabetes.setTypeface(helvetica_font);
+        tv_stroke.setTypeface(helvetica_font);
+        tv_cardiovascular.setTypeface(helvetica_font);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            tv_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+        }
 
         int position = getIntent().getIntExtra("position", 0);
         tv_title.setText(getIntent().getStringExtra("judul_artikel"));

@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Res/Layout Variables
     private Button btn_masuk;
-    private TextView tv_support_by, phone_text;
+    private TextView tv_support_by, phone_text, additional_text, register_text;
     private EditText phone_input;
 
     @Override
@@ -60,11 +60,15 @@ public class LoginActivity extends AppCompatActivity {
 //        tv_support_by = (TextView) findViewById(R.id.support_by);
         phone_text = (TextView) findViewById(R.id.phone_text);
         phone_input = (EditText) findViewById(R.id.phone_input);
+        additional_text = (TextView) findViewById(R.id.additional_text);
+        register_text = (TextView) findViewById(R.id.register);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
 //        tv_support_by.setTypeface(helvetica_font);
         btn_masuk.setTypeface(helvetica_font);
         btn_masuk.setEnabled(false);
+        additional_text.setTypeface(helvetica_font);
+        register_text.setTypeface(helvetica_font);
         phone_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
 
@@ -80,6 +84,9 @@ public class LoginActivity extends AppCompatActivity {
                 btn_masuk.setEnabled(true);
             }
         });
+
+//        connect text view to sign up activity
+//        register_text.setOnClickListener();
 
         btn_masuk.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
