@@ -76,6 +76,11 @@ public class SignupActivity extends AppCompatActivity {
         group_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
 
+        DialogFragment newFragment = new PopUpMessage();
+        // Set Message
+        ((PopUpMessage) newFragment).setMessage("Fitur masih dalam tahap pengembangan");
+        newFragment.show(getSupportFragmentManager(), "");
+
         name_input.addTextChangedListener(new EmptyTextWatcher() {
 
             @Override
