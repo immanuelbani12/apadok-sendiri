@@ -1,6 +1,7 @@
 package com.apadok.emrpreventive.screeninghistory;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.SetupToolbar;
@@ -66,6 +68,17 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         safe_result = (TextView) findViewById(R.id.safe_result);
         btn_consult = (Button) findViewById(R.id.btn_consult);
         btn_education = (Button) findViewById(R.id.btn_education);
+
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        title_result.setTypeface(helvetica_font);
+        time_result.setTypeface(helvetica_font);
+        diabetes_result.setTypeface(helvetica_font);
+        stroke_result.setTypeface(helvetica_font);
+        cardiovascular_result.setTypeface(helvetica_font);
+        dangerous_result.setTypeface(helvetica_font);
+        safe_result.setTypeface(helvetica_font);
+        btn_consult.setTypeface(helvetica_font);
+        btn_education.setTypeface(helvetica_font);
 
         int position = getIntent().getIntExtra("position", 0);
         title_result.setText("Riwayat Skrining "+ position);

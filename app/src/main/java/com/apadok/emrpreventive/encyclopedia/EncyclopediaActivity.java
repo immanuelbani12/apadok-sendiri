@@ -1,5 +1,6 @@
 package com.apadok.emrpreventive.encyclopedia;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.AuthFailureError;
@@ -69,6 +71,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
         CreateFormList();
         eclnew = FilterEncyclopedia();
         l = findViewById(R.id.history_screening);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
         EncyclopediaAdapter numbersArrayAdapter = new EncyclopediaAdapter(getBaseContext(), eclnew);
         l.setAdapter(numbersArrayAdapter);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {

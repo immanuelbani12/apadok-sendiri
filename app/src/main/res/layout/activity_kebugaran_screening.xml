@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 tools:text="Pertanyaan 1?" />
 
             <LinearLayout

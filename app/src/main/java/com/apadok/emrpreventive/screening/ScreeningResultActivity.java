@@ -1,6 +1,7 @@
 package com.apadok.emrpreventive.screening;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.AuthFailureError;
@@ -97,6 +99,17 @@ public class ScreeningResultActivity extends AppCompatActivity {
         safe_result = (TextView) findViewById(R.id.safe_result);
         btn_consult = (Button) findViewById(R.id.btn_consult);
         btn_education = (Button) findViewById(R.id.btn_education);
+
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        title_result.setTypeface(helvetica_font);
+        time_result.setTypeface(helvetica_font);
+        diabetes_result.setTypeface(helvetica_font);
+        stroke_result.setTypeface(helvetica_font);
+        cardiovascular_result.setTypeface(helvetica_font);
+        dangerous_result.setTypeface(helvetica_font);
+        safe_result.setTypeface(helvetica_font);
+        btn_consult.setTypeface(helvetica_font);
+        btn_education.setTypeface(helvetica_font);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             safe_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);

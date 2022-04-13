@@ -1,6 +1,7 @@
 package com.apadok.emrpreventive.screening;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.apadok.emrpreventive.R;
@@ -76,6 +78,13 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         kebugaran_result = (TextView) findViewById(R.id.screening_result);
         kebugaran_category = (TextView) findViewById(R.id.kebugaran_result);
         btn_education = (Button) findViewById(R.id.btn_education);
+
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        title_result.setTypeface(helvetica_font);
+        time_result.setTypeface(helvetica_font);
+        kebugaran_category.setTypeface(helvetica_font);
+        btn_education.setTypeface(helvetica_font);
+        kebugaran_result.setTypeface(helvetica_font);
 
         title_result.setText("Hasil Skrining");
         // time_result.setText("Mengolah Data....");
