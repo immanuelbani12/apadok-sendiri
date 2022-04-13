@@ -204,7 +204,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 "•\tMakan dengan porsi yang lebih kecil.\n" +
                 "•\tCobalah untuk menurunkan 7 persen berat badan Anda jika Anda kelebihan berat badan atau obesitas. \n" +
                 "•\tMengurangi konsumsi makanan dan minuman yang manis\n" +
-                "•\tHindari makanan junkfood, alcohol, dan mengandung kolesterol tinggi\n","2","https://www.youtube.com/watch?v=Fa7Cuqe1c-Q","",""));
+                "•\tHindari makanan junkfood, alcohol, dan mengandung kolesterol tinggi\n","2","https://youtube.com/shorts/vgQL3cdiFXU?feature=share","",""));
         ecl.add(new Encyclopedia("3","Judul Artikel Kardiovaskular","Penyakit jantung merupakan penyebab kematian utama di dunia. Penyakit jantung mengacu pada setiap kondisi yang mempengaruhi jantung. Ada banyak jenis penyakit jantung, diantaranya adalah: penyakit jantung coroner, gagal jantung, kardiomiopati, aritmia, dan penyakit jantung bawaaan.\n" +
                 "\n" +
                 "Gejala yang sering muncul pada penyakit jantung:\n" +
@@ -230,6 +230,6 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 "•\tMempertahankan berat badan sedang: Indeks massa tubuh (BMI) yang sehat biasanya antara 20 dan 25. Orang dapat memeriksa BMI mereka di sini.\n" +
                 "•\tBerhenti atau menghindari merokok: Merokok merupakan faktor risiko utama untuk kondisi jantung dan kardiovaskular.\n" +
                 "•\tMembatasi asupan alkohol: Wanita tidak boleh mengonsumsi lebih dari satu minuman standar per hari, dan pria tidak boleh mengonsumsi lebih dari dua minuman standar per hari.\n" +
-                "•\tMengelola kondisi yang mendasari: Carilah pengobatan untuk kondisi yang mempengaruhi kesehatan jantung, seperti tekanan darah tinggi, obesitas, dan diabetes.\n","3","https://www.youtube.com/watch?v=LYCYMf6TgLc","",""));
+                "•\tMengelola kondisi yang mendasari: Carilah pengobatan untuk kondisi yang mempengaruhi kesehatan jantung, seperti tekanan darah tinggi, obesitas, dan diabetes.\n","3","https://youtube.com/shorts/WiwXDhLkTrg?feature=share","",""));
     }
 }
