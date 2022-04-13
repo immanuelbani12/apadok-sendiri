@@ -10,10 +10,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_first"
         android:layout_width="269dp"
-        android:layout_height="208dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@android:color/white"
+        android:background="@drawable/color_card_view"
         app:cardCornerRadius="8dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
@@ -22,7 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/color_card_view"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -58,10 +58,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_second"
         android:layout_width="269dp"
-        android:layout_height="221dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@android:color/white"
+        android:background="@drawable/color_card_view"
         app:cardCornerRadius="8dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
@@ -70,7 +70,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/color_card_view"
             android:orientation="vertical"
             android:padding="16dp">
 
