@@ -76,25 +76,6 @@ public class SignupActivity extends AppCompatActivity {
         group_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
 
-        phone_input.addTextChangedListener(new EmptyTextWatcher() {
-
-            @Override
-            public void onEmptyField() {
-                btn_signup.setEnabled(false);
-            }
-
-            @Override
-            public void onFilledField() {
-                if (name_input.getText().toString().length() > 0
-                        && phone_input.getText().toString().length() > 0
-                        && group_input.getText().toString().length() > 0) {
-                    btn_signup.setEnabled(true);
-                } else {
-                    btn_signup.setEnabled(false);
-                }
-            }
-        });
-
         name_input.addTextChangedListener(new EmptyTextWatcher() {
 
             @Override
