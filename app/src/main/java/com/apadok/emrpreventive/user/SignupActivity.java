@@ -28,9 +28,6 @@ import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.EmptyTextWatcher;
 import com.apadok.emrpreventive.common.PopUpMessage;
 import com.apadok.emrpreventive.common.VolleyCallBack;
-import com.apadok.emrpreventive.consult.NearestClinicActivity;
-import com.apadok.emrpreventive.screening.ConfirmRescreening;
-import com.apadok.emrpreventive.screening.ScreeningActivity;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -38,7 +35,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 
-public class LoginActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     // API Variables
     private Gson gson = new Gson();
@@ -46,62 +43,111 @@ public class LoginActivity extends AppCompatActivity {
     private String login_res = "";
 
     // Res/Layout Variables
-    private Button btn_masuk;
-    private TextView tv_support_by, phone_text, additional_text, register_text;
-    private EditText phone_input;
+    private Button btn_login;
+    private TextView tv_support_by, phone_text, additional_text, login_text, btn_signup;
+    private EditText name_input, phone_input, group_input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_signup);
         setupItemView();
     }
 
     private void setupItemView() {
         //Button
-        btn_masuk = (Button) findViewById(R.id.btn_masuk);
+        btn_signup = (Button) findViewById(R.id.btn_signup);
 //        tv_support_by = (TextView) findViewById(R.id.support_by);
         phone_text = (TextView) findViewById(R.id.phone_text);
+        name_input = (EditText) findViewById(R.id.name_input);
         phone_input = (EditText) findViewById(R.id.phone_input);
+        group_input = (EditText) findViewById(R.id.group_input);
         additional_text = (TextView) findViewById(R.id.additional_text);
-        register_text = (TextView) findViewById(R.id.register);
+        login_text = (TextView) findViewById(R.id.login);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
 //        tv_support_by.setTypeface(helvetica_font);
-        btn_masuk.setTypeface(helvetica_font);
-        btn_masuk.setEnabled(false);
+        btn_signup.setTypeface(helvetica_font);
+        btn_signup.setEnabled(false);
         additional_text.setTypeface(helvetica_font);
-        register_text.setTypeface(helvetica_font);
+        login_text.setTypeface(helvetica_font);
+        name_input.setTypeface(helvetica_font);
         phone_input.setTypeface(helvetica_font);
+        group_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
+
+        name_input.addTextChangedListener(new EmptyTextWatcher() {
+
+            @Override
+            public void onEmptyField() {
+                btn_signup.setEnabled(false);
+            }
+
+            @Override
+            public void onFilledField() {
+                if (name_input.getText().toString().length() > 0
+                        && phone_input.getText().toString().length() > 0
+                        && group_input.getText().toString().length() > 0) {
+                    btn_signup.setEnabled(true);
+                } else {
+                    btn_signup.setEnabled(false);
+                }
+            }
+        });
 
         phone_input.addTextChangedListener(new EmptyTextWatcher() {
 
             @Override
             public void onEmptyField() {
-                btn_masuk.setEnabled(false);
+                btn_signup.setEnabled(false);
             }
 
             @Override
             public void onFilledField() {
-                btn_masuk.setEnabled(true);
+                if (name_input.getText().toString().length() > 0
+                        && phone_input.getText().toString().length() > 0
+                        && group_input.getText().toString().length() > 0) {
+                    btn_signup.setEnabled(true);
+                } else {
+                    btn_signup.setEnabled(false);
+                }
+            }
+        });
+
+        group_input.addTextChangedListener(new EmptyTextWatcher() {
+
+            @Override
+            public void onEmptyField() {
+                btn_signup.setEnabled(false);
+            }
+
+            @Override
+            public void onFilledField() {
+                if (name_input.getText().toString().length() > 0
+                        && phone_input.getText().toString().length() > 0
+                        && group_input.getText().toString().length() > 0) {
+                    btn_signup.setEnabled(true);
+                } else {
+                    btn_signup.setEnabled(false);
+                }
             }
         });
 
 //        connect text view to sign up activity
-        register_text.setOnClickListener(new View.OnClickListener() {
+        login_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
-        );
+        });
 
-        btn_masuk.setOnClickListener(new View.OnClickListener() {
+        btn_signup.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                name_input = (EditText) findViewById(R.id.name_input);
                 phone_input = (EditText) findViewById(R.id.phone_input);
-                String count = phone_input.getText().toString();
+                group_input = (EditText) findViewById(R.id.group_input);
+                String count = name_input.getText().toString() + phone_input.getText().toString() + group_input.getText().toString();
                 setupJson(count);
             }
         });
@@ -139,7 +185,7 @@ public class LoginActivity extends AppCompatActivity {
                 String token = returnvalue.get("token").isJsonNull() ? "" : returnvalue.get("token").getAsString();
                 String clinicname = returnvalue.get("nama_klinik").isJsonNull() ? "" : returnvalue.get("nama_klinik").getAsString();
                 String cliniclogo = returnvalue.get("logo_klinik").isJsonNull() ? "" : returnvalue.get("logo_klinik").getAsString();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
                 intent.putExtra("clinicname", clinicname);
@@ -151,10 +197,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onError() {
-                phone_input.getText().clear();
                 DialogFragment newFragment = new PopUpMessage();
                 // Set Message
-                ((PopUpMessage) newFragment).setMessage("Akun tidak dapat ditemukan, silahkan coba lagi");
+                ((PopUpMessage) newFragment).setMessage("Terdapat kesalahan saat pembuatan akun, silahkan cek kembali data - data yang telah diisikan");
                 newFragment.show(getSupportFragmentManager(), "");
             }
         });

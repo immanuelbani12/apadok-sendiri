@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.apadok.emrpreventive.user.LoginActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_medicine" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/clinic"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/white"-->
+<!--                android:padding="16dp"-->
+<!--                android:text="@string/clinic_name"-->
+<!--                android:gravity="center"-->
+<!--                android:textColor="@color/black_font"-->
+<!--                android:textSize="19dp" />-->
+
+            <LinearLayout
+                android:id="@+id/footer"
+                android:layout_width="159dp"
+                android:layout_height="36dp"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:layout_gravity="center">
+
+
+
+                <ImageView
+                    android:layout_width="127dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/apadok_logo_crop" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:paddingHorizontal="10dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/name_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama"
+                    android:textColor="@color/black_font"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="left"/>
+
+                <EditText
+                    android:id="@+id/name_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:layout_marginBottom="10dp"
+                    android:hint="John Doe"
+                    android:background="@drawable/input_text"
+                    android:gravity="center"
+                    android:inputType="text"/>
+
+                <TextView
+                    android:id="@+id/phone_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="10dp"
+                    android:text="Nomor Handphone"
+                    android:textColor="@color/black_font"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/phone_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/input_text"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="0812345xxx"
+                    android:inputType="phone" />
+
+                <TextView
+                    android:id="@+id/group_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="10dp"
+                    android:text="Kode Grup"
+                    android:textColor="@color/black_font"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/group_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/input_text"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="A0x"
+                    android:inputType="text" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_signup"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_radius"
+                    android:text="Daftar"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                android:id="@+id/additional_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sudah punya akun?"
+                android:textColor="@color/black_font"
+                android:textSize="14sp"
+                android:layout_marginBottom="2dp"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Masuk sekarang."
+                    android:textColor="@color/orange_main"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</ScrollView>
