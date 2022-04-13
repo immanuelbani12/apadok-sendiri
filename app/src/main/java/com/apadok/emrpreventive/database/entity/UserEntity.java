@@ -15,6 +15,9 @@ public class UserEntity {
     @ColumnInfo(name = "username")
     String username;
 
+    @ColumnInfo(name = "role")
+    String role;
+
     @ColumnInfo(name = "clinicname")
     String clinicname;
 
@@ -76,9 +79,18 @@ public class UserEntity {
         this.cliniclogo = cliniclogo;
     }
 
-    public UserEntity(int userid, String username, String clinicname, String token, byte[] cliniclogo, Boolean isonline) {
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public UserEntity(int userid, String username, String role, String clinicname, String token, byte[] cliniclogo, Boolean isonline) {
         this.userid = userid;
         this.username = username;
+        this.role = role;
         this.clinicname = clinicname;
         this.token = token;
         this.cliniclogo = cliniclogo;

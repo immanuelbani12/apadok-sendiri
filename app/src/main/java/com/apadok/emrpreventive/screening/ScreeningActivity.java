@@ -34,7 +34,7 @@ import java.util.Calendar;
 public class ScreeningActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Question Length is 18 as for Now, Check Res/Layout to adjust Progress Bar
-    // Use FormAnswer[18] to put Identifier or Primary Key for User
+    // Use FormAnswer[19] to put Identifier or Primary Key for User
     private Form[] forms = new Form[18];
     private FormAnswer[] answer = new FormAnswer[19];
 

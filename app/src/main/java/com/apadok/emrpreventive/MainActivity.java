@@ -39,6 +39,7 @@ import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.consult.ConsultActivity;
 import com.apadok.emrpreventive.consult.NearestClinicActivity;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
+import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
 import com.apadok.emrpreventive.kebugaranhistory.KebugaranHistoryActivity;
 import com.apadok.emrpreventive.screening.ConfirmRescreening;
 import com.apadok.emrpreventive.screening.KebugaranScreeningActivity;
@@ -69,17 +70,18 @@ public class MainActivity extends AppCompatActivity {
     // API return variables
     private Gson gson = new Gson();
     private ArrayList<PemeriksaanEntity> sch;
+    private ArrayList<PemeriksaanKebugaranEntity> sch_bugar;
     private long differenceMinutes;
     private String ErrorMsg;
+    private Boolean IsLatestScreenBugar;
 
     // Res/Layout Variables
     private Button btn_screening, btn_history_screening, btn_consult;
     private TextView tv_subtitle, tv_greet, tv_risiko, tv_kebugaran;
-    private CardView cv_risiko, cv_kebugaran;
 
     // Intent Variables
     private int UserId;
-    private String Token,UserName,ClinicName,ClinicLogo;
+    private String Token,UserName,Role,ClinicName,ClinicLogo;
 
     @Override
     protected void onRestart() {
@@ -100,12 +102,14 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         UserId = sharedPref.getInt("useridlocal", 0);
         UserName = sharedPref.getString("usernamelocal", "");
+        Role = sharedPref.getString("rolelocal", "");
         ClinicName = sharedPref.getString("clinicnamelocal", "");
         ClinicLogo = sharedPref.getString("cliniclogolocal", "");
         Token = sharedPref.getString("tokenlocal", "");
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("userid", 0);
             UserName = getIntent().getStringExtra("username");
+            Role = getIntent().getStringExtra("role");
             ClinicName = getIntent().getStringExtra("clinicname");
             ClinicLogo = getIntent().getStringExtra("cliniclogo");
             Token = getIntent().getStringExtra("token");
@@ -118,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 //Name Toast
                 CharSequence text = "Anda berhasil Sign-In sebagai member " + ClinicName;
-                if (ClinicName.contains("Apadok")){
+                if (Role.equals("N")){
                     text = "Anda berhasil Sign-In sebagai non-member klinik";
                 }
                 int duration = Toast.LENGTH_SHORT;
@@ -131,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt("useridlocal", UserId);
                 editor.putString("usernamelocal", UserName);
+                editor.putString("rolelocal", Role);
                 editor.putString("clinicnamelocal", ClinicName);
                 editor.putString("cliniclogolocal", ClinicLogo);
                 editor.putString("tokenlocal", Token);
@@ -195,8 +200,8 @@ public class MainActivity extends AppCompatActivity {
         btn_consult.setOnClickListener(RedirectToConsult);
         btn_consult.setEnabled(false);
 
-        if (ClinicName != null){
-            if (ClinicName.contains("Apadok")){
+        if (Role != null){
+            if (Role.equals("N")){
                 btn_consult.setText("Pencarian Klinik");
                 btn_consult.setOnClickListener(RedirectToNearestClinic);
             }
@@ -217,20 +222,46 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupJson() {
         //NO API Form Data Yet(No Need)
-        createCalls("",new VolleyCallBack() {
+        createCalls(new VolleyCallBack() {
 
+            @Override
+            public void onSuccess() {
+                // here you have the response from the volley.
+                setup2ndJson();
+            }
+
+            @Override
+            public void onError() {
+                // do nothing
+            }
+        });
+        VolleyLog.DEBUG = true;
+    }
+
+    private void setup2ndJson() {
+        create2ndCalls(new VolleyCallBack() {
             @Override
             public void onSuccess() {
                 // here you have the response from the volley.
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String Time;
-                if (sch.isEmpty()) {
+                if (sch.isEmpty() && sch_bugar.isEmpty()) {
                     Time = "";
                 } else {
-                    if (sch.get(0).getUpdated_at() == null) {
-                        Time = sch.get(0).getCreated_at();
+                    if (sch.isEmpty()){
+                        IsLatestScreenBugar = true;
+                        if (sch_bugar.get(0).getUpdated_at() == null) {
+                            Time = sch_bugar.get(0).getCreated_at();
+                        } else {
+                            Time = sch_bugar.get(0).getUpdated_at();
+                        }
                     } else {
-                        Time = sch.get(0).getUpdated_at();
+                        IsLatestScreenBugar = false;
+                        if (sch.get(0).getUpdated_at() == null) {
+                            Time = sch.get(0).getCreated_at();
+                        } else {
+                            Time = sch.get(0).getUpdated_at();
+                        }
                     }
                 }
                 try {
@@ -273,10 +304,12 @@ public class MainActivity extends AppCompatActivity {
                 tv_subtitle.setText(ErrorMsg);
             }
         });
-        VolleyLog.DEBUG = true;
+        // Temporary Disables this until next update
+        // Call 2nd API
     }
 
-    private void createCalls(String json, final VolleyCallBack callback) {
+    private void createCalls(final VolleyCallBack callback) {
+        String json = null;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get Latest ID Pemeriksaan from User 1
         String URL = "http://178.128.25.139:8080/api/pemeriksaan/userAll/"+UserId;
@@ -286,6 +319,71 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("VOLLEY", response);
                 Type screenhistory = new TypeToken<List<PemeriksaanEntity>>() {}.getType();
                 sch = gson.fromJson(response, screenhistory);
+                // Panggil Fungsi API Lain, Simpen ke SQLite
+                callback.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VOLLEY", error.toString());
+                ErrorMsg = ""; // error message, show it in toast or dialog, whatever you want
+                if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
+                    ErrorMsg = "Tidak ada Jaringan Internet";
+                    // Panggil Fungsi Baca dari SQLite Local
+                } else if (error instanceof ServerError || error instanceof AuthFailureError) {
+//                    ErrorMsg = "Server sedang bermasalah";
+                    ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
+                    DialogFragment newFragment = new LogOutAuthError();
+                    newFragment.show(getSupportFragmentManager(), "");
+                }  else if (error instanceof ParseError) {
+                    ErrorMsg = "Ada masalah di aplikasi Apadok";
+                }
+//                else if (error instanceof AuthFailureError) {
+//                    DialogFragment newFragment = new LogOutAuthError();
+//                    newFragment.show(getSupportFragmentManager(), "");
+//                }
+                callback.onError();
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return json == null ? null : json.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
+                    return null;
+                }
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                // Basic Authentication
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
+
+                headers.put("Authorization", "Bearer " + Token);
+                return headers;
+            }
+        };
+
+        requestQueue.add(stringRequest);
+    }
+
+    private void create2ndCalls(final VolleyCallBack callback) {
+        String json = null;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //Temporarily Get Latest ID Pemeriksaan from User 1
+        String URL = "http://178.128.25.139:8080/api/pemeriksaanKebugaran/userAll/"+UserId;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("VOLLEY", response);
+                Type screenbugarhistory = new TypeToken<List<PemeriksaanKebugaranEntity>>() {}.getType();
+                sch_bugar = gson.fromJson(response, screenbugarhistory);
                 // Panggil Fungsi API Lain, Simpen ke SQLite
                 callback.onSuccess();
             }
@@ -354,9 +452,8 @@ public class MainActivity extends AppCompatActivity {
         cv_risiko.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                dialog.dismiss();
                 long differenceDays = differenceMinutes / (24 * 60);
-                if (differenceDays <= 3 && differenceMinutes != -1) {
+                if (differenceDays <= 3 && differenceMinutes != -1 && !IsLatestScreenBugar) {
                     DialogFragment newFragment = new ConfirmRescreening();
                     //Pass the User ID to next activity
                     ((ConfirmRescreening) newFragment).setUser_id(UserId);
@@ -382,18 +479,17 @@ public class MainActivity extends AppCompatActivity {
             cv_kebugaran.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                dialog.dismiss();
-//                    long differenceDays = differenceMinutes / (24 * 60);
-//                    if (differenceDays <= 3 && differenceMinutes != -1) {
-//                        DialogFragment newFragment = new ConfirmRescreening();
-//                        //Pass the User ID to next activity
-//                        ((ConfirmRescreening) newFragment).setUser_id(UserId);
-//                        ((ConfirmRescreening) newFragment).setToken(Token);
-//                        ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
-//                        ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
-//                        ((ConfirmRescreening) newFragment).setUsername(UserName);
-//                        newFragment.show(getSupportFragmentManager(), "");
-//                    } else {
+                    long differenceDays = differenceMinutes / (24 * 60);
+                    if (differenceDays <= 3 && differenceMinutes != -1 && IsLatestScreenBugar) {
+                        DialogFragment newFragment = new ConfirmRescreening();
+                        //Pass the User ID to next activity
+                        ((ConfirmRescreening) newFragment).setUser_id(UserId);
+                        ((ConfirmRescreening) newFragment).setToken(Token);
+                        ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
+                        ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
+                        ((ConfirmRescreening) newFragment).setUsername(UserName);
+                        newFragment.show(getSupportFragmentManager(), "");
+                    } else {
                         Intent intent = new Intent(MainActivity.this, KebugaranScreeningActivity.class);
                         //Pass the User ID to next activity
                         intent.putExtra("userid", UserId);
@@ -402,7 +498,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("username", UserName);
                         intent.putExtra("token", Token);
                         startActivity(intent);
-//                    }
+                    }
                 }
         });
         dialog.show();
@@ -422,17 +518,24 @@ public class MainActivity extends AppCompatActivity {
         cv_history_first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ScreeningHistoryActivity.class);
-                //Pass the User ID to next activity
-                intent.putExtra("userid", UserId);
-                intent.putExtra("clinicname", ClinicName);
-                intent.putExtra("cliniclogo", ClinicLogo);
-                intent.putExtra("username", UserName);
-                intent.putExtra("token", Token);
                 if (!sch.isEmpty()) {
+                    Intent intent = new Intent(MainActivity.this, ScreeningHistoryActivity.class);
+                    //Pass the User ID to next activity
+                    intent.putExtra("userid", UserId);
+                    intent.putExtra("clinicname", ClinicName);
+                    intent.putExtra("cliniclogo", ClinicLogo);
+                    intent.putExtra("username", UserName);
+                    intent.putExtra("token", Token);
                     intent.putParcelableArrayListExtra("history",sch);
+                    startActivity(intent);
+                } else {
+                    //Error Toast
+                    CharSequence text = "Anda tidak memiliki riwayat skrining untuk kategori ini";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(getBaseContext(), text, duration);
+                    toast.show();
                 }
-                startActivity(intent);
             }
         });
 
@@ -440,14 +543,24 @@ public class MainActivity extends AppCompatActivity {
         cv_history_second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, KebugaranHistoryActivity.class);
-                //Pass the User ID to next activity
-                intent.putExtra("userid", UserId);
-                intent.putExtra("clinicname", ClinicName);
-                intent.putExtra("cliniclogo", ClinicLogo);
-                intent.putExtra("username", UserName);
-                intent.putExtra("token", Token);
-                startActivity(intent);
+                if (!sch_bugar.isEmpty()) {
+                    Intent intent = new Intent(MainActivity.this, KebugaranHistoryActivity.class);
+                    //Pass the User ID to next activity
+                    intent.putExtra("userid", UserId);
+                    intent.putExtra("clinicname", ClinicName);
+                    intent.putExtra("cliniclogo", ClinicLogo);
+                    intent.putExtra("username", UserName);
+                    intent.putExtra("token", Token);
+                    intent.putParcelableArrayListExtra("history_bugar",sch_bugar);
+                    startActivity(intent);
+                } else {
+                    //Error Toast
+                    CharSequence text = "Anda tidak memiliki riwayat skrining untuk kategori ini";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(getBaseContext(), text, duration);
+                    toast.show();
+                }
             }
         });
         dialog.show();

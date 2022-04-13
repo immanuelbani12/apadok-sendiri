@@ -28,8 +28,8 @@ import java.util.Arrays;
 
 
 public class KebugaranScreeningActivity extends AppCompatActivity implements View.OnClickListener {
-    // Question Length is 18 as for Now, Check Res/Layout to adjust Progress Bar
-    // Use FormAnswer[18] to put Identifier or Primary Key for User
+    // Question Length is 13 as for Now, Check Res/Layout to adjust Progress Bar
+    // Use FormAnswer[14] to put Identifier or Primary Key for User
     private FormKebugaran[] forms = new FormKebugaran[13];
     private FormAnswer[] answer = new FormAnswer[14];
 
@@ -307,18 +307,18 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         forms[12] = new FormKebugaran(13,"Saya harus membatasi aktivitas sosial saya karena saya lelah");
 
         //Setup JSON Answer to be sent to API
-        answer[0] = new FormAnswer("lelah_fisik");
-        answer[1] = new FormAnswer("lemah_keseluruhan");
-        answer[2] = new FormAnswer("lesu");
-        answer[3] = new FormAnswer("lelah_fisik_dan_psikis");
-        answer[4] = new FormAnswer("kesulitan_memulai_hal");
-        answer[5] = new FormAnswer("kesulitan_menyelesaikan_hal");
-        answer[6] = new FormAnswer("memiliki_energi");
-        answer[7] = new FormAnswer("mengerjakan_aktivitas");
-        answer[8] = new FormAnswer("tidur_seharian");
-        answer[9] = new FormAnswer("lelah_makan");
-        answer[10] = new FormAnswer("bantuan_aktivitas");
-        answer[11] = new FormAnswer("merasa_frustasi");
-        answer[12] = new FormAnswer("membatasi_aktivitas_sosial");
+        answer[0] = new FormAnswer("pertanyaan_1");
+        answer[1] = new FormAnswer("pertanyaan_2");
+        answer[2] = new FormAnswer("pertanyaan_3");
+        answer[3] = new FormAnswer("pertanyaan_4");
+        answer[4] = new FormAnswer("pertanyaan_5");
+        answer[5] = new FormAnswer("pertanyaan_6");
+        answer[6] = new FormAnswer("pertanyaan_7");
+        answer[7] = new FormAnswer("pertanyaan_8");
+        answer[8] = new FormAnswer("pertanyaan_9");
+        answer[9] = new FormAnswer("pertanyaan_10");
+        answer[10] = new FormAnswer("pertanyaan_11");
+        answer[11] = new FormAnswer("pertanyaan_12");
+        answer[12] = new FormAnswer("pertanyaan_13");
     }
 }
