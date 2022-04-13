@@ -62,7 +62,7 @@ public class ConfirmArticleFormat extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                         String videoid = getVideoId(data.getLink_artikel());
-                        if (videoid == null){
+                        if (videoid == null) {
                             //Toast
                             Toast toast = Toast.makeText(getContext(), "Video Artikel Terkait Gagal Ditemukan", Toast.LENGTH_LONG);
                             toast.show();
@@ -84,7 +84,7 @@ public class ConfirmArticleFormat extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                         Intent intent = new Intent(getContext(), EncyclopediaDetailActivity.class);
-                        intent.putExtra("position", position+1);
+                        intent.putExtra("position", position + 1);
                         intent.putExtra("judul_artikel", data.getJudul_artikel());
                         intent.putExtra("isi_artikel", data.getIsi_artikel());
                         intent.putExtra("kategori_artikel", data.getKategori_artikel());
@@ -100,7 +100,7 @@ public class ConfirmArticleFormat extends DialogFragment {
     //Regex
     public static String getVideoId(String videoUrl) {
         final String expression = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?feature=player_embedded&v=|%2Fvideos%2F|embed%\u200C\u200B2F|youtu.be%2F|%2Fv%2F)[^#\\&\\?\\n]*";
-        if (videoUrl == null || videoUrl.trim().length() <= 0){
+        if (videoUrl == null || videoUrl.trim().length() <= 0) {
             return null;
         }
         Pattern pattern = Pattern.compile(expression);

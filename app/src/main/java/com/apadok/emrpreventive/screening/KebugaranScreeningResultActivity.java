@@ -41,9 +41,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +63,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
 
     // Intent Variables
     private int kebugaranval;
-    private String ClinicName,ClinicLogo;
+    private String ClinicName, ClinicLogo;
 
     // Temporary Calculation Variables
     private int[] calc = new int[20];
@@ -101,7 +98,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         kebugaran_category = (TextView) findViewById(R.id.kebugaran_result);
         btn_education = (Button) findViewById(R.id.btn_education);
 
-        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         title_result.setTypeface(helvetica_font);
         time_result.setTypeface(helvetica_font);
         kebugaran_category.setTypeface(helvetica_font);
@@ -154,13 +151,14 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
 //        }
 
         //Ubah Answers ke string trus ke JSON
-        Type answerstype = new TypeToken<List<FormAnswer>>() {}.getType();
+        Type answerstype = new TypeToken<List<FormAnswer>>() {
+        }.getType();
         String json = gson.toJson(answers, answerstype);
 
         // Send JSON ke API & Parse Respons di createcall
         // Parse JSON Respons di createcall
         // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
-        createCalls(json,new VolleyCallBack() {
+        createCalls(json, new VolleyCallBack() {
 
             @Override
             public void onSuccess() {
@@ -211,7 +209,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
                     hasil = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
                     newFragment.show(getSupportFragmentManager(), "");
-                }  else if (error instanceof ParseError) {
+                } else if (error instanceof ParseError) {
                     hasil = "Ada masalah di aplikasi Apadok";
                 }
 //                else if (error instanceof AuthFailureError) {

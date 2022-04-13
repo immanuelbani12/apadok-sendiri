@@ -15,6 +15,7 @@ public class ConfirmRescreening extends DialogFragment {
     private String clinicname;
     private String cliniclogo;
     private String username;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction

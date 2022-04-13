@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Intent Variables
     private int UserId;
-    private String Token,UserName,Role,ClinicName,ClinicLogo;
+    private String Token, UserName, Role, ClinicName, ClinicLogo;
 
     @Override
     protected void onRestart() {
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 //Name Toast
                 CharSequence text = "Anda berhasil Sign-In sebagai member " + ClinicName;
-                if (Role.equals("N")){
+                if (Role.equals("N")) {
                     text = "Anda berhasil Sign-In sebagai non-member klinik";
                 }
                 int duration = Toast.LENGTH_SHORT;
@@ -156,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
             setupJson();
         }
     }
-    private void setupItemView(){
+
+    private void setupItemView() {
         // Code to Setup Toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         tv_subtitle = (TextView) findViewById(R.id.tv_subtitle);
         tv_greet = (TextView) findViewById(R.id.tv_greet);
 
-        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         btn_screening.setTypeface(helvetica_font);
         btn_history_screening.setTypeface(helvetica_font);
         btn_consult.setTypeface(helvetica_font);
@@ -200,8 +201,8 @@ public class MainActivity extends AppCompatActivity {
         btn_consult.setOnClickListener(RedirectToConsult);
         btn_consult.setEnabled(false);
 
-        if (Role != null){
-            if (Role.equals("N")){
+        if (Role != null) {
+            if (Role.equals("N")) {
                 btn_consult.setText("Pencarian Klinik");
                 btn_consult.setOnClickListener(RedirectToNearestClinic);
             }
@@ -248,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                 if (sch.isEmpty() && sch_bugar.isEmpty()) {
                     Time = "";
                 } else {
-                    if (sch.isEmpty()){
+                    if (sch.isEmpty()) {
                         IsLatestScreenBugar = true;
                         if (sch_bugar.get(0).getUpdated_at() == null) {
                             Time = sch_bugar.get(0).getCreated_at();
@@ -312,12 +313,13 @@ public class MainActivity extends AppCompatActivity {
         String json = null;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get Latest ID Pemeriksaan from User 1
-        String URL = "http://178.128.25.139:8080/api/pemeriksaan/userAll/"+UserId;
+        String URL = "http://178.128.25.139:8080/api/pemeriksaan/userAll/" + UserId;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                Type screenhistory = new TypeToken<List<PemeriksaanEntity>>() {}.getType();
+                Type screenhistory = new TypeToken<List<PemeriksaanEntity>>() {
+                }.getType();
                 sch = gson.fromJson(response, screenhistory);
                 // Panggil Fungsi API Lain, Simpen ke SQLite
                 callback.onSuccess();
@@ -335,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
                     ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
                     newFragment.show(getSupportFragmentManager(), "");
-                }  else if (error instanceof ParseError) {
+                } else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }
 //                else if (error instanceof AuthFailureError) {
@@ -359,6 +361,7 @@ public class MainActivity extends AppCompatActivity {
                     return null;
                 }
             }
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
@@ -377,12 +380,13 @@ public class MainActivity extends AppCompatActivity {
         String json = null;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get Latest ID Pemeriksaan from User 1
-        String URL = "http://178.128.25.139:8080/api/pemeriksaanKebugaran/userAll/"+UserId;
+        String URL = "http://178.128.25.139:8080/api/pemeriksaanKebugaran/userAll/" + UserId;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                Type screenbugarhistory = new TypeToken<List<PemeriksaanKebugaranEntity>>() {}.getType();
+                Type screenbugarhistory = new TypeToken<List<PemeriksaanKebugaranEntity>>() {
+                }.getType();
                 sch_bugar = gson.fromJson(response, screenbugarhistory);
                 // Panggil Fungsi API Lain, Simpen ke SQLite
                 callback.onSuccess();
@@ -400,7 +404,7 @@ public class MainActivity extends AppCompatActivity {
                     ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
                     newFragment.show(getSupportFragmentManager(), "");
-                }  else if (error instanceof ParseError) {
+                } else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }
 //                else if (error instanceof AuthFailureError) {
@@ -424,6 +428,7 @@ public class MainActivity extends AppCompatActivity {
                     return null;
                 }
             }
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
@@ -443,7 +448,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.screening_option_dialog);
         TextView tv_risiko = (TextView) dialog.findViewById(R.id.text_screening_risiko);
         TextView tv_kebugaran = (TextView) dialog.findViewById(R.id.text_screening_kebugaran);
-        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_risiko.setTypeface(helvetica_font);
         tv_kebugaran.setTypeface(helvetica_font);
         CardView cv_risiko = (CardView) dialog.findViewById(R.id.cv_first);
@@ -475,31 +480,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-            // add on click cv kebugaran
-            cv_kebugaran.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    long differenceDays = differenceMinutes / (24 * 60);
-                    if (differenceDays <= 3 && differenceMinutes != -1 && IsLatestScreenBugar) {
-                        DialogFragment newFragment = new ConfirmRescreening();
-                        //Pass the User ID to next activity
-                        ((ConfirmRescreening) newFragment).setUser_id(UserId);
-                        ((ConfirmRescreening) newFragment).setToken(Token);
-                        ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
-                        ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
-                        ((ConfirmRescreening) newFragment).setUsername(UserName);
-                        newFragment.show(getSupportFragmentManager(), "");
-                    } else {
-                        Intent intent = new Intent(MainActivity.this, KebugaranScreeningActivity.class);
-                        //Pass the User ID to next activity
-                        intent.putExtra("userid", UserId);
-                        intent.putExtra("clinicname", ClinicName);
-                        intent.putExtra("cliniclogo", ClinicLogo);
-                        intent.putExtra("username", UserName);
-                        intent.putExtra("token", Token);
-                        startActivity(intent);
-                    }
+        // add on click cv kebugaran
+        cv_kebugaran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long differenceDays = differenceMinutes / (24 * 60);
+                if (differenceDays <= 3 && differenceMinutes != -1 && IsLatestScreenBugar) {
+                    DialogFragment newFragment = new ConfirmRescreening();
+                    //Pass the User ID to next activity
+                    ((ConfirmRescreening) newFragment).setUser_id(UserId);
+                    ((ConfirmRescreening) newFragment).setToken(Token);
+                    ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
+                    ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
+                    ((ConfirmRescreening) newFragment).setUsername(UserName);
+                    newFragment.show(getSupportFragmentManager(), "");
+                } else {
+                    Intent intent = new Intent(MainActivity.this, KebugaranScreeningActivity.class);
+                    //Pass the User ID to next activity
+                    intent.putExtra("userid", UserId);
+                    intent.putExtra("clinicname", ClinicName);
+                    intent.putExtra("cliniclogo", ClinicLogo);
+                    intent.putExtra("username", UserName);
+                    intent.putExtra("token", Token);
+                    startActivity(intent);
                 }
+            }
         });
         dialog.show();
     };
@@ -509,7 +514,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.history_option_dialog);
         TextView tv_risiko = (TextView) dialog.findViewById(R.id.text_riwayat_risiko);
         TextView tv_kebugaran = (TextView) dialog.findViewById(R.id.text_riwayat_kebugaran);
-        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_risiko.setTypeface(helvetica_font);
         tv_kebugaran.setTypeface(helvetica_font);
         CardView cv_history_first = (CardView) dialog.findViewById(R.id.cv_history_first);
@@ -526,7 +531,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("cliniclogo", ClinicLogo);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
-                    intent.putParcelableArrayListExtra("history",sch);
+                    intent.putParcelableArrayListExtra("history", sch);
                     startActivity(intent);
                 } else {
                     //Error Toast
@@ -551,7 +556,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("cliniclogo", ClinicLogo);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
-                    intent.putParcelableArrayListExtra("history_bugar",sch_bugar);
+                    intent.putParcelableArrayListExtra("history_bugar", sch_bugar);
                     startActivity(intent);
                 } else {
                     //Error Toast
@@ -589,12 +594,12 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
         if (!sch.isEmpty()) {
-            intent.putExtra("data",sch.get(0));
+            intent.putExtra("data", sch.get(0));
         }
         startActivity(intent);
     };
 
-    private final View.OnClickListener RedirectToNearestClinic= v -> {
+    private final View.OnClickListener RedirectToNearestClinic = v -> {
         Intent intent = new Intent(MainActivity.this, NearestClinicActivity.class);
         //Pass the User ID to next activity
         intent.putExtra("userid", UserId);

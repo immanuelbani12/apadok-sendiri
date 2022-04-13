@@ -45,7 +45,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private Boolean isOptionSubmitted = false;
 
     // Res/Layout Variables
-    private TextView tv_option_one,tv_option_two, tv_option_three, tv_option_four, tv_progress, tv_question;
+    private TextView tv_option_one, tv_option_two, tv_option_three, tv_option_four, tv_progress, tv_question;
     private Button btn_submit, btn_backquestion;
     private ImageView iv_image;
     private EditText edit_text;
@@ -53,7 +53,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private ScrollView sv_screening;
 
     // Intent Variables
-    private String ClinicName,ClinicLogo;
+    private String ClinicName, ClinicLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +90,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
 
     private void SetForm() {
-        Form FormQ = forms[CurrentForm-1];
+        Form FormQ = forms[CurrentForm - 1];
 
         sv_screening = (ScrollView) findViewById(R.id.sv_screening);
         tv_option_one = (TextView) findViewById(R.id.tv_option_one);
@@ -108,7 +108,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         tv_progress.setText(CurrentForm + "/" + progressBar.getMax());
 
 
-        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_option_one.setTypeface(helvetica_font);
         tv_option_two.setTypeface(helvetica_font);
         tv_option_three.setTypeface(helvetica_font);
@@ -118,7 +118,6 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         btn_submit.setTypeface(helvetica_font);
         btn_backquestion.setTypeface(helvetica_font);
         edit_text.setTypeface(helvetica_font);
-
 
 
         tv_question.setText(FormQ.getQuestion());
@@ -136,66 +135,66 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         btn_backquestion.setOnClickListener(this);
 
         // Reset ScrollView
-        sv_screening.scrollTo(0,0);
+        sv_screening.scrollTo(0, 0);
     }
 
-    private void CheckSet(Form formcheck){
+    private void CheckSet(Form formcheck) {
         // Hide Textbar here
         edit_text.setVisibility(View.GONE);
         edit_text.setText(null);
         // Reset the OnFocus Code
         edit_text.setOnFocusChangeListener(null);
         iv_image.setOnClickListener(null);
-        if(CurrentForm == 1){
+        if (CurrentForm == 1) {
             btn_backquestion.setVisibility(View.GONE);
         } else {
             btn_backquestion.setVisibility(View.VISIBLE);
         }
-        if(formcheck.getImage() != R.drawable.default_image){
+        if (formcheck.getImage() != R.drawable.default_image) {
             iv_image.setImageResource(formcheck.getImage());
             iv_image.setVisibility(View.VISIBLE);
         } else {
             iv_image.setVisibility(View.GONE);
         }
-        if(formcheck.getOpt1() != ""){
+        if (formcheck.getOpt1() != "") {
             tv_option_one.setText(formcheck.getOpt1());
             tv_option_one.setOnClickListener(this);
             tv_option_one.setVisibility(View.VISIBLE);
         } else {
             tv_option_one.setVisibility(View.GONE);
         }
-        if(formcheck.getOpt2() != ""){
+        if (formcheck.getOpt2() != "") {
             tv_option_two.setText(formcheck.getOpt2());
             tv_option_two.setOnClickListener(this);
             tv_option_two.setVisibility(View.VISIBLE);
         } else {
             tv_option_two.setVisibility(View.GONE);
         }
-        if(formcheck.getOpt3() != ""){
+        if (formcheck.getOpt3() != "") {
             tv_option_three.setText(formcheck.getOpt3());
             tv_option_three.setOnClickListener(this);
             tv_option_three.setVisibility(View.VISIBLE);
         } else {
             tv_option_three.setVisibility(View.GONE);
         }
-        if(formcheck.getOpt4() != ""){
+        if (formcheck.getOpt4() != "") {
             tv_option_four.setText(formcheck.getOpt4());
             tv_option_four.setOnClickListener(this);
             tv_option_four.setVisibility(View.VISIBLE);
         } else {
             tv_option_four.setVisibility(View.GONE);
         }
-        if(formcheck.getOpt1() == "" && formcheck.getOpt2() == "" && formcheck.getOpt3() == "" && formcheck.getOpt4() == ""){
+        if (formcheck.getOpt1() == "" && formcheck.getOpt2() == "" && formcheck.getOpt3() == "" && formcheck.getOpt4() == "") {
             // Display Textbar here
             SelectedOptionPosititon = -1;
             edit_text.setVisibility(View.VISIBLE);
             edit_text.setHint(formcheck.getHint());
-            if(formcheck.getHint() == "Bulan dan tahun lahir") {
+            if (formcheck.getHint() == "Bulan dan tahun lahir") {
                 edit_text.setInputType(InputType.TYPE_CLASS_DATETIME);
                 edit_text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                     @Override
                     public void onFocusChange(View v, boolean hasFocus) {
-                        if(hasFocus){
+                        if (hasFocus) {
                             //Clear keyboard
 //                            v.clearFocus();
                             // Set MonthPicker
@@ -208,7 +207,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                             MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(ScreeningActivity.this, new MonthPickerDialog.OnDateSetListener() {
                                 @Override
                                 public void onDateSet(int selectedMonth, int selectedYear) {
-                                    edit_text.setText((selectedMonth+1) + "/" + selectedYear);
+                                    edit_text.setText((selectedMonth + 1) + "/" + selectedYear);
 //                                    edit_text.clearFocus();
 //                                    edit_text.requestFocus();
                                 }
@@ -221,19 +220,16 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                     }
                 });
                 // Check Null
-                edit_text.addTextChangedListener(new EmptyTextWatcher()
-                {
+                edit_text.addTextChangedListener(new EmptyTextWatcher() {
 
                     @Override
-                    public void onEmptyField()
-                    {
+                    public void onEmptyField() {
                         btn_submit.setEnabled(false);
                         edit_text.clearFocus();
                     }
 
                     @Override
-                    public void onFilledField()
-                    {
+                    public void onFilledField() {
                         btn_submit.setEnabled(true);
                     }
                 });
@@ -247,17 +243,14 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
             } else {
                 edit_text.setInputType(InputType.TYPE_CLASS_NUMBER);
                 // Check Null
-                edit_text.addTextChangedListener(new EmptyTextWatcher()
-                {
+                edit_text.addTextChangedListener(new EmptyTextWatcher() {
                     @Override
-                    public void onEmptyField()
-                    {
+                    public void onEmptyField() {
                         btn_submit.setEnabled(false);
                     }
 
                     @Override
-                    public void onFilledField()
-                    {
+                    public void onFilledField() {
                         btn_submit.setEnabled(true);
                     }
                 });
@@ -291,12 +284,12 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         btn_backquestion.setEnabled(true);
 
         ArrayList<TextView> options = new ArrayList<TextView>();
-        options.add(0,tv_option_one);
+        options.add(0, tv_option_one);
         options.add(1, tv_option_two);
         options.add(2, tv_option_three);
         options.add(3, tv_option_four);
 
-        for (TextView option : options){
+        for (TextView option : options) {
             option.setTextColor(Color.parseColor("#7A8089"));
             option.setBackground(ContextCompat.getDrawable(
                     ScreeningActivity.this,
@@ -309,7 +302,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.iv_image:
                 if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
                 break;
@@ -334,38 +327,39 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
             case R.id.btn_submit:
                 isOptionSubmitted = true;
-                switch (SelectedOptionPosititon){
+                switch (SelectedOptionPosititon) {
                     case 1:
                         // Jenis Kelamin
                         if (CurrentForm == 1) {
-                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt1());
+                            answer[CurrentForm - 1].setAnswer(forms[CurrentForm - 1].getOpt1());
                         } else {
-                            answer[CurrentForm-1].setAnswer("1");
+                            answer[CurrentForm - 1].setAnswer("1");
                         }
                         SelectedOptionPosititon = 0;
                         break;
                     case 2:
                         // Jenis Kelamin
                         if (CurrentForm == 1) {
-                            answer[CurrentForm-1].setAnswer(forms[CurrentForm-1].getOpt2());
+                            answer[CurrentForm - 1].setAnswer(forms[CurrentForm - 1].getOpt2());
                         } else {
                             answer[CurrentForm - 1].setAnswer("2");
                         }
                         SelectedOptionPosititon = 0;
                         break;
                     case 3:
-                        answer[CurrentForm-1].setAnswer("3");
+                        answer[CurrentForm - 1].setAnswer("3");
                         SelectedOptionPosititon = 0;
                         break;
                     case 4:
-                        answer[CurrentForm-1].setAnswer("4");
+                        answer[CurrentForm - 1].setAnswer("4");
                         SelectedOptionPosititon = 0;
                         break;
                     case -1:
                         // Get answer from Textbar here
-                        answer[CurrentForm-1].setAnswer(edit_text.getText().toString());
+                        answer[CurrentForm - 1].setAnswer(edit_text.getText().toString());
                         // Add Date for MonthPicker
-                        if (CurrentForm == 2) answer[CurrentForm-1].setAnswer(1 + "/" + edit_text.getText().toString());
+                        if (CurrentForm == 2)
+                            answer[CurrentForm - 1].setAnswer(1 + "/" + edit_text.getText().toString());
                         SelectedOptionPosititon = 0;
                         break;
                     default:
@@ -378,15 +372,15 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                     isOptionSubmitted = false;
                     CurrentForm++;
 
-                    if(CurrentForm <= 18){
+                    if (CurrentForm <= 18) {
                         SetForm();
                     } else {
                         //Get the User ID from Main Activity
-                        answer[CurrentForm-1] = new FormAnswer("id_user");
+                        answer[CurrentForm - 1] = new FormAnswer("id_user");
                         int id_user = getIntent().getIntExtra("userid", 0);
                         String token = getIntent().getStringExtra("token");
                         String username = getIntent().getStringExtra("username");
-                        answer[CurrentForm-1].setAnswer(Integer.toString(id_user));
+                        answer[CurrentForm - 1].setAnswer(Integer.toString(id_user));
 
                         Intent intent = new Intent(ScreeningActivity.this, ScreeningResultActivity.class);
                         ArrayList list = new ArrayList<>(Arrays.asList(answer));
@@ -421,25 +415,25 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         ));
     }
 
-    private final void CreateFormList(){
-        forms[0] = new Form(1,"Jenis Kelamin","Laki-laki","Perempuan","","",R.drawable.default_image, null);
-        forms[1] = new Form(2,"Bulan dan tahun lahir","","","","",R.drawable.birthdate, "Bulan dan tahun lahir");
-        forms[2] = new Form(3,"Masukkan tinggi badan (cm)","","","","",R.drawable.tinggi_badan, "Tinggi badan (cm)");
-        forms[3] = new Form(4,"Masukkan berat badan (kg)","","","","",R.drawable.berat_badan, "Berat badan (kg)");
-        forms[4] = new Form(5,"Apakah anda aktif melakukan aktivitas fisik?","Ya","Tidak","Jarang","",R.drawable.default_image, null);
-        forms[5] = new Form(6,"Apakah anda merokok?","Perokok Aktif","Sedang berusaha berhenti merokok","Tidak Merokok","",R.drawable.default_image, null);
-        forms[6] = new Form(7,"Ukuran lingkar pinggang (cm)","","","","", R.drawable.lingkar_pinggang, "Lingkar pinggang (cm)");
-        forms[7] = new Form(8,"Apakah anda pernah mengalami tekanan darah tinggi?","Ya","Tidak","","",R.drawable.darah_tinggi, null);
-        forms[8] = new Form(9,"Masukkan tekanan darah anda saat ini:","> 140/90","120 - 139 / 80 - 89","< 120/80","Tidak diketahui",R.drawable.default_image, null);
-        forms[9] = new Form(10,"Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?","Ya","Tidak","","",R.drawable.default_image, null);
-        forms[10] = new Form(11,"Masukkan kadar gula anda saat ini:","< 120","120 - 150","> 150","Tidak diketahui",R.drawable.default_image, null);
-        forms[11] = new Form(12,"Berapa kadar kolesterol anda saat ini? (mmol/L)","> 240","200 - 239","< 200","Tidak diketahui",R.drawable.default_image, null);
-        forms[12] = new Form(13,"Apakah keluarga memiliki riwayat stroke?","Ya","Tidak","Tidak diketahui","",R.drawable.default_image, null);
-        forms[13] = new Form(14,"Apakah anda menderita gangguan irama jantung?","Ya","Tidak diketahui","Tidak pernah","",R.drawable.default_image, null);
-        forms[14] = new Form(15,"Seberapa sering anda makan sayuran, buah-buahan atau beri?","Setiap Hari","Tidak setiap hari","","",R.drawable.sayuran, null);
-        forms[15] = new Form(16,"Apakah mengonsumsi obat anti hipertensi secara reguler?","Tidak","Ya","","",R.drawable.obat, null);
-        forms[16] = new Form(17,"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)","Tidak","Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)","Ya (Orang tua, Kakak, Adik, Anak kandung)","",R.drawable.default_image, null);
-        forms[17] = new Form(18,"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)","< 30","30 - 50","> 50","Tidak Diketahui",R.drawable.default_image, null);
+    private final void CreateFormList() {
+        forms[0] = new Form(1, "Jenis Kelamin", "Laki-laki", "Perempuan", "", "", R.drawable.default_image, null);
+        forms[1] = new Form(2, "Bulan dan tahun lahir", "", "", "", "", R.drawable.birthdate, "Bulan dan tahun lahir");
+        forms[2] = new Form(3, "Masukkan tinggi badan (cm)", "", "", "", "", R.drawable.tinggi_badan, "Tinggi badan (cm)");
+        forms[3] = new Form(4, "Masukkan berat badan (kg)", "", "", "", "", R.drawable.berat_badan, "Berat badan (kg)");
+        forms[4] = new Form(5, "Apakah anda aktif melakukan aktivitas fisik?", "Ya", "Tidak", "Jarang", "", R.drawable.default_image, null);
+        forms[5] = new Form(6, "Apakah anda merokok?", "Perokok Aktif", "Sedang berusaha berhenti merokok", "Tidak Merokok", "", R.drawable.default_image, null);
+        forms[6] = new Form(7, "Ukuran lingkar pinggang (cm)", "", "", "", "", R.drawable.lingkar_pinggang, "Lingkar pinggang (cm)");
+        forms[7] = new Form(8, "Apakah anda pernah mengalami tekanan darah tinggi?", "Ya", "Tidak", "", "", R.drawable.darah_tinggi, null);
+        forms[8] = new Form(9, "Masukkan tekanan darah anda saat ini:", "> 140/90", "120 - 139 / 80 - 89", "< 120/80", "Tidak diketahui", R.drawable.default_image, null);
+        forms[9] = new Form(10, "Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?", "Ya", "Tidak", "", "", R.drawable.default_image, null);
+        forms[10] = new Form(11, "Masukkan kadar gula anda saat ini:", "< 120", "120 - 150", "> 150", "Tidak diketahui", R.drawable.default_image, null);
+        forms[11] = new Form(12, "Berapa kadar kolesterol anda saat ini? (mmol/L)", "> 240", "200 - 239", "< 200", "Tidak diketahui", R.drawable.default_image, null);
+        forms[12] = new Form(13, "Apakah keluarga memiliki riwayat stroke?", "Ya", "Tidak", "Tidak diketahui", "", R.drawable.default_image, null);
+        forms[13] = new Form(14, "Apakah anda menderita gangguan irama jantung?", "Ya", "Tidak diketahui", "Tidak pernah", "", R.drawable.default_image, null);
+        forms[14] = new Form(15, "Seberapa sering anda makan sayuran, buah-buahan atau beri?", "Setiap Hari", "Tidak setiap hari", "", "", R.drawable.sayuran, null);
+        forms[15] = new Form(16, "Apakah mengonsumsi obat anti hipertensi secara reguler?", "Tidak", "Ya", "", "", R.drawable.obat, null);
+        forms[16] = new Form(17, "Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)", "Tidak", "Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)", "Ya (Orang tua, Kakak, Adik, Anak kandung)", "", R.drawable.default_image, null);
+        forms[17] = new Form(18, "Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)", "< 30", "30 - 50", "> 50", "Tidak Diketahui", R.drawable.default_image, null);
 
         //Setup JSON Answer to be sent to API
         answer[0] = new FormAnswer("jenis_kelamin");

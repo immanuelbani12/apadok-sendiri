@@ -28,9 +28,6 @@ import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.EmptyTextWatcher;
 import com.apadok.emrpreventive.common.PopUpMessage;
 import com.apadok.emrpreventive.common.VolleyCallBack;
-import com.apadok.emrpreventive.consult.NearestClinicActivity;
-import com.apadok.emrpreventive.screening.ConfirmRescreening;
-import com.apadok.emrpreventive.screening.ScreeningActivity;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -90,12 +87,12 @@ public class LoginActivity extends AppCompatActivity {
 
 //        connect text view to sign up activity
         register_text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-                    startActivity(intent);
-                }
-            }
+                                             @Override
+                                             public void onClick(View v) {
+                                                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                                                 startActivity(intent);
+                                             }
+                                         }
         );
 
         btn_masuk.setOnClickListener(new View.OnClickListener() {

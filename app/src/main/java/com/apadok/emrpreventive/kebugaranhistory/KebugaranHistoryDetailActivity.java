@@ -16,14 +16,9 @@ import androidx.fragment.app.DialogFragment;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.PopUpMessage;
 import com.apadok.emrpreventive.common.SetupToolbar;
-import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.squareup.picasso.Picasso;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class KebugaranHistoryDetailActivity extends AppCompatActivity {
 
@@ -34,7 +29,7 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
     // Intent Variables
     private int kebugaranval;
     private PemeriksaanKebugaranEntity sch;
-    private String ClinicName,ClinicLogo;
+    private String ClinicName, ClinicLogo;
 
     // Temporary Calculation Variables
     private int[] calc = new int[20];
@@ -85,7 +80,7 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         kebugaran_category = (TextView) findViewById(R.id.kebugaran_result);
         btn_education = (Button) findViewById(R.id.btn_education);
 
-        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         title_result.setTypeface(helvetica_font);
         time_result.setTypeface(helvetica_font);
         kebugaran_category.setTypeface(helvetica_font);

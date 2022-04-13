@@ -40,13 +40,13 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
     private Boolean isOptionSubmitted = false;
 
     // Res/Layout Variables
-    private TextView tv_option_one,tv_option_two, tv_option_three, tv_option_four, tv_option_five, tv_progress, tv_question;
+    private TextView tv_option_one, tv_option_two, tv_option_three, tv_option_four, tv_option_five, tv_progress, tv_question;
     private Button btn_submit, btn_backquestion;
     private ProgressBar progressBar;
     private ScrollView sv_bugar_screening;
 
     // Intent Variables
-    private String ClinicName,ClinicLogo;
+    private String ClinicName, ClinicLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,7 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
 
 
     private void SetForm() {
-        FormKebugaran FormQ = forms[CurrentForm-1];
+        FormKebugaran FormQ = forms[CurrentForm - 1];
 
         sv_bugar_screening = (ScrollView) findViewById(R.id.sv_bugar_screening);
         tv_option_one = (TextView) findViewById(R.id.tv_option_one);
@@ -100,7 +100,7 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         tv_progress.setText(CurrentForm + "/" + progressBar.getMax());
 
 
-        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(),R.font.helvetica_neue);
+        Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_option_one.setTypeface(helvetica_font);
         tv_option_two.setTypeface(helvetica_font);
         tv_option_three.setTypeface(helvetica_font);
@@ -126,11 +126,11 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         btn_backquestion.setOnClickListener(this);
 
         // Reset ScrollView
-        sv_bugar_screening.scrollTo(0,0);
+        sv_bugar_screening.scrollTo(0, 0);
     }
 
-    private void CheckSet(){
-        if(CurrentForm == 1){
+    private void CheckSet() {
+        if (CurrentForm == 1) {
             btn_backquestion.setVisibility(View.GONE);
         } else {
             btn_backquestion.setVisibility(View.VISIBLE);
@@ -171,13 +171,13 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         btn_backquestion.setEnabled(true);
 
         ArrayList<TextView> options = new ArrayList<TextView>();
-        options.add(0,tv_option_one);
+        options.add(0, tv_option_one);
         options.add(1, tv_option_two);
         options.add(2, tv_option_three);
         options.add(3, tv_option_four);
         options.add(4, tv_option_five);
 
-        for (TextView option : options){
+        for (TextView option : options) {
             option.setTextColor(Color.parseColor("#7A8089"));
             option.setBackground(ContextCompat.getDrawable(
                     KebugaranScreeningActivity.this,
@@ -190,7 +190,7 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.tv_option_one:
                 if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
                 break;
@@ -215,25 +215,25 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
 
             case R.id.btn_submit:
                 isOptionSubmitted = true;
-                switch (SelectedOptionPosititon){
+                switch (SelectedOptionPosititon) {
                     case 1:
-                        answer[CurrentForm-1].setAnswer("0");
+                        answer[CurrentForm - 1].setAnswer("0");
                         SelectedOptionPosititon = 0;
                         break;
                     case 2:
-                        answer[CurrentForm-1].setAnswer("1");
+                        answer[CurrentForm - 1].setAnswer("1");
                         SelectedOptionPosititon = 0;
                         break;
                     case 3:
-                        answer[CurrentForm-1].setAnswer("2");
+                        answer[CurrentForm - 1].setAnswer("2");
                         SelectedOptionPosititon = 0;
                         break;
                     case 4:
-                        answer[CurrentForm-1].setAnswer("3");
+                        answer[CurrentForm - 1].setAnswer("3");
                         SelectedOptionPosititon = 0;
                         break;
                     case 5:
-                        answer[CurrentForm-1].setAnswer("4");
+                        answer[CurrentForm - 1].setAnswer("4");
                         SelectedOptionPosititon = 0;
                         break;
                     default:
@@ -241,35 +241,35 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
                         SelectedOptionPosititon = 1;
                         break;
                 }
-            SelectedOptionPosititon = 0;
-            // legacy code
-            if (SelectedOptionPosititon == 0) {
-                isOptionSubmitted = false;
-                CurrentForm++;
+                SelectedOptionPosititon = 0;
+                // legacy code
+                if (SelectedOptionPosititon == 0) {
+                    isOptionSubmitted = false;
+                    CurrentForm++;
 
-                if(CurrentForm <= 13){
-                    SetForm();
-                } else {
-                    //Get the User ID from Main Activity
-                    answer[CurrentForm-1] = new FormAnswer("id_user");
-                    int id_user = getIntent().getIntExtra("userid", 0);
-                    String token = getIntent().getStringExtra("token");
-                    String username = getIntent().getStringExtra("username");
-                    answer[CurrentForm-1].setAnswer(Integer.toString(id_user));
+                    if (CurrentForm <= 13) {
+                        SetForm();
+                    } else {
+                        //Get the User ID from Main Activity
+                        answer[CurrentForm - 1] = new FormAnswer("id_user");
+                        int id_user = getIntent().getIntExtra("userid", 0);
+                        String token = getIntent().getStringExtra("token");
+                        String username = getIntent().getStringExtra("username");
+                        answer[CurrentForm - 1].setAnswer(Integer.toString(id_user));
 
-                    Intent intent = new Intent(KebugaranScreeningActivity.this, KebugaranScreeningResultActivity.class);
-                    ArrayList list = new ArrayList<>(Arrays.asList(answer));
-                    intent.putParcelableArrayListExtra("Answers", list);
-                    intent.putExtra("token", token);
-                    intent.putExtra("username", username);
-                    intent.putExtra("clinicname", ClinicName);
-                    intent.putExtra("cliniclogo", ClinicLogo);
-                    startActivity(intent);
-                    finish();
+                        Intent intent = new Intent(KebugaranScreeningActivity.this, KebugaranScreeningResultActivity.class);
+                        ArrayList list = new ArrayList<>(Arrays.asList(answer));
+                        intent.putParcelableArrayListExtra("Answers", list);
+                        intent.putExtra("token", token);
+                        intent.putExtra("username", username);
+                        intent.putExtra("clinicname", ClinicName);
+                        intent.putExtra("cliniclogo", ClinicLogo);
+                        startActivity(intent);
+                        finish();
+                    }
+
                 }
-
-            }
-            break;
+                break;
         }
     }
 
@@ -291,20 +291,20 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         ));
     }
 
-    private final void CreateFormList(){
-        forms[0] = new FormKebugaran(1,"Saya merasa lelah secara fisik");
-        forms[1] = new FormKebugaran(2,"Saya merasa lemah di semua hal");
-        forms[2] = new FormKebugaran(3,"Saya merasa lesu");
-        forms[3] = new FormKebugaran(4,"Saya merasa lelah secara fisik dan psikis");
-        forms[4] = new FormKebugaran(5,"Saya merasa kesulitan memulai sesuatu karena saya lelah");
-        forms[5] = new FormKebugaran(6,"Saya merasa kesulitan menyelesaikan sesuatu karena saya lelah");
-        forms[6] = new FormKebugaran(7,"Saya memiliki energi");
-        forms[7] = new FormKebugaran(8,"Saya bisa mengerjakan aktivitas seperti biasa");
-        forms[8] = new FormKebugaran(9,"Saya butuh tidur seharian");
-        forms[9] = new FormKebugaran(10,"Saya merasa terlalu lelah untuk makan");
-        forms[10] = new FormKebugaran(11,"Saya membutuhkan bantuan untuk mengerjakan aktivitas seperti biasa");
-        forms[11] = new FormKebugaran(12,"Saya merasa frustrasi menjadi terlalu lelah untuk melakukan sesuatu yang saya ingin kerjakan");
-        forms[12] = new FormKebugaran(13,"Saya harus membatasi aktivitas sosial saya karena saya lelah");
+    private final void CreateFormList() {
+        forms[0] = new FormKebugaran(1, "Saya merasa lelah secara fisik");
+        forms[1] = new FormKebugaran(2, "Saya merasa lemah di semua hal");
+        forms[2] = new FormKebugaran(3, "Saya merasa lesu");
+        forms[3] = new FormKebugaran(4, "Saya merasa lelah secara fisik dan psikis");
+        forms[4] = new FormKebugaran(5, "Saya merasa kesulitan memulai sesuatu karena saya lelah");
+        forms[5] = new FormKebugaran(6, "Saya merasa kesulitan menyelesaikan sesuatu karena saya lelah");
+        forms[6] = new FormKebugaran(7, "Saya memiliki energi");
+        forms[7] = new FormKebugaran(8, "Saya bisa mengerjakan aktivitas seperti biasa");
+        forms[8] = new FormKebugaran(9, "Saya butuh tidur seharian");
+        forms[9] = new FormKebugaran(10, "Saya merasa terlalu lelah untuk makan");
+        forms[10] = new FormKebugaran(11, "Saya membutuhkan bantuan untuk mengerjakan aktivitas seperti biasa");
+        forms[11] = new FormKebugaran(12, "Saya merasa frustrasi menjadi terlalu lelah untuk melakukan sesuatu yang saya ingin kerjakan");
+        forms[12] = new FormKebugaran(13, "Saya harus membatasi aktivitas sosial saya karena saya lelah");
 
         //Setup JSON Answer to be sent to API
         answer[0] = new FormAnswer("pertanyaan_1");

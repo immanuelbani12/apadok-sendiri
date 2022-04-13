@@ -50,7 +50,7 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encyclopedia_detail);
         setupItemView();
-       // setupJson();
+        // setupJson();
     }
 
 //    private void setupJson() {
@@ -118,17 +118,17 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
         String kategori = getIntent().getStringExtra("kategori_artikel");
         int kategoriint = Integer.parseInt(kategori);
 
-        if (kategoriint == 1){
+        if (kategoriint == 1) {
             tv_diabetes.setVisibility(View.GONE);
             tv_cardiovascular.setVisibility(View.GONE);
         }
 
-        if (kategoriint == 2){
+        if (kategoriint == 2) {
             tv_stroke.setVisibility(View.GONE);
             tv_cardiovascular.setVisibility(View.GONE);
         }
 
-        if (kategoriint == 3){
+        if (kategoriint == 3) {
             tv_stroke.setVisibility(View.GONE);
             tv_diabetes.setVisibility(View.GONE);
         }
@@ -137,7 +137,7 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         int id_history = getIntent().getIntExtra("history", 0);
-        String URL = "http://178.128.25.139:8080/pemeriksaan/show/"+id_history;
+        String URL = "http://178.128.25.139:8080/pemeriksaan/show/" + id_history;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
@@ -154,7 +154,7 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
                     hasil = "Tidak ada Jaringan Internet";
                 } else if (error instanceof ServerError) {
                     hasil = "Server sedang bermasalah";
-                }  else if (error instanceof ParseError) {
+                } else if (error instanceof ParseError) {
                     hasil = "Ada masalah di aplikasi Apadok";
                 }
                 callback.onError();

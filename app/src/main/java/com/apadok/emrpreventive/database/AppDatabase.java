@@ -15,6 +15,7 @@ import com.apadok.emrpreventive.database.entity.UserEntity;
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
+
     public abstract PemeriksaanDao pemeriksaanDao();
 
 

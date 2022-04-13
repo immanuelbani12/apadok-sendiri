@@ -38,7 +38,9 @@ class Form {
         return opt4;
     }
 
-    public String getHint() { return  hint; }
+    public String getHint() {
+        return hint;
+    }
 
     public Form(int id, String question, String opt1, String opt2, String opt3, String opt4, int image, String hint) {
         this.id = id;

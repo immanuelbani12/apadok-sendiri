@@ -44,8 +44,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
     private ListView l;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screening_history);
         setupItemView();
@@ -83,8 +82,8 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
 //                int id_history = Integer.parseInt(idhistory);
 //                intent.putExtra("history", id_history);
                 Intent intent = new Intent(getBaseContext(), ScreeningHistoryDetailActivity.class);
-                intent.putExtra("position", position+1);
-                intent.putExtra("data",sch.get(position));
+                intent.putExtra("position", position + 1);
+                intent.putExtra("data", sch.get(position));
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", logo);
                 startActivity(intent);
@@ -94,7 +93,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
 
     private void setupJson() {
         //NO API Form Data Yet
-        createCalls("",new VolleyCallBack() {
+        createCalls("", new VolleyCallBack() {
 
             @Override
             public void onSuccess() {
@@ -115,15 +114,16 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
         //Temporarily Get ID Pemeriksan From Main Activity
         int id_user = getIntent().getIntExtra("userid", 0);
         String token = getIntent().getStringExtra("token");
-        String URL = "http://178.128.25.139:8080/api/pemeriksaan/userAll/"+id_user;
+        String URL = "http://178.128.25.139:8080/api/pemeriksaan/userAll/" + id_user;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                Type screenhistory = new TypeToken<List<PemeriksaanEntity>>() {}.getType();
+                Type screenhistory = new TypeToken<List<PemeriksaanEntity>>() {
+                }.getType();
                 //FailSafe
-                if (response.charAt(response.length()-1) != ']'){
+                if (response.charAt(response.length() - 1) != ']') {
                     response = response + "]";
                 }
                 sch = gson.fromJson(response, screenhistory);

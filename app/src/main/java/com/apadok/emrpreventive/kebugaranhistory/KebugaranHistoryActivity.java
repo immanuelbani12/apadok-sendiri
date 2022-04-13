@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -23,12 +22,9 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
-import com.apadok.emrpreventive.common.PopUpMessage;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
-import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
-import com.apadok.emrpreventive.screeninghistory.ScreeningHistoryDetailActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
@@ -49,8 +45,7 @@ public class KebugaranHistoryActivity extends AppCompatActivity {
     private ListView l;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screening_history);
         setupItemView();
@@ -91,8 +86,8 @@ public class KebugaranHistoryActivity extends AppCompatActivity {
 //                int id_history = Integer.parseInt(idhistory);
 //                intent.putExtra("history", id_history);
                 Intent intent = new Intent(getBaseContext(), KebugaranHistoryDetailActivity.class);
-                intent.putExtra("position", position+1);
-                intent.putExtra("data",sch_bugar.get(position));
+                intent.putExtra("position", position + 1);
+                intent.putExtra("data", sch_bugar.get(position));
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", logo);
                 startActivity(intent);
@@ -102,7 +97,7 @@ public class KebugaranHistoryActivity extends AppCompatActivity {
 
     private void setupJson() {
         //NO API Form Data Yet
-        createCalls("",new VolleyCallBack() {
+        createCalls("", new VolleyCallBack() {
 
             @Override
             public void onSuccess() {
@@ -130,13 +125,14 @@ public class KebugaranHistoryActivity extends AppCompatActivity {
         //Temporarily Get ID Pemeriksan From Main Activity
         int id_user = getIntent().getIntExtra("userid", 0);
         String token = getIntent().getStringExtra("token");
-        String URL = "http://178.128.25.139:8080/api/pemeriksaanKebugaran/userAll/"+id_user;
+        String URL = "http://178.128.25.139:8080/api/pemeriksaanKebugaran/userAll/" + id_user;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                Type screenhistory = new TypeToken<List<PemeriksaanKebugaranEntity>>() {}.getType();
+                Type screenhistory = new TypeToken<List<PemeriksaanKebugaranEntity>>() {
+                }.getType();
                 //FailSafe
 //                if (response.charAt(response.length()-1) != ']'){
 //                    response = response + "]";
