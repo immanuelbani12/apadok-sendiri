@@ -12,10 +12,10 @@ import java.util.List;
 
 @Dao
 public interface UserDao {
-    @Query("SELECT * FROM users ORDER BY userid DESC")
+    @Query("SELECT * FROM users ORDER BY id_user DESC")
     List<UserEntity> getAllUsers();
 
-    @Query("SELECT * FROM users WHERE userid=:id")
+    @Query("SELECT * FROM users WHERE id_user=:id")
     UserEntity getUserById(int id);
 
     @Query("SELECT * FROM users LIMIT 1")
