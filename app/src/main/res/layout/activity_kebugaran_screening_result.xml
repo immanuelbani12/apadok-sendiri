@@ -12,18 +12,17 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:animateLayoutChanges="true">
+        android:animateLayoutChanges="true"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:padding="20dp"
+            android:animateLayoutChanges="true"
             android:background="@color/white"
-            android:animateLayoutChanges="true">
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/title_result"
@@ -39,23 +38,22 @@
                 android:id="@+id/time_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="60dp"
+                android:layout_marginBottom="30dp"
                 android:text="Kamis, 25 Oktober 2015 12:11 WIB"
                 android:textColor="@color/grey_font"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/score_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/score_title"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:text="Skor Kebugaran"
                 android:textColor="@color/grey_font"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -65,8 +63,14 @@
                 android:gravity="center"
                 android:text="25"
                 android:textColor="@color/black_font"
-                android:layout_marginBottom="50dp"
-                android:textSize="30sp"/>
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"/>
+
+            <com.anychart.AnyChartView
+                android:id="@+id/bar_chart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"/>
 
 
             <LinearLayout
@@ -77,15 +81,15 @@
 
 
                 <TextView
+                    android:id="@+id/kebugaran_result"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/kebugaran_result"
-                    android:text="Skor kebugaran anda termasuk"
                     android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:textColor="@color/black_font"
                     android:layout_marginBottom="20dp"
-                    android:textSize="18sp"/>
+                    android:gravity="center"
+                    android:text="Skor kebugaran anda termasuk"
+                    android:textColor="@color/black_font"
+                    android:textSize="18sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_education"

@@ -1,6 +1,7 @@
 package com.apadok.emrpreventive.kebugaranhistory;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -13,12 +14,30 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Cartesian;
+import com.anychart.core.cartesian.series.Column;
+import com.anychart.enums.Anchor;
+import com.anychart.enums.HoverMode;
+import com.anychart.enums.Position;
+import com.anychart.enums.TooltipPositionMode;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.PopUpMessage;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class KebugaranHistoryDetailActivity extends AppCompatActivity {
 
@@ -29,7 +48,7 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
     // Intent Variables
     private int kebugaranval;
     private PemeriksaanKebugaranEntity sch;
-    private String ClinicName, ClinicLogo;
+    private String ClinicName, ClinicLogo, score_kebugaran;
 
     // Temporary Calculation Variables
     private int[] calc = new int[20];
@@ -42,12 +61,43 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         setupItemView();
         setupItemData();
 //        setupJson();
+        setupChart();
+    }
+
+    private void setupChart(){
+        AnyChartView anyChartView = findViewById(R.id.bar_chart);
+
+        Cartesian cartesian = AnyChart.column();
+
+        List<DataEntry> data = new ArrayList<>();
+        data.add(new ValueDataEntry("", Integer.parseInt(score_kebugaran)));
+
+        Column column = cartesian.column(data);
+
+        column.tooltip()
+                .titleFormat("{%X}")
+                .position(Position.CENTER_BOTTOM)
+                .anchor(Anchor.CENTER_BOTTOM)
+                .offsetX(0d)
+                .offsetY(5d)
+                .format("{%Value}{groupsSeparator: }");
+
+        cartesian.yScale().minimum(0d);
+        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
+        cartesian.yScale().maximum(52);
+
+
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+        cartesian.interactivity().hoverMode(HoverMode.BY_X);
+
+        cartesian.yAxis(0).title("Skor");
+        anyChartView.setChart(cartesian);
     }
 
     private void setupItemData() {
         sch = getIntent().getParcelableExtra("data");
         String hasil_kebugaran = sch.gethasil_kebugaran() == null ? "" : sch.gethasil_kebugaran();
-        String score_kebugaran = sch.getScore_kebugaran() == null ? "" : sch.getScore_kebugaran();
+        score_kebugaran = sch.getScore_kebugaran() == null ? "" : sch.getScore_kebugaran();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 
         time_result.setText(timestamp);

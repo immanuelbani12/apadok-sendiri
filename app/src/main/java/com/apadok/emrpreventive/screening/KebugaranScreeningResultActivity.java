@@ -1,6 +1,7 @@
 package com.apadok.emrpreventive.screening;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Cartesian;
+import com.anychart.core.cartesian.series.Column;
+import com.anychart.enums.Anchor;
+import com.anychart.enums.HoverMode;
+import com.anychart.enums.Position;
+import com.anychart.enums.TooltipPositionMode;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.PopUpMessage;
 import com.apadok.emrpreventive.common.SetupToolbar;
@@ -34,6 +45,11 @@ import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.apadok.emrpreventive.user.LogOutAuthError;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -41,6 +57,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +80,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
 
     // Intent Variables
     private int kebugaranval;
-    private String ClinicName, ClinicLogo;
+    private String ClinicName, ClinicLogo, score_kebugaran;
 
     // Temporary Calculation Variables
     private int[] calc = new int[20];
@@ -75,6 +92,37 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kebugaran_screening_result);
         setupItemView();
         setupJson();
+        setupChart();
+    }
+
+    private void setupChart(){
+        AnyChartView anyChartView = findViewById(R.id.bar_chart);
+
+        Cartesian cartesian = AnyChart.column();
+
+        List<DataEntry> data = new ArrayList<>();
+        data.add(new ValueDataEntry("", Integer.parseInt(score_kebugaran)));
+
+        Column column = cartesian.column(data);
+
+        column.tooltip()
+                .titleFormat("{%X}")
+                .position(Position.CENTER_BOTTOM)
+                .anchor(Anchor.CENTER_BOTTOM)
+                .offsetX(0d)
+                .offsetY(5d)
+                .format("{%Value}{groupsSeparator: }");
+
+        cartesian.yScale().minimum(0d);
+        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
+        cartesian.yScale().maximum(52);
+
+
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+        cartesian.interactivity().hoverMode(HoverMode.BY_X);
+
+        cartesian.yAxis(0).title("Skor");
+        anyChartView.setChart(cartesian);
     }
 
     private void setupItemView() {
@@ -164,7 +212,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
             public void onSuccess() {
                 // here you have the response from the volley.
                 String hasil_kebugaran = returnvalue.get("hasil_kebugaran").isJsonNull() ? "" : returnvalue.get("hasil_kebugaran").getAsString();
-                String score_kebugaran = returnvalue.get("score_kebugaran").isJsonNull() ? "" : returnvalue.get("score_kebugaran").getAsString();
+                score_kebugaran = returnvalue.get("score_kebugaran").isJsonNull() ? "" : returnvalue.get("score_kebugaran").getAsString();
                 String timestamp = returnvalue.get("updated_at").isJsonNull() ? returnvalue.get("created_at").getAsString() : returnvalue.get("updated_at").getAsString();
 
                 time_result.setText(timestamp);
