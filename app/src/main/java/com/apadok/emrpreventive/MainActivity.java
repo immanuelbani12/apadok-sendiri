@@ -17,6 +17,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
@@ -48,6 +49,7 @@ import com.apadok.emrpreventive.screeninghistory.ScreeningHistoryActivity;
 import com.apadok.emrpreventive.user.ConfirmLogOut;
 import com.apadok.emrpreventive.user.LogOutAuthError;
 import com.apadok.emrpreventive.user.LoginActivity;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
@@ -125,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
                 if (Role.equals("N")) {
                     text = "Anda berhasil Sign-In sebagai non-member klinik";
                 }
-                int duration = Toast.LENGTH_SHORT;
 
-                Toast toast = Toast.makeText(getBaseContext(), text, duration);
-                toast.show();
+                Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
+                snackbar.setBackgroundTint(R.style.AppTheme);
+                snackbar.show();
 
                 setupJson();
 
@@ -144,15 +146,13 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
 //            Jika User Ada dan Sudah Login sebelumnya
-//            //Uncomment buat selamat datang toast kalau udah pernah login sebelumnya
-//            CharSequence text = "Selamat datang kembali member " + ClinicName;
-//            if (ClinicName.contains("Apadok")){
-//                text = "Selamat datang kembali non-member klinik";
-//            }
-//            int duration = Toast.LENGTH_SHORT;
-//
-//            Toast toast = Toast.makeText(getBaseContext(), text, duration);
-//            toast.show();
+            CharSequence text = "Selamat datang kembali member " + ClinicName;
+            if (ClinicName.contains("Apadok")){
+                text = "Selamat datang kembali non-member klinik";
+            }
+            Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
+            snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+            snackbar.show();
             setupJson();
         }
     }

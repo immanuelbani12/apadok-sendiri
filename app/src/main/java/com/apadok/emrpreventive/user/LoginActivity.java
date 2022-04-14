@@ -40,11 +40,10 @@ public class LoginActivity extends AppCompatActivity {
     // API Variables
     private Gson gson = new Gson();
     private JsonObject returnvalue;
-    private String login_res = "";
 
     // Res/Layout Variables
     private Button btn_masuk;
-    private TextView tv_support_by, phone_text, additional_text, register_text;
+    private TextView phone_text, additional_text, register_text;
     private EditText phone_input;
 
     @Override

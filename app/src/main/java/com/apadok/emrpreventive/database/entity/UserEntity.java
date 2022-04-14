@@ -10,16 +10,22 @@ import androidx.room.PrimaryKey;
 public class UserEntity {
     @PrimaryKey
     @NonNull
-    int userid;
+    int id_user;
 
-    @ColumnInfo(name = "username")
-    String username;
+    @ColumnInfo(name = "nama_user")
+    String nama_user;
+
+    @ColumnInfo(name = "kode_group")
+    String kode_group;
+
+    @ColumnInfo(name = "id_klinik")
+    String id_klinik;
 
     @ColumnInfo(name = "role")
     String role;
 
-    @ColumnInfo(name = "clinicname")
-    String clinicname;
+    @ColumnInfo(name = "nama_klinik")
+    String nama_klinik;
 
     @ColumnInfo(name = "token")
     String token;
@@ -31,28 +37,28 @@ public class UserEntity {
     Boolean isonline;
 
 
-    public int getUserid() {
-        return userid;
+    public int getId_user() {
+        return id_user;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNama_user() {
+        return nama_user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNama_user(String nama_user) {
+        this.nama_user = nama_user;
     }
 
-    public String getClinicname() {
-        return clinicname;
+    public String getNama_klinik() {
+        return nama_klinik;
     }
 
-    public void setClinicname(String clinicname) {
-        this.clinicname = clinicname;
+    public void setNama_klinik(String nama_klinik) {
+        this.nama_klinik = nama_klinik;
     }
 
     public String getToken() {
@@ -87,11 +93,29 @@ public class UserEntity {
         this.role = role;
     }
 
-    public UserEntity(int userid, String username, String role, String clinicname, String token, byte[] cliniclogo, Boolean isonline) {
-        this.userid = userid;
-        this.username = username;
+    public String getKode_group() {
+        return kode_group;
+    }
+
+    public void setKode_group(String kode_group) {
+        this.kode_group = kode_group;
+    }
+
+    public String getId_klinik() {
+        return id_klinik;
+    }
+
+    public void setId_klinik(String id_klinik) {
+        this.id_klinik = id_klinik;
+    }
+
+    public UserEntity(int id_user, String nama_user, String kode_group, String id_klinik, String role, String nama_klinik, String token, byte[] cliniclogo, Boolean isonline) {
+        this.id_user = id_user;
+        this.nama_user = nama_user;
+        this.kode_group = kode_group;
+        this.id_klinik = id_klinik;
         this.role = role;
-        this.clinicname = clinicname;
+        this.nama_klinik = nama_klinik;
         this.token = token;
         this.cliniclogo = cliniclogo;
         this.isonline = isonline;

@@ -40,11 +40,9 @@ public class SignupActivity extends AppCompatActivity {
     // API Variables
     private Gson gson = new Gson();
     private JsonObject returnvalue;
-    private String login_res = "";
 
     // Res/Layout Variables
-    private Button btn_login;
-    private TextView tv_support_by, phone_text, additional_text, login_text, btn_signup;
+    private TextView phone_text, additional_text, login_text, btn_signup;
     private EditText name_input, phone_input, group_input;
 
     @Override
@@ -75,11 +73,6 @@ public class SignupActivity extends AppCompatActivity {
         phone_input.setTypeface(helvetica_font);
         group_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
-
-        DialogFragment newFragment = new PopUpMessage();
-        // Set Message
-        ((PopUpMessage) newFragment).setMessage("Fitur masih dalam tahap pengembangan");
-        newFragment.show(getSupportFragmentManager(), "");
 
         name_input.addTextChangedListener(new EmptyTextWatcher() {
 
@@ -152,8 +145,10 @@ public class SignupActivity extends AppCompatActivity {
                 name_input = (EditText) findViewById(R.id.name_input);
                 phone_input = (EditText) findViewById(R.id.phone_input);
                 group_input = (EditText) findViewById(R.id.group_input);
-                String count = name_input.getText().toString() + phone_input.getText().toString() + group_input.getText().toString();
-                setupJson(count);
+                String name = name_input.getText().toString();
+                String phone = phone_input.getText().toString();
+                String group = group_input.getText().toString();
+                setupJson(name,phone,group);
             }
         });
 
@@ -170,10 +165,10 @@ public class SignupActivity extends AppCompatActivity {
         this.getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
-    private void setupJson(String phonenum) {
+    private void setupJson(String name, String phonenum, String groupcode) {
         //Construct Obj with Phonenum + Change Obj to string then to JSON
-        User Obj = new User(phonenum);
-        Type user = new TypeToken<User>() {
+        NewUser Obj = new NewUser(name,phonenum,groupcode);
+        Type user = new TypeToken<NewUser>() {
         }.getType();
         String json = gson.toJson(Obj, user);
 
@@ -193,6 +188,7 @@ public class SignupActivity extends AppCompatActivity {
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
+                intent.putExtra("role", "N");
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", cliniclogo);
                 intent.putExtra("token", token);
@@ -215,7 +211,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL = "http://178.128.25.139:8080/api/login";
+        String URL = "http://178.128.25.139:8080/api/daftar";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
