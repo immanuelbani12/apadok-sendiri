@@ -123,9 +123,9 @@ public class MainActivity extends AppCompatActivity {
 //                finish();
             } else {
                 //Name Toast
-                CharSequence text = "Anda berhasil Sign-In sebagai member " + ClinicName;
+                CharSequence text = "Anda berhasil masuk sebagai anggota " + ClinicName;
                 if (Role.equals("N")) {
-                    text = "Anda berhasil Sign-In sebagai non-member klinik";
+                    text = "Anda berhasil masuk sebagai non-anggota klinik";
                 }
 
                 Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
@@ -146,9 +146,9 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
 //            Jika User Ada dan Sudah Login sebelumnya
-            CharSequence text = "Selamat datang kembali member " + ClinicName;
+            CharSequence text = "Selamat datang kembali anggota " + ClinicName;
             if (ClinicName.contains("Apadok")){
-                text = "Selamat datang kembali non-member klinik";
+                text = "Selamat datang kembali non-anggota klinik";
             }
             Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
             snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));

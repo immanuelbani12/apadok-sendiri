@@ -292,18 +292,18 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
     }
 
     private final void CreateFormList() {
-        forms[0] = new FormKebugaran(1, "Saya merasa lelah secara fisik");
-        forms[1] = new FormKebugaran(2, "Saya merasa lemah di semua hal");
+        forms[0] = new FormKebugaran(1, "Saya merasa lelah secara mental dan fisik");
+        forms[1] = new FormKebugaran(2, "Saya merasa lemah secara keseluruhan");
         forms[2] = new FormKebugaran(3, "Saya merasa lesu");
-        forms[3] = new FormKebugaran(4, "Saya merasa lelah secara fisik dan psikis");
+        forms[3] = new FormKebugaran(4, "Saya merasa lelah secara fisik");
         forms[4] = new FormKebugaran(5, "Saya merasa kesulitan memulai sesuatu karena saya lelah");
         forms[5] = new FormKebugaran(6, "Saya merasa kesulitan menyelesaikan sesuatu karena saya lelah");
-        forms[6] = new FormKebugaran(7, "Saya memiliki energi");
-        forms[7] = new FormKebugaran(8, "Saya bisa mengerjakan aktivitas seperti biasa");
-        forms[8] = new FormKebugaran(9, "Saya butuh tidur seharian");
+        forms[6] = new FormKebugaran(7, "Saya memiliki tenaga");
+        forms[7] = new FormKebugaran(8, "Saya bisa melakukan aktivitas seperti biasa");
+        forms[8] = new FormKebugaran(9, "Saya perlu tidur di siang hari");
         forms[9] = new FormKebugaran(10, "Saya merasa terlalu lelah untuk makan");
-        forms[10] = new FormKebugaran(11, "Saya membutuhkan bantuan untuk mengerjakan aktivitas seperti biasa");
-        forms[11] = new FormKebugaran(12, "Saya merasa frustrasi menjadi terlalu lelah untuk melakukan sesuatu yang saya ingin kerjakan");
+        forms[10] = new FormKebugaran(11, "Saya membutuhkan bantuan untuk mengerjakan aktivitas sehari - hari");
+        forms[11] = new FormKebugaran(12, "Saya merasa frustrasi karena terlalu lelah untuk melakukan hal-hal yang ingin saya lakukan");
         forms[12] = new FormKebugaran(13, "Saya harus membatasi aktivitas sosial saya karena saya lelah");
 
         //Setup JSON Answer to be sent to API
