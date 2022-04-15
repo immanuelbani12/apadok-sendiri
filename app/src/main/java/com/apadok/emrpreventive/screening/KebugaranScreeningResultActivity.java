@@ -152,11 +152,6 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         time_result.setText("Mengolah Data....");
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
-
-        DialogFragment newFragment = new PopUpMessage();
-        // Set Message
-        ((PopUpMessage) newFragment).setMessage("Fitur masih dalam tahap pengembangan");
-        newFragment.show(getSupportFragmentManager(), "");
     }
 
     private void setupJson() {

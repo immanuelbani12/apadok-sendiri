@@ -135,11 +135,6 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         title_result.setText("Hasil Skrining Kebugaran");
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
-
-        DialogFragment newFragment = new PopUpMessage();
-        // Set Message
-        ((PopUpMessage) newFragment).setMessage("Fitur masih dalam tahap pengembangan");
-        newFragment.show(getSupportFragmentManager(), "");
     }
 
 
