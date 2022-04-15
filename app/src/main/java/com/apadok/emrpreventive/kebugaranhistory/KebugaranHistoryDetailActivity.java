@@ -1,7 +1,6 @@
 package com.apadok.emrpreventive.kebugaranhistory;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -29,11 +28,6 @@ import com.apadok.emrpreventive.common.PopUpMessage;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

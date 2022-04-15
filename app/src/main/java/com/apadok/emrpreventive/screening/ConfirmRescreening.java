@@ -15,31 +15,55 @@ public class ConfirmRescreening extends DialogFragment {
     private String clinicname;
     private String cliniclogo;
     private String username;
+    private Boolean iskebugaran;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Anda sudah melakukan skrining dalam waktu kurang dari 3 hari,\n\nLakukan kembali skrining?")
-                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                        Intent intent = new Intent(getContext(), ScreeningActivity.class);
-                        intent.putExtra("userid", user_id);
-                        intent.putExtra("token", Token);
-                        intent.putExtra("clinicname", clinicname);
-                        intent.putExtra("cliniclogo", cliniclogo);
-                        intent.putExtra("username", username);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
-        // Create the AlertDialog object and return it
-        return builder.create();
+        if (iskebugaran){
+            builder.setMessage("Anda sudah melakukan skrining dalam waktu kurang dari 3 hari,\n\nLakukan kembali skrining kebugaran?")
+                    .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(getContext(), KebugaranScreeningActivity.class);
+                            intent.putExtra("userid", user_id);
+                            intent.putExtra("token", Token);
+                            intent.putExtra("clinicname", clinicname);
+                            intent.putExtra("cliniclogo", cliniclogo);
+                            intent.putExtra("username", username);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        } else {
+            builder.setMessage("Anda sudah melakukan skrining dalam waktu kurang dari 3 hari,\n\nLakukan kembali skrining?")
+                    .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(getContext(), ScreeningActivity.class);
+                            intent.putExtra("userid", user_id);
+                            intent.putExtra("token", Token);
+                            intent.putExtra("clinicname", clinicname);
+                            intent.putExtra("cliniclogo", cliniclogo);
+                            intent.putExtra("username", username);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
     }
 
     public void setClinicname(String clinicname) {
@@ -61,4 +85,8 @@ public class ConfirmRescreening extends DialogFragment {
     public void setToken(String token) {
         this.Token = token;
     }
+
+    public Boolean getIskebugaran() { return iskebugaran; }
+
+    public void setIskebugaran(Boolean iskebugaran) { this.iskebugaran = iskebugaran; }
 }

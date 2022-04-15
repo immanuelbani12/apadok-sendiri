@@ -466,6 +466,7 @@ public class MainActivity extends AppCompatActivity {
                     ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
                     ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
                     ((ConfirmRescreening) newFragment).setUsername(UserName);
+                    ((ConfirmRescreening) newFragment).setIskebugaran(false);
                     newFragment.show(getSupportFragmentManager(), "");
                 } else {
                     Intent intent = new Intent(MainActivity.this, ScreeningActivity.class);
@@ -493,6 +494,7 @@ public class MainActivity extends AppCompatActivity {
                     ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
                     ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
                     ((ConfirmRescreening) newFragment).setUsername(UserName);
+                    ((ConfirmRescreening) newFragment).setIskebugaran(true);
                     newFragment.show(getSupportFragmentManager(), "");
                 } else {
                     Intent intent = new Intent(MainActivity.this, KebugaranScreeningActivity.class);

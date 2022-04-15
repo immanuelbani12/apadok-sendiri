@@ -1,7 +1,6 @@
 package com.apadok.emrpreventive.screening;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,11 +44,6 @@ import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.apadok.emrpreventive.user.LogOutAuthError;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -92,7 +86,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kebugaran_screening_result);
         setupItemView();
         setupJson();
-        setupChart();
+//        setupChart();
     }
 
     private void setupChart(){
@@ -222,6 +216,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
                 kebugaran_category.setVisibility(View.VISIBLE);
 
                 btn_education.setVisibility(View.VISIBLE);
+                setupChart();
             }
 
             @Override
