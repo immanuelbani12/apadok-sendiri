@@ -1,6 +1,11 @@
 package com.apadok.emrpreventive.encyclopedia;
 
+import static com.apadok.emrpreventive.encyclopedia.ConfirmArticleFormat.getVideoId;
+
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -79,6 +85,37 @@ public class EncyclopediaActivity extends AppCompatActivity {
                                     long id) {
                 String idhistory = (String) view.getTag();
                 int id_history = Integer.parseInt(idhistory);
+                if (eclnew.get(id_history).getIsi_artikel().equals("")){
+                    String videoid = getVideoId(eclnew.get(id_history).getLink_artikel());
+                    if (videoid == null) {
+                        //Toast
+                        Toast toast = Toast.makeText(getBaseContext(), "Video Artikel Terkait Gagal Ditemukan", Toast.LENGTH_LONG);
+                        toast.show();
+                        return;
+                    }
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + videoid));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+
+                    } catch (ActivityNotFoundException e) {
+                        // youtube is not installed.Will be opened in other available apps
+                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/watch?v=" + videoid));
+                        startActivity(i);
+                    }
+                    return;
+                }
+                if (eclnew.get(id_history).getLink_artikel().equals("")){
+                    Intent intent = new Intent(getBaseContext(), EncyclopediaDetailActivity.class);
+                    intent.putExtra("position", position + 1);
+                    intent.putExtra("judul_artikel", eclnew.get(id_history).getJudul_artikel());
+                    intent.putExtra("isi_artikel", eclnew.get(id_history).getIsi_artikel());
+                    intent.putExtra("kategori_artikel", eclnew.get(id_history).getKategori_artikel());
+                    intent.putExtra("clinicname", clinicname);
+                    intent.putExtra("cliniclogo", logo);
+                    startActivity(intent);
+                    return;
+                }
                 DialogFragment newFragment = new ConfirmArticleFormat();
                 //Pass the User ID to next activity
                 ((ConfirmArticleFormat) newFragment).setPosition(position + 1);
