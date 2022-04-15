@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:paddingLeft="35dp"
-                android:text="Kategori Penyakit:"
+                android:text="Kategori:"
                 android:textColor="@color/black_font"
                 android:textSize="20sp" />
 
@@ -87,6 +87,18 @@
                 android:drawablePadding="5dp"
                 android:paddingLeft="15dp"
                 android:text="Penyakit Kardiovaskular"
+                android:textColor="@color/grey_font"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/kebugaran_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:drawableLeft="@drawable/ic_baseline_accessibility_new_24"
+                android:drawablePadding="5dp"
+                android:paddingLeft="15dp"
+                android:text="Kebugaran"
                 android:textColor="@color/grey_font"
                 android:textSize="18sp" />
 

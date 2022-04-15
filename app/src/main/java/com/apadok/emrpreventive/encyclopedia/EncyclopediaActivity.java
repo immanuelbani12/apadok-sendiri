@@ -48,7 +48,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
     private ListView l;
     private JsonObject returnvalue;
     private ArrayList<Encyclopedia> eclnew;
-    private int diabetval, strokeval, cardioval;
+    private int diabetval, strokeval, cardioval, kebugaranval;
     private String ClinicName, ClinicLogo;
 
     @Override
@@ -64,6 +64,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
         diabetval = getIntent().getIntExtra("categorydiabetes", 0);
         strokeval = getIntent().getIntExtra("categorystroke", 0);
         cardioval = getIntent().getIntExtra("categorykardio", 0);
+        kebugaranval = getIntent().getIntExtra("categorykebugaran", 0);
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
         clinic.setText(clinicname);
 
@@ -129,6 +130,17 @@ public class EncyclopediaActivity extends AppCompatActivity {
 
     private ArrayList<Encyclopedia> FilterEncyclopedia() {
         ArrayList<Encyclopedia> eclparsed = new ArrayList<Encyclopedia>();
+        if (kebugaranval == 1) {
+            String filtered = "4";
+            strokeval = 3;
+            cardioval = 3;
+            diabetval = 3;
+            for (int counter = 0; counter < ecl.size(); counter++) {
+                if (ecl.get(counter).kategori_artikel == filtered) {
+                    eclparsed.add(ecl.get(counter));
+                }
+            }
+        }
         if (strokeval <= 2) {
             String filtered = "1";
             for (int counter = 0; counter < ecl.size(); counter++) {
@@ -242,7 +254,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 "•\tCobalah untuk menurunkan 7 persen berat badan Anda jika Anda kelebihan berat badan atau obesitas. \n" +
                 "•\tMengurangi konsumsi makanan dan minuman yang manis\n" +
                 "•\tHindari makanan junkfood, alcohol, dan mengandung kolesterol tinggi\n", "2", "https://youtube.com/shorts/vgQL3cdiFXU?feature=share", "", ""));
-        ecl.add(new Encyclopedia("3", "Judul Artikel Kardiovaskular", "Penyakit jantung merupakan penyebab kematian utama di dunia. Penyakit jantung mengacu pada setiap kondisi yang mempengaruhi jantung. Ada banyak jenis penyakit jantung, diantaranya adalah: penyakit jantung coroner, gagal jantung, kardiomiopati, aritmia, dan penyakit jantung bawaaan.\n" +
+        ecl.add(new Encyclopedia("3", "Artikel Kardiovaskular", "Penyakit jantung merupakan penyebab kematian utama di dunia. Penyakit jantung mengacu pada setiap kondisi yang mempengaruhi jantung. Ada banyak jenis penyakit jantung, diantaranya adalah: penyakit jantung coroner, gagal jantung, kardiomiopati, aritmia, dan penyakit jantung bawaaan.\n" +
                 "\n" +
                 "Gejala yang sering muncul pada penyakit jantung:\n" +
                 "•\tangina, atau nyeri dada\n" +
@@ -268,5 +280,6 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 "•\tBerhenti atau menghindari merokok: Merokok merupakan faktor risiko utama untuk kondisi jantung dan kardiovaskular.\n" +
                 "•\tMembatasi asupan alkohol: Wanita tidak boleh mengonsumsi lebih dari satu minuman standar per hari, dan pria tidak boleh mengonsumsi lebih dari dua minuman standar per hari.\n" +
                 "•\tMengelola kondisi yang mendasari: Carilah pengobatan untuk kondisi yang mempengaruhi kesehatan jantung, seperti tekanan darah tinggi, obesitas, dan diabetes.\n", "3", "https://youtube.com/shorts/WiwXDhLkTrg?feature=share", "", ""));
+        ecl.add(new Encyclopedia("4", "Artikel Kebugaran", "Penilaian Fungsional Terapi Penyakit Kronis – Kelelahan (FACIT-F) adalah ukuran 40 item yang menilai kelelahan yang dilaporkan sendiri dan dampaknya terhadap aktivitas dan fungsi sehari-hari. FACIT - F dikembangkan pada pertengahan 1990-an untuk memenuhi permintaan yang meningkat untuk evaluasi kelelahan yang lebih tepat terkait dengan anemia pada pasien kanker. FACIT - F adalah bagian dari Penilaian Fungsional Terapi Kanker – Anemia (FACT-An) yang lebih panjang (47 item), yang mencakup FACT-G 27 item dan subskala 20 item yang menangani masalah tambahan yang terkait dengan anemia kanker dan pengobatannya. Subskala 20 item ini, disebut sebagai subskala anemia, terdiri dari 13 item yang menilai kelelahan dan dampaknya (FACIT-Fatigue), dan 7 gejala tambahan yang terkait dengan anemia (misalnya, sesak napas; sakit kepala).", "4", "", "", ""));
     }
 }

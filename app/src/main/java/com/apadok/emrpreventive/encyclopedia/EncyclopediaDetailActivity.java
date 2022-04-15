@@ -41,7 +41,7 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
     private Gson gson = new Gson();
     private JsonObject returnvalue;
     private String hasil = "";
-    private TextView tv_title, tv_diabetes, tv_cardiovascular, tv_stroke, tv_result;
+    private TextView tv_title, tv_diabetes, tv_cardiovascular, tv_stroke, tv_kebugaran, tv_result;
     private ImageView iv_trophy;
     private Button btn_finish, btn_whatsapp;
 
@@ -100,6 +100,7 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
         tv_diabetes = (TextView) findViewById(R.id.diabetes_title);
         tv_stroke = (TextView) findViewById(R.id.stroke_title);
         tv_cardiovascular = (TextView) findViewById(R.id.cardiovascular_title);
+        tv_kebugaran = (TextView) findViewById(R.id.kebugaran_title);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_title.setTypeface(helvetica_font);
@@ -121,16 +122,25 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
         if (kategoriint == 1) {
             tv_diabetes.setVisibility(View.GONE);
             tv_cardiovascular.setVisibility(View.GONE);
+            tv_kebugaran.setVisibility(View.GONE);
         }
 
         if (kategoriint == 2) {
             tv_stroke.setVisibility(View.GONE);
             tv_cardiovascular.setVisibility(View.GONE);
+            tv_kebugaran.setVisibility(View.GONE);
         }
 
         if (kategoriint == 3) {
             tv_stroke.setVisibility(View.GONE);
             tv_diabetes.setVisibility(View.GONE);
+            tv_kebugaran.setVisibility(View.GONE);
+        }
+
+        if (kategoriint == 4) {
+            tv_stroke.setVisibility(View.GONE);
+            tv_diabetes.setVisibility(View.GONE);
+            tv_cardiovascular.setVisibility(View.GONE);
         }
     }
 
