@@ -139,6 +139,9 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
 
 
     private final View.OnClickListener RedirectToEducation = v -> {
+        // Pass value as true
+        kebugaranval = 1;
+
         Intent intent = new Intent(KebugaranHistoryDetailActivity.this, EncyclopediaActivity.class);
         //Pass the Category to next activity
         intent.putExtra("categorykebugaran", kebugaranval);
