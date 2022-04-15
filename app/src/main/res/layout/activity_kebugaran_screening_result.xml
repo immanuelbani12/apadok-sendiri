@@ -89,6 +89,7 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:text="Skor kebugaran anda termasuk"
+                    android:justificationMode="inter_word"
                     android:textColor="@color/black_font"
                     android:textSize="18sp" />
 

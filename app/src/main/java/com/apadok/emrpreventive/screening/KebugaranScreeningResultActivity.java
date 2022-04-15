@@ -2,6 +2,8 @@ package com.apadok.emrpreventive.screening;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.text.LineBreaker;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -140,6 +142,10 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         kebugaran_category = (TextView) findViewById(R.id.kebugaran_result);
         btn_education = (Button) findViewById(R.id.btn_education);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            kebugaran_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+        }
+
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         title_result.setTypeface(helvetica_font);
         time_result.setTypeface(helvetica_font);
@@ -207,7 +213,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
                 time_result.setText(timestamp);
                 kebugaran_result.setText(score_kebugaran);
                 kebugaran_result.setVisibility(View.VISIBLE);
-                kebugaran_category.setText(hasil_kebugaran);
+                kebugaran_category.setText("Skor kebugaran anda " + score_kebugaran + " dari maksimal skor 52. Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar");
                 kebugaran_category.setVisibility(View.VISIBLE);
 
                 btn_education.setVisibility(View.VISIBLE);
