@@ -13,10 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
@@ -31,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -89,8 +90,9 @@ public class EncyclopediaActivity extends AppCompatActivity {
                     String videoid = getVideoId(eclnew.get(id_history).getLink_artikel());
                     if (videoid == null) {
                         //Toast
-                        Toast toast = Toast.makeText(getBaseContext(), "Video Artikel Terkait Gagal Ditemukan", Toast.LENGTH_LONG);
-                        toast.show();
+                        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Video Artikel Terkait Gagal Ditemukan", Snackbar.LENGTH_SHORT);
+                        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(), R.color.orange_dark));
+                        snackbar.show();
                         return;
                     }
                     try {

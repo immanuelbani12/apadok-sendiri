@@ -7,9 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
+
+import com.apadok.emrpreventive.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -64,8 +67,9 @@ public class ConfirmArticleFormat extends DialogFragment {
                         String videoid = getVideoId(data.getLink_artikel());
                         if (videoid == null) {
                             //Toast
-                            Toast toast = Toast.makeText(getContext(), "Video Artikel Terkait Gagal Ditemukan", Toast.LENGTH_LONG);
-                            toast.show();
+                            Snackbar snackbar = Snackbar.make(requireActivity().getWindow().getDecorView().findViewById(android.R.id.content), "Video Artikel Terkait Gagal Ditemukan", Snackbar.LENGTH_SHORT);
+                            snackbar.setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.orange_dark));
+                            snackbar.show();
                             return;
                         }
                         try {

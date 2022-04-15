@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -538,10 +537,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     //Error Toast
                     CharSequence text = "Anda tidak memiliki riwayat skrining untuk kategori ini";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(getBaseContext(), text, duration);
-                    toast.show();
+                    Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
+                    snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+                    snackbar.show();
                 }
             }
         });
@@ -563,10 +561,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     //Error Toast
                     CharSequence text = "Anda tidak memiliki riwayat skrining untuk kategori ini";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(getBaseContext(), text, duration);
-                    toast.show();
+                    Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
+                    snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+                    snackbar.show();
                 }
             }
         });

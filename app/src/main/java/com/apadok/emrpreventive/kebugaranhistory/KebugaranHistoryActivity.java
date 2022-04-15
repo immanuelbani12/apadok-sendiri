@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -49,8 +48,8 @@ public class KebugaranHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screening_history);
         setupItemView();
-        setupContent();
-//        setupJson();
+//        setupContent();
+        setupJson();
     }
 
     private void setupContent() {
@@ -108,13 +107,7 @@ public class KebugaranHistoryActivity extends AppCompatActivity {
             @Override
             public void onError() {
                 //Name Toast
-                CharSequence text = "Koneksi bermasalah";
-                int duration = Toast.LENGTH_LONG;
-
-                Toast toast = Toast.makeText(getBaseContext(), text, duration);
-                toast.show();
-//                Temporary Disables this until next update
-//                setupContent();
+                setupContent();
             }
         });
         VolleyLog.DEBUG = true;
