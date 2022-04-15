@@ -84,8 +84,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onFilledField() {
                 if (name_input.getText().toString().length() > 0
-                        && phone_input.getText().toString().length() > 0
-                        && group_input.getText().toString().length() > 0) {
+                        && phone_input.getText().toString().length() > 0) {
                     btn_signup.setEnabled(true);
                 } else {
                     btn_signup.setEnabled(false);
@@ -103,8 +102,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onFilledField() {
                 if (name_input.getText().toString().length() > 0
-                        && phone_input.getText().toString().length() > 0
-                        && group_input.getText().toString().length() > 0) {
+                        && phone_input.getText().toString().length() > 0) {
                     btn_signup.setEnabled(true);
                 } else {
                     btn_signup.setEnabled(false);
