@@ -70,6 +70,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
     private List<FormAnswer> answers;
 
     // Res/Layout Variables
+    private AnyChartView anyChartView;
     private TextView title_result, time_result, kebugaran_result, kebugaran_category;
     private Button btn_education;
 
@@ -78,8 +79,8 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
     private String ClinicName, ClinicLogo, score_kebugaran;
 
     // Temporary Calculation Variables
-    private int[] calc = new int[20];
-    private int calculateres;
+//    private int[] calc = new int[20];
+//    private int calculateres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +92,6 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
     }
 
     private void setupChart(){
-        AnyChartView anyChartView = findViewById(R.id.bar_chart);
-
         Cartesian cartesian = AnyChart.column();
 
         List<DataEntry> data = new ArrayList<>();
@@ -118,6 +117,9 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
 
         cartesian.yAxis(0).title("Skor");
         anyChartView.setChart(cartesian);
+
+        kebugaran_category.setText("Skor kebugaran anda " + score_kebugaran + " dari maksimal skor 52. Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar");
+        anyChartView.setVisibility(View.VISIBLE);
     }
 
     private void setupItemView() {
@@ -155,6 +157,8 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
 
         title_result.setText("Hasil Skrining Kebugaran");
         time_result.setText("Mengolah Data....");
+        anyChartView = findViewById(R.id.bar_chart);
+        anyChartView.setVisibility(View.GONE);
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
     }
@@ -212,7 +216,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
                 time_result.setText(timestamp);
                 kebugaran_result.setText(score_kebugaran);
                 kebugaran_result.setVisibility(View.VISIBLE);
-                kebugaran_category.setText("Skor kebugaran anda " + score_kebugaran + " dari maksimal skor 52. Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar");
+                kebugaran_category.setText("Mengolah Grafik Data...");
                 kebugaran_category.setVisibility(View.VISIBLE);
 
                 btn_education.setVisibility(View.VISIBLE);
