@@ -72,7 +72,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
         // Init Logo RS
         String logo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://178.128.25.139:8080/media/klinik/" + logo;
+        String url = "http://apadok.com/media/klinik/" + logo;
         Picasso.get().load(url).into(cliniclogo);
 
         CreateFormList();
@@ -175,7 +175,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get ID Pemeriksan From Main Activity
         int id_user = getIntent().getIntExtra("user", 0);
-        String URL = "http://178.128.25.139:8080/pemeriksaan/userAll/" + id_user;
+        String URL = "http://apadok.com/pemeriksaan/userAll/" + id_user;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override

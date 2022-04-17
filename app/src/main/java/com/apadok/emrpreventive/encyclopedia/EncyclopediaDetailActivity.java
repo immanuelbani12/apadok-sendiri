@@ -92,7 +92,7 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
         // Init Logo RS
         String logo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://178.128.25.139:8080/media/klinik/" + logo;
+        String url = "http://apadok.com/media/klinik/" + logo;
         Picasso.get().load(url).into(cliniclogo);
 
         tv_title = (TextView) findViewById(R.id.title_result);
@@ -147,7 +147,7 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         int id_history = getIntent().getIntExtra("history", 0);
-        String URL = "http://178.128.25.139:8080/pemeriksaan/show/" + id_history;
+        String URL = "http://apadok.com/pemeriksaan/show/" + id_history;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override

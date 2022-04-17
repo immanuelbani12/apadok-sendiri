@@ -133,7 +133,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         // Init Logo RS
         ClinicLogo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://178.128.25.139:8080/media/klinik/" + ClinicLogo;
+        String url = "http://apadok.com/media/klinik/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
         title_result = (TextView) findViewById(R.id.title_result);
@@ -234,7 +234,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
 
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL = "http://178.128.25.139:8080/api/pemeriksaanKebugaran";
+        String URL = "http://apadok.com/api/pemeriksaanKebugaran";
         String token = getIntent().getStringExtra("token");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override

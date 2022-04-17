@@ -69,7 +69,7 @@ public class KebugaranHistoryActivity extends AppCompatActivity {
         // Init Logo RS
         String logo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://178.128.25.139:8080/media/klinik/" + logo;
+        String url = "http://apadok.com/media/klinik/" + logo;
         Picasso.get().load(url).into(cliniclogo);
 
         TextView tv_title = (TextView) findViewById(R.id.tv_title_histories);
@@ -118,7 +118,7 @@ public class KebugaranHistoryActivity extends AppCompatActivity {
         //Temporarily Get ID Pemeriksan From Main Activity
         int id_user = getIntent().getIntExtra("userid", 0);
         String token = getIntent().getStringExtra("token");
-        String URL = "http://178.128.25.139:8080/api/pemeriksaanKebugaran/userAll/" + id_user;
+        String URL = "http://apadok.com/api/pemeriksaanKebugaran/userAll/" + id_user;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override

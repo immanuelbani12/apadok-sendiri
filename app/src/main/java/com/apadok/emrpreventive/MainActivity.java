@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Init Logo RS
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://178.128.25.139:8080/media/klinik/" + ClinicLogo;
+        String url = "http://apadok.com/media/klinik/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
         ImageView logout = (ImageView) findViewById(R.id.logout_icon);
@@ -313,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
         String json = null;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get Latest ID Pemeriksaan from User 1
-        String URL = "http://178.128.25.139:8080/api/pemeriksaan/userAll/" + UserId;
+        String URL = "http://apadok.com/api/pemeriksaan/userAll/" + UserId;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -380,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
         String json = null;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get Latest ID Pemeriksaan from User 1
-        String URL = "http://178.128.25.139:8080/api/pemeriksaanKebugaran/userAll/" + UserId;
+        String URL = "http://apadok.com/api/pemeriksaanKebugaran/userAll/" + UserId;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

@@ -190,7 +190,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void createCalls(String json, final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL = "http://178.128.25.139:8080/api/daftar";
+        String URL = "http://apadok.com/api/daftar";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
