@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
-                snackbar.setBackgroundTint(R.style.AppTheme);
+                snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
                 snackbar.show();
 
                 setupJson();
