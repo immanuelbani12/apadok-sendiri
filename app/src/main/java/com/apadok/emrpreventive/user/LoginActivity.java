@@ -15,9 +15,14 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
@@ -45,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_masuk;
     private TextView phone_text, additional_text, register_text;
     private EditText phone_input;
+    private String ErrorMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                 phone_input.getText().clear();
                 DialogFragment newFragment = new PopUpMessage();
                 // Set Message
-                ((PopUpMessage) newFragment).setMessage("Akun tidak dapat ditemukan, silahkan coba lagi");
+                ((PopUpMessage) newFragment).setMessage(ErrorMsg);
                 newFragment.show(getSupportFragmentManager(), "");
             }
         });
@@ -176,6 +182,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("VOLLEY", error.toString());
+                ErrorMsg = "Ada masalah di aplikasi Apadok";
+                if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
+                    ErrorMsg = "Aplikasi gagal terhubung ke Internet, silahkan coba lagi";
+                } else if (error instanceof ServerError || error instanceof AuthFailureError) {
+                    ErrorMsg = "Akun tidak dapat ditemukan, silahkan coba lagi";
+                } else if (error instanceof ParseError) {
+                    ErrorMsg = "Ada masalah di aplikasi Apadok";
+                }
                 callback.onError();
             }
         }) {

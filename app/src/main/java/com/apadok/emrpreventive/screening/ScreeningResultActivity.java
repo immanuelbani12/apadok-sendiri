@@ -34,6 +34,7 @@ import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.consult.ConsultActivity;
+import com.apadok.emrpreventive.consult.NearestClinicActivity;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.apadok.emrpreventive.user.LogOutAuthError;
@@ -66,7 +67,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
 
     // Intent Variables
     private int diabetval, strokeval, cardioval;
-    private String ClinicName, ClinicLogo;
+    private String ClinicName, ClinicLogo, Role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +130,14 @@ public class ScreeningResultActivity extends AppCompatActivity {
         btn_consult.setOnClickListener(RedirectToConsult);
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
+
+        Role = getIntent().getStringExtra("role");
+        if (Role != null) {
+            if (Role.equals("N")) {
+                btn_consult.setText("Pencarian Klinik");
+                btn_consult.setOnClickListener(RedirectToNearestClinic);
+            }
+        }
     }
 
     private void setupJson() {
@@ -278,20 +287,16 @@ public class ScreeningResultActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e("VOLLEY", error.toString());
                 if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
-                    hasil = "Tidak ada Jaringan Internet";
-
-                } else if (error instanceof ServerError || error instanceof AuthFailureError) {
-//                    hasil = "Server sedang bermasalah";
+                    hasil = "Aplikasi gagal terhubung ke Internet";
+                } else if (error instanceof ServerError) {
+                    hasil = "Server Apadok sedang bermasalah";
+                } else if (error instanceof AuthFailureError) {
                     hasil = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
                     newFragment.show(getSupportFragmentManager(), "");
                 } else if (error instanceof ParseError) {
                     hasil = "Ada masalah di aplikasi Apadok";
                 }
-//                else if (error instanceof AuthFailureError) {
-//                    DialogFragment newFragment = new LogOutAuthError();
-//                    newFragment.show(getSupportFragmentManager(), "");
-//                }
                 callback.onError();
             }
         }) {
@@ -343,6 +348,18 @@ public class ScreeningResultActivity extends AppCompatActivity {
         intent.putExtra("categorykardio", cardioval);
 
         intent.putExtra("data", sch);
+        intent.putExtra("clinicname", ClinicName);
+        intent.putExtra("cliniclogo", ClinicLogo);
+        startActivity(intent);
+    };
+
+    private final View.OnClickListener RedirectToNearestClinic = v -> {
+        Intent intent = new Intent(ScreeningResultActivity.this, NearestClinicActivity.class);
+        //Pass the Category to next activity (Unused)
+        intent.putExtra("categorydiabetes", diabetval);
+        intent.putExtra("categorystroke", strokeval);
+        intent.putExtra("categorykardio", cardioval);
+
         intent.putExtra("clinicname", ClinicName);
         intent.putExtra("cliniclogo", ClinicLogo);
         startActivity(intent);

@@ -72,10 +72,10 @@ public class ConsultActivity extends AppCompatActivity {
         btn_call.setTypeface(helvetica_font);
         btn_whatsapp.setTypeface(helvetica_font);
         btn_penjadwalanbeta.setTypeface(helvetica_font);
-//        Disable call temporarily, bad layout
-//        btn_call.setOnClickListener(RedirecttoCall);
-        btn_call.setVisibility(View.GONE);
+        btn_call.setOnClickListener(RedirecttoCall);
         btn_penjadwalanbeta.setOnClickListener(RedirectToConsult);
+//      Remove Prototip Penjadwalan as for now
+        btn_penjadwalanbeta.setVisibility(View.GONE);
 
         iv_image_consult = (ImageView) findViewById(R.id.iv_image_consult);
         iv_image_consult.setImageResource(R.drawable.ic_doctor);

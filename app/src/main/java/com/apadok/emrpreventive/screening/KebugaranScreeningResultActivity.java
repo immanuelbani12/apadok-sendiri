@@ -249,20 +249,17 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e("VOLLEY", error.toString());
                 if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
-                    hasil = "Tidak ada Jaringan Internet";
+                    hasil = "Aplikasi gagal terhubung ke Internet";
 
-                } else if (error instanceof ServerError || error instanceof AuthFailureError) {
-//                    hasil = "Server sedang bermasalah";
+                } else if (error instanceof ServerError) {
+                    hasil = "Server Apadok sedang bermasalah";
+                } else if (error instanceof AuthFailureError) {
                     hasil = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
                     newFragment.show(getSupportFragmentManager(), "");
                 } else if (error instanceof ParseError) {
                     hasil = "Ada masalah di aplikasi Apadok";
                 }
-//                else if (error instanceof AuthFailureError) {
-//                    DialogFragment newFragment = new LogOutAuthError();
-//                    newFragment.show(getSupportFragmentManager(), "");
-//                }
                 callback.onError();
             }
         }) {

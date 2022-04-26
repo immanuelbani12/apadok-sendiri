@@ -86,6 +86,8 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
                 intent.putExtra("data", sch.get(position));
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", logo);
+                String Role = getIntent().getStringExtra("role");
+                intent.putExtra("role", Role);
                 startActivity(intent);
             }
         });
@@ -160,6 +162,7 @@ public class ScreeningHistoryActivity extends AppCompatActivity {
                 return headers;
             }
         };
+
 
         requestQueue.add(stringRequest);
     }

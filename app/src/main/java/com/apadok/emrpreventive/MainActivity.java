@@ -330,20 +330,17 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("VOLLEY", error.toString());
                 ErrorMsg = ""; // error message, show it in toast or dialog, whatever you want
                 if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
-                    ErrorMsg = "Tidak ada Jaringan Internet";
+                    ErrorMsg = "Aplikasi gagal terhubung ke Internet";
                     // Panggil Fungsi Baca dari SQLite Local
-                } else if (error instanceof ServerError || error instanceof AuthFailureError) {
-//                    ErrorMsg = "Server sedang bermasalah";
+                } else if (error instanceof ServerError) {
+                    ErrorMsg = "Server Apadok sedang bermasalah";
+                } else if (error instanceof AuthFailureError) {
                     ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
                     newFragment.show(getSupportFragmentManager(), "");
                 } else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }
-//                else if (error instanceof AuthFailureError) {
-//                    DialogFragment newFragment = new LogOutAuthError();
-//                    newFragment.show(getSupportFragmentManager(), "");
-//                }
                 callback.onError();
             }
         }) {
@@ -397,13 +394,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("VOLLEY", error.toString());
                 ErrorMsg = ""; // error message, show it in toast or dialog, whatever you want
                 if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
-                    ErrorMsg = "Tidak ada Jaringan Internet";
+                    ErrorMsg = "Aplikasi gagal terhubung ke Internet";
                     // Panggil Fungsi Baca dari SQLite Local
-                } else if (error instanceof ServerError || error instanceof AuthFailureError) {
-//                    ErrorMsg = "Server sedang bermasalah";
+                } else if (error instanceof ServerError) {
+                    ErrorMsg = "Server Apadok sedang bermasalah";
+                } else if (error instanceof AuthFailureError) {
                     ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
-                    newFragment.show(getSupportFragmentManager(), "");
+                    newFragment.show(getSupportFragmentManager(), "");;
                 } else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }
@@ -466,6 +464,7 @@ public class MainActivity extends AppCompatActivity {
                     ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
                     ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
                     ((ConfirmRescreening) newFragment).setUsername(UserName);
+                    ((ConfirmRescreening) newFragment).setRole(Role);
                     ((ConfirmRescreening) newFragment).setIskebugaran(false);
                     newFragment.show(getSupportFragmentManager(), "");
                 } else {
@@ -476,6 +475,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("cliniclogo", ClinicLogo);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
+                    intent.putExtra("role", Role);
                     startActivity(intent);
                 }
             }
@@ -494,6 +494,7 @@ public class MainActivity extends AppCompatActivity {
                     ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
                     ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
                     ((ConfirmRescreening) newFragment).setUsername(UserName);
+                    ((ConfirmRescreening) newFragment).setRole(Role);
                     ((ConfirmRescreening) newFragment).setIskebugaran(true);
                     newFragment.show(getSupportFragmentManager(), "");
                 } else {
@@ -504,6 +505,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("cliniclogo", ClinicLogo);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
+                    intent.putExtra("role", Role);
                     startActivity(intent);
                 }
             }
@@ -533,6 +535,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("cliniclogo", ClinicLogo);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
+                    intent.putExtra("role", Role);
                     intent.putParcelableArrayListExtra("history", sch);
                     startActivity(intent);
                 } else {
@@ -558,6 +561,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("cliniclogo", ClinicLogo);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
+                    intent.putExtra("role", Role);
                     intent.putParcelableArrayListExtra("history_bugar", sch_bugar);
                     startActivity(intent);
                 } else {
@@ -573,19 +577,6 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     };
 
-//    private final View.OnClickListener RedirectToHistory = v -> {
-//        Intent intent = new Intent(MainActivity.this, ScreeningHistoryActivity.class);
-//        //Pass the User ID to next activity
-//        intent.putExtra("userid", UserId);
-//        intent.putExtra("clinicname", ClinicName);
-//        intent.putExtra("cliniclogo", ClinicLogo);
-//        intent.putExtra("username", UserName);
-//        intent.putExtra("token", Token);
-//        if (!sch.isEmpty()) {
-//            intent.putParcelableArrayListExtra("history",sch);
-//        }
-//        startActivity(intent);
-//    };
 
     private final View.OnClickListener RedirectToConsult = v -> {
         Intent intent = new Intent(MainActivity.this, ConsultActivity.class);
@@ -595,6 +586,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("cliniclogo", ClinicLogo);
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
+        intent.putExtra("role", Role);
         if (!sch.isEmpty()) {
             intent.putExtra("data", sch.get(0));
         }
@@ -609,6 +601,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("cliniclogo", ClinicLogo);
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
+        intent.putExtra("role", Role);
         startActivity(intent);
     };
 

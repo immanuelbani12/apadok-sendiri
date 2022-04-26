@@ -380,6 +380,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         int id_user = getIntent().getIntExtra("userid", 0);
                         String token = getIntent().getStringExtra("token");
                         String username = getIntent().getStringExtra("username");
+                        String role = getIntent().getStringExtra("role");
                         answer[CurrentForm - 1].setAnswer(Integer.toString(id_user));
 
                         Intent intent = new Intent(ScreeningActivity.this, ScreeningResultActivity.class);
@@ -389,6 +390,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         intent.putExtra("username", username);
                         intent.putExtra("clinicname", ClinicName);
                         intent.putExtra("cliniclogo", ClinicLogo);
+                        intent.putExtra("role", role);
                         startActivity(intent);
                         finish();
                     }

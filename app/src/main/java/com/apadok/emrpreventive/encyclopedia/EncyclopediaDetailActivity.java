@@ -161,7 +161,7 @@ public class EncyclopediaDetailActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e("VOLLEY", error.toString());
                 if (error instanceof NetworkError || error instanceof AuthFailureError || error instanceof NoConnectionError || error instanceof TimeoutError) {
-                    hasil = "Tidak ada Jaringan Internet";
+                    hasil = "Aplikasi gagal terhubung ke Internet";
                 } else if (error instanceof ServerError) {
                     hasil = "Server sedang bermasalah";
                 } else if (error instanceof ParseError) {

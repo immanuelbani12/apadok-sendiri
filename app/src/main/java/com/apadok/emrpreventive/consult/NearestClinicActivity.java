@@ -12,10 +12,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.SetupToolbar;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 public class NearestClinicActivity extends AppCompatActivity {
@@ -65,6 +67,11 @@ public class NearestClinicActivity extends AppCompatActivity {
         iv_image_consult = (ImageView) findViewById(R.id.iv_image_consult);
         iv_image_consult.setImageResource(R.drawable.ic_nearest_clinic);
         iv_image_consult.setVisibility(View.VISIBLE);
+
+        CharSequence text = "Konsultasi digantikan dengan Pencarian Klinik karena anda bukan member klinik";
+        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG);
+        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+        snackbar.show();
     }
 
     private void setupItemData() {
