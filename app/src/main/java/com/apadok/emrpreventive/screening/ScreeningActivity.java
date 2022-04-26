@@ -1,11 +1,15 @@
 package com.apadok.emrpreventive.screening;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -134,6 +138,42 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         btn_submit.setOnClickListener(this);
         btn_backquestion.setOnClickListener(this);
 
+        // Process Previously Recorded Data
+        String previous_data = answer[CurrentForm - 1].getAnswer();
+        if (previous_data != null){
+            try {
+                SelectedOptionPosititon = Integer.parseInt(previous_data);
+                switch (SelectedOptionPosititon) {
+                    case 1:
+                        if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
+                        break;
+                    case 2:
+                        if (!isOptionSubmitted) selectedOptionView(tv_option_two, 2);
+                        break;
+                    case 3:
+                        if (!isOptionSubmitted) selectedOptionView(tv_option_three, 3);
+                        break;
+                    case 4:
+                        if (!isOptionSubmitted) selectedOptionView(tv_option_four, 4);
+                        break;
+                    default:
+                        SelectedOptionPosititon = -1;
+                        edit_text.setText(answer[CurrentForm - 1].getAnswer());
+                        break;
+                }
+            } catch (NumberFormatException e){
+                if (previous_data.equals("Laki-Laki")){
+                    if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
+                } else if (previous_data.equals("Perempuan")){
+                    if (!isOptionSubmitted) selectedOptionView(tv_option_two, 2);
+                } else {
+                    SelectedOptionPosititon = -1;
+                    previous_data = previous_data.substring(2);
+                    edit_text.setText(previous_data);
+                }
+            }
+        }
+
         // Reset ScrollView
         sv_screening.scrollTo(0, 0);
     }
@@ -156,35 +196,35 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
         } else {
             iv_image.setVisibility(View.GONE);
         }
-        if (formcheck.getOpt1() != "") {
+        if (!formcheck.getOpt1().equals("")) {
             tv_option_one.setText(formcheck.getOpt1());
             tv_option_one.setOnClickListener(this);
             tv_option_one.setVisibility(View.VISIBLE);
         } else {
             tv_option_one.setVisibility(View.GONE);
         }
-        if (formcheck.getOpt2() != "") {
+        if (!formcheck.getOpt2().equals("")) {
             tv_option_two.setText(formcheck.getOpt2());
             tv_option_two.setOnClickListener(this);
             tv_option_two.setVisibility(View.VISIBLE);
         } else {
             tv_option_two.setVisibility(View.GONE);
         }
-        if (formcheck.getOpt3() != "") {
+        if (!formcheck.getOpt3().equals("")) {
             tv_option_three.setText(formcheck.getOpt3());
             tv_option_three.setOnClickListener(this);
             tv_option_three.setVisibility(View.VISIBLE);
         } else {
             tv_option_three.setVisibility(View.GONE);
         }
-        if (formcheck.getOpt4() != "") {
+        if (!formcheck.getOpt4().equals("")) {
             tv_option_four.setText(formcheck.getOpt4());
             tv_option_four.setOnClickListener(this);
             tv_option_four.setVisibility(View.VISIBLE);
         } else {
             tv_option_four.setVisibility(View.GONE);
         }
-        if (formcheck.getOpt1() == "" && formcheck.getOpt2() == "" && formcheck.getOpt3() == "" && formcheck.getOpt4() == "") {
+        if (formcheck.getOpt1().equals("") && formcheck.getOpt2().equals("") && formcheck.getOpt3().equals("") && formcheck.getOpt4().equals("")) {
             // Display Textbar here
             SelectedOptionPosititon = -1;
             edit_text.setVisibility(View.VISIBLE);
@@ -254,29 +294,9 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         btn_submit.setEnabled(true);
                     }
                 });
-                iv_image.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        edit_text.clearFocus();
-//                        edit_text.requestFocus();
-                    }
-                });
             }
         }
     }
-
-//    public static void scrollToView(ScrollView scrollView, View view) {
-//        int vTop = view.getTop();
-//
-//        while (!(view.getParent() instanceof ScrollView)) {
-//            view = (View) view.getParent();
-//            vTop += view.getTop();
-//        }
-//
-//        final int scrollPosition = vTop;
-//
-//        new Handler().post(() -> scrollView.smoothScrollTo(0, scrollPosition));
-//    }
 
     private void defaultOptionsView() {
 
@@ -299,13 +319,17 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+    public void dismissKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (null != activity.getCurrentFocus())
+            imm.hideSoftInputFromWindow(activity.getCurrentFocus()
+                    .getApplicationWindowToken(), 0);
+    }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_image:
-                if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
-                break;
             case R.id.tv_option_one:
                 if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
                 break;
@@ -320,10 +344,11 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.btn_backquestion:
-                SelectedOptionPosititon = 0;
                 CurrentForm--;
                 SetForm();
+
                 break;
+
 
             case R.id.btn_submit:
                 isOptionSubmitted = true;
@@ -361,6 +386,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         if (CurrentForm == 2)
                             answer[CurrentForm - 1].setAnswer(1 + "/" + edit_text.getText().toString());
                         SelectedOptionPosititon = 0;
+                        dismissKeyboard(this);
                         break;
                     default:
                         // Failsafe Case
