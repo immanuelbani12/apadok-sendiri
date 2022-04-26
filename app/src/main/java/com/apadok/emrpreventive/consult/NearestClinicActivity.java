@@ -82,7 +82,7 @@ public class NearestClinicActivity extends AppCompatActivity {
     private View.OnClickListener openNearestClinic = v -> {
         PackageManager packageManager = NearestClinicActivity.this.getPackageManager();
         // Search for Clinics nearby
-        Uri gmmIntentUri = Uri.parse("geo:0,0?q=Klinik");
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=Hospitals%20%26%20clinics");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         if (mapIntent.resolveActivity(packageManager) != null) {
