@@ -346,7 +346,6 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
             case R.id.btn_backquestion:
                 CurrentForm--;
                 SetForm();
-
                 break;
 
 

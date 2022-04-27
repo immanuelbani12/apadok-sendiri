@@ -125,6 +125,29 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         btn_submit.setOnClickListener(this);
         btn_backquestion.setOnClickListener(this);
 
+        // Process Previously Recorded Data
+        String previous_data = answer[CurrentForm - 1].getAnswer();
+        if (previous_data != null){
+            try {
+                SelectedOptionPosititon = Integer.parseInt(previous_data);
+                switch (SelectedOptionPosititon) {
+                    case 1:
+                        if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
+                        break;
+                    case 2:
+                        if (!isOptionSubmitted) selectedOptionView(tv_option_two, 2);
+                        break;
+                    case 3:
+                        if (!isOptionSubmitted) selectedOptionView(tv_option_three, 3);
+                        break;
+                    case 4:
+                        if (!isOptionSubmitted) selectedOptionView(tv_option_four, 4);
+                        break;
+                }
+            } catch (NumberFormatException ignored){
+            }
+        }
+
         // Reset ScrollView
         sv_bugar_screening.scrollTo(0, 0);
     }
@@ -151,19 +174,6 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         tv_option_five.setOnClickListener(this);
         tv_option_five.setVisibility(View.VISIBLE);
     }
-
-//    public static void scrollToView(ScrollView scrollView, View view) {
-//        int vTop = view.getTop();
-//
-//        while (!(view.getParent() instanceof ScrollView)) {
-//            view = (View) view.getParent();
-//            vTop += view.getTop();
-//        }
-//
-//        final int scrollPosition = vTop;
-//
-//        new Handler().post(() -> scrollView.smoothScrollTo(0, scrollPosition));
-//    }
 
     private void defaultOptionsView() {
 
@@ -208,7 +218,6 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
                 break;
 
             case R.id.btn_backquestion:
-                SelectedOptionPosititon = 0;
                 CurrentForm--;
                 SetForm();
                 break;
