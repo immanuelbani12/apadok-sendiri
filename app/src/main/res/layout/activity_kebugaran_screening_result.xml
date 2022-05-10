@@ -66,13 +66,21 @@
                 android:layout_marginBottom="20dp"
                 android:textSize="20sp"/>
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="400dp"
+                    android:src="@drawable/graph_side_pic"
+                    android:layout_toLeftOf="@id/bar_chart"/>
+                <com.anychart.AnyChartView
+                    android:id="@+id/bar_chart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="400dp"/>
 
-            <com.anychart.AnyChartView
-                android:id="@+id/bar_chart"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginBottom="20dp"/>
-
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
