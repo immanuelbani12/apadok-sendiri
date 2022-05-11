@@ -47,7 +47,7 @@ public class RegexorChecker {
     }
     public boolean PhoneChecker(String str) {
         if (str.length() > 8 && str.length() < 17){
-            String expression = "^\\+?([ -]?\\d+)+|\\(\\d+\\)([ -]\\d+)$";
+            String expression = "\\+?([ -]?\\d+)+|\\(\\d+\\)([ -]\\d+)";
             if (str.matches(expression)){
                 return true;
             }
