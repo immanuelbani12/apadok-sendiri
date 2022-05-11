@@ -32,6 +32,7 @@ import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.EmptyTextWatcher;
 import com.apadok.emrpreventive.common.PopUpMessage;
+import com.apadok.emrpreventive.common.RegexorChecker;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView phone_text, additional_text, register_text;
     private EditText phone_input;
     private String ErrorMsg;
+    private RegexorChecker regex = new RegexorChecker();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +88,16 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFilledField() {
-                btn_masuk.setEnabled(true);
+                if (phone_input.getText().toString().length() > 0) {
+                    if (regex.PhoneChecker(phone_input.getText().toString())){
+                        btn_masuk.setEnabled(true);
+                    } else {
+                        btn_masuk.setEnabled(false);
+                        phone_input.setError("Nomor Handphone membutuhkan 9-17 digit");
+                    }
+                } else {
+                    btn_masuk.setEnabled(false);
+                }
             }
         });
 

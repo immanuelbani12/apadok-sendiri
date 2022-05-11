@@ -27,6 +27,7 @@ import androidx.fragment.app.DialogFragment;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.EmptyTextWatcher;
+import com.apadok.emrpreventive.common.RegexorChecker;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.squareup.picasso.Picasso;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
@@ -55,6 +56,7 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
     private EditText edit_text;
     private ProgressBar progressBar;
     private ScrollView sv_screening;
+    private RegexorChecker regex = new RegexorChecker();
 
     // Intent Variables
     private String ClinicName, ClinicLogo;
@@ -259,18 +261,55 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         }
                     }
                 });
-                // Check Null
+                // Check Null and Regex for Every Case
                 edit_text.addTextChangedListener(new EmptyTextWatcher() {
 
                     @Override
                     public void onEmptyField() {
                         btn_submit.setEnabled(false);
-                        edit_text.clearFocus();
+                        if (CurrentForm == 2) {
+                            edit_text.clearFocus();
+                        }
                     }
 
                     @Override
                     public void onFilledField() {
-                        btn_submit.setEnabled(true);
+                        switch (CurrentForm) {
+                            case 2:
+                                if (regex.DateRegex(edit_text.getText().toString())) {
+                                    btn_submit.setEnabled(true);
+                                    edit_text.setError(null);
+                                } else {
+                                    btn_submit.setEnabled(false);
+                                    edit_text.setError("Format bulan/tahun tidak valid");
+                                }
+                                break;
+                            case 3:
+                                if (regex.HeightChecker(edit_text.getText().toString())) {
+                                    btn_submit.setEnabled(true);
+                                    edit_text.setError(null);
+                                } else {
+                                    btn_submit.setEnabled(false);
+                                    edit_text.setError("Tinggi badan tidak valid");
+                                }
+                                break;
+                            case 4:
+                                if (regex.WeightChecker(edit_text.getText().toString())) {
+                                    btn_submit.setEnabled(true);
+                                } else {
+                                    btn_submit.setEnabled(false);
+                                    edit_text.setError("Berat badan tidak valid");
+                                }
+                                break;
+                            case 5:
+                                if (regex.HipsChecker(edit_text.getText().toString())) {
+                                    btn_submit.setEnabled(true);
+                                } else {
+                                    btn_submit.setEnabled(false);
+                                    edit_text.setError("Lingkar pinggang tidak valid");
+                                }
+                                break;
+                        }
                     }
                 });
                 iv_image.setOnClickListener(new View.OnClickListener() {
@@ -291,7 +330,29 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
                     @Override
                     public void onFilledField() {
-                        btn_submit.setEnabled(true);
+                        switch (CurrentForm){
+                            case 3:
+                                if (regex.HeightChecker(edit_text.getText().toString())) {
+                                    btn_submit.setEnabled(true);
+                                } else {
+                                    edit_text.setError("Inputaa tidak valid");
+                                }
+                                break;
+                            case 4:
+                                if (regex.WeightChecker(edit_text.getText().toString())) {
+                                    btn_submit.setEnabled(true);
+                                } else {
+                                    edit_text.setError("Inputbb tidak valid");
+                                }
+                                break;
+                            default:
+                                if (regex.HipsChecker(edit_text.getText().toString())) {
+                                    btn_submit.setEnabled(true);
+                                } else {
+                                    edit_text.setError("Inputcc tidak valid");
+                                }
+                                break;
+                        }
                     }
                 });
             }
