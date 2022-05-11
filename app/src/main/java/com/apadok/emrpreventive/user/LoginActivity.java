@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                         btn_masuk.setEnabled(true);
                     } else {
                         btn_masuk.setEnabled(false);
-                        phone_input.setError("Nomor Handphone membutuhkan 9-17 digit");
+                        phone_input.setError("Nomor handphone membutuhkan 9-17 digit");
                     }
                 } else {
                     btn_masuk.setEnabled(false);

@@ -124,7 +124,7 @@ public class SignupActivity extends AppCompatActivity {
                             btn_signup.setEnabled(true);
                         } else {
                             btn_signup.setEnabled(false);
-                            phone_input.setError("Nomor Handphone membutuhkan 9-17 digit");
+                            phone_input.setError("Nomor handphone membutuhkan 9-17 digit");
                         }
                     } else {
                         btn_signup.setEnabled(false);
