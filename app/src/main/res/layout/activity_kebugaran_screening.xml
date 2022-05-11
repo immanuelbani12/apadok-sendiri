@@ -29,12 +29,22 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 tools:text="Pertanyaan 1?" />
+            <TextView
+                android:id="@+id/center_add_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                tools:text="( Selama 7 Hari terakhir )" />
 
             <LinearLayout
                 android:id="@+id/ll_progress_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -60,81 +70,102 @@
                     tools:text="0/8" />
             </LinearLayout>
 
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/radioGroupKebugaran"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp" >
+
+                <RadioButton
+                    android:id="@+id/radio_one"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                    android:gravity="center_horizontal|bottom"
+                    android:text="1"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/radio_two"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                    android:gravity="center_horizontal|bottom"
+                    android:text="2"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/radio_three"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                    android:gravity="center_horizontal|bottom"
+                    android:text="3"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/radio_four"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                    android:gravity="center_horizontal|bottom"
+                    android:text="4"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/radio_five"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
+                    android:gravity="center_horizontal|bottom"
+                    android:text="5"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
+
+            </RadioGroup>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
                 <TextView
-                    android:id="@+id/tv_option_one"
+                    android:id="@+id/left_add_text"
                     android:layout_width="match_parent"
-                    android:layout_height="77dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/default_option_border_bg"
-                    android:gravity="center"
-                    android:padding="15dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_gravity="left"
+                    android:text="Tidak merasakan"
+                    android:textSize="15sp"
                     android:textColor="@color/black_font"
-                    android:textSize="18sp"
-                    tools:text="Opsi 1" />
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/right_add_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/black_font"
+                    android:gravity="right"
+                    android:layout_gravity="right"
+                    android:text="Sangat merasakan"
+                    android:layout_weight="1"/>
             </LinearLayout>
-            <TextView
-                android:id="@+id/tv_option_two"
-                android:layout_width="match_parent"
-                android:layout_height="77dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/default_option_border_bg"
-                android:gravity="center"
-                android:padding="15dp"
-                android:textColor="@color/black_font"
-                android:textSize="18sp"
-                tools:text="Opsi 2" />
-
-            <TextView
-                android:id="@+id/tv_option_three"
-                android:layout_width="match_parent"
-                android:layout_height="77dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/default_option_border_bg"
-                android:gravity="center"
-                android:padding="15dp"
-                android:textColor="@color/black_font"
-                android:textSize="18sp"
-                tools:text="Opsi 3" />
-
-            <TextView
-                android:id="@+id/tv_option_four"
-                android:layout_width="match_parent"
-                android:layout_height="77dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/default_option_border_bg"
-                android:gravity="center"
-                android:padding="15dp"
-                android:textColor="@color/black_font"
-                android:textSize="18sp"
-                tools:text="Opsi 4" />
-
-            <TextView
-                android:id="@+id/tv_option_five"
-                android:layout_width="match_parent"
-                android:layout_height="77dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/default_option_border_bg"
-                android:gravity="center"
-                android:padding="15dp"
-                android:textColor="@color/black_font"
-                android:textSize="18sp"
-                tools:text="Opsi 5" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_submit"

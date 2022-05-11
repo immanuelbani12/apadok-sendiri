@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -40,10 +42,12 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
     private Boolean isOptionSubmitted = false;
 
     // Res/Layout Variables
-    private TextView tv_option_one, tv_option_two, tv_option_three, tv_option_four, tv_option_five, tv_progress, tv_question;
+    private TextView tv_progress, tv_question, left_add_text, right_add_text, center_add_text;
+    private RadioButton radio_one, radio_two, radio_three, radio_four, radio_five;
     private Button btn_submit, btn_backquestion;
     private ProgressBar progressBar;
     private ScrollView sv_bugar_screening;
+    private RadioGroup radioGroup;
 
     // Intent Variables
     private String ClinicName, ClinicLogo;
@@ -86,13 +90,18 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         FormKebugaran FormQ = forms[CurrentForm - 1];
 
         sv_bugar_screening = (ScrollView) findViewById(R.id.sv_bugar_screening);
-        tv_option_one = (TextView) findViewById(R.id.tv_option_one);
-        tv_option_two = (TextView) findViewById(R.id.tv_option_two);
-        tv_option_three = (TextView) findViewById(R.id.tv_option_three);
-        tv_option_four = (TextView) findViewById(R.id.tv_option_four);
-        tv_option_five = (TextView) findViewById(R.id.tv_option_five);
+        radio_one = (RadioButton) findViewById(R.id.radio_one);
+        radio_two = (RadioButton) findViewById(R.id.radio_two);
+        radio_three = (RadioButton) findViewById(R.id.radio_three);
+        radio_four = (RadioButton) findViewById(R.id.radio_four);
+        radio_five = (RadioButton) findViewById(R.id.radio_five);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroupKebugaran);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         tv_progress = (TextView) findViewById(R.id.tv_progress);
+        tv_question = (TextView) findViewById(R.id.tv_question);
+        left_add_text = (TextView) findViewById(R.id.left_add_text);
+        right_add_text = (TextView) findViewById(R.id.right_add_text);
+        center_add_text = (TextView) findViewById(R.id.center_add_text);
         tv_question = (TextView) findViewById(R.id.tv_question);
         btn_submit = (Button) findViewById(R.id.btn_submit);
         btn_backquestion = (Button) findViewById(R.id.btn_backquestion);
@@ -101,14 +110,18 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
 
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
-        tv_option_one.setTypeface(helvetica_font);
-        tv_option_two.setTypeface(helvetica_font);
-        tv_option_three.setTypeface(helvetica_font);
-        tv_option_four.setTypeface(helvetica_font);
-        tv_option_five.setTypeface(helvetica_font);
+        radio_one.setTypeface(helvetica_font);
+        radio_two.setTypeface(helvetica_font);
+        radio_three.setTypeface(helvetica_font);
+        radio_four.setTypeface(helvetica_font);
+        radio_five.setTypeface(helvetica_font);
         tv_progress.setTypeface(helvetica_font);
         tv_question.setTypeface(helvetica_font);
         btn_submit.setTypeface(helvetica_font);
+        left_add_text.setTypeface(helvetica_font);
+        right_add_text.setTypeface(helvetica_font);
+        center_add_text.setTypeface(helvetica_font);
+        center_add_text.setText("( Selama 7 hari terakhir )");
         btn_backquestion.setTypeface(helvetica_font);
 
         tv_question.setText(FormQ.getQuestion());
@@ -131,19 +144,22 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
             try {
                 SelectedOptionPosititon = Integer.parseInt(previous_data);
                 switch (SelectedOptionPosititon) {
+                    case 0:
+                        if (!isOptionSubmitted) selectedOptionView(radio_one, 1);
+                        break;
                     case 1:
-                        if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
+                        if (!isOptionSubmitted) selectedOptionView(radio_two, 2);
                         break;
                     case 2:
-                        if (!isOptionSubmitted) selectedOptionView(tv_option_two, 2);
+                        if (!isOptionSubmitted) selectedOptionView(radio_three, 3);
                         break;
                     case 3:
-                        if (!isOptionSubmitted) selectedOptionView(tv_option_three, 3);
+                        if (!isOptionSubmitted) selectedOptionView(radio_four, 4);
                         break;
                     case 4:
-                        if (!isOptionSubmitted) selectedOptionView(tv_option_four, 4);
+                        if (!isOptionSubmitted) selectedOptionView(radio_five, 5);
                         break;
-                }
+                    }
             } catch (NumberFormatException ignored){
             }
         }
@@ -158,65 +174,29 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         } else {
             btn_backquestion.setVisibility(View.VISIBLE);
         }
-        tv_option_one.setText("Tidak pernah");
-        tv_option_one.setOnClickListener(this);
-        tv_option_one.setVisibility(View.VISIBLE);
-        tv_option_two.setText("Merasakan sedikit");
-        tv_option_two.setOnClickListener(this);
-        tv_option_two.setVisibility(View.VISIBLE);
-        tv_option_three.setText("Beberapa kali merasakan");
-        tv_option_three.setOnClickListener(this);
-        tv_option_three.setVisibility(View.VISIBLE);
-        tv_option_four.setText("Cukup banyak merasakan");
-        tv_option_four.setOnClickListener(this);
-        tv_option_four.setVisibility(View.VISIBLE);
-        tv_option_five.setText("Sangat sering merasakan");
-        tv_option_five.setOnClickListener(this);
-        tv_option_five.setVisibility(View.VISIBLE);
+        radio_one.setText("1");
+        radio_one.setVisibility(View.VISIBLE);
+        radio_two.setText("2");
+        radio_two.setVisibility(View.VISIBLE);
+        radio_three.setText("3");
+        radio_three.setVisibility(View.VISIBLE);
+        radio_four.setText("4");
+        radio_four.setVisibility(View.VISIBLE);
+        radio_five.setText("5");
+        radio_five.setVisibility(View.VISIBLE);
     }
 
     private void defaultOptionsView() {
 
         btn_submit.setEnabled(false);
         btn_backquestion.setEnabled(true);
-
-        ArrayList<TextView> options = new ArrayList<TextView>();
-        options.add(0, tv_option_one);
-        options.add(1, tv_option_two);
-        options.add(2, tv_option_three);
-        options.add(3, tv_option_four);
-        options.add(4, tv_option_five);
-
-        for (TextView option : options) {
-            option.setTextColor(Color.parseColor("#7A8089"));
-            option.setBackground(ContextCompat.getDrawable(
-                    KebugaranScreeningActivity.this,
-                    R.drawable.default_option_border_bg
-            ));
-        }
+        radioGroup.clearCheck();
 
     }
 
-
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_option_one:
-                if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
-                break;
-            case R.id.tv_option_two:
-                if (!isOptionSubmitted) selectedOptionView(tv_option_two, 2);
-                break;
-            case R.id.tv_option_three:
-                if (!isOptionSubmitted) selectedOptionView(tv_option_three, 3);
-                break;
-            case R.id.tv_option_four:
-                if (!isOptionSubmitted) selectedOptionView(tv_option_four, 4);
-                break;
-            case R.id.tv_option_five:
-                if (!isOptionSubmitted) selectedOptionView(tv_option_five, 5);
-                break;
-
+    public void onClick(View v){
+        switch (v.getId()){
             case R.id.btn_backquestion:
                 CurrentForm--;
                 SetForm();
@@ -282,22 +262,44 @@ public class KebugaranScreeningActivity extends AppCompatActivity implements Vie
         }
     }
 
-    private void selectedOptionView(TextView tv, int selectedOptionNum) {
+    public void onRadioButtonClicked(View v) {
+        boolean checked = ((RadioButton) v).isChecked();
+        switch (v.getId()) {
+            case R.id.radio_one:
+                if (checked) {
+                    if (!isOptionSubmitted) selectedOptionView(radio_one, 1);
+                }
+                break;
+            case R.id.radio_two:
+                if(checked) {
+                    if (!isOptionSubmitted) selectedOptionView(radio_two, 2);
+                }
+                break;
+            case R.id.radio_three:
+                if(checked) {
+                    if (!isOptionSubmitted) selectedOptionView(radio_three, 3);
+                }
+                break;
+            case R.id.radio_four:
+                if(checked){
+                    if (!isOptionSubmitted) selectedOptionView(radio_four, 4);
+                }
+                break;
+            case R.id.radio_five:
+                if(checked){
+                    if (!isOptionSubmitted) selectedOptionView(radio_five, 5);
+                }
+                break;
+        }
+    }
+
+    private void selectedOptionView(RadioButton radio, int selectedOptionNum) {
 
         defaultOptionsView();
-
         SelectedOptionPosititon = selectedOptionNum;
         btn_submit.setEnabled(true);
-
-
-        tv.setTextColor(
-                Color.parseColor("#363A43")
-        );
-//        tv.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-        tv.setBackground(ContextCompat.getDrawable(
-                KebugaranScreeningActivity.this,
-                R.drawable.selected_option_border_bg
-        ));
+        btn_backquestion.setEnabled(true);
+        radio.setChecked(true);
     }
 
     private final void CreateFormList() {

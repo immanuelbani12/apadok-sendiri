@@ -86,7 +86,7 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         cartesian.yAxis(0).title("Skor");
         anyChartView.setChart(cartesian);
 
-        kebugaran_category.setText("Skor kebugaran anda " + score_kebugaran + " dari maksimal skor 52. Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar");
+        kebugaran_category.setText("Skor kebugaran anda " + score_kebugaran + " dari maksimal skor 52.\n Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar");
         anyChartView.setVisibility(View.VISIBLE);
     }
 
