@@ -48,6 +48,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class ScreeningResultActivity extends AppCompatActivity {
 
@@ -62,7 +63,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
     private List<FormAnswer> answers;
 
     // Res/Layout Variables
-    private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result;
+    private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result, stroke_details;
     private Button btn_consult, btn_education;
 
     // Intent Variables
@@ -95,6 +96,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
         time_result = (TextView) findViewById(R.id.time_result);
         diabetes_result = (TextView) findViewById(R.id.diabetes_result);
         stroke_result = (TextView) findViewById(R.id.stroke_result);
+        stroke_details = (TextView) findViewById(R.id.stroke_details);
         cardiovascular_result = (TextView) findViewById(R.id.cardiovascular_result);
         dangerous_result = (TextView) findViewById(R.id.dangerous_result);
         safe_result = (TextView) findViewById(R.id.safe_result);
@@ -123,6 +125,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
         time_result.setText("Mengolah Data....");
         diabetes_result.setVisibility(View.GONE);
         stroke_result.setVisibility(View.GONE);
+        stroke_details.setVisibility(View.GONE);
         cardiovascular_result.setVisibility(View.GONE);
         dangerous_result.setVisibility(View.GONE);
         safe_result.setVisibility(View.GONE);
@@ -244,6 +247,40 @@ public class ScreeningResultActivity extends AppCompatActivity {
                         safetext += ", penyakit kardiovaskular";
                     }
                 }
+
+                // Add Penjelasan Kenapa Risiko Muncul
+                if (strokeval <= 2) {
+                    String kadar_gula_tidakdiketahui = returnvalue.get("kadar_gula_tidakdiketahui").isJsonNull() ? "" : returnvalue.get("kadar_gula_tidakdiketahui").getAsString();
+                    String tekanan_darah_tidakdiketahui = returnvalue.get("tekanan_darah_tidakdiketahui").isJsonNull() ? "" : returnvalue.get("tekanan_darah_tidakdiketahui").getAsString();
+                    String kadar_kolesterol_tidakdiketahui = returnvalue.get("kadar_kolesterol_tidakdiketahui").isJsonNull() ? "" : returnvalue.get("kadar_kolesterol_tidakdiketahui").getAsString();
+                    String stroke_warning = "";
+                    if (Objects.equals(kadar_gula_tidakdiketahui, "1") || Objects.equals(tekanan_darah_tidakdiketahui, "1") || Objects.equals(kadar_kolesterol_tidakdiketahui, "1")){
+                        if (kadar_gula_tidakdiketahui.contains("1")) {
+                            stroke_warning = "kadar gula";
+                        }
+                        if (tekanan_darah_tidakdiketahui.contains("1")) {
+                            if (stroke_warning.equals("")) {
+                                safetext = "tekanan darah";
+                            } else {
+                                safetext += ", tekanan darah";
+                            }
+                        } else if (kadar_kolesterol_tidakdiketahui.contains("1")) {
+                            cardioval = 1;
+                            if (stroke_warning.equals("")) {
+                                safetext = "kadar kolesterol";
+                            } else {
+                                safetext += ", kadar kolesterol";
+                            }
+                        }
+                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+                        if (strokeval == 3){
+                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
+                        }
+                        stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
+                        stroke_details.setVisibility(View.VISIBLE);
+                    }
+                }
+
                 if (diabetval == 3 || strokeval == 3 || cardioval == 3) {
                     dangerous_result.setText("Tubuh anda memiliki resiko tinggi untuk " + dangtext + " sehingga membutuhkan konsultasi secara offline ke dokter");
                     dangerous_result.setVisibility(View.VISIBLE);

@@ -32,6 +32,16 @@ public class PemeriksaanEntity implements Parcelable {
     @ColumnInfo(name = "updated_at")
     String updated_at;
 
+    @ColumnInfo(name = "kadar_gula_tidakdiketahui")
+    String kadar_gula_tidakdiketahui;
+
+    @ColumnInfo(name = "tekanan_darah_tidakdiketahui")
+    String tekanan_darah_tidakdiketahui;
+
+    @ColumnInfo(name = "kadar_kolesterol_tidakdiketahui")
+    String kadar_kolesterol_tidakdiketahui;
+
+
     protected PemeriksaanEntity(Parcel in) {
         id_pemeriksaan = in.readString();
         id_user = in.readString();
@@ -40,9 +50,12 @@ public class PemeriksaanEntity implements Parcelable {
         hasil_stroke = in.readString();
         created_at = in.readString();
         updated_at = in.readString();
+        kadar_gula_tidakdiketahui = in.readString();
+        tekanan_darah_tidakdiketahui = in.readString();
+        kadar_kolesterol_tidakdiketahui = in.readString();
     }
 
-    public PemeriksaanEntity(@NonNull String id_pemeriksaan, String id_user, String hasil_diabetes, String hasil_kolesterol, String hasil_stroke, String created_at, String updated_at) {
+    public PemeriksaanEntity(@NonNull String id_pemeriksaan, String id_user, String hasil_diabetes, String hasil_kolesterol, String hasil_stroke, String created_at, String updated_at, String kadar_gula_tidakdiketahui, String tekanan_darah_tidakdiketahui, String kadar_kolesterol_tidakdiketahui) {
         this.id_pemeriksaan = id_pemeriksaan;
         this.id_user = id_user;
         this.hasil_diabetes = hasil_diabetes;
@@ -50,6 +63,9 @@ public class PemeriksaanEntity implements Parcelable {
         this.hasil_stroke = hasil_stroke;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.kadar_gula_tidakdiketahui = kadar_gula_tidakdiketahui;
+        this.tekanan_darah_tidakdiketahui = tekanan_darah_tidakdiketahui;
+        this.kadar_kolesterol_tidakdiketahui = kadar_kolesterol_tidakdiketahui;
     }
 
 
@@ -62,6 +78,9 @@ public class PemeriksaanEntity implements Parcelable {
         dest.writeString(hasil_stroke);
         dest.writeString(created_at);
         dest.writeString(updated_at);
+        dest.writeString(kadar_gula_tidakdiketahui);
+        dest.writeString(tekanan_darah_tidakdiketahui);
+        dest.writeString(kadar_kolesterol_tidakdiketahui);
     }
 
     @Override
@@ -135,5 +154,29 @@ public class PemeriksaanEntity implements Parcelable {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getKadar_gula_tidakdiketahui() {
+        return kadar_gula_tidakdiketahui;
+    }
+
+    public void setKadar_gula_tidakdiketahui(String kadar_gula_tidakdiketahui) {
+        this.kadar_gula_tidakdiketahui = kadar_gula_tidakdiketahui;
+    }
+
+    public String getTekanan_darah_tidakdiketahui() {
+        return tekanan_darah_tidakdiketahui;
+    }
+
+    public void setTekanan_darah_tidakdiketahui(String tekanan_darah_tidakdiketahui) {
+        this.tekanan_darah_tidakdiketahui = tekanan_darah_tidakdiketahui;
+    }
+
+    public String getKadar_kolesterol_tidakdiketahui() {
+        return kadar_kolesterol_tidakdiketahui;
+    }
+
+    public void setKadar_kolesterol_tidakdiketahui(String kadar_kolesterol_tidakdiketahui) {
+        this.kadar_kolesterol_tidakdiketahui = kadar_kolesterol_tidakdiketahui;
     }
 }

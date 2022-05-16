@@ -21,6 +21,8 @@ import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 
     // Gson related
@@ -30,7 +32,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
 //    private String hasil = "";
 
     // Res/Layout Variables
-    private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result;
+    private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result, stroke_details;
     private Button btn_consult, btn_education;
     // Intent Variables
     private int diabetval, strokeval, cardioval;
@@ -64,6 +66,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         time_result = (TextView) findViewById(R.id.time_result);
         diabetes_result = (TextView) findViewById(R.id.diabetes_result);
         stroke_result = (TextView) findViewById(R.id.stroke_result);
+        stroke_details = (TextView) findViewById(R.id.stroke_details);
         cardiovascular_result = (TextView) findViewById(R.id.cardiovascular_result);
         dangerous_result = (TextView) findViewById(R.id.dangerous_result);
         safe_result = (TextView) findViewById(R.id.safe_result);
@@ -86,6 +89,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         time_result.setText("Mengambil Data....");
         diabetes_result.setVisibility(View.GONE);
         stroke_result.setVisibility(View.GONE);
+        stroke_details.setVisibility(View.GONE);
         cardiovascular_result.setVisibility(View.GONE);
         dangerous_result.setVisibility(View.GONE);
         safe_result.setVisibility(View.GONE);
@@ -205,6 +209,39 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
         int position = getIntent().getIntExtra("position", 0);
         if (position > 1) {
             return;
+        }
+
+        // Add Penjelasan Kenapa Risiko Muncul
+        if (strokeval <= 2) {
+            String kadar_gula_tidakdiketahui = sch.getKadar_gula_tidakdiketahui() == null ? "" : sch.getKadar_gula_tidakdiketahui();
+            String tekanan_darah_tidakdiketahui = sch.getTekanan_darah_tidakdiketahui() == null ? "" : sch.getTekanan_darah_tidakdiketahui();
+            String kadar_kolesterol_tidakdiketahui = sch.getKadar_kolesterol_tidakdiketahui() == null ? "" : sch.getKadar_kolesterol_tidakdiketahui();
+            String stroke_warning = "";
+            if (Objects.equals(kadar_gula_tidakdiketahui, "1") || Objects.equals(tekanan_darah_tidakdiketahui, "1") || Objects.equals(kadar_kolesterol_tidakdiketahui, "1")){
+                if (kadar_gula_tidakdiketahui.contains("1")) {
+                    stroke_warning = "kadar gula";
+                }
+                if (tekanan_darah_tidakdiketahui.contains("1")) {
+                    if (stroke_warning.equals("")) {
+                        safetext = "tekanan darah";
+                    } else {
+                        safetext += ", tekanan darah";
+                    }
+                } else if (kadar_kolesterol_tidakdiketahui.contains("1")) {
+                    cardioval = 1;
+                    if (stroke_warning.equals("")) {
+                        safetext = "kadar kolesterol";
+                    } else {
+                        safetext += ", kadar kolesterol";
+                    }
+                }
+                stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+                if (strokeval == 3){
+                    stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
+                }
+                stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
+                stroke_details.setVisibility(View.VISIBLE);
+            }
         }
 
         if (diabetval == 3 || strokeval == 3 || cardioval == 3) {

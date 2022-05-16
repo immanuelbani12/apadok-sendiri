@@ -85,6 +85,16 @@
                 android:paddingLeft="45dp"
                 android:text="Risiko"
                 android:textColor="@color/black_font"
+                android:layout_marginBottom="10dp"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stroke_details"
+                android:paddingLeft="55dp"
+                android:text="Penjelasan Risiko"
+                android:textColor="@color/black_font"
                 android:layout_marginBottom="20dp"
                 android:textSize="20sp"/>
 
