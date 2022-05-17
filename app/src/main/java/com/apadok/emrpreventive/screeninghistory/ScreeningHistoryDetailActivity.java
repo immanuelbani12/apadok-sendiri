@@ -19,6 +19,7 @@ import com.apadok.emrpreventive.consult.ConsultActivity;
 import com.apadok.emrpreventive.consult.NearestClinicActivity;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -205,34 +206,28 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             btn_education.setVisibility(View.VISIBLE);
         }
 
-        // Skip Consultation for Past Histories
-        int position = getIntent().getIntExtra("position", 0);
-        if (position > 1) {
-            return;
-        }
-
         // Add Penjelasan Kenapa Risiko Muncul
-        if (strokeval <= 2) {
+        if (strokeval >= 2) {
             String kadar_gula_tidakdiketahui = sch.getKadar_gula_tidakdiketahui() == null ? "" : sch.getKadar_gula_tidakdiketahui();
             String tekanan_darah_tidakdiketahui = sch.getTekanan_darah_tidakdiketahui() == null ? "" : sch.getTekanan_darah_tidakdiketahui();
             String kadar_kolesterol_tidakdiketahui = sch.getKadar_kolesterol_tidakdiketahui() == null ? "" : sch.getKadar_kolesterol_tidakdiketahui();
             String stroke_warning = "";
             if (Objects.equals(kadar_gula_tidakdiketahui, "1") || Objects.equals(tekanan_darah_tidakdiketahui, "1") || Objects.equals(kadar_kolesterol_tidakdiketahui, "1")){
                 if (kadar_gula_tidakdiketahui.contains("1")) {
-                    stroke_warning = "kadar gula";
+                    stroke_warning = "kadar gula darah";
                 }
                 if (tekanan_darah_tidakdiketahui.contains("1")) {
                     if (stroke_warning.equals("")) {
-                        safetext = "tekanan darah";
+                        stroke_warning = "tekanan darah";
                     } else {
-                        safetext += ", tekanan darah";
+                        stroke_warning += ", tekanan darah";
                     }
-                } else if (kadar_kolesterol_tidakdiketahui.contains("1")) {
-                    cardioval = 1;
+                }
+                if (kadar_kolesterol_tidakdiketahui.contains("1")) {
                     if (stroke_warning.equals("")) {
-                        safetext = "kadar kolesterol";
+                        stroke_warning = "kadar kolesterol";
                     } else {
-                        safetext += ", kadar kolesterol";
+                        stroke_warning += ", kadar kolesterol";
                     }
                 }
                 stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
@@ -242,6 +237,21 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
                 stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
                 stroke_details.setVisibility(View.VISIBLE);
             }
+        }
+
+        // Skip Consultation for Past Histories
+        int position = getIntent().getIntExtra("position", 0);
+        if (position > 1) {
+            String text = "Konsultasi hanya tersedia pada riwayat skrining terbaru";
+            if (Role != null) {
+                if (Role.equals("N")) {
+                    text = "Pencarian Klinik hanya tersedia pada riwayat skrining terbaru";
+                }
+            }
+            Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
+            snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+            snackbar.show();
+            return;
         }
 
         if (diabetval == 3 || strokeval == 3 || cardioval == 3) {

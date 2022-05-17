@@ -55,7 +55,6 @@ public class ScreeningResultActivity extends AppCompatActivity {
     // Gson related
     // API return variables
     private Gson gson = new Gson();
-    private JsonObject returnvalue;
     private PemeriksaanEntity sch;
     private String hasil = "";
     // API input Variables
@@ -159,10 +158,10 @@ public class ScreeningResultActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 // here you have the response from the volley.
-                String hasil_diabet = returnvalue.get("hasil_diabetes").isJsonNull() ? "" : returnvalue.get("hasil_diabetes").getAsString();
-                String hasil_stroke = returnvalue.get("hasil_stroke").isJsonNull() ? "" : returnvalue.get("hasil_stroke").getAsString();
-                String hasil_kardio = returnvalue.get("hasil_kolesterol").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
-                String timestamp = returnvalue.get("updated_at").isJsonNull() ? returnvalue.get("created_at").getAsString() : returnvalue.get("updated_at").getAsString();
+                String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
+                String hasil_kardio = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
+                String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
+                String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 
                 time_result.setText(timestamp);
                 diabetes_result.setText(hasil_diabet);
@@ -249,27 +248,27 @@ public class ScreeningResultActivity extends AppCompatActivity {
                 }
 
                 // Add Penjelasan Kenapa Risiko Muncul
-                if (strokeval <= 2) {
-                    String kadar_gula_tidakdiketahui = returnvalue.get("kadar_gula_tidakdiketahui").isJsonNull() ? "" : returnvalue.get("kadar_gula_tidakdiketahui").getAsString();
-                    String tekanan_darah_tidakdiketahui = returnvalue.get("tekanan_darah_tidakdiketahui").isJsonNull() ? "" : returnvalue.get("tekanan_darah_tidakdiketahui").getAsString();
-                    String kadar_kolesterol_tidakdiketahui = returnvalue.get("kadar_kolesterol_tidakdiketahui").isJsonNull() ? "" : returnvalue.get("kadar_kolesterol_tidakdiketahui").getAsString();
+                if (strokeval >= 2) {
+                    String kadar_gula_tidakdiketahui = sch.getKadar_gula_tidakdiketahui() == null ? "" : sch.getKadar_gula_tidakdiketahui();
+                    String tekanan_darah_tidakdiketahui = sch.getTekanan_darah_tidakdiketahui() == null ? "" : sch.getTekanan_darah_tidakdiketahui();
+                    String kadar_kolesterol_tidakdiketahui = sch.getKadar_kolesterol_tidakdiketahui() == null ? "" : sch.getKadar_kolesterol_tidakdiketahui();
                     String stroke_warning = "";
                     if (Objects.equals(kadar_gula_tidakdiketahui, "1") || Objects.equals(tekanan_darah_tidakdiketahui, "1") || Objects.equals(kadar_kolesterol_tidakdiketahui, "1")){
                         if (kadar_gula_tidakdiketahui.contains("1")) {
-                            stroke_warning = "kadar gula";
+                            stroke_warning = "kadar gula darah";
                         }
                         if (tekanan_darah_tidakdiketahui.contains("1")) {
                             if (stroke_warning.equals("")) {
-                                safetext = "tekanan darah";
+                                stroke_warning = "tekanan darah";
                             } else {
-                                safetext += ", tekanan darah";
+                                stroke_warning += ", tekanan darah";
                             }
-                        } else if (kadar_kolesterol_tidakdiketahui.contains("1")) {
-                            cardioval = 1;
+                        }
+                        if (kadar_kolesterol_tidakdiketahui.contains("1")) {
                             if (stroke_warning.equals("")) {
-                                safetext = "kadar kolesterol";
+                                stroke_warning = "kadar kolesterol";
                             } else {
-                                safetext += ", kadar kolesterol";
+                                stroke_warning += ", kadar kolesterol";
                             }
                         }
                         stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
@@ -278,6 +277,35 @@ public class ScreeningResultActivity extends AppCompatActivity {
                         }
                         stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
                         stroke_details.setVisibility(View.VISIBLE);
+                    } else {
+                        Boolean tekanan_darah_tidakdiketahui_intent = getIntent().getBooleanExtra("tekanan_darah_tidakdiketahui",false);
+                        Boolean kadar_gula_tidakdiketahui_intent = getIntent().getBooleanExtra("tekanan_darah_tidakdiketahui",false);
+                        Boolean kadar_kolesterol_tidakdiketahui_intent = getIntent().getBooleanExtra("tekanan_darah_tidakdiketahui",false);
+                        if (tekanan_darah_tidakdiketahui_intent || kadar_gula_tidakdiketahui_intent || kadar_kolesterol_tidakdiketahui_intent){
+                            if (tekanan_darah_tidakdiketahui_intent) {
+                                stroke_warning = "kadar gula darah";
+                            }
+                            if (kadar_gula_tidakdiketahui_intent) {
+                                if (stroke_warning.equals("")) {
+                                    stroke_warning = "tekanan darah";
+                                } else {
+                                    stroke_warning += ", tekanan darah";
+                                }
+                            }
+                            if (kadar_kolesterol_tidakdiketahui_intent) {
+                                if (stroke_warning.equals("")) {
+                                    stroke_warning = "kadar kolesterol";
+                                } else {
+                                    stroke_warning += ", kadar kolesterol";
+                                }
+                            }
+                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+                            if (strokeval == 3){
+                                stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
+                            }
+                            stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
+                            stroke_details.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
 
@@ -315,8 +343,9 @@ public class ScreeningResultActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                returnvalue = gson.fromJson(response, JsonObject.class);
-                sch = gson.fromJson(response, PemeriksaanEntity.class);
+                Type screenhistory = new TypeToken<PemeriksaanEntity>() {}.getType();
+                sch = gson.fromJson(response, screenhistory);
+                // Panggil Fungsi API Lain, Simpen ke SQLite
                 callback.onSuccess();
             }
         }, new Response.ErrorListener() {

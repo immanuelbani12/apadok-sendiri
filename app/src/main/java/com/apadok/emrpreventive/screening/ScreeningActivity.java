@@ -36,6 +36,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
+import me.grantland.widget.AutofitHelper;
+
 public class ScreeningActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Question Length is 18 as for Now, Check Res/Layout to adjust Progress Bar
@@ -60,6 +62,9 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
     // Intent Variables
     private String ClinicName, ClinicLogo;
+    private Boolean tekanan_darah_tidakdiketahui = false;
+    private Boolean kadar_gula_tidakdiketahui = false;
+    private Boolean kadar_kolesterol_tidakdiketahui = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +132,13 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
 
 
         tv_question.setText(FormQ.getQuestion());
+
+        AutofitHelper.create(tv_question);
+        AutofitHelper.create(tv_option_one);
+        AutofitHelper.create(tv_option_two);
+        AutofitHelper.create(tv_option_three);
+        AutofitHelper.create(tv_option_four);
+
 
         defaultOptionsView();
 
@@ -436,6 +448,17 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         SelectedOptionPosititon = 0;
                         break;
                     case 4:
+                        switch (CurrentForm){
+                            case 9:
+                                tekanan_darah_tidakdiketahui = true;
+                                break;
+                            case 11:
+                                kadar_gula_tidakdiketahui = true;
+                                break;
+                            case 12:
+                                kadar_kolesterol_tidakdiketahui = true;
+                                break;
+                        }
                         answer[CurrentForm - 1].setAnswer("4");
                         SelectedOptionPosititon = 0;
                         break;
@@ -477,6 +500,9 @@ public class ScreeningActivity extends AppCompatActivity implements View.OnClick
                         intent.putExtra("clinicname", ClinicName);
                         intent.putExtra("cliniclogo", ClinicLogo);
                         intent.putExtra("role", role);
+                        intent.putExtra("tekanan_darah_tidakdiketahui", tekanan_darah_tidakdiketahui);
+                        intent.putExtra("kadar_gula_tidakdiketahui", kadar_gula_tidakdiketahui);
+                        intent.putExtra("kadar_kolesterol_tidakdiketahui", kadar_kolesterol_tidakdiketahui);
                         startActivity(intent);
                         finish();
                     }
