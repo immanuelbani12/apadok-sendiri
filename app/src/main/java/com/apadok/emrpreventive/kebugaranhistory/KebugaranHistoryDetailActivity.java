@@ -63,7 +63,8 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        anyChartView = null;
+        APIlib apilib = new APIlib();
+        apilib.setActiveAnyChartView(null);
     }
 
     private void setupChart(){
