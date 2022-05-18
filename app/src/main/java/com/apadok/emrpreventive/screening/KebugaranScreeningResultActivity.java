@@ -94,7 +94,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        anyChartView.setChart(null);
+        anyChartView = null;
     }
 
 
