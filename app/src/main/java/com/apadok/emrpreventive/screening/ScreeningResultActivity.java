@@ -1,7 +1,9 @@
 package com.apadok.emrpreventive.screening;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,7 +41,6 @@ import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.apadok.emrpreventive.user.LogOutAuthError;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
@@ -271,9 +272,12 @@ public class ScreeningResultActivity extends AppCompatActivity {
                                 stroke_warning += ", kadar kolesterol";
                             }
                         }
-                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+                        GradientDrawable gradientDrawable = (GradientDrawable) stroke_details.getBackground();
+                        gradientDrawable.setStroke(2, Color.YELLOW);
+//                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
                         if (strokeval == 3){
-                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
+                            gradientDrawable.setStroke(2, Color.RED);
+//                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
                         }
                         stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
                         stroke_details.setVisibility(View.VISIBLE);
@@ -299,9 +303,12 @@ public class ScreeningResultActivity extends AppCompatActivity {
                                     stroke_warning += ", kadar kolesterol";
                                 }
                             }
-                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+                            GradientDrawable gradientDrawable = (GradientDrawable) stroke_details.getBackground();
+                            gradientDrawable.setStroke(2, Color.YELLOW);
+//                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
                             if (strokeval == 3){
-                                stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
+                                gradientDrawable.setStroke(2, Color.RED);
+//                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
                             }
                             stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
                             stroke_details.setVisibility(View.VISIBLE);

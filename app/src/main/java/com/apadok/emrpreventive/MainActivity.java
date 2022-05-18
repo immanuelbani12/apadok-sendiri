@@ -66,8 +66,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import me.grantland.widget.AutofitHelper;
-
 public class MainActivity extends AppCompatActivity {
 
     // Gson related

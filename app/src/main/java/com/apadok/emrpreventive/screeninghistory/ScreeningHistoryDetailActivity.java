@@ -1,7 +1,9 @@
 package com.apadok.emrpreventive.screeninghistory;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -211,6 +213,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             String kadar_gula_tidakdiketahui = sch.getKadar_gula_tidakdiketahui() == null ? "" : sch.getKadar_gula_tidakdiketahui();
             String tekanan_darah_tidakdiketahui = sch.getTekanan_darah_tidakdiketahui() == null ? "" : sch.getTekanan_darah_tidakdiketahui();
             String kadar_kolesterol_tidakdiketahui = sch.getKadar_kolesterol_tidakdiketahui() == null ? "" : sch.getKadar_kolesterol_tidakdiketahui();
+            kadar_kolesterol_tidakdiketahui = "1";
             String stroke_warning = "";
             if (Objects.equals(kadar_gula_tidakdiketahui, "1") || Objects.equals(tekanan_darah_tidakdiketahui, "1") || Objects.equals(kadar_kolesterol_tidakdiketahui, "1")){
                 if (kadar_gula_tidakdiketahui.contains("1")) {
@@ -230,9 +233,12 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
                         stroke_warning += ", kadar kolesterol";
                     }
                 }
-                stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+                GradientDrawable gradientDrawable = (GradientDrawable) stroke_details.getBackground();
+                gradientDrawable.setStroke(2, Color.YELLOW);
+//                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
                 if (strokeval == 3){
-                    stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
+                    gradientDrawable.setStroke(2, Color.RED);
+//                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
                 }
                 stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
                 stroke_details.setVisibility(View.VISIBLE);
