@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.anychart.APIlib;
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
@@ -57,6 +58,12 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         setupItemData();
 //        setupJson();
         setupChart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        anyChartView.setChart(null);
     }
 
     private void setupChart(){
@@ -170,4 +177,5 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
 //        intent.putExtra("cliniclogo", ClinicLogo);
 //        startActivity(intent);
 //    };
+
 }

@@ -91,6 +91,13 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
 //        setupChart();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        anyChartView.setChart(null);
+    }
+
+
     private void setupChart(){
         Cartesian cartesian = AnyChart.column();
 
@@ -302,5 +309,6 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         intent.putExtra("cliniclogo", ClinicLogo);
         startActivity(intent);
     };
+
 
 }
