@@ -273,7 +273,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
                             }
                         }
                         GradientDrawable gradientDrawable = (GradientDrawable) stroke_details.getBackground();
-                        gradientDrawable.setStroke(2, Color.YELLOW);
+                        gradientDrawable.setStroke(2, Color.parseColor("#EFCC00"));
 //                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
                         if (strokeval == 3){
                             gradientDrawable.setStroke(2, Color.RED);
@@ -283,13 +283,13 @@ public class ScreeningResultActivity extends AppCompatActivity {
                         stroke_details.setVisibility(View.VISIBLE);
                     } else {
                         Boolean tekanan_darah_tidakdiketahui_intent = getIntent().getBooleanExtra("tekanan_darah_tidakdiketahui",false);
-                        Boolean kadar_gula_tidakdiketahui_intent = getIntent().getBooleanExtra("tekanan_darah_tidakdiketahui",false);
-                        Boolean kadar_kolesterol_tidakdiketahui_intent = getIntent().getBooleanExtra("tekanan_darah_tidakdiketahui",false);
+                        Boolean kadar_gula_tidakdiketahui_intent = getIntent().getBooleanExtra("kadar_gula_tidakdiketahui",false);
+                        Boolean kadar_kolesterol_tidakdiketahui_intent = getIntent().getBooleanExtra("kadar_kolesterol_tidakdiketahui",false);
                         if (tekanan_darah_tidakdiketahui_intent || kadar_gula_tidakdiketahui_intent || kadar_kolesterol_tidakdiketahui_intent){
-                            if (tekanan_darah_tidakdiketahui_intent) {
+                            if (kadar_gula_tidakdiketahui_intent) {
                                 stroke_warning = "kadar gula darah";
                             }
-                            if (kadar_gula_tidakdiketahui_intent) {
+                            if (tekanan_darah_tidakdiketahui_intent) {
                                 if (stroke_warning.equals("")) {
                                     stroke_warning = "tekanan darah";
                                 } else {
@@ -304,7 +304,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
                                 }
                             }
                             GradientDrawable gradientDrawable = (GradientDrawable) stroke_details.getBackground();
-                            gradientDrawable.setStroke(2, Color.YELLOW);
+                            gradientDrawable.setStroke(2, Color.parseColor("#EFCC00"));
 //                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
                             if (strokeval == 3){
                                 gradientDrawable.setStroke(2, Color.RED);

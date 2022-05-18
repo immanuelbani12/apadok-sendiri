@@ -213,7 +213,6 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
             String kadar_gula_tidakdiketahui = sch.getKadar_gula_tidakdiketahui() == null ? "" : sch.getKadar_gula_tidakdiketahui();
             String tekanan_darah_tidakdiketahui = sch.getTekanan_darah_tidakdiketahui() == null ? "" : sch.getTekanan_darah_tidakdiketahui();
             String kadar_kolesterol_tidakdiketahui = sch.getKadar_kolesterol_tidakdiketahui() == null ? "" : sch.getKadar_kolesterol_tidakdiketahui();
-            kadar_kolesterol_tidakdiketahui = "1";
             String stroke_warning = "";
             if (Objects.equals(kadar_gula_tidakdiketahui, "1") || Objects.equals(tekanan_darah_tidakdiketahui, "1") || Objects.equals(kadar_kolesterol_tidakdiketahui, "1")){
                 if (kadar_gula_tidakdiketahui.contains("1")) {
@@ -234,7 +233,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
                     }
                 }
                 GradientDrawable gradientDrawable = (GradientDrawable) stroke_details.getBackground();
-                gradientDrawable.setStroke(2, Color.YELLOW);
+                gradientDrawable.setStroke(2, Color.parseColor("#EFCC00"));
 //                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
                 if (strokeval == 3){
                     gradientDrawable.setStroke(2, Color.RED);
