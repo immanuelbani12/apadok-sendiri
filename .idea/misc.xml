@@ -8,6 +8,7 @@
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/default_option_border_bg.xml" value="0.157" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/stroke_details_border_bg.xml" value="0.157" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout-v26/activity_screening.xml" value="0.1796875" />
+        <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/activity_consult.xml" value="0.10460992907801418" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/activity_kebugaran_screening_result.xml" value="0.10638297872340426" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/activity_main.xml" value="0.11651469098277609" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/activity_nearest_clinic.xml" value="0.11651469098277609" />
@@ -16,6 +17,7 @@
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/item_screening_history.xml" value="0.18072916666666666" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/item_screening_history_old.xml" value="0.18072916666666666" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/screening_option_dialog.xml" value="0.18072916666666666" />
+        <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/toolbar.xml" value="0.10460992907801418" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_kebugaran_screening.xml" value="0.13307984790874525" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_kebugaran_screening_result.xml" value="0.264" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/item_screening_history.xml" value="0.264" />

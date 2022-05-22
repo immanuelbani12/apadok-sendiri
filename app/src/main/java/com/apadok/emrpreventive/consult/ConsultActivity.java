@@ -68,6 +68,7 @@ public class ConsultActivity extends AppCompatActivity {
         title_consult.setTypeface(helvetica_font);
         tv_subtitle_consult.setTypeface(helvetica_font);
         tv_phone_consult.setTypeface(helvetica_font);
+        tv_phone_consult.setText("0822-6000-6070");
         tv_time_consult.setTypeface(helvetica_font);
         btn_call.setTypeface(helvetica_font);
         btn_whatsapp.setTypeface(helvetica_font);
@@ -90,7 +91,7 @@ public class ConsultActivity extends AppCompatActivity {
     private View.OnClickListener openWhatsApp = v -> {
         PackageManager packageManager = ConsultActivity.this.getPackageManager();
         Intent i = new Intent(Intent.ACTION_VIEW);
-        String numero = "+62 8123456789";
+        String numero = "+62 82260006070";
         String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
         String hasil_kardio = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
@@ -118,7 +119,7 @@ public class ConsultActivity extends AppCompatActivity {
 
     private final View.OnClickListener RedirecttoCall = v -> {
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:08123456789"));
+        intent.setData(Uri.parse("tel:082260006070"));
         startActivity(intent);
     };
 
