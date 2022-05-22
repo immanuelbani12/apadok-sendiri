@@ -18,13 +18,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.EmptyTextWatcher;
 import com.apadok.emrpreventive.common.RegexorChecker;
@@ -38,7 +38,7 @@ import java.util.Calendar;
 
 import me.grantland.widget.AutofitHelper;
 
-public class ScreeningActivity extends AppCompatActivity implements View.OnClickListener {
+public class ScreeningActivity extends AppApadokActivity implements View.OnClickListener {
 
     // Question Length is 18 as for Now, Check Res/Layout to adjust Progress Bar
     // Use FormAnswer[19] to put Identifier or Primary Key for User

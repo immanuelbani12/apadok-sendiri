@@ -13,12 +13,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.squareup.picasso.Picasso;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class KebugaranScreeningActivity extends AppCompatActivity implements View.OnClickListener {
+public class KebugaranScreeningActivity extends AppApadokActivity implements View.OnClickListener {
     // Question Length is 13 as for Now, Check Res/Layout to adjust Progress Bar
     // Use FormAnswer[14] to put Identifier or Primary Key for User
     private FormKebugaran[] forms = new FormKebugaran[13];

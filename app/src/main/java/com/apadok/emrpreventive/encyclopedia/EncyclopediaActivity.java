@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -29,6 +28,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.google.android.material.snackbar.Snackbar;
@@ -42,7 +42,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EncyclopediaActivity extends AppCompatActivity {
+public class EncyclopediaActivity extends AppApadokActivity {
 
     private Gson gson = new Gson();
     private ArrayList<Encyclopedia> ecl = new ArrayList<Encyclopedia>();

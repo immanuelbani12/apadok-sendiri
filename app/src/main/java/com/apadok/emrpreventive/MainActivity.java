@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
@@ -34,6 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
@@ -66,7 +66,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppApadokActivity {
 
     // Gson related
     // API return variables

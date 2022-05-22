@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.AuthFailureError;
@@ -21,6 +20,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ScreeningHistoryActivity extends AppCompatActivity {
+public class ScreeningHistoryActivity extends AppApadokActivity {
 
     // Gson related
     // API return variables

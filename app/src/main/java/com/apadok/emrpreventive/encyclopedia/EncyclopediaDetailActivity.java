@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -28,6 +27,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.google.gson.Gson;
@@ -36,7 +36,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 
-public class EncyclopediaDetailActivity extends AppCompatActivity {
+public class EncyclopediaDetailActivity extends AppApadokActivity {
 
     private Gson gson = new Gson();
     private JsonObject returnvalue;

@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -33,6 +32,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.consult.ConsultActivity;
@@ -51,7 +51,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class ScreeningResultActivity extends AppCompatActivity {
+public class ScreeningResultActivity extends AppApadokActivity {
 
     // Gson related
     // API return variables
@@ -279,6 +279,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
                             gradientDrawable.setStroke(2, Color.RED);
 //                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
                         }
+                        stroke_result.setText("Kemungkinan "+ hasil_stroke);
                         stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
                         stroke_details.setVisibility(View.VISIBLE);
                     } else {
@@ -310,6 +311,7 @@ public class ScreeningResultActivity extends AppCompatActivity {
                                 gradientDrawable.setStroke(2, Color.RED);
 //                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
                             }
+                            stroke_result.setText("Kemungkinan "+ hasil_stroke);
                             stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
                             stroke_details.setVisibility(View.VISIBLE);
                         }

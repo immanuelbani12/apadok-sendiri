@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
@@ -29,6 +28,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.MainActivity;
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.EmptyTextWatcher;
 import com.apadok.emrpreventive.common.PopUpMessage;
@@ -41,7 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends AppApadokActivity {
 
     // API Variables
     private Gson gson = new Gson();

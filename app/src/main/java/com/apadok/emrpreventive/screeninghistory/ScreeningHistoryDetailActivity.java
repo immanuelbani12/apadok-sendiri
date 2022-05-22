@@ -10,12 +10,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.apadok.emrpreventive.R;
+import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.consult.ConsultActivity;
 import com.apadok.emrpreventive.consult.NearestClinicActivity;
@@ -26,7 +26,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-public class ScreeningHistoryDetailActivity extends AppCompatActivity {
+public class ScreeningHistoryDetailActivity extends AppApadokActivity {
 
     // Gson related
 //    private Gson gson = new Gson();
@@ -239,6 +239,7 @@ public class ScreeningHistoryDetailActivity extends AppCompatActivity {
                     gradientDrawable.setStroke(2, Color.RED);
 //                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
                 }
+                stroke_result.setText("Kemungkinan "+ hasil_stroke);
                 stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
                 stroke_details.setVisibility(View.VISIBLE);
             }
