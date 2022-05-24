@@ -21,12 +21,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ensiklopedia Penyakit"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Tips Pencegahan Penyakit"
                 android:textColor="@color/black_font"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

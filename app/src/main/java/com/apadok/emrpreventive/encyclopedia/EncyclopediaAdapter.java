@@ -50,7 +50,7 @@ public class EncyclopediaAdapter extends ArrayAdapter<Encyclopedia> {
 
         // then according to the position of the view assign the desired TextView 1 for the same
         TextView textView1 = currentItemView.findViewById(R.id.tv_history);
-        textView1.setText("Ensiklopedia " + (currentNumberPosition.getJudul_artikel()));
+        textView1.setText("Tips Pencegahan " + (currentNumberPosition.getJudul_artikel()));
 
         // then according to the position of the view assign the desired TextView 2 for the same
         TextView textView2 = currentItemView.findViewById(R.id.tv_timestamp);

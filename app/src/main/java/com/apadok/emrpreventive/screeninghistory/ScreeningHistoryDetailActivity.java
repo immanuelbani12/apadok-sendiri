@@ -105,7 +105,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         Role = getIntent().getStringExtra("role");
         if (Role != null) {
             if (Role.equals("N")) {
-                btn_consult.setText("Pencarian Klinik");
+                btn_consult.setText("Cari Klinik");
                 btn_consult.setOnClickListener(RedirectToNearestClinic);
             }
         }
@@ -204,7 +204,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
 
         // Saran
         if (diabetval <= 2 || strokeval <= 2 || cardioval <= 2) {
-            safe_result.setText("Untuk " + safetext + " pada tubuh anda memiliki risiko yang tidak terlalu membahayakan. Silahkan melihat edukasi pencegahan penyakit tersebut berikut untuk mempertahankan capaian anda tersebut.");
+            safe_result.setText("Anda memiliki risiko rendah untuk " + safetext + ". Silahkan perhatikan edukasi pencegahan penyakit yang diberikan untuk mempertahankan capaian anda.");
             safe_result.setVisibility(View.VISIBLE);
             btn_education.setVisibility(View.VISIBLE);
         }
@@ -262,12 +262,12 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         }
 
         if (diabetval == 3 || strokeval == 3 || cardioval == 3) {
-            dangerous_result.setText("Tubuh anda memiliki resiko tinggi untuk " + dangtext + " sehingga membutuhkan konsultasi secara offline ke dokter");
+            dangerous_result.setText("Anda memiliki risiko tinggi untuk " + dangtext + ". Anda disarankan untuk melakukan konsultasi secara luring ke dokter.");
             dangerous_result.setVisibility(View.VISIBLE);
             btn_consult.setVisibility(View.VISIBLE);
         }
         if (diabetval != 3 && strokeval != 3 && cardioval != 3) {
-            dangerous_result.setText("Jika anda memiliki keluhan terkait dengan " + safetext + " silahkan melakukan konsultasi secara offline ke dokter");
+            dangerous_result.setText("Jika anda memiliki keluhan terkait dengan " + safetext + " silahkan melakukan konsultasi secara luring ke dokter");
             dangerous_result.setVisibility(View.VISIBLE);
             btn_consult.setVisibility(View.VISIBLE);
         }
