@@ -47,6 +47,7 @@ import com.anychart.enums.TooltipPositionMode;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
+import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
@@ -239,7 +240,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
                 score_kebugaran = returnvalue.get("score_kebugaran").isJsonNull() ? "" : returnvalue.get("score_kebugaran").getAsString();
                 String timestamp = returnvalue.get("updated_at").isJsonNull() ? returnvalue.get("created_at").getAsString() : returnvalue.get("updated_at").getAsString();
 
-                time_result.setText(timestamp);
+                time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH:mm"));
                 kebugaran_result.setText(score_kebugaran);
                 kebugaran_result.setVisibility(View.VISIBLE);
                 kebugaran_category.setText("Mengolah Grafik Data...");

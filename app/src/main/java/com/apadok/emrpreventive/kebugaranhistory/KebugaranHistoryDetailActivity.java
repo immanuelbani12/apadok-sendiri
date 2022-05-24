@@ -31,7 +31,9 @@ import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.AppApadokActivity;
+import com.apadok.emrpreventive.common.RegexorChecker;
 import com.apadok.emrpreventive.common.SetupToolbar;
+import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.squareup.picasso.Picasso;
@@ -121,7 +123,7 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         score_kebugaran = sch.getScore_kebugaran() == null ? "" : sch.getScore_kebugaran();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 
-        time_result.setText(timestamp);
+        time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH:mm"));
         kebugaran_result.setText(score_kebugaran);
         kebugaran_result.setVisibility(View.VISIBLE);
         kebugaran_category.setText("Mengolah Grafik Data...");

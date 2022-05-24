@@ -34,6 +34,7 @@ import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
+import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.consult.ConsultActivity;
 import com.apadok.emrpreventive.consult.NearestClinicActivity;
@@ -164,7 +165,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                 String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
                 String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 
-                time_result.setText(timestamp);
+                time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH:mm"));
                 diabetes_result.setText(hasil_diabet);
                 stroke_result.setText(hasil_stroke);
                 cardiovascular_result.setText(hasil_kardio);
@@ -319,7 +320,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                 }
 
                 if (diabetval == 3 || strokeval == 3 || cardioval == 3) {
-                    dangerous_result.setText("Tubuh anda memiliki resiko tinggi untuk " + dangtext + " sehingga membutuhkan konsultasi secara offline ke dokter");
+                    dangerous_result.setText("Tubuh anda memiliki risiko tinggi untuk " + dangtext + " sehingga membutuhkan konsultasi secara offline ke dokter");
                     dangerous_result.setVisibility(View.VISIBLE);
                     btn_consult.setVisibility(View.VISIBLE);
                 }
@@ -329,7 +330,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                     btn_consult.setVisibility(View.VISIBLE);
                 }
                 if (diabetval <= 2 || strokeval <= 2 || cardioval <= 2) {
-                    safe_result.setText("Untuk " + safetext + " pada tubuh anda memiliki risiko yang tidak terlalu membahayakan. Silahkan melihat edukasi pencegahan penyakit tersebut berikut untuk mempertahankan capaian anda tersebut.");
+                    safe_result.setText("Untuk " + safetext + " pada tubuh anda memiliki risiko yang cukup rendah. Silahkan melihat edukasi pencegahan penyakit tersebut berikut untuk mempertahankan capaian anda tersebut.");
                     safe_result.setVisibility(View.VISIBLE);
                     btn_education.setVisibility(View.VISIBLE);
                 }

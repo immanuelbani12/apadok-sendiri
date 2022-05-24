@@ -17,6 +17,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
+import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.consult.ConsultActivity;
 import com.apadok.emrpreventive.consult.NearestClinicActivity;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
@@ -117,7 +118,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 
-        time_result.setText(timestamp);
+        time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH:mm"));
         diabetes_result.setText(hasil_diabet);
         stroke_result.setText(hasil_stroke);
         cardiovascular_result.setText(hasil_kardio);
