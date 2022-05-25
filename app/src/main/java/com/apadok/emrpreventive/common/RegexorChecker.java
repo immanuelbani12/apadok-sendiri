@@ -10,11 +10,7 @@ public class RegexorChecker {
     public boolean HeightChecker(String str) {
         try {
             int val = Integer.parseInt(str);
-            if (val > 39 && val < 301){
-                return true;
-            } else {
-                return false;
-            }
+            return val > 39 && val < 301;
         } catch (NumberFormatException e){
             return false;
         }
@@ -23,11 +19,7 @@ public class RegexorChecker {
     public boolean WeightChecker(String str) {
         try {
             int val = Integer.parseInt(str);
-            if (val > 19 && val < 651){
-                return true;
-            } else {
-                return false;
-            }
+            return val > 19 && val < 651;
         } catch (NumberFormatException e){
             return false;
         }
@@ -36,11 +28,7 @@ public class RegexorChecker {
     public boolean HipsChecker(String str) {
         try {
             int val = Integer.parseInt(str);
-            if (val > 19 && val < 301){
-                return true;
-            } else {
-                return false;
-            }
+            return val > 19 && val < 301;
         } catch (NumberFormatException e){
             return false;
         }
@@ -48,10 +36,7 @@ public class RegexorChecker {
     public boolean PhoneChecker(String str) {
         if (str.length() > 8 && str.length() < 17){
             String expression = "\\+?([ -]?\\d+)+|\\(\\d+\\)([ -]\\d+)";
-            if (str.matches(expression)){
-                return true;
-            }
-            return false;
+            return str.matches(expression);
         } else {
             return false;
         }

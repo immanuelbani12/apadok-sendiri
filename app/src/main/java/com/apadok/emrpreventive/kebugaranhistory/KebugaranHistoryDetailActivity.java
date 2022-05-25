@@ -30,8 +30,6 @@ import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
 import com.apadok.emrpreventive.R;
-import com.apadok.emrpreventive.common.AppApadokActivity;
-import com.apadok.emrpreventive.common.RegexorChecker;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
@@ -52,9 +50,10 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
     private int kebugaranval;
     private PemeriksaanKebugaranEntity sch;
     private String ClinicName, ClinicLogo, score_kebugaran;
+    private ImageView side_pic;
 
     // Temporary Calculation Variables
-    private int[] calc = new int[20];
+    private final int[] calc = new int[20];
     private int calculateres;
 
     public static void adjustFontScale(Context context, Configuration configuration) {
@@ -152,11 +151,13 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         kebugaran_result.setVisibility(View.GONE);
         kebugaran_category = (TextView) findViewById(R.id.kebugaran_result);
         btn_education = (Button) findViewById(R.id.btn_education);
+        side_pic = (ImageView) findViewById(R.id.side_pic);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             kebugaran_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         }
 
+        side_pic.setImageResource(R.drawable.graph_side_pic);
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         title_result.setTypeface(helvetica_font);
         time_result.setTypeface(helvetica_font);

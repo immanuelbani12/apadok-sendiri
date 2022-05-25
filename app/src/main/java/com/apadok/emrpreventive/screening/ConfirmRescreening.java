@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 public class ConfirmRescreening extends DialogFragment {
@@ -18,6 +19,7 @@ public class ConfirmRescreening extends DialogFragment {
     private String username;
     private Boolean iskebugaran;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
@@ -42,7 +44,6 @@ public class ConfirmRescreening extends DialogFragment {
                         }
                     });
             // Create the AlertDialog object and return it
-            return builder.create();
         } else {
             builder.setMessage("Anda sudah melakukan skrining dalam waktu kurang dari 3 hari,\n\nLakukan kembali skrining?")
                     .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
@@ -64,8 +65,8 @@ public class ConfirmRescreening extends DialogFragment {
                         }
                     });
             // Create the AlertDialog object and return it
-            return builder.create();
         }
+        return builder.create();
     }
 
     public void setClinicname(String clinicname) {

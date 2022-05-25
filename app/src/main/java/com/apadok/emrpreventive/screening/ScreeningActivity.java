@@ -42,8 +42,8 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
 
     // Question Length is 18 as for Now, Check Res/Layout to adjust Progress Bar
     // Use FormAnswer[19] to put Identifier or Primary Key for User
-    private Form[] forms = new Form[18];
-    private FormAnswer[] answer = new FormAnswer[19];
+    private final Form[] forms = new Form[18];
+    private final FormAnswer[] answer = new FormAnswer[19];
 
 
     // Iterative or Boolean Variables
@@ -58,7 +58,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
     private EditText edit_text;
     private ProgressBar progressBar;
     private ScrollView sv_screening;
-    private RegexorChecker regex = new RegexorChecker();
+    private final RegexorChecker regex = new RegexorChecker();
 
     // Intent Variables
     private String ClinicName, ClinicLogo;
@@ -243,7 +243,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
             SelectedOptionPosititon = -1;
             edit_text.setVisibility(View.VISIBLE);
             edit_text.setHint(formcheck.getHint());
-            if (formcheck.getHint() == "Bulan dan tahun lahir") {
+            if (formcheck.getHint().equals("Bulan dan tahun lahir")) {
                 edit_text.setInputType(InputType.TYPE_CLASS_DATETIME);
                 edit_text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                     @Override
@@ -376,7 +376,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
         btn_submit.setEnabled(false);
         btn_backquestion.setEnabled(true);
 
-        ArrayList<TextView> options = new ArrayList<TextView>();
+        ArrayList<TextView> options = new ArrayList<>();
         options.add(0, tv_option_one);
         options.add(1, tv_option_two);
         options.add(2, tv_option_three);
@@ -493,7 +493,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                         answer[CurrentForm - 1].setAnswer(Integer.toString(id_user));
 
                         Intent intent = new Intent(ScreeningActivity.this, ScreeningResultActivity.class);
-                        ArrayList list = new ArrayList<>(Arrays.asList(answer));
+                        ArrayList<FormAnswer> list = new ArrayList<>(Arrays.asList(answer));
                         intent.putParcelableArrayListExtra("Answers", list);
                         intent.putExtra("token", token);
                         intent.putExtra("username", username);
@@ -529,7 +529,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
         ));
     }
 
-    private final void CreateFormList() {
+    private void CreateFormList() {
         forms[0] = new Form(1, "Jenis Kelamin", "Laki-laki", "Perempuan", "", "", R.drawable.default_image, null);
         forms[1] = new Form(2, "Bulan dan tahun lahir", "", "", "", "", R.drawable.birthdate, "Bulan dan tahun lahir");
         forms[2] = new Form(3, "Masukkan tinggi badan (cm)", "", "", "", "", R.drawable.tinggi_badan, "Tinggi badan (cm)");

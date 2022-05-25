@@ -13,9 +13,9 @@ import java.util.concurrent.ExecutionException;
 
 public class PemeriksaanRepository {
 
-    private PemeriksaanDao mPemeriksaanDao;
-    private LiveData<List<PemeriksaanEntity>> mAllPemeriksaans;
-    private PemeriksaanEntity mLatestPemeriksaans;
+    private final PemeriksaanDao mPemeriksaanDao;
+    private final LiveData<List<PemeriksaanEntity>> mAllPemeriksaans;
+    private final PemeriksaanEntity mLatestPemeriksaans;
 
     public PemeriksaanRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
@@ -60,7 +60,7 @@ public class PemeriksaanRepository {
 
     private static class getpemeriksaanAsync extends AsyncTask<Integer, Void, PemeriksaanEntity> {
 
-        private PemeriksaanDao mPemeriksaanDaoAsync;
+        private final PemeriksaanDao mPemeriksaanDaoAsync;
 
         getpemeriksaanAsync(PemeriksaanDao animalDao) {
             mPemeriksaanDaoAsync = animalDao;
@@ -74,7 +74,7 @@ public class PemeriksaanRepository {
 
     private static class insertpemeriksaansAsync extends AsyncTask<PemeriksaanEntity, Void, Long> {
 
-        private PemeriksaanDao mPemeriksaanDaoAsync;
+        private final PemeriksaanDao mPemeriksaanDaoAsync;
 
         insertpemeriksaansAsync(PemeriksaanDao PemeriksaanDao) {
             mPemeriksaanDaoAsync = PemeriksaanDao;
@@ -89,7 +89,7 @@ public class PemeriksaanRepository {
 
     private static class updatepemeriksaansAsync extends AsyncTask<PemeriksaanEntity, Void, Void> {
 
-        private PemeriksaanDao mPemeriksaanDaoAsync;
+        private final PemeriksaanDao mPemeriksaanDaoAsync;
 
         updatepemeriksaansAsync(PemeriksaanDao PemeriksaanDao) {
             mPemeriksaanDaoAsync = PemeriksaanDao;
@@ -104,7 +104,7 @@ public class PemeriksaanRepository {
 
     private static class deletepemeriksaansAsync extends AsyncTask<PemeriksaanEntity, Void, Void> {
 
-        private PemeriksaanDao mPemeriksaanDaoAsync;
+        private final PemeriksaanDao mPemeriksaanDaoAsync;
 
         deletepemeriksaansAsync(PemeriksaanDao PemeriksaanDao) {
             mPemeriksaanDaoAsync = PemeriksaanDao;
@@ -119,7 +119,7 @@ public class PemeriksaanRepository {
 
     private static class deleteAllpemeriksaansAsync extends AsyncTask<PemeriksaanEntity, Void, Void> {
 
-        private PemeriksaanDao mPemeriksaanDaoAsync;
+        private final PemeriksaanDao mPemeriksaanDaoAsync;
 
         deleteAllpemeriksaansAsync(PemeriksaanDao PemeriksaanDao) {
             mPemeriksaanDaoAsync = PemeriksaanDao;

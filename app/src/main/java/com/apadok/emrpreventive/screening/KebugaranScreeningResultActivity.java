@@ -45,7 +45,6 @@ import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
 import com.apadok.emrpreventive.R;
-import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.common.VolleyCallBack;
@@ -57,8 +56,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,18 +67,19 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
 
     // Gson related
     // API return variables
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private JsonObject returnvalue;
     private PemeriksaanEntity sch;
     private String hasil = "";
     // API input Variables
-    private FormAnswer[] answer = new FormAnswer[17];
+    private final FormAnswer[] answer = new FormAnswer[17];
     private List<FormAnswer> answers;
 
     // Res/Layout Variables
     private AnyChartView anyChartView;
     private TextView title_result, time_result, kebugaran_result, kebugaran_category;
     private Button btn_education;
+    private ImageView side_pic;
 
     // Intent Variables
     private int kebugaranval;
@@ -169,11 +169,14 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         kebugaran_result.setVisibility(View.GONE);
         kebugaran_category = (TextView) findViewById(R.id.kebugaran_result);
         btn_education = (Button) findViewById(R.id.btn_education);
+        side_pic = (ImageView) findViewById(R.id.side_pic);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             kebugaran_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         }
 
+
+        side_pic.setImageResource(R.drawable.graph_side_pic);
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         title_result.setTypeface(helvetica_font);
         time_result.setTypeface(helvetica_font);
@@ -296,17 +299,12 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
             }
 
             @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return json == null ? null : json.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
-                    return null;
-                }
+            public byte[] getBody() {
+                return json == null ? null : json.getBytes(StandardCharsets.UTF_8);
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 // Basic Authentication
                 //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
