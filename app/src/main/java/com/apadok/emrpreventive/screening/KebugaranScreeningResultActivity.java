@@ -80,6 +80,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
     private AnyChartView anyChartView;
     private TextView title_result, time_result, kebugaran_result, kebugaran_category;
     private Button btn_education;
+    private ImageView side_pic;
 
     // Intent Variables
     private int kebugaranval;
@@ -169,11 +170,14 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         kebugaran_result.setVisibility(View.GONE);
         kebugaran_category = (TextView) findViewById(R.id.kebugaran_result);
         btn_education = (Button) findViewById(R.id.btn_education);
+        side_pic = (ImageView) findViewById(R.id.side_pic);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             kebugaran_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         }
 
+
+        side_pic.setImageResource(R.drawable.graph_side_pic);
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         title_result.setTypeface(helvetica_font);
         time_result.setTypeface(helvetica_font);
