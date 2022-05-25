@@ -28,7 +28,7 @@ public class LogOutAuthError extends DialogFragment {
                         editor.clear();
                         editor.apply();
                         startActivity(new Intent(getActivity(), LoginActivity.class));
-                        Objects.requireNonNull(getActivity()).finish();
+                        requireActivity().finish();
                     }
                 });
         // Create the AlertDialog object and return it
