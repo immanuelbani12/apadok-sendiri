@@ -71,12 +71,12 @@
             </LinearLayout>
 
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            <RadioGroup
                 android:id="@+id/radioGroupKebugaran"
                 android:layout_width="400dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="20dp" >
+                android:padding="20dp">
 
                 <RadioButton
                     android:id="@+id/radio_one"
@@ -86,9 +86,9 @@
                     android:button="@null"
                     android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
                     android:gravity="center_horizontal|bottom"
+                    android:onClick="onRadioButtonClicked"
                     android:text="1"
-                    android:textSize="15sp"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/radio_two"
@@ -98,9 +98,9 @@
                     android:button="@null"
                     android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
                     android:gravity="center_horizontal|bottom"
+                    android:onClick="onRadioButtonClicked"
                     android:text="2"
-                    android:textSize="15sp"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/radio_three"
@@ -110,9 +110,9 @@
                     android:button="@null"
                     android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
                     android:gravity="center_horizontal|bottom"
+                    android:onClick="onRadioButtonClicked"
                     android:text="3"
-                    android:textSize="15sp"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/radio_four"
@@ -122,9 +122,9 @@
                     android:button="@null"
                     android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
                     android:gravity="center_horizontal|bottom"
+                    android:onClick="onRadioButtonClicked"
                     android:text="4"
-                    android:textSize="15sp"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/radio_five"
@@ -134,9 +134,9 @@
                     android:button="@null"
                     android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
                     android:gravity="center_horizontal|bottom"
+                    android:onClick="onRadioButtonClicked"
                     android:text="5"
-                    android:textSize="15sp"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:textSize="15sp" />
 
             </RadioGroup>
             <LinearLayout
