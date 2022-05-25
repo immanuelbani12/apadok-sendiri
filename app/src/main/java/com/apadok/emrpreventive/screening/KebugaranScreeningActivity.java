@@ -30,8 +30,8 @@ import java.util.Arrays;
 public class KebugaranScreeningActivity extends AppApadokActivity implements View.OnClickListener {
     // Question Length is 13 as for Now, Check Res/Layout to adjust Progress Bar
     // Use FormAnswer[14] to put Identifier or Primary Key for User
-    private FormKebugaran[] forms = new FormKebugaran[13];
-    private FormAnswer[] answer = new FormAnswer[14];
+    private final FormKebugaran[] forms = new FormKebugaran[13];
+    private final FormAnswer[] answer = new FormAnswer[14];
 
 
     // Iterative or Boolean Variables
@@ -245,7 +245,7 @@ public class KebugaranScreeningActivity extends AppApadokActivity implements Vie
                         answer[CurrentForm - 1].setAnswer(Integer.toString(id_user));
 
                         Intent intent = new Intent(KebugaranScreeningActivity.this, KebugaranScreeningResultActivity.class);
-                        ArrayList list = new ArrayList<>(Arrays.asList(answer));
+                        ArrayList<FormAnswer> list = new ArrayList<>(Arrays.asList(answer));
                         intent.putParcelableArrayListExtra("Answers", list);
                         intent.putExtra("token", token);
                         intent.putExtra("username", username);
@@ -300,7 +300,7 @@ public class KebugaranScreeningActivity extends AppApadokActivity implements Vie
         radio.setChecked(true);
     }
 
-    private final void CreateFormList() {
+    private void CreateFormList() {
         forms[0] = new FormKebugaran(1, "Saya merasa lelah secara mental dan fisik");
         forms[1] = new FormKebugaran(2, "Saya merasa lemah secara keseluruhan");
         forms[2] = new FormKebugaran(3, "Saya merasa lesu");

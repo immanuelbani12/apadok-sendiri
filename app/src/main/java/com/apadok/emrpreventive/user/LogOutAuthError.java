@@ -8,9 +8,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import java.util.Objects;
+
 public class LogOutAuthError extends DialogFragment {
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
@@ -24,7 +28,7 @@ public class LogOutAuthError extends DialogFragment {
                         editor.clear();
                         editor.apply();
                         startActivity(new Intent(getActivity(), LoginActivity.class));
-                        getActivity().finish();
+                        Objects.requireNonNull(getActivity()).finish();
                     }
                 });
         // Create the AlertDialog object and return it

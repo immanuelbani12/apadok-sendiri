@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 
 public class PemeriksaanListViewModel extends AndroidViewModel {
 
-    private PemeriksaanRepository mRepository;
+    private final PemeriksaanRepository mRepository;
     private LiveData<List<PemeriksaanEntity>> pemeriksaans;
 
     public PemeriksaanListViewModel(@NonNull Application application) {

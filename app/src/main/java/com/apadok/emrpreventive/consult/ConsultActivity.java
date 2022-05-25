@@ -88,7 +88,7 @@ public class ConsultActivity extends AppCompatActivity {
     }
 
 
-    private View.OnClickListener openWhatsApp = v -> {
+    private final View.OnClickListener openWhatsApp = v -> {
         PackageManager packageManager = ConsultActivity.this.getPackageManager();
         Intent i = new Intent(Intent.ACTION_VIEW);
         String numero = "+62 82260006070";

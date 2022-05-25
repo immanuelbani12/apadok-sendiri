@@ -45,8 +45,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,11 +56,11 @@ public class ScreeningResultActivity extends AppApadokActivity {
 
     // Gson related
     // API return variables
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private PemeriksaanEntity sch;
     private String hasil = "";
     // API input Variables
-    private FormAnswer[] answer = new FormAnswer[17];
+    private final FormAnswer[] answer = new FormAnswer[17];
     private List<FormAnswer> answers;
 
     // Res/Layout Variables
@@ -192,7 +192,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                 }
                 if (hasil_stroke.contains("Tinggi")) {
                     stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
-                    if (dangtext == "") {
+                    if (dangtext.equals("")) {
                         dangtext = "penyakit stroke";
                     } else {
                         dangtext += ", penyakit stroke";
@@ -201,7 +201,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                 } else if (hasil_stroke.contains("Rendah")) {
                     stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
                     strokeval = 1;
-                    if (safetext == "") {
+                    if (safetext.equals("")) {
                         safetext = "penyakit stroke";
                     } else {
                         safetext += ", penyakit stroke";
@@ -209,7 +209,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                 } else {
                     stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
                     strokeval = 2;
-                    if (safetext == "") {
+                    if (safetext.equals("")) {
                         safetext = "penyakit stroke";
                     } else {
                         safetext += ", penyakit stroke";
@@ -217,7 +217,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                 }
                 if (hasil_kardio.contains("Tinggi")) {
                     cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
-                    if (safetext == "") {
+                    if (safetext.equals("")) {
                         safetext = "penyakit kardiovaskular";
                     } else {
                         safetext += ", penyakit kardiovaskular";
@@ -226,7 +226,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                 } else if (hasil_kardio.contains("Rendah")) {
                     cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
                     cardioval = 1;
-                    if (safetext == "") {
+                    if (safetext.equals("")) {
                         safetext = "penyakit kardiovaskular";
                     } else {
                         safetext += ", penyakit kardiovaskular";
@@ -234,7 +234,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                 } else if (hasil_kardio.contains("Tidak")) {
                     cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.dark_green_font));
                     cardioval = 1;
-                    if (safetext == "") {
+                    if (safetext.equals("")) {
                         safetext = "penyakit kardiovaskular";
                     } else {
                         safetext += ", penyakit kardiovaskular";
@@ -242,7 +242,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                 } else {
                     cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
                     cardioval = 2;
-                    if (safetext == "") {
+                    if (safetext.equals("")) {
                         safetext = "penyakit kardiovaskular";
                     } else {
                         safetext += ", penyakit kardiovaskular";
@@ -382,17 +382,12 @@ public class ScreeningResultActivity extends AppApadokActivity {
             }
 
             @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return json == null ? null : json.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
-                    return null;
-                }
+            public byte[] getBody() {
+                return json == null ? null : json.getBytes(StandardCharsets.UTF_8);
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 // Basic Authentication
                 //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);

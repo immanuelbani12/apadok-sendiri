@@ -19,7 +19,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract PemeriksaanDao pemeriksaanDao();
 
 
-    private static AppDatabase INSTANCE;
+    private static volatile AppDatabase INSTANCE;
 
     static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {

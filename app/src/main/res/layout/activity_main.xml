@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context="com.apadok.emrpreventive.MainActivity">
 
-    <include layout="@layout/toolbar"></include>
+    <include layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"

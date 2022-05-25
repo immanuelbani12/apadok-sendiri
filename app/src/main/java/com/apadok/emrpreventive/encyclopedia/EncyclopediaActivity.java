@@ -19,12 +19,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
@@ -37,15 +35,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EncyclopediaActivity extends AppApadokActivity {
 
-    private Gson gson = new Gson();
-    private ArrayList<Encyclopedia> ecl = new ArrayList<Encyclopedia>();
+    private final Gson gson = new Gson();
+    private ArrayList<Encyclopedia> ecl = new ArrayList<>();
     private ListView l;
     private JsonObject returnvalue;
     private ArrayList<Encyclopedia> eclnew;
@@ -131,14 +129,14 @@ public class EncyclopediaActivity extends AppApadokActivity {
     }
 
     private ArrayList<Encyclopedia> FilterEncyclopedia() {
-        ArrayList<Encyclopedia> eclparsed = new ArrayList<Encyclopedia>();
+        ArrayList<Encyclopedia> eclparsed = new ArrayList<>();
         if (kebugaranval == 1) {
             String filtered = "4";
             strokeval = 3;
             cardioval = 3;
             diabetval = 3;
             for (int counter = 0; counter < ecl.size(); counter++) {
-                if (ecl.get(counter).kategori_artikel == filtered) {
+                if (ecl.get(counter).kategori_artikel.equals(filtered)) {
                     eclparsed.add(ecl.get(counter));
                 }
             }
@@ -146,7 +144,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
         if (strokeval <= 2) {
             String filtered = "1";
             for (int counter = 0; counter < ecl.size(); counter++) {
-                if (ecl.get(counter).kategori_artikel == filtered) {
+                if (ecl.get(counter).kategori_artikel.equals(filtered)) {
                     eclparsed.add(ecl.get(counter));
                 }
             }
@@ -154,7 +152,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
         if (diabetval <= 2) {
             String filtered = "2";
             for (int counter = 0; counter < ecl.size(); counter++) {
-                if (ecl.get(counter).kategori_artikel == filtered) {
+                if (ecl.get(counter).kategori_artikel.equals(filtered)) {
                     eclparsed.add(ecl.get(counter));
                 }
             }
@@ -162,7 +160,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
         if (cardioval <= 2) {
             String filtered = "3";
             for (int counter = 0; counter < ecl.size(); counter++) {
-                if (ecl.get(counter).kategori_artikel == filtered) {
+                if (ecl.get(counter).kategori_artikel.equals(filtered)) {
                     eclparsed.add(ecl.get(counter));
                 }
             }
@@ -203,20 +201,15 @@ public class EncyclopediaActivity extends AppApadokActivity {
             }
 
             @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return json == null ? null : json.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
-                    return null;
-                }
+            public byte[] getBody() {
+                return json == null ? null : json.getBytes(StandardCharsets.UTF_8);
             }
         };
 
         requestQueue.add(stringRequest);
     }
 
-    private final void CreateFormList() {
+    private void CreateFormList() {
         ecl.add(new Encyclopedia("1", "Penyakit Stroke", "Stroke merupakan penyebab kematian tersering kedua di dunia. Setiap tahun, lebih dari 795.000 orang di Amerika Serikat mengalami stroke. Stroke terjadi ketika pembuluh darah di otak pecah dan berdarah, atau ketika ada penyumbatan suplai darah ke otak. Pecahnya atau penyumbatan mencegah darah dan oksigen mencapai jaringan otak. Tanpa oksigen, sel-sel otak dan jaringan menjadi rusak dan mulai mati dalam beberapa menit. \n\n" +
                 "Hilangnya aliran darah ke otak akan merusak jaringan di dalam otak. Gejala stroke muncul di bagian tubuh yang dikendalikan oleh area otak yang rusak. Gejala stroke dapat meliputi:\n" +
                 "•\tmati rasa atau kelemahan pada lengan, wajah, dan kaki, terutama pada satu sisi tubuh,\n" +

@@ -15,7 +15,6 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
-import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,7 +22,6 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
@@ -34,11 +32,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class EncyclopediaDetailActivity extends AppApadokActivity {
 
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private JsonObject returnvalue;
     private String hasil = "";
     private TextView tv_title, tv_diabetes, tv_cardiovascular, tv_stroke, tv_kebugaran, tv_result;
@@ -160,7 +158,7 @@ public class EncyclopediaDetailActivity extends AppApadokActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("VOLLEY", error.toString());
-                if (error instanceof NetworkError || error instanceof AuthFailureError || error instanceof NoConnectionError || error instanceof TimeoutError) {
+                if (error instanceof NetworkError || error instanceof AuthFailureError || error instanceof TimeoutError) {
                     hasil = "Aplikasi gagal terhubung ke Internet";
                 } else if (error instanceof ServerError) {
                     hasil = "Server sedang bermasalah";
@@ -176,13 +174,8 @@ public class EncyclopediaDetailActivity extends AppApadokActivity {
             }
 
             @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return json == null ? null : json.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
-                    return null;
-                }
+            public byte[] getBody() {
+                return json == null ? null : json.getBytes(StandardCharsets.UTF_8);
             }
 
 //            @Override

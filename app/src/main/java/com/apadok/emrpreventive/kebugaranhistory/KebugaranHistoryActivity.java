@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,8 +27,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +38,7 @@ public class KebugaranHistoryActivity extends AppApadokActivity {
 
     // Gson related
     // API return variables
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private ArrayList<PemeriksaanKebugaranEntity> sch_bugar;
     private ListView l;
 
@@ -97,7 +96,7 @@ public class KebugaranHistoryActivity extends AppApadokActivity {
 
     private void setupJson() {
         //NO API Form Data Yet
-        createCalls("", new VolleyCallBack() {
+        createCalls(new VolleyCallBack() {
 
             @Override
             public void onSuccess() {
@@ -114,7 +113,7 @@ public class KebugaranHistoryActivity extends AppApadokActivity {
         VolleyLog.DEBUG = true;
     }
 
-    private void createCalls(String json, final VolleyCallBack callback) {
+    private void createCalls(final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get ID Pemeriksan From Main Activity
         int id_user = getIntent().getIntExtra("userid", 0);
@@ -147,17 +146,12 @@ public class KebugaranHistoryActivity extends AppApadokActivity {
             }
 
             @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return json == null ? null : json.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
-                    return null;
-                }
+            public byte[] getBody() {
+                return "".getBytes(StandardCharsets.UTF_8);
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 // Basic Authentication
                 //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP)

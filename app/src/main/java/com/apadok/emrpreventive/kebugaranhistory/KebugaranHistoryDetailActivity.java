@@ -30,8 +30,6 @@ import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
 import com.apadok.emrpreventive.R;
-import com.apadok.emrpreventive.common.AppApadokActivity;
-import com.apadok.emrpreventive.common.RegexorChecker;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
@@ -55,7 +53,7 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
     private ImageView side_pic;
 
     // Temporary Calculation Variables
-    private int[] calc = new int[20];
+    private final int[] calc = new int[20];
     private int calculateres;
 
     public static void adjustFontScale(Context context, Configuration configuration) {

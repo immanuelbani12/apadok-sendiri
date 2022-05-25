@@ -75,11 +75,12 @@ public class PemeriksaanKebugaranEntity implements Parcelable {
         }
     };
 
+    @NonNull
     public String getId_pemeriksaan_kebugaran() {
         return id_pemeriksaan_kebugaran;
     }
 
-    public void setId_pemeriksaan_kebugaran(String id_pemeriksaan) {
+    public void setId_pemeriksaan_kebugaran(@NonNull String id_pemeriksaan) {
         this.id_pemeriksaan_kebugaran = id_pemeriksaan;
     }
 

@@ -38,20 +38,20 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 
 public class SignupActivity extends AppApadokActivity {
 
     // API Variables
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private JsonObject returnvalue;
 
     // Res/Layout Variables
     private TextView phone_text, additional_text, login_text, btn_signup;
     private EditText name_input, phone_input, group_input;
     private String ErrorMsg;
-    private RegexorChecker regex = new RegexorChecker();
+    private final RegexorChecker regex = new RegexorChecker();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,13 +246,8 @@ public class SignupActivity extends AppApadokActivity {
             }
 
             @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return json == null ? null : json.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
-                    return null;
-                }
+            public byte[] getBody() {
+                return json == null ? null : json.getBytes(StandardCharsets.UTF_8);
             }
 
 //            @Override

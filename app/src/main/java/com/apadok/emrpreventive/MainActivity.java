@@ -54,8 +54,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -64,13 +64,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppApadokActivity {
 
     // Gson related
     // API return variables
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private ArrayList<PemeriksaanEntity> sch;
     private ArrayList<PemeriksaanKebugaranEntity> sch_bugar;
     private long differenceMinutes;
@@ -269,7 +270,7 @@ public class MainActivity extends AppApadokActivity {
                     Date now = Calendar.getInstance().getTime();
                     Date date = formatter.parse(Time);
                     //Comparing dates
-                    long difference = Math.abs(now.getTime() - date.getTime());
+                    long difference = Math.abs(now.getTime() - Objects.requireNonNull(date).getTime());
                     differenceMinutes = difference / (1000 * 60);
                 } catch (ParseException e) {
                     differenceMinutes = -1;
@@ -350,17 +351,12 @@ public class MainActivity extends AppApadokActivity {
             }
 
             @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return json == null ? null : json.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
-                    return null;
-                }
+            public byte[] getBody() {
+                return json == null ? null : json.getBytes(StandardCharsets.UTF_8);
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 // Basic Authentication
                 //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
@@ -401,7 +397,7 @@ public class MainActivity extends AppApadokActivity {
                 } else if (error instanceof AuthFailureError) {
                     ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
-                    newFragment.show(getSupportFragmentManager(), "");;
+                    newFragment.show(getSupportFragmentManager(), "");
                 } else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }
@@ -418,17 +414,12 @@ public class MainActivity extends AppApadokActivity {
             }
 
             @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return json == null ? null : json.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
-                    return null;
-                }
+            public byte[] getBody() {
+                return json == null ? null : json.getBytes(StandardCharsets.UTF_8);
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 // Basic Authentication
                 //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);

@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
 
 public class TestChatbotActivity extends AppCompatActivity {
 
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private Button btn_penjadwalan, btn_pagi, btn_siang, btn_sore;
     private ImageButton btn_chat_send;
     private TextView tv_title_activity, tv_first_chat, tv_second_chat, tv_third_chat;

@@ -10,8 +10,8 @@ import java.util.concurrent.ExecutionException;
 
 public class UserRepository {
 
-    private UserDao mUserDao;
-    private UserEntity mUsers;
+    private final UserDao mUserDao;
+    private final UserEntity mUsers;
 
     public UserRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
@@ -51,7 +51,7 @@ public class UserRepository {
 
     private static class getUserAsync extends AsyncTask<Integer, Void, UserEntity> {
 
-        private UserDao mUserDaoAsync;
+        private final UserDao mUserDaoAsync;
 
         getUserAsync(UserDao animalDao) {
             mUserDaoAsync = animalDao;
@@ -65,7 +65,7 @@ public class UserRepository {
 
     private static class insertUsersAsync extends AsyncTask<UserEntity, Void, Long> {
 
-        private UserDao mUserDaoAsync;
+        private final UserDao mUserDaoAsync;
 
         insertUsersAsync(UserDao UserDao) {
             mUserDaoAsync = UserDao;
@@ -80,7 +80,7 @@ public class UserRepository {
 
     private static class updateUsersAsync extends AsyncTask<UserEntity, Void, Void> {
 
-        private UserDao mUserDaoAsync;
+        private final UserDao mUserDaoAsync;
 
         updateUsersAsync(UserDao UserDao) {
             mUserDaoAsync = UserDao;
@@ -95,7 +95,7 @@ public class UserRepository {
 
     private static class deleteUsersAsync extends AsyncTask<UserEntity, Void, Void> {
 
-        private UserDao mUserDaoAsync;
+        private final UserDao mUserDaoAsync;
 
         deleteUsersAsync(UserDao UserDao) {
             mUserDaoAsync = UserDao;
@@ -110,7 +110,7 @@ public class UserRepository {
 
     private static class deleteAllUsersAsync extends AsyncTask<UserEntity, Void, Void> {
 
-        private UserDao mUserDaoAsync;
+        private final UserDao mUserDaoAsync;
 
         deleteAllUsersAsync(UserDao UserDao) {
             mUserDaoAsync = UserDao;

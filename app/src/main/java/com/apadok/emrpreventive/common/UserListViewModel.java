@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 
 public class UserListViewModel extends AndroidViewModel {
 
-    private UserRepository mRepository;
+    private final UserRepository mRepository;
     private LiveData<List<UserEntity>> Users;
 
     public UserListViewModel(@NonNull Application application) {

@@ -79,7 +79,7 @@ public class NearestClinicActivity extends AppCompatActivity {
     }
 
 
-    private View.OnClickListener openNearestClinic = v -> {
+    private final View.OnClickListener openNearestClinic = v -> {
         PackageManager packageManager = NearestClinicActivity.this.getPackageManager();
         // Search for Clinics nearby
         Uri gmmIntentUri = Uri.parse("geo:0,0?q=Hospitals%20%26%20clinics");

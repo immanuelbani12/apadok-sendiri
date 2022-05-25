@@ -1,6 +1,5 @@
 package com.apadok.emrpreventive.database.entity;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -8,7 +7,6 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "pemeriksaantemps")
 public class PemeriksaanTempEntity {
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     int id_pemeriksaan_temp;
 
     @ColumnInfo(name = "data_pemeriksaan")
@@ -41,7 +39,7 @@ public class PemeriksaanTempEntity {
         this.is_sent = is_sent;
     }
 
-    public PemeriksaanTempEntity(@NonNull int id_pemeriksaan_temp, String data_pemeriksaan, boolean is_sent) {
+    public PemeriksaanTempEntity(int id_pemeriksaan_temp, String data_pemeriksaan, boolean is_sent) {
         this.id_pemeriksaan_temp = id_pemeriksaan_temp;
         this.data_pemeriksaan = data_pemeriksaan;
         this.is_sent = is_sent;
