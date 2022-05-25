@@ -30,7 +30,7 @@ public class ConfirmLogOut extends DialogFragment {
                         Intent intent = new Intent(getActivity(), LoginActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        Objects.requireNonNull(getActivity()).finish();
+                        requireActivity().finish();
                     }
                 })
                 .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {

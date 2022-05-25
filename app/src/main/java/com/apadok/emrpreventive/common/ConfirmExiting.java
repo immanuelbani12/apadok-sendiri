@@ -21,7 +21,7 @@ public class ConfirmExiting extends DialogFragment {
         builder.setMessage(this.message)
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Objects.requireNonNull(getActivity()).finish();
+                        requireActivity().finish();
                     }
                 })
                 .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
