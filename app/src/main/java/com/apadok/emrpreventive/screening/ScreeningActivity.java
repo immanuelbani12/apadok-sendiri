@@ -62,9 +62,9 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
 
     // Intent Variables
     private String ClinicName, ClinicLogo;
-    private Boolean tekanan_darah_tidakdiketahui = false;
-    private Boolean kadar_gula_tidakdiketahui = false;
-    private Boolean kadar_kolesterol_tidakdiketahui = false;
+    private Boolean tekanan_darah = false;
+    private Boolean kadar_gula = false;
+    private Boolean kadar_kolesterol = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -347,21 +347,21 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                                 if (regex.HeightChecker(edit_text.getText().toString())) {
                                     btn_submit.setEnabled(true);
                                 } else {
-                                    edit_text.setError("Inputaa tidak valid");
+                                    edit_text.setError("Input tidak valid");
                                 }
                                 break;
                             case 4:
                                 if (regex.WeightChecker(edit_text.getText().toString())) {
                                     btn_submit.setEnabled(true);
                                 } else {
-                                    edit_text.setError("Inputbb tidak valid");
+                                    edit_text.setError("Input tidak valid");
                                 }
                                 break;
                             default:
                                 if (regex.HipsChecker(edit_text.getText().toString())) {
                                     btn_submit.setEnabled(true);
                                 } else {
-                                    edit_text.setError("Inputcc tidak valid");
+                                    edit_text.setError("Input tidak valid");
                                 }
                                 break;
                         }
@@ -450,13 +450,13 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                     case 4:
                         switch (CurrentForm){
                             case 9:
-                                tekanan_darah_tidakdiketahui = true;
+                                tekanan_darah = true;
                                 break;
                             case 11:
-                                kadar_gula_tidakdiketahui = true;
+                                kadar_gula = true;
                                 break;
                             case 12:
-                                kadar_kolesterol_tidakdiketahui = true;
+                                kadar_kolesterol = true;
                                 break;
                         }
                         answer[CurrentForm - 1].setAnswer("4");
@@ -500,9 +500,9 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                         intent.putExtra("clinicname", ClinicName);
                         intent.putExtra("cliniclogo", ClinicLogo);
                         intent.putExtra("role", role);
-                        intent.putExtra("tekanan_darah_tidakdiketahui", tekanan_darah_tidakdiketahui);
-                        intent.putExtra("kadar_gula_tidakdiketahui", kadar_gula_tidakdiketahui);
-                        intent.putExtra("kadar_kolesterol_tidakdiketahui", kadar_kolesterol_tidakdiketahui);
+                        intent.putExtra("tekanan_darah", tekanan_darah);
+                        intent.putExtra("kadar_gula", kadar_gula);
+                        intent.putExtra("kadar_kolesterol", kadar_kolesterol);
                         startActivity(intent);
                         finish();
                     }

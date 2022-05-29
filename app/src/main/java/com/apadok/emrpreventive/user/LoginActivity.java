@@ -107,6 +107,7 @@ public class LoginActivity extends AppApadokActivity {
                                              public void onClick(View v) {
                                                  Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                                                  startActivity(intent);
+                                                 finish();
                                              }
                                          }
         );

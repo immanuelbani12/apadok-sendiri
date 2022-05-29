@@ -251,22 +251,22 @@ public class ScreeningResultActivity extends AppApadokActivity {
 
                 // Add Penjelasan Kenapa Risiko Muncul
                 if (strokeval >= 2) {
-                    String kadar_gula_tidakdiketahui = sch.getKadar_gula_tidakdiketahui() == null ? "" : sch.getKadar_gula_tidakdiketahui();
-                    String tekanan_darah_tidakdiketahui = sch.getTekanan_darah_tidakdiketahui() == null ? "" : sch.getTekanan_darah_tidakdiketahui();
-                    String kadar_kolesterol_tidakdiketahui = sch.getKadar_kolesterol_tidakdiketahui() == null ? "" : sch.getKadar_kolesterol_tidakdiketahui();
+                    String kadar_gula = sch.getKadar_gula() == null ? "" : sch.getKadar_gula();
+                    String tekanan_darah = sch.getTekanan_darah() == null ? "" : sch.getTekanan_darah();
+                    String kadar_kolesterol = sch.getKadar_kolesterol() == null ? "" : sch.getKadar_kolesterol();
                     String stroke_warning = "";
-                    if (Objects.equals(kadar_gula_tidakdiketahui, "1") || Objects.equals(tekanan_darah_tidakdiketahui, "1") || Objects.equals(kadar_kolesterol_tidakdiketahui, "1")){
-                        if (kadar_gula_tidakdiketahui.contains("1")) {
+                    if (Objects.equals(kadar_gula, "1") || Objects.equals(tekanan_darah, "1") || Objects.equals(kadar_kolesterol, "1")){
+                        if (kadar_gula.contains("1")) {
                             stroke_warning = "kadar gula darah";
                         }
-                        if (tekanan_darah_tidakdiketahui.contains("1")) {
+                        if (tekanan_darah.contains("1")) {
                             if (stroke_warning.equals("")) {
                                 stroke_warning = "tekanan darah";
                             } else {
                                 stroke_warning += ", tekanan darah";
                             }
                         }
-                        if (kadar_kolesterol_tidakdiketahui.contains("1")) {
+                        if (kadar_kolesterol.contains("1")) {
                             if (stroke_warning.equals("")) {
                                 stroke_warning = "kadar kolesterol";
                             } else {
@@ -284,21 +284,21 @@ public class ScreeningResultActivity extends AppApadokActivity {
                         stroke_details.setText(hasil_stroke + " muncul karena anda mengisi jawaban pertanyaan skrining dengan pilihan tidak diketahui pada bagian " + stroke_warning);
                         stroke_details.setVisibility(View.VISIBLE);
                     } else {
-                        Boolean tekanan_darah_tidakdiketahui_intent = getIntent().getBooleanExtra("tekanan_darah_tidakdiketahui",false);
-                        Boolean kadar_gula_tidakdiketahui_intent = getIntent().getBooleanExtra("kadar_gula_tidakdiketahui",false);
-                        Boolean kadar_kolesterol_tidakdiketahui_intent = getIntent().getBooleanExtra("kadar_kolesterol_tidakdiketahui",false);
-                        if (tekanan_darah_tidakdiketahui_intent || kadar_gula_tidakdiketahui_intent || kadar_kolesterol_tidakdiketahui_intent){
-                            if (kadar_gula_tidakdiketahui_intent) {
+                        Boolean tekanan_darah_intent = getIntent().getBooleanExtra("tekanan_darah",false);
+                        Boolean kadar_gula_intent = getIntent().getBooleanExtra("kadar_gula",false);
+                        Boolean kadar_kolesterol_intent = getIntent().getBooleanExtra("kadar_kolesterol",false);
+                        if (tekanan_darah_intent || kadar_gula_intent || kadar_kolesterol_intent){
+                            if (kadar_gula_intent) {
                                 stroke_warning = "kadar gula darah";
                             }
-                            if (tekanan_darah_tidakdiketahui_intent) {
+                            if (tekanan_darah_intent) {
                                 if (stroke_warning.equals("")) {
                                     stroke_warning = "tekanan darah";
                                 } else {
                                     stroke_warning += ", tekanan darah";
                                 }
                             }
-                            if (kadar_kolesterol_tidakdiketahui_intent) {
+                            if (kadar_kolesterol_intent) {
                                 if (stroke_warning.equals("")) {
                                     stroke_warning = "kadar kolesterol";
                                 } else {

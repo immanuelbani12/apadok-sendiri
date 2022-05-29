@@ -40,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class SignupActivity extends AppApadokActivity {
 
@@ -142,6 +143,7 @@ public class SignupActivity extends AppApadokActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

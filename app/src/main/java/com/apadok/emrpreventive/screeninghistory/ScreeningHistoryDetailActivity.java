@@ -211,22 +211,22 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
 
         // Add Penjelasan Kenapa Risiko Muncul
         if (strokeval >= 2) {
-            String kadar_gula_tidakdiketahui = sch.getKadar_gula_tidakdiketahui() == null ? "" : sch.getKadar_gula_tidakdiketahui();
-            String tekanan_darah_tidakdiketahui = sch.getTekanan_darah_tidakdiketahui() == null ? "" : sch.getTekanan_darah_tidakdiketahui();
-            String kadar_kolesterol_tidakdiketahui = sch.getKadar_kolesterol_tidakdiketahui() == null ? "" : sch.getKadar_kolesterol_tidakdiketahui();
+            String kadar_gula = sch.getKadar_gula() == null ? "" : sch.getKadar_gula();
+            String tekanan_darah = sch.getTekanan_darah() == null ? "" : sch.getTekanan_darah();
+            String kadar_kolesterol = sch.getKadar_kolesterol() == null ? "" : sch.getKadar_kolesterol();
             String stroke_warning = "";
-            if (Objects.equals(kadar_gula_tidakdiketahui, "1") || Objects.equals(tekanan_darah_tidakdiketahui, "1") || Objects.equals(kadar_kolesterol_tidakdiketahui, "1")){
-                if (kadar_gula_tidakdiketahui.contains("1")) {
+            if (Objects.equals(kadar_gula, "1") || Objects.equals(tekanan_darah, "1") || Objects.equals(kadar_kolesterol, "1")){
+                if (kadar_gula.contains("1")) {
                     stroke_warning = "kadar gula darah";
                 }
-                if (tekanan_darah_tidakdiketahui.contains("1")) {
+                if (tekanan_darah.contains("1")) {
                     if (stroke_warning.equals("")) {
                         stroke_warning = "tekanan darah";
                     } else {
                         stroke_warning += ", tekanan darah";
                     }
                 }
-                if (kadar_kolesterol_tidakdiketahui.contains("1")) {
+                if (kadar_kolesterol.contains("1")) {
                     if (stroke_warning.equals("")) {
                         stroke_warning = "kadar kolesterol";
                     } else {
