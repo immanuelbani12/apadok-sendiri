@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EMRPreventive">
         <activity
+            android:name=".socketchat.SocketChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".user.SignupActivity"
             android:exported="false" />
         <activity

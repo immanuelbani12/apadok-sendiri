@@ -33,6 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.apadok.emrpreventive.socketchat.SocketChatActivity;
 import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.SetupToolbar;
@@ -55,6 +56,7 @@ import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
+import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -570,7 +572,7 @@ public class MainActivity extends AppApadokActivity {
 
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        Intent intent = new Intent(MainActivity.this, ConsultActivity.class);
+        Intent intent = new Intent(MainActivity.this, SocketChatActivity.class);
         //Pass the User ID to next activity
         intent.putExtra("userid", UserId);
         intent.putExtra("clinicname", ClinicName);
