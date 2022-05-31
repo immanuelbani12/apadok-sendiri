@@ -121,7 +121,7 @@
                 android:paddingLeft="45dp"
                 android:text="Risiko"
                 android:textColor="@color/black_font"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="45dp"
                 android:textSize="20sp"/>
 
             <LinearLayout
@@ -146,7 +146,7 @@
                     android:id="@+id/btn_consult"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="35dp"
                     android:background="@drawable/button_radius"
                     android:text="Konsultasi ke Dokter"
                     android:textAllCaps="false"

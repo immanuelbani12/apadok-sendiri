@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -111,8 +112,8 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
 
         cartesian.yAxis(0).title("Skor");
         anyChartView.setChart(cartesian);
-
-        kebugaran_category.setText("Skor kebugaran anda " + score_kebugaran + " dari maksimal skor 52.\n Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar");
+        String sourceString = "Skor kebugaran anda <b>" + score_kebugaran + "</b> dari maksimal skor <b>52</b>.<br> Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar";
+        kebugaran_category.setText(Html.fromHtml(sourceString));
         anyChartView.setVisibility(View.VISIBLE);
     }
 
@@ -122,7 +123,7 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         score_kebugaran = sch.getScore_kebugaran() == null ? "" : sch.getScore_kebugaran();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 
-        time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH:mm"));
+        time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH.mm"));
         kebugaran_result.setText(score_kebugaran);
         kebugaran_result.setVisibility(View.VISIBLE);
         kebugaran_category.setText("Mengolah Grafik Data...");
