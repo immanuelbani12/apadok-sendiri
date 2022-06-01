@@ -47,6 +47,7 @@ import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +58,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
     // Gson related
     // API return variables
     private final Gson gson = new Gson();
-    private PemeriksaanEntity sch;
+    private ArrayList<PemeriksaanEntity> sch;
     private String hasil = "";
     // API input Variables
     private final FormAnswer[] answer = new FormAnswer[17];
@@ -160,10 +161,10 @@ public class ScreeningResultActivity extends AppApadokActivity {
             @Override
             public void onSuccess() {
                 // here you have the response from the volley.
-                String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
-                String hasil_kardio = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
-                String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
-                String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
+                String hasil_diabet = sch.get(0).getHasil_diabetes() == null ? "" : sch.get(0).getHasil_diabetes();
+                String hasil_kardio = sch.get(0).getHasil_kolesterol() == null ? "" : sch.get(0).getHasil_kolesterol();
+                String hasil_stroke = sch.get(0).getHasil_stroke() == null ? "" : sch.get(0).getHasil_stroke();
+                String timestamp = sch.get(0).getUpdated_at() == null ? sch.get(0).getCreated_at() : sch.get(0).getUpdated_at();
 
                 time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH:mm"));
                 diabetes_result.setText(hasil_diabet);
@@ -186,7 +187,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                     safetext = "penyakit diabetes";
                     diabetval = 1;
                 } else {
-                    diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+                    diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_dark));
                     diabetval = 2;
                     safetext = "penyakit diabetes";
                 }
@@ -207,7 +208,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                         safetext += ", penyakit stroke";
                     }
                 } else {
-                    stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+                    stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_dark));
                     strokeval = 2;
                     if (safetext.equals("")) {
                         safetext = "penyakit stroke";
@@ -240,7 +241,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                         safetext += ", penyakit kardiovaskular";
                     }
                 } else {
-                    cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+                    cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_dark));
                     cardioval = 2;
                     if (safetext.equals("")) {
                         safetext = "penyakit kardiovaskular";
@@ -251,22 +252,22 @@ public class ScreeningResultActivity extends AppApadokActivity {
 
                 // Add Penjelasan Kenapa Risiko Muncul
                 if (strokeval >= 2) {
-                    String kadar_gula = sch.getKadar_gula() == null ? "" : sch.getKadar_gula();
-                    String tekanan_darah = sch.getTekanan_darah() == null ? "" : sch.getTekanan_darah();
-                    String kadar_kolesterol = sch.getKadar_kolesterol() == null ? "" : sch.getKadar_kolesterol();
+                    String kadar_gula = sch.get(0).getKadar_gula() == null ? "" : sch.get(0).getKadar_gula();
+                    String tekanan_darah = sch.get(0).getTekanan_darah() == null ? "" : sch.get(0).getTekanan_darah();
+                    String kadar_kolesterol = sch.get(0).getKadar_kolesterol() == null ? "" : sch.get(0).getKadar_kolesterol();
                     String stroke_warning = "";
-                    if (Objects.equals(kadar_gula, "1") || Objects.equals(tekanan_darah, "1") || Objects.equals(kadar_kolesterol, "1")){
-                        if (kadar_gula.contains("1")) {
+                    if (Objects.equals(kadar_gula, "4") || Objects.equals(tekanan_darah, "4") || Objects.equals(kadar_kolesterol, "4")){
+                        if (kadar_gula.contains("4")) {
                             stroke_warning = "kadar gula darah";
                         }
-                        if (tekanan_darah.contains("1")) {
+                        if (tekanan_darah.contains("4")) {
                             if (stroke_warning.equals("")) {
                                 stroke_warning = "tekanan darah";
                             } else {
                                 stroke_warning += ", tekanan darah";
                             }
                         }
-                        if (kadar_kolesterol.contains("1")) {
+                        if (kadar_kolesterol.contains("4")) {
                             if (stroke_warning.equals("")) {
                                 stroke_warning = "kadar kolesterol";
                             } else {
@@ -275,7 +276,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                         }
                         GradientDrawable gradientDrawable = (GradientDrawable) stroke_details.getBackground();
                         gradientDrawable.setStroke(2, Color.parseColor("#EFCC00"));
-//                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+//                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_dark));
                         if (strokeval == 3){
                             gradientDrawable.setStroke(2, Color.RED);
 //                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
@@ -307,7 +308,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                             }
                             GradientDrawable gradientDrawable = (GradientDrawable) stroke_details.getBackground();
                             gradientDrawable.setStroke(2, Color.parseColor("#EFCC00"));
-//                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+//                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_dark));
                             if (strokeval == 3){
                                 gradientDrawable.setStroke(2, Color.RED);
 //                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
@@ -353,7 +354,8 @@ public class ScreeningResultActivity extends AppApadokActivity {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                Type screenhistory = new TypeToken<PemeriksaanEntity>() {}.getType();
+                Type screenhistory = new TypeToken<List<PemeriksaanEntity>>() {
+                }.getType();
                 sch = gson.fromJson(response, screenhistory);
                 // Panggil Fungsi API Lain, Simpen ke SQLite
                 callback.onSuccess();

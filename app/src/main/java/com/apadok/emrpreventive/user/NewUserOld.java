@@ -3,32 +3,43 @@ package com.apadok.emrpreventive.user;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class NewUser implements Parcelable {
+public class NewUserOld implements Parcelable {
 
+    String nama;
     String username;
-    String kode_user;
+    String kode_group;
 
-    public NewUser(String username, String kode_user) {
+    public NewUserOld(String nama, String username, String kode_group) {
+        this.nama = nama;
         this.username = username;
-        this.kode_user = kode_user;
+        this.kode_group = kode_group;
     }
 
-    protected NewUser(Parcel in) {
+    protected NewUserOld(Parcel in) {
+        nama = in.readString();
         username = in.readString();
-        kode_user = in.readString();
+        kode_group = in.readString();
     }
 
-    public static final Creator<NewUser> CREATOR = new Creator<NewUser>() {
+    public static final Creator<NewUserOld> CREATOR = new Creator<NewUserOld>() {
         @Override
-        public NewUser createFromParcel(Parcel in) {
-            return new NewUser(in);
+        public NewUserOld createFromParcel(Parcel in) {
+            return new NewUserOld(in);
         }
 
         @Override
-        public NewUser[] newArray(int size) {
-            return new NewUser[size];
+        public NewUserOld[] newArray(int size) {
+            return new NewUserOld[size];
         }
     };
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
 
     public String getUsername() {
         return username;
@@ -38,12 +49,12 @@ public class NewUser implements Parcelable {
         this.username = username;
     }
 
-    public String getKode_user() {
-        return kode_user;
+    public String getKode_group() {
+        return kode_group;
     }
 
-    public void setKode_user(String kode_user) {
-        this.kode_user = kode_user;
+    public void setKode_group(String kode_group) {
+        this.kode_group = kode_group;
     }
 
     /**
@@ -70,7 +81,8 @@ public class NewUser implements Parcelable {
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nama);
         dest.writeString(username);
-        dest.writeString(kode_user);
+        dest.writeString(kode_group);
     }
 }

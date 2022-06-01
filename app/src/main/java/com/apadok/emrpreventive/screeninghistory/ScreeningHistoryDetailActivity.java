@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -139,7 +140,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
             safetext = "penyakit diabetes";
             diabetval = 1;
         } else {
-            diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+            diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_dark));
             diabetval = 2;
             safetext = "penyakit diabetes";
         }
@@ -160,7 +161,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
                 safetext += ", penyakit stroke";
             }
         } else {
-            stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+            stroke_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_dark));
             strokeval = 2;
             if (safetext.equals("")) {
                 safetext = "penyakit stroke";
@@ -193,7 +194,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
                 safetext += ", penyakit kardiovaskular";
             }
         } else {
-            cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+            cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_dark));
             cardioval = 2;
             if (safetext.equals("")) {
                 safetext = "penyakit kardiovaskular";
@@ -215,18 +216,18 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
             String tekanan_darah = sch.getTekanan_darah() == null ? "" : sch.getTekanan_darah();
             String kadar_kolesterol = sch.getKadar_kolesterol() == null ? "" : sch.getKadar_kolesterol();
             String stroke_warning = "";
-            if (Objects.equals(kadar_gula, "1") || Objects.equals(tekanan_darah, "1") || Objects.equals(kadar_kolesterol, "1")){
-                if (kadar_gula.contains("1")) {
+            if (Objects.equals(kadar_gula, "4") || Objects.equals(tekanan_darah, "4") || Objects.equals(kadar_kolesterol, "4")){
+                if (kadar_gula.contains("4")) {
                     stroke_warning = "kadar gula darah";
                 }
-                if (tekanan_darah.contains("1")) {
+                if (tekanan_darah.contains("4")) {
                     if (stroke_warning.equals("")) {
                         stroke_warning = "tekanan darah";
                     } else {
                         stroke_warning += ", tekanan darah";
                     }
                 }
-                if (kadar_kolesterol.contains("1")) {
+                if (kadar_kolesterol.contains("4")) {
                     if (stroke_warning.equals("")) {
                         stroke_warning = "kadar kolesterol";
                     } else {
@@ -235,7 +236,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
                 }
                 GradientDrawable gradientDrawable = (GradientDrawable) stroke_details.getBackground();
                 gradientDrawable.setStroke(2, Color.parseColor("#EFCC00"));
-//                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_font));
+//                        stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow_dark));
                 if (strokeval == 3){
                     gradientDrawable.setStroke(2, Color.RED);
 //                            stroke_details.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));

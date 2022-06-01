@@ -83,6 +83,7 @@
                     android:textColor="@color/black_font"
                     android:textSize="14sp"
                     android:layout_marginBottom="10dp"
+                    android:visibility="gone"
                     android:layout_gravity="left"/>
 
                 <EditText
@@ -125,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginBottom="10dp"
-                    android:text="Kode Grup"
+                    android:text="Nomor Peserta"
                     android:textColor="@color/black_font"
                     android:textSize="14sp" />
 

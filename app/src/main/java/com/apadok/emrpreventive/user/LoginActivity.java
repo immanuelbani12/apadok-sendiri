@@ -152,12 +152,14 @@ public class LoginActivity extends AppApadokActivity {
                 String username = returnvalue.get("nama_user").isJsonNull() ? "" : returnvalue.get("nama_user").getAsString();
                 String role = returnvalue.get("role").isJsonNull() ? "" : returnvalue.get("role").getAsString();
                 String token = returnvalue.get("token").isJsonNull() ? "" : returnvalue.get("token").getAsString();
-                String clinicname = returnvalue.get("nama_klinik").isJsonNull() ? "" : returnvalue.get("nama_klinik").getAsString();
-                String cliniclogo = returnvalue.get("logo_klinik").isJsonNull() ? "" : returnvalue.get("logo_klinik").getAsString();
+                String idclinic = returnvalue.get("id_institusi").isJsonNull() ? "" : returnvalue.get("id_institusi").getAsString();
+                String clinicname = returnvalue.get("nama_institusi").isJsonNull() ? "" : returnvalue.get("nama_institusi").getAsString();
+                String cliniclogo = returnvalue.get("logo_institusi").isJsonNull() ? "" : returnvalue.get("logo_institusi").getAsString();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
                 intent.putExtra("role", role);
+                intent.putExtra("idclinic", idclinic);
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", cliniclogo);
                 intent.putExtra("token", token);

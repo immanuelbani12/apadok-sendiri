@@ -40,7 +40,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 
 public class SignupActivity extends AppApadokActivity {
 
@@ -83,32 +82,34 @@ public class SignupActivity extends AppApadokActivity {
         group_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
 
-        name_input.addTextChangedListener(new EmptyTextWatcher() {
+        name_input.setVisibility(View.GONE);
 
-            @Override
-            public void onEmptyField() {
-                btn_signup.setEnabled(false);
-            }
-
-            @Override
-            public void onFilledField() {
-                if (name_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
-                    if (regex.NameRegex(name_input.getText().toString())){
-                        if (regex.PhoneChecker(phone_input.getText().toString())){
-                            btn_signup.setEnabled(true);
-                        } else {
-                            btn_signup.setEnabled(false);
-                            phone_input.setError("Nomor Handphone membutuhkan 9-17 digit");
-                        }
-                    } else {
-                        btn_signup.setEnabled(false);
-                        name_input.setError("Nama tidak valid");
-                    }
-                } else {
-                    btn_signup.setEnabled(false);
-                }
-            }
-        });
+//        name_input.addTextChangedListener(new EmptyTextWatcher() {
+//
+//            @Override
+//            public void onEmptyField() {
+//                btn_signup.setEnabled(false);
+//            }
+//
+//            @Override
+//            public void onFilledField() {
+//                if (name_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
+//                    if (regex.NameRegex(name_input.getText().toString())){
+//                        if (regex.PhoneChecker(phone_input.getText().toString())){
+//                            btn_signup.setEnabled(true);
+//                        } else {
+//                            btn_signup.setEnabled(false);
+//                            phone_input.setError("Nomor Handphone membutuhkan 9-17 digit");
+//                        }
+//                    } else {
+//                        btn_signup.setEnabled(false);
+//                        name_input.setError("Nama tidak valid");
+//                    }
+//                } else {
+//                    btn_signup.setEnabled(false);
+//                }
+//            }
+//        });
 
         phone_input.addTextChangedListener(new EmptyTextWatcher() {
 
@@ -116,20 +117,34 @@ public class SignupActivity extends AppApadokActivity {
             public void onEmptyField() {
                 btn_signup.setEnabled(false);
             }
+//            Old Method
+//            @Override
+//            public void onFilledField() {
+//                if (name_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
+//                    if (regex.NameRegex(name_input.getText().toString())){
+//                        if (regex.PhoneChecker(phone_input.getText().toString())){
+//                            btn_signup.setEnabled(true);
+//                        } else {
+//                            btn_signup.setEnabled(false);
+//                            phone_input.setError("Nomor handphone membutuhkan 9-17 digit");
+//                        }
+//                    } else {
+//                        btn_signup.setEnabled(false);
+//                        name_input.setError("Nama tidak valid");
+//                    }
+//                } else {
+//                    btn_signup.setEnabled(false);
+//                }
+//            }
 
             @Override
             public void onFilledField() {
-                if (name_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
-                    if (regex.NameRegex(name_input.getText().toString())){
-                        if (regex.PhoneChecker(phone_input.getText().toString())){
-                            btn_signup.setEnabled(true);
-                        } else {
-                            btn_signup.setEnabled(false);
-                            phone_input.setError("Nomor handphone membutuhkan 9-17 digit");
-                        }
+                if (phone_input.getText().toString().length() > 0) {
+                    if (regex.PhoneChecker(phone_input.getText().toString())){
+                        btn_signup.setEnabled(true);
                     } else {
                         btn_signup.setEnabled(false);
-                        name_input.setError("Nama tidak valid");
+                        phone_input.setError("Nomor handphone membutuhkan 9-17 digit");
                     }
                 } else {
                     btn_signup.setEnabled(false);
@@ -174,7 +189,7 @@ public class SignupActivity extends AppApadokActivity {
 
     private void setupJson(String name, String phonenum, String groupcode) {
         //Construct Obj with Phonenum + Change Obj to string then to JSON
-        NewUser Obj = new NewUser(name,phonenum,groupcode);
+        NewUser Obj = new NewUser(phonenum,groupcode);
         Type user = new TypeToken<NewUser>() {
         }.getType();
         String json = gson.toJson(Obj, user);
@@ -190,12 +205,14 @@ public class SignupActivity extends AppApadokActivity {
                 String userid = returnvalue.get("id_user").isJsonNull() ? "" : returnvalue.get("id_user").getAsString();
                 String username = returnvalue.get("nama_user").isJsonNull() ? "" : returnvalue.get("nama_user").getAsString();
                 String token = returnvalue.get("token").isJsonNull() ? "" : returnvalue.get("token").getAsString();
-                String clinicname = returnvalue.get("nama_klinik").isJsonNull() ? "" : returnvalue.get("nama_klinik").getAsString();
-                String cliniclogo = returnvalue.get("logo_klinik").isJsonNull() ? "" : returnvalue.get("logo_klinik").getAsString();
+                String idclinic = returnvalue.get("id_institusi").isJsonNull() ? "" : returnvalue.get("id_institusi").getAsString();
+                String clinicname = returnvalue.get("nama_institusi").isJsonNull() ? "" : returnvalue.get("nama_institusi").getAsString();
+                String cliniclogo = returnvalue.get("logo_institusi").isJsonNull() ? "" : returnvalue.get("logo_institusi").getAsString();
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
                 intent.putExtra("role", "N");
+                intent.putExtra("idclinic", idclinic);
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", cliniclogo);
                 intent.putExtra("token", token);
