@@ -74,9 +74,10 @@ public class ConsultActivity extends AppCompatActivity {
         btn_whatsapp.setTypeface(helvetica_font);
         btn_penjadwalanbeta.setTypeface(helvetica_font);
         btn_call.setOnClickListener(RedirecttoCall);
-        btn_penjadwalanbeta.setOnClickListener(RedirectToConsult);
+        btn_penjadwalanbeta.setOnClickListener(RedirectToNearestClinic);
+        btn_penjadwalanbeta.setText("Pencarian Klinik");
 //      Remove Prototip Penjadwalan as for now
-        btn_penjadwalanbeta.setVisibility(View.GONE);
+        btn_penjadwalanbeta.setVisibility(View.VISIBLE);
 
         iv_image_consult = (ImageView) findViewById(R.id.iv_image_consult);
         iv_image_consult.setImageResource(R.drawable.ic_doctor);
@@ -123,12 +124,21 @@ public class ConsultActivity extends AppCompatActivity {
         startActivity(intent);
     };
 
-    private final View.OnClickListener RedirectToConsult = v -> {
-        Intent intent = new Intent(ConsultActivity.this, TestChatbotActivity.class);
+    private final View.OnClickListener RedirectToNearestClinic = v -> {
+        Intent intent = new Intent(ConsultActivity.this, NearestClinicActivity.class);
         //Pass the Data to next activity
         intent.putExtra("data", sch);
         intent.putExtra("clinicname", ClinicName);
         intent.putExtra("cliniclogo", ClinicLogo);
         startActivity(intent);
     };
+
+//    private final View.OnClickListener RedirectToConsult = v -> {
+//        Intent intent = new Intent(ConsultActivity.this, TestChatbotActivity.class);
+//        //Pass the Data to next activity
+//        intent.putExtra("data", sch);
+//        intent.putExtra("clinicname", ClinicName);
+//        intent.putExtra("cliniclogo", ClinicLogo);
+//        startActivity(intent);
+//    };
 }

@@ -35,9 +35,11 @@ import com.apadok.emrpreventive.common.PopUpMessage;
 import com.apadok.emrpreventive.common.RegexorChecker;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 
@@ -117,29 +119,32 @@ public class SignupActivity extends AppApadokActivity {
             public void onEmptyField() {
                 btn_signup.setEnabled(false);
             }
-//            Old Method
-//            @Override
-//            public void onFilledField() {
-//                if (name_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
-//                    if (regex.NameRegex(name_input.getText().toString())){
-//                        if (regex.PhoneChecker(phone_input.getText().toString())){
-//                            btn_signup.setEnabled(true);
-//                        } else {
-//                            btn_signup.setEnabled(false);
-//                            phone_input.setError("Nomor handphone membutuhkan 9-17 digit");
-//                        }
-//                    } else {
-//                        btn_signup.setEnabled(false);
-//                        name_input.setError("Nama tidak valid");
-//                    }
-//                } else {
-//                    btn_signup.setEnabled(false);
-//                }
-//            }
 
             @Override
             public void onFilledField() {
-                if (phone_input.getText().toString().length() > 0) {
+                if (group_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
+                    if (regex.PhoneChecker(phone_input.getText().toString())){
+                        btn_signup.setEnabled(true);
+                    } else {
+                        btn_signup.setEnabled(false);
+                        phone_input.setError("Nomor handphone membutuhkan 9-17 digit");
+                    }
+                } else {
+                    btn_signup.setEnabled(false);
+                }
+            }
+        });
+
+        group_input.addTextChangedListener(new EmptyTextWatcher() {
+
+            @Override
+            public void onEmptyField() {
+                btn_signup.setEnabled(false);
+            }
+
+            @Override
+            public void onFilledField() {
+                if (group_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
                     if (regex.PhoneChecker(phone_input.getText().toString())){
                         btn_signup.setEnabled(true);
                     } else {
@@ -211,7 +216,7 @@ public class SignupActivity extends AppApadokActivity {
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
-                intent.putExtra("role", "N");
+                intent.putExtra("role", "U");
                 intent.putExtra("idclinic", idclinic);
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", cliniclogo);
@@ -248,11 +253,23 @@ public class SignupActivity extends AppApadokActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("VOLLEY", error.toString());
+                //get status code here
+                String body;
+                String statusCode = String.valueOf(error.networkResponse.statusCode);
                 ErrorMsg = "Terdapat kesalahan saat pembuatan akun, silahkan cek kembali data - data yang telah diisikan";
                 if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
                     ErrorMsg = "Aplikasi gagal terhubung ke Internet, silahkan coba lagi";
                 } else if (error instanceof ServerError || error instanceof AuthFailureError) {
-                    ErrorMsg = "Terdapat kesalahan saat pembuatan akun, nomor telepon ini sudah terdaftar";
+                    if(error.networkResponse.data!=null) {
+                        try {
+                            body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                            JsonObject errorvalue = gson.fromJson(body, JsonObject.class);
+                            JsonObject errordetails = errorvalue.getAsJsonObject("messages");
+                            ErrorMsg  = errordetails.get("error").isJsonNull() ? "" : errordetails.get("error").getAsString();
+                        } catch (JsonIOException | NullPointerException ex) {
+                            ErrorMsg = "Terdapat kesalahan saat pembuatan akun,silahkan hubungi apadokdeveloper@gmail.com";
+                        }
+                    }
                 } else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }

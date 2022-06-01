@@ -96,6 +96,7 @@
                     android:hint="John Doe"
                     android:background="@drawable/input_text"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:inputType="textPersonName|textNoSuggestions|textCapWords" />
 
                 <TextView
