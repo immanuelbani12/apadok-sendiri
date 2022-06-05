@@ -14,6 +14,8 @@ import com.apadok.emrpreventive.R;
 
 import java.util.ArrayList;
 
+import me.grantland.widget.AutofitHelper;
+
 public class EncyclopediaAdapter extends ArrayAdapter<Encyclopedia> {
 
     // invoke the suitable constructor of the ArrayAdapter class
@@ -61,6 +63,9 @@ public class EncyclopediaAdapter extends ArrayAdapter<Encyclopedia> {
         }
         String positionstring = Integer.toString(position);
         currentItemView.setTag(positionstring);
+
+        AutofitHelper.create(textView1);
+        AutofitHelper.create(textView2);
 
         // then return the recyclable view
         return currentItemView;

@@ -16,6 +16,8 @@ import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 
 import java.util.ArrayList;
 
+import me.grantland.widget.AutofitHelper;
+
 public class ScreeningHistoryAdapter extends ArrayAdapter<PemeriksaanEntity> {
 
     // invoke the suitable constructor of the ArrayAdapter class
@@ -59,6 +61,9 @@ public class ScreeningHistoryAdapter extends ArrayAdapter<PemeriksaanEntity> {
         }
 
         currentItemView.setTag(currentNumberPosition.getId_pemeriksaan());
+
+        AutofitHelper.create(textView1);
+        AutofitHelper.create(textView2);
 
         // then return the recyclable view
         return currentItemView;
