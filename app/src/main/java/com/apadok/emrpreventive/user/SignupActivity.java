@@ -50,8 +50,8 @@ public class SignupActivity extends AppApadokActivity {
     private JsonObject returnvalue;
 
     // Res/Layout Variables
-    private TextView phone_text, additional_text, login_text, btn_signup;
-    private EditText name_input, phone_input, group_input;
+    private TextView phone_text, additional_text, login_text, btn_signup, institusi_text;
+    private EditText name_input, phone_input, group_input, institusi_input;
     private String ErrorMsg;
     private final RegexorChecker regex = new RegexorChecker();
 
@@ -70,6 +70,8 @@ public class SignupActivity extends AppApadokActivity {
         name_input = (EditText) findViewById(R.id.name_input);
         phone_input = (EditText) findViewById(R.id.phone_input);
         group_input = (EditText) findViewById(R.id.group_input);
+        institusi_text = (TextView) findViewById(R.id.institusi_text);
+        institusi_input = (EditText) findViewById(R.id.institusi_input);
         additional_text = (TextView) findViewById(R.id.additional_text);
         login_text = (TextView) findViewById(R.id.login);
 
@@ -83,8 +85,9 @@ public class SignupActivity extends AppApadokActivity {
         phone_input.setTypeface(helvetica_font);
         group_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
+        institusi_text.setTypeface(helvetica_font);
+        institusi_input.setTypeface(helvetica_font);
 
-        name_input.setVisibility(View.GONE);
 
 //        name_input.addTextChangedListener(new EmptyTextWatcher() {
 //
@@ -122,7 +125,7 @@ public class SignupActivity extends AppApadokActivity {
 
             @Override
             public void onFilledField() {
-                if (group_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
+                if (group_input.getText().toString().length() > 0 && institusi_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
                     if (regex.PhoneChecker(phone_input.getText().toString())){
                         btn_signup.setEnabled(true);
                     } else {
@@ -144,12 +147,34 @@ public class SignupActivity extends AppApadokActivity {
 
             @Override
             public void onFilledField() {
-                if (group_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
+                if (group_input.getText().toString().length() > 0 && institusi_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
                     if (regex.PhoneChecker(phone_input.getText().toString())){
                         btn_signup.setEnabled(true);
                     } else {
                         btn_signup.setEnabled(false);
-                        phone_input.setError("Nomor handphone membutuhkan 9-17 digit");
+                        phone_input.setError("Nomor handphone membutuhkan 7-16 digit");
+                    }
+                } else {
+                    btn_signup.setEnabled(false);
+                }
+            }
+        });
+
+        institusi_input.addTextChangedListener(new EmptyTextWatcher() {
+
+            @Override
+            public void onEmptyField() {
+                btn_signup.setEnabled(false);
+            }
+
+            @Override
+            public void onFilledField() {
+                if (group_input.getText().toString().length() > 0 && institusi_input.getText().toString().length() > 0 && phone_input.getText().toString().length() > 0) {
+                    if (regex.PhoneChecker(phone_input.getText().toString())){
+                        btn_signup.setEnabled(true);
+                    } else {
+                        btn_signup.setEnabled(false);
+                        phone_input.setError("Nomor handphone membutuhkan 7-16 digit");
                     }
                 } else {
                     btn_signup.setEnabled(false);
@@ -173,7 +198,7 @@ public class SignupActivity extends AppApadokActivity {
                 phone_input = (EditText) findViewById(R.id.phone_input);
                 group_input = (EditText) findViewById(R.id.group_input);
                 String name = name_input.getText().toString();
-                String phone = phone_input.getText().toString();
+                String phone = "62" + phone_input.getText().toString();
                 String group = group_input.getText().toString();
                 setupJson(name,phone,group);
             }

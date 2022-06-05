@@ -33,8 +33,13 @@ public class RegexorChecker {
             return false;
         }
     }
+
     public boolean PhoneChecker(String str) {
-        if (str.length() > 8 && str.length() < 17){
+        // Remove 0 from +62 Format
+        if (str.charAt(0) == '0'){
+            str = str.substring(1);
+        }
+        if (str.length() > 7 && str.length() < 17){
             String expression = "\\+?([ -]?\\d+)+|\\(\\d+\\)([ -]\\d+)";
             return str.matches(expression);
         } else {

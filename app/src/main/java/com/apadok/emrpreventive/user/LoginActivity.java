@@ -93,7 +93,7 @@ public class LoginActivity extends AppApadokActivity {
                         btn_masuk.setEnabled(true);
                     } else {
                         btn_masuk.setEnabled(false);
-                        phone_input.setError("Nomor handphone membutuhkan 9-17 digit");
+                        phone_input.setError("Nomor handphone membutuhkan 7-16 digit");
                     }
                 } else {
                     btn_masuk.setEnabled(false);
