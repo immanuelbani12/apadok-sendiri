@@ -52,9 +52,9 @@ public class KebugaranHistoryAdapter extends ArrayAdapter<PemeriksaanKebugaranEn
         // then according to the position of the view assign the desired TextView 2 for the same
         TextView textView2 = currentItemView.findViewById(R.id.tv_timestamp);
         if (currentNumberPosition.getUpdated_at() != null) {
-            textView2.setText(StringToTimeStampFormatting.changeFormat(currentNumberPosition.getUpdated_at(),"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH:mm"));
+            textView2.setText(StringToTimeStampFormatting.changeFormat(currentNumberPosition.getUpdated_at(),"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH.mm"));
         } else if (currentNumberPosition.getCreated_at() != null) {
-            textView2.setText(StringToTimeStampFormatting.changeFormat(currentNumberPosition.getCreated_at(),"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH:mm"));
+            textView2.setText(StringToTimeStampFormatting.changeFormat(currentNumberPosition.getCreated_at(),"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH.mm"));
         }
 
         currentItemView.setTag(currentNumberPosition.getId_pemeriksaan_kebugaran());

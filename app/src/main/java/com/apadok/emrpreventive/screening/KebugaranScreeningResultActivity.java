@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -145,7 +146,8 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         cartesian.yAxis(0).title("Skor");
         anyChartView.setChart(cartesian);
 
-        kebugaran_category.setText("Skor kebugaran anda " + score_kebugaran + " dari maksimal skor 52.\n Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar");
+        String sourceString = "Skor kebugaran anda <b>" + score_kebugaran + "</b> dari maksimal skor <b>52</b>.<br> Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar";
+        kebugaran_category.setText(Html.fromHtml(sourceString));
         anyChartView.setVisibility(View.VISIBLE);
     }
 
