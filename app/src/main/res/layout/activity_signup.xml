@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginBottom="10dp"
-                    android:text="Kode Institusi"
+                    android:text="Kode Grup"
                     android:textColor="@color/black_font"
                     android:textSize="14sp" />
 

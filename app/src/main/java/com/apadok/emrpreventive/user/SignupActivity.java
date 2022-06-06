@@ -83,10 +83,10 @@ public class SignupActivity extends AppApadokActivity {
         login_text.setTypeface(helvetica_font);
         name_input.setTypeface(helvetica_font);
         phone_input.setTypeface(helvetica_font);
-        group_input.setTypeface(helvetica_font);
+//        group_input.setTypeface(helvetica_font);
         phone_text.setTypeface(helvetica_font);
         institusi_text.setTypeface(helvetica_font);
-        institusi_input.setTypeface(helvetica_font);
+//        institusi_input.setTypeface(helvetica_font);
 
 
 //        name_input.addTextChangedListener(new EmptyTextWatcher() {
@@ -197,11 +197,13 @@ public class SignupActivity extends AppApadokActivity {
                 name_input = (EditText) findViewById(R.id.name_input);
                 phone_input = (EditText) findViewById(R.id.phone_input);
                 group_input = (EditText) findViewById(R.id.group_input);
+                institusi_input = (EditText) findViewById(R.id.institusi_input);
                 String name = name_input.getText().toString();
                 String phone = regex.PhoneChanger(phone_input.getText().toString());
                 phone = "62" + phone;
                 String group = group_input.getText().toString();
-                setupJson(name,phone,group);
+                String institusi = institusi_input.getText().toString();
+                setupJson(name,phone,group,institusi);
             }
         });
 
@@ -218,9 +220,9 @@ public class SignupActivity extends AppApadokActivity {
         this.getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
-    private void setupJson(String name, String phonenum, String groupcode) {
+    private void setupJson(String name, String phonenum, String groupcode, String institusi) {
         //Construct Obj with Phonenum + Change Obj to string then to JSON
-        NewUser Obj = new NewUser(phonenum,groupcode);
+        NewUser Obj = new NewUser(phonenum,groupcode,institusi);
         Type user = new TypeToken<NewUser>() {
         }.getType();
         String json = gson.toJson(Obj, user);

@@ -7,15 +7,18 @@ public class NewUser implements Parcelable {
 
     String username;
     String kode_user;
+    String kode_group;
 
-    public NewUser(String username, String kode_user) {
+    public NewUser(String username, String kode_user, String kode_group) {
         this.username = username;
         this.kode_user = kode_user;
+        this.kode_group = kode_group;
     }
 
     protected NewUser(Parcel in) {
         username = in.readString();
         kode_user = in.readString();
+        kode_group = in.readString();
     }
 
     public static final Creator<NewUser> CREATOR = new Creator<NewUser>() {
@@ -46,6 +49,14 @@ public class NewUser implements Parcelable {
         this.kode_user = kode_user;
     }
 
+    public String getKode_group() {
+        return kode_group;
+    }
+
+    public void setKode_group(String kode_group) {
+        this.kode_group = kode_group;
+    }
+
     /**
      * Describe the kinds of special objects contained in this Parcelable
      * instance's marshaled representation. For example, if the object will
@@ -72,5 +83,6 @@ public class NewUser implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(username);
         dest.writeString(kode_user);
+        dest.writeString(kode_group);
     }
 }
