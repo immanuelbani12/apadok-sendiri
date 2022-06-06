@@ -47,6 +47,14 @@ public class RegexorChecker {
         }
     }
 
+    public String PhoneChanger(String str) {
+        // Remove 0 from +62 Format
+        if (str.charAt(0) == '0'){
+            str = str.substring(1);
+        }
+        return str;
+    }
+
     public boolean NameRegex(String str) {
         String expression = "(([A-Z]\\.?\\s?)*([A-Z][a-z]+\\.?\\s?)+([A-Z]\\.?\\s?[a-z]*)*)";
         return str.matches(expression);

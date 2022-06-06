@@ -115,7 +115,9 @@ public class LoginActivity extends AppApadokActivity {
         btn_masuk.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 phone_input = (EditText) findViewById(R.id.phone_input);
-                String count = phone_input.getText().toString();
+                String count = regex.PhoneChanger(phone_input.getText().toString());
+                count = "62" + count;
+                Log.e("debug", count);
                 setupJson(count);
             }
         });
