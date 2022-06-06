@@ -20,7 +20,7 @@ android {
         applicationId "com.apadok.emrpreventive"
         minSdk 21
         targetSdk 31
-        versionCode 33
+        versionCode 34
         versionName "1.0.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

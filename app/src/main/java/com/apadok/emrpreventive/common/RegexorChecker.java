@@ -38,6 +38,10 @@ public class RegexorChecker {
         // Remove 0 from +62 Format
         if (str.charAt(0) == '0'){
             str = str.substring(1);
+            str = "62" + str;
+        }
+        else if (!str.startsWith("62")){
+            str = "62" + str;
         }
         if (str.length() > 7 && str.length() < 17){
             String expression = "\\+?([ -]?\\d+)+|\\(\\d+\\)([ -]\\d+)";
@@ -51,6 +55,9 @@ public class RegexorChecker {
         // Remove 0 from +62 Format
         if (str.charAt(0) == '0'){
             str = str.substring(1);
+            str = "62" + str;
+        }
+        else if (!str.startsWith("62")){
             str = "62" + str;
         }
         return str;
