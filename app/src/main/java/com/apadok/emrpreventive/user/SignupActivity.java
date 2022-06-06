@@ -200,7 +200,6 @@ public class SignupActivity extends AppApadokActivity {
                 institusi_input = (EditText) findViewById(R.id.institusi_input);
                 String name = name_input.getText().toString();
                 String phone = regex.PhoneChanger(phone_input.getText().toString());
-                phone = "62" + phone;
                 String group = group_input.getText().toString();
                 String institusi = institusi_input.getText().toString();
                 setupJson(name,phone,group,institusi);

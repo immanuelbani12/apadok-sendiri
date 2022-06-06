@@ -51,6 +51,7 @@ public class RegexorChecker {
         // Remove 0 from +62 Format
         if (str.charAt(0) == '0'){
             str = str.substring(1);
+            str = "62" + str;
         }
         return str;
     }
