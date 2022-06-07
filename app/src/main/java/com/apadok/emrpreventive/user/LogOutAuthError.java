@@ -11,8 +11,6 @@ import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
-import java.util.Objects;
-
 public class LogOutAuthError extends DialogFragment {
     @NonNull
     @Override

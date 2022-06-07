@@ -16,7 +16,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.apadok.emrpreventive.R;
-import com.apadok.emrpreventive.chatbot.TestChatbotActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
@@ -105,9 +104,6 @@ public class ConsultActivity extends AppCompatActivity {
         String kadar_kolesterol = sch.getKadar_kolesterol() == null ? "" : sch.getKadar_kolesterol();
         // Do some data manipulation here
         String FormattedTimeStamp = StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH.mm");
-        if (Objects.equals(kadar_gula, "4") || Objects.equals(tekanan_darah, "4") || Objects.equals(kadar_kolesterol, "4")){
-
-        }
         String stroke_warning = "";
         if (Objects.equals(kadar_gula, "4") || Objects.equals(tekanan_darah, "4") || Objects.equals(kadar_kolesterol, "4")) {
             if (kadar_gula.contains("4")) {
