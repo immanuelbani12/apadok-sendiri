@@ -436,7 +436,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
         intent.putExtra("categorystroke", strokeval);
         intent.putExtra("categorykardio", cardioval);
 
-        intent.putExtra("data", sch);
+        intent.putExtra("data", sch.get(0));
         intent.putExtra("clinicname", ClinicName);
         intent.putExtra("cliniclogo", ClinicLogo);
         startActivity(intent);

@@ -240,10 +240,14 @@ public class SignupActivity extends AppApadokActivity {
                 String idclinic = returnvalue.get("id_institusi").isJsonNull() ? "" : returnvalue.get("id_institusi").getAsString();
                 String clinicname = returnvalue.get("nama_institusi").isJsonNull() ? "" : returnvalue.get("nama_institusi").getAsString();
                 String cliniclogo = returnvalue.get("logo_institusi").isJsonNull() ? "" : returnvalue.get("logo_institusi").getAsString();
+                String role = "U";
+                if (returnvalue.has("role")){
+                    role = returnvalue.get("role").isJsonNull() ? role : returnvalue.get("role").getAsString();
+                }
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
-                intent.putExtra("role", "U");
+                intent.putExtra("role", role);
                 intent.putExtra("idclinic", idclinic);
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", cliniclogo);
@@ -282,23 +286,23 @@ public class SignupActivity extends AppApadokActivity {
                 Log.e("VOLLEY", error.toString());
                 //get status code here
                 String body;
-                String statusCode = String.valueOf(error.networkResponse.statusCode);
                 ErrorMsg = "Terdapat kesalahan saat pembuatan akun, silahkan cek kembali data - data yang telah diisikan";
-                if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
-                    ErrorMsg = "Aplikasi gagal terhubung ke Internet, silahkan coba lagi";
-                } else if (error instanceof ServerError || error instanceof AuthFailureError) {
-                    if(error.networkResponse.data!=null) {
-                        try {
-                            body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
-                            JsonObject errorvalue = gson.fromJson(body, JsonObject.class);
-                            JsonObject errordetails = errorvalue.getAsJsonObject("messages");
-                            ErrorMsg  = errordetails.get("error").isJsonNull() ? "" : errordetails.get("error").getAsString();
-                        } catch (JsonIOException | NullPointerException ex) {
-                            ErrorMsg = "Terdapat kesalahan saat pembuatan akun,silahkan hubungi apadokdeveloper@gmail.com";
+                try {
+                    if (error instanceof NetworkError || error instanceof NoConnectionError || error instanceof TimeoutError) {
+                        ErrorMsg = "Aplikasi gagal terhubung ke Internet, silahkan coba lagi";
+                    } else if (error instanceof ServerError || error instanceof AuthFailureError) {
+                        if(error.networkResponse.data!=null) {
+
+                                body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                                JsonObject errorvalue = gson.fromJson(body, JsonObject.class);
+                                JsonObject errordetails = errorvalue.getAsJsonObject("messages");
+                                ErrorMsg  = errordetails.get("error").isJsonNull() ? "" : errordetails.get("error").getAsString();
                         }
+                    } else if (error instanceof ParseError) {
+                        ErrorMsg = "Ada masalah di aplikasi Apadok";
                     }
-                } else if (error instanceof ParseError) {
-                    ErrorMsg = "Ada masalah di aplikasi Apadok";
+                } catch (JsonIOException | NullPointerException ex) {
+                    ErrorMsg = "Terdapat kesalahan saat pembuatan akun,silahkan hubungi apadokdeveloper@gmail.com";
                 }
                 callback.onError();
             }

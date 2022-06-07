@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,11 +18,13 @@ import androidx.core.content.res.ResourcesCompat;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.chatbot.TestChatbotActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
+import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
 import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Objects;
 
 public class ConsultActivity extends AppCompatActivity {
 
@@ -97,7 +100,29 @@ public class ConsultActivity extends AppCompatActivity {
         String hasil_kardio = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
-        String mensaje = "Risiko Diabetes : " + hasil_diabet + "\nRisiko Stroke : " + hasil_stroke + "\nRisiko Kardiovaskular : " + hasil_kardio + "\ndata diperoleh pada " + timestamp;
+        String kadar_gula = sch.getKadar_gula() == null ? "" : sch.getKadar_gula();
+        String tekanan_darah = sch.getTekanan_darah() == null ? "" : sch.getTekanan_darah();
+        String kadar_kolesterol = sch.getKadar_kolesterol() == null ? "" : sch.getKadar_kolesterol();
+        // Do some data manipulation here
+        String FormattedTimeStamp = StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH.mm");
+        if (Objects.equals(kadar_gula, "4") || Objects.equals(tekanan_darah, "4") || Objects.equals(kadar_kolesterol, "4")){
+
+        }
+        String stroke_warning = "";
+        if (Objects.equals(kadar_gula, "4") || Objects.equals(tekanan_darah, "4") || Objects.equals(kadar_kolesterol, "4")) {
+            if (kadar_gula.contains("4")) {
+                stroke_warning += "\nKadar Gula Darah : Tidak Diketahui";
+            }
+            if (tekanan_darah.contains("4")) {
+                stroke_warning += "\nTekanan Darah : Tidak Diketahui";
+            }
+            if (kadar_kolesterol.contains("4")) {
+                stroke_warning += "\nKadar Kolesterol : Tidak Diketahui";
+            }
+            hasil_stroke = "Kemungkinan "+ hasil_stroke;
+        }
+        String mensaje = "Risiko Diabetes : " + hasil_diabet + "\nRisiko Stroke : " + hasil_stroke + stroke_warning + "\nRisiko Kardiovaskular : " + hasil_kardio + "\ndata diperoleh pada " + FormattedTimeStamp;
+        Log.e("Print",mensaje);
         String url = null;
         try {
             url = "https://wa.me/" + numero + "?text=" + URLEncoder.encode(mensaje, "UTF-8");
