@@ -202,7 +202,7 @@ public class MainActivity extends AppApadokActivity {
         btn_history_screening.setOnClickListener(RedirectToHistory);
         btn_history_screening.setEnabled(false);
         btn_consult.setOnClickListener(RedirectToConsult);
-        btn_consult.setEnabled(false);
+        btn_consult.setEnabled(true);
 
         if (Role != null) {
             if (Role.equals("N")) {

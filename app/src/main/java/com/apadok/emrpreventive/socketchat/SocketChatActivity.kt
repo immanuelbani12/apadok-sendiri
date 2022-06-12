@@ -1,6 +1,7 @@
 package com.apadok.emrpreventive.socketchat
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -47,8 +48,10 @@ class SocketChatActivity : AppCompatActivity() {
 
     private fun start() {
         //Temporarily Get ID Pemeriksan From Main Activity
+        var token = intent.getStringExtra("token")
         val id_user = intent.getIntExtra("userid", 0)
-        val request: Request = Request.Builder().url("ws://192.168.1.242:31687?access_token=$id_user").build()
+        val request: Request = Request.Builder().url("ws://192.168.1.245:31687?access_token=$token").build()
+        Log.e("req", request.toString())
         val listener = EchoWebSocketListener(this::output, this::ping) { ws = null }
         ws = client.newWebSocket(request, listener)
     }
