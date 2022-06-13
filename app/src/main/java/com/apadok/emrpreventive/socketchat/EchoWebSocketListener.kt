@@ -4,6 +4,13 @@ import okhttp3.WebSocketListener
 import okhttp3.WebSocket
 import okio.ByteString
 import okhttp3.Response
+import com.google.gson.Gson
+
+data class Message (
+    var messagebody: String,
+    var author: String,
+    var time: String
+)
 
 internal class EchoWebSocketListener(
     val output: (String) -> Unit,
@@ -15,7 +22,18 @@ internal class EchoWebSocketListener(
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {
-        output("YOU: $text")
+        var counter = 0
+        if (counter == 0){
+            // Do Not Parse
+            output("Chat Socket Initialized")
+            counter++
+        }
+        else{
+            val messagejson = Gson().fromJson(text, Message::class.java)
+            val author = messagejson.author
+            val message = messagejson.messagebody
+            output("$author: $message")
+        }
     }
 
     override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
