@@ -23,12 +23,17 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
+import com.apadok.emrpreventive.database.entity.EncyclopediaEntity;
+import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
+import com.apadok.emrpreventive.kebugaranhistory.KebugaranHistoryAdapter;
+import com.apadok.emrpreventive.screeninghistory.ScreeningHistoryAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -38,15 +43,19 @@ import com.squareup.picasso.Picasso;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class EncyclopediaActivity extends AppApadokActivity {
 
     private final Gson gson = new Gson();
     private ArrayList<Encyclopedia> ecl = new ArrayList<>();
+    private ArrayList<EncyclopediaEntity> ecl_api = new ArrayList<>();
     private ListView l;
-    private JsonObject returnvalue;
     private ArrayList<Encyclopedia> eclnew;
+    private ArrayList<EncyclopediaEntity> eclnew_api;
     private int diabetval, strokeval, cardioval, kebugaranval;
     private String ClinicName, ClinicLogo;
 
@@ -54,29 +63,38 @@ public class EncyclopediaActivity extends AppApadokActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encyclopedia);
+        setupItemView();
+//        setupContent();
+        setupJson();
+    }
+
+    private void setupItemView() {
         // Code to Setup Toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         SetupToolbar.changeToolbarFont(myToolbar, this);
-        String clinicname = getIntent().getStringExtra("clinicname");
+        ClinicName = getIntent().getStringExtra("clinicname");
 
         diabetval = getIntent().getIntExtra("categorydiabetes", 0);
         strokeval = getIntent().getIntExtra("categorystroke", 0);
         cardioval = getIntent().getIntExtra("categorykardio", 0);
         kebugaranval = getIntent().getIntExtra("categorykebugaran", 0);
         TextView clinic = (TextView) findViewById(R.id.tv_clinic);
-        clinic.setText(clinicname);
+        clinic.setText(ClinicName);
 
         // Init Logo RS
-        String logo = getIntent().getStringExtra("cliniclogo");
+        ClinicLogo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://apadok.com/media/klinik/" + logo;
+        String url = "http://apadok.com/media/klinik/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
-        CreateFormList();
-        eclnew = FilterEncyclopedia();
         l = findViewById(R.id.history_screening);
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
+    }
+
+    private void setupContent() {
+        CreateFormList();
+        eclnew = FilterEncyclopedia();
         EncyclopediaAdapter numbersArrayAdapter = new EncyclopediaAdapter(getBaseContext(), eclnew);
         l.setAdapter(numbersArrayAdapter);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -112,8 +130,8 @@ public class EncyclopediaActivity extends AppApadokActivity {
                     intent.putExtra("judul_artikel", eclnew.get(id_history).getJudul_artikel());
                     intent.putExtra("isi_artikel", eclnew.get(id_history).getIsi_artikel());
                     intent.putExtra("kategori_artikel", eclnew.get(id_history).getKategori_artikel());
-                    intent.putExtra("clinicname", clinicname);
-                    intent.putExtra("cliniclogo", logo);
+                    intent.putExtra("clinicname", ClinicName);
+                    intent.putExtra("cliniclogo", ClinicLogo);
                     startActivity(intent);
                     return;
                 }
@@ -121,11 +139,65 @@ public class EncyclopediaActivity extends AppApadokActivity {
                 //Pass the User ID to next activity
                 ((ConfirmArticleFormat) newFragment).setPosition(position + 1);
                 ((ConfirmArticleFormat) newFragment).setData(eclnew.get(id_history));
-                ((ConfirmArticleFormat) newFragment).setClinicname(clinicname);
-                ((ConfirmArticleFormat) newFragment).setCliniclogo(logo);
+                ((ConfirmArticleFormat) newFragment).setClinicname(ClinicName);
+                ((ConfirmArticleFormat) newFragment).setCliniclogo(ClinicLogo);
                 newFragment.show(getSupportFragmentManager(), "");
             }
         });
+    }
+
+    private void setupAPIContent() {
+        eclnew_api = FilterEncyclopediaAPI();
+        EncyclopediaNewAdapter numbersArrayAdapter = new EncyclopediaNewAdapter(getBaseContext(), eclnew_api);
+        l.setAdapter(numbersArrayAdapter);
+        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                String idencyclopedia = (String) view.getTag();
+                int id_encyclopedia = Integer.parseInt(idencyclopedia);
+                if (Objects.equals(eclnew_api.get(id_encyclopedia).getKategori_artikel(), "2")){
+                    DialogFragment newFragment = new ConfirmArticleFormat();
+                    //Pass the User ID to next activity
+                    ((ConfirmArticleFormatNew) newFragment).setPosition(position + 1);
+                    ((ConfirmArticleFormatNew) newFragment).setData(eclnew_api.get(id_encyclopedia));
+                    ((ConfirmArticleFormatNew) newFragment).setClinicname(ClinicName);
+                    ((ConfirmArticleFormatNew) newFragment).setCliniclogo(ClinicLogo);
+                    ((ConfirmArticleFormatNew) newFragment).setVideo(true);
+                    newFragment.show(getSupportFragmentManager(), "");
+                }
+                else if (Objects.equals(eclnew_api.get(id_encyclopedia).getKategori_artikel(), "1")){
+                    DialogFragment newFragment = new ConfirmArticleFormat();
+                    //Pass the User ID to next activity
+                    ((ConfirmArticleFormatNew) newFragment).setPosition(position + 1);
+                    ((ConfirmArticleFormatNew) newFragment).setData(eclnew_api.get(id_encyclopedia));
+                    ((ConfirmArticleFormatNew) newFragment).setClinicname(ClinicName);
+                    ((ConfirmArticleFormatNew) newFragment).setCliniclogo(ClinicLogo);
+                    ((ConfirmArticleFormatNew) newFragment).setVideo(false);
+                    newFragment.show(getSupportFragmentManager(), "");
+                }
+            }
+        });
+    }
+
+    private void setupJson() {
+        //NO API Form Data Yet
+        createCalls(new VolleyCallBack() {
+
+            @Override
+            public void onSuccess() {
+                if (ecl_api.isEmpty()) {
+                    setupContent();
+                }
+                setupAPIContent();
+            }
+
+            @Override
+            public void onError() {
+                setupContent();
+            }
+        });
+        VolleyLog.DEBUG = true;
     }
 
     private ArrayList<Encyclopedia> FilterEncyclopedia() {
@@ -168,24 +240,64 @@ public class EncyclopediaActivity extends AppApadokActivity {
         return eclparsed;
     }
 
+    private ArrayList<EncyclopediaEntity> FilterEncyclopediaAPI() {
+        ArrayList<EncyclopediaEntity> ecl_api_parsed = new ArrayList<>();
+        if (kebugaranval == 1) {
+            String filtered = "4";
+            strokeval = 3;
+            cardioval = 3;
+            diabetval = 3;
+            for (int counter = 0; counter < ecl.size(); counter++) {
+                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
+                    ecl_api_parsed.add(ecl_api.get(counter));
+                }
+            }
+        }
+        if (strokeval <= 2) {
+            String filtered = "1";
+            for (int counter = 0; counter < ecl.size(); counter++) {
+                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
+                    ecl_api_parsed.add(ecl_api.get(counter));
+                }
+            }
+        }
+        if (diabetval <= 2) {
+            String filtered = "2";
+            for (int counter = 0; counter < ecl.size(); counter++) {
+                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
+                    ecl_api_parsed.add(ecl_api.get(counter));
+                }
+            }
+        }
+        if (cardioval <= 2) {
+            String filtered = "3";
+            for (int counter = 0; counter < ecl.size(); counter++) {
+                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
+                    ecl_api_parsed.add(ecl_api.get(counter));
+                }
+            }
+        }
+        return ecl_api_parsed;
+    }
 
-    private void createCalls(String json, final VolleyCallBack callback) {
+
+    private void createCalls(final VolleyCallBack callback) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Temporarily Get ID Pemeriksan From Main Activity
-        int id_user = getIntent().getIntExtra("user", 0);
-        String URL = "http://apadok.com/pemeriksaan/userAll/" + id_user;
+        String token = getIntent().getStringExtra("token");
+        String URL = "http://apadok.com/api/artikel";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                Type screenhistory = new TypeToken<List<Encyclopedia>>() {
+                Type screenhistory = new TypeToken<List<EncyclopediaEntity>>() {
                 }.getType();
                 //FailSafe
-                if (response.charAt(response.length() - 1) != ']') {
-                    response = response + "]";
-                }
-                ecl = gson.fromJson(response, screenhistory);
+//                if (response.charAt(response.length()-1) != ']'){
+//                    response = response + "]";
+//                }
+                ecl_api = gson.fromJson(response, screenhistory);
                 callback.onSuccess();
             }
         }, new Response.ErrorListener() {
@@ -202,7 +314,16 @@ public class EncyclopediaActivity extends AppApadokActivity {
 
             @Override
             public byte[] getBody() {
-                return json == null ? null : json.getBytes(StandardCharsets.UTF_8);
+                return "".getBytes(StandardCharsets.UTF_8);
+            }
+
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // Basic Authentication
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP)
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
             }
         };
 
