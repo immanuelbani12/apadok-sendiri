@@ -22,11 +22,8 @@ internal class EchoWebSocketListener(
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {
-        var counter = 0
-        if (counter == 0){
-            // Do Not Parse
-            output("Chat Socket Initialized")
-            counter++
+        if (text.contains("id_connection")) {
+            output("A new user has joined the chat room!")
         }
         else{
             val messagejson = Gson().fromJson(text, Message::class.java)
