@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -125,7 +126,11 @@ public class EncyclopediaDetailActivity extends AppApadokActivity {
 
         int position = getIntent().getIntExtra("position", 0);
         tv_title.setText(getIntent().getStringExtra("judul_artikel"));
-        tv_result.setText(getIntent().getStringExtra("isi_artikel"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            tv_result.setText(Html.fromHtml(getIntent().getStringExtra("isi_artikel"), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            tv_result.setText(Html.fromHtml(getIntent().getStringExtra("isi_artikel")));
+        }
         String kategori = getIntent().getStringExtra("kategori_artikel");
         int kategoriint = Integer.parseInt(kategori);
 

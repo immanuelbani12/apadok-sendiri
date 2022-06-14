@@ -113,7 +113,12 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         cartesian.yAxis(0).title("Skor");
         anyChartView.setChart(cartesian);
         String sourceString = "Skor kebugaran anda <b>" + score_kebugaran + "</b> dari maksimal skor <b>52</b>.<br> Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar";
-        kebugaran_category.setText(Html.fromHtml(sourceString));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            kebugaran_category.setText(Html.fromHtml(sourceString, Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            kebugaran_category.setText(Html.fromHtml(sourceString));
+        }
         anyChartView.setVisibility(View.VISIBLE);
     }
 
