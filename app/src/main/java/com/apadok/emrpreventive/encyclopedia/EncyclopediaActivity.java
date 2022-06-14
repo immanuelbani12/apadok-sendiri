@@ -156,8 +156,8 @@ public class EncyclopediaActivity extends AppApadokActivity {
                                     long id) {
                 String idencyclopedia = (String) view.getTag();
                 int id_encyclopedia = Integer.parseInt(idencyclopedia);
-                if (Objects.equals(eclnew_api.get(id_encyclopedia).getKategori_artikel(), "2")){
-                    DialogFragment newFragment = new ConfirmArticleFormat();
+                if (Objects.equals(eclnew_api.get(id_encyclopedia).getJenis_artikel(), "2")){
+                    DialogFragment newFragment = new ConfirmArticleFormatNew();
                     //Pass the User ID to next activity
                     ((ConfirmArticleFormatNew) newFragment).setPosition(position + 1);
                     ((ConfirmArticleFormatNew) newFragment).setData(eclnew_api.get(id_encyclopedia));
@@ -166,8 +166,8 @@ public class EncyclopediaActivity extends AppApadokActivity {
                     ((ConfirmArticleFormatNew) newFragment).setVideo(true);
                     newFragment.show(getSupportFragmentManager(), "");
                 }
-                else if (Objects.equals(eclnew_api.get(id_encyclopedia).getKategori_artikel(), "1")){
-                    DialogFragment newFragment = new ConfirmArticleFormat();
+                else if (Objects.equals(eclnew_api.get(id_encyclopedia).getJenis_artikel(), "1")){
+                    DialogFragment newFragment = new ConfirmArticleFormatNew();
                     //Pass the User ID to next activity
                     ((ConfirmArticleFormatNew) newFragment).setPosition(position + 1);
                     ((ConfirmArticleFormatNew) newFragment).setData(eclnew_api.get(id_encyclopedia));
@@ -247,7 +247,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
             strokeval = 3;
             cardioval = 3;
             diabetval = 3;
-            for (int counter = 0; counter < ecl.size(); counter++) {
+            for (int counter = 0; counter < ecl_api.size(); counter++) {
                 if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
                     ecl_api_parsed.add(ecl_api.get(counter));
                 }
@@ -255,7 +255,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
         }
         if (strokeval <= 2) {
             String filtered = "1";
-            for (int counter = 0; counter < ecl.size(); counter++) {
+            for (int counter = 0; counter < ecl_api.size(); counter++) {
                 if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
                     ecl_api_parsed.add(ecl_api.get(counter));
                 }
@@ -263,7 +263,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
         }
         if (diabetval <= 2) {
             String filtered = "2";
-            for (int counter = 0; counter < ecl.size(); counter++) {
+            for (int counter = 0; counter < ecl_api.size(); counter++) {
                 if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
                     ecl_api_parsed.add(ecl_api.get(counter));
                 }
@@ -271,7 +271,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
         }
         if (cardioval <= 2) {
             String filtered = "3";
-            for (int counter = 0; counter < ecl.size(); counter++) {
+            for (int counter = 0; counter < ecl_api.size(); counter++) {
                 if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
                     ecl_api_parsed.add(ecl_api.get(counter));
                 }

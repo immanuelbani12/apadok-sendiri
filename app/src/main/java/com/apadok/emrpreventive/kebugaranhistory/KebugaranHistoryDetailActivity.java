@@ -184,6 +184,8 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         intent.putExtra("categorykebugaran", kebugaranval);
         intent.putExtra("clinicname", ClinicName);
         intent.putExtra("cliniclogo", ClinicLogo);
+        String token = getIntent().getStringExtra("token");
+        intent.putExtra("token", token);
         startActivity(intent);
     };
 

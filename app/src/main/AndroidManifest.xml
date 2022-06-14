@@ -53,6 +53,9 @@
             android:name=".encyclopedia.EncyclopediaDetailActivity"
             android:exported="false" />
         <activity
+            android:name=".encyclopedia.EncyclopediaInfografisActivity"
+            android:exported="false" />
+        <activity
             android:name=".screening.ScreeningActivity"
             android:exported="false" />
         <activity

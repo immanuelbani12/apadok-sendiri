@@ -89,6 +89,8 @@ public class KebugaranHistoryActivity extends AppApadokActivity {
                 intent.putExtra("data", sch_bugar.get(position));
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", logo);
+                String token = getIntent().getStringExtra("token");
+                intent.putExtra("token", token);
                 startActivity(intent);
             }
         });

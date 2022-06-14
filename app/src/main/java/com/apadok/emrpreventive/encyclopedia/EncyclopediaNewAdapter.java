@@ -1,6 +1,7 @@
 package com.apadok.emrpreventive.encyclopedia;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.database.entity.EncyclopediaEntity;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -51,9 +53,9 @@ public class EncyclopediaNewAdapter extends ArrayAdapter<EncyclopediaEntity> {
 
         // then according to the position of the view assign the desired TextView 2 for the same
         TextView textView2 = currentItemView.findViewById(R.id.tv_article_type);
-        if (Objects.equals(currentNumberPosition.getKategori_artikel(), "1")) {
+        if (Objects.equals(currentNumberPosition.getJenis_artikel(), "1")) {
             textView2.setText("Jenis Artikel : Teks");
-        } else if (Objects.equals(currentNumberPosition.getKategori_artikel(), "2")) {
+        } else if (Objects.equals(currentNumberPosition.getJenis_artikel(), "2")) {
             textView2.setText("Jenis Artikel : Video");
         } else {
             textView2.setText("Jenis Artikel : Infografis");
@@ -63,7 +65,19 @@ public class EncyclopediaNewAdapter extends ArrayAdapter<EncyclopediaEntity> {
         if (currentNumberPosition.getGambar_artikel() != null) {
             String image = currentNumberPosition.getGambar_artikel();
             String url = "http://apadok.com/media/klinik/" + image;
-            Picasso.get().load(url).into(imageView1);
+            Picasso.get().load(url).into(imageView1, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    Log.e("err",url);
+                    imageView1.setImageResource(R.drawable.ic_doctor);
+                }
+
+            });
         }
 
         String positionstring = Integer.toString(position);

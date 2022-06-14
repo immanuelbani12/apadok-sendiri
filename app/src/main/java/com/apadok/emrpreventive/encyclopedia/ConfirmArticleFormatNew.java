@@ -73,8 +73,8 @@ public class ConfirmArticleFormatNew extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         if (IsVideo){
-            builder.setMessage("Pilih bentuk tips pencegahan yang ingin ditampilkan")
-                    .setPositiveButton("Video", new DialogInterface.OnClickListener() {
+            builder.setMessage("Apakah anda ingin melihat Video ini di Youtube?")
+                    .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
                             String videoid = getVideoId(data.getIsi_artikel());
@@ -97,17 +97,9 @@ public class ConfirmArticleFormatNew extends DialogFragment {
                             }
                         }
                     })
-                    .setNegativeButton("Infografis", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
-                            Intent intent = new Intent(getContext(), EncyclopediaInfografisActivity.class);
-                            intent.putExtra("position", position);
-                            intent.putExtra("gambar_artikel", data.getGambar_artikel());
-                            intent.putExtra("judul_artikel", data.getJudul_artikel());
-                            intent.putExtra("kategori_artikel", data.getKategori_artikel());
-                            intent.putExtra("clinicname", clinicname);
-                            intent.putExtra("cliniclogo", cliniclogo);
-                            startActivity(intent);
                         }
                     });
         } else {

@@ -33,7 +33,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="16dp"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="6dp"
                 android:weightSum="5">
 
                 <ListView

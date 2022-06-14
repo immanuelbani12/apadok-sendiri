@@ -350,6 +350,8 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         intent.putExtra("categorykardio", cardioval);
         intent.putExtra("clinicname", ClinicName);
         intent.putExtra("cliniclogo", ClinicLogo);
+        String token = getIntent().getStringExtra("token");
+        intent.putExtra("token", token);
         startActivity(intent);
     };
 

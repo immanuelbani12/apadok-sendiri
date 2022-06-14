@@ -30,6 +30,7 @@ import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.nio.charset.StandardCharsets;
@@ -37,55 +38,15 @@ import java.nio.charset.StandardCharsets;
 public class EncyclopediaInfografisActivity extends AppApadokActivity {
 
     private final Gson gson = new Gson();
-    private JsonObject returnvalue;
-    private String hasil = "";
-    private TextView tv_title, tv_diabetes, tv_cardiovascular, tv_stroke, tv_kebugaran, tv_result;
+    private TextView tv_title, tv_diabetes, tv_cardiovascular, tv_stroke, tv_kebugaran;
     private ImageView iv_image;
-    private Button btn_finish, btn_whatsapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encyclopedia_infografis);
         setupItemView();
-        // setupJson();
     }
-
-//    private void setupJson() {
-//        // Send JSON ke API & Parse Respons di createcall
-//        // Parse JSON Respons di createcall
-//        // Lakukan sesuatu di OnSuccess after Respons diubah jadi variabel siap pakai
-//        createCalls("",new VolleyCallBack() {
-//
-//            @Override
-//            public void onSuccess() {
-//                // here you have the response from the volley.
-//                String hasil_diabet = returnvalue.get("hasil_diabetes").isJsonNull() ? "" : returnvalue.get("hasil_diabetes").getAsString();
-//                String hasil_stroke = returnvalue.get("hasil_stroke").isJsonNull() ? "" : returnvalue.get("hasil_stroke").getAsString();
-//                String hasil_koles = returnvalue.get("hasil_kolesterol").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
-//                hasil = "Anda Memiliki\n"+hasil_diabet+" Penyakit Diabetes\n" + hasil_stroke+" Penyakit Stroke\n" + hasil_koles + " Penyakit Kardivoaskular";
-//                tv_score.setText(hasil);
-//                SET IMAGE
-//                String image = returnvalue.get("gambar_artikel").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
-//                if(image.isEmpty()){
-//                    iv_image.setVisibility(View.GONE)
-//                }
-//                else{
-//                    String url = "http://apadok.com/media/klinik/" + logo;
-//                    Picasso.get().load(url).into(iv_image);
-//                    iv_image.setVisibility(View.VISIBLE)
-//                }
-//                tv_informasi.setVisibility(View.VISIBLE);
-//            }
-//
-//            @Override
-//            public void onError() {
-//                tv_score.setText(hasil);
-//            }
-//        });
-//
-//        VolleyLog.DEBUG = true;
-//    }
 
     private void setupItemView() {
         // Code to Setup Toolbar
@@ -103,7 +64,6 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
         Picasso.get().load(url).into(cliniclogo);
 
         tv_title = (TextView) findViewById(R.id.title_result);
-        tv_result = (TextView) findViewById(R.id.result);
         tv_diabetes = (TextView) findViewById(R.id.diabetes_title);
         tv_stroke = (TextView) findViewById(R.id.stroke_title);
         tv_cardiovascular = (TextView) findViewById(R.id.cardiovascular_title);
@@ -112,20 +72,30 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_title.setTypeface(helvetica_font);
-        tv_result.setTypeface(helvetica_font);
         tv_diabetes.setTypeface(helvetica_font);
         tv_stroke.setTypeface(helvetica_font);
         tv_cardiovascular.setTypeface(helvetica_font);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            tv_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
-        }
-
         int position = getIntent().getIntExtra("position", 0);
         tv_title.setText(getIntent().getStringExtra("judul_artikel"));
-        tv_result.setText(getIntent().getStringExtra("isi_artikel"));
         String kategori = getIntent().getStringExtra("kategori_artikel");
+        String image = getIntent().getStringExtra("gambar_artikel");
+        String urlimage = "http://apadok.com/media/klinik/" + image;
         int kategoriint = Integer.parseInt(kategori);
+
+        Picasso.get().load(urlimage).into(iv_image, new Callback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.e("err",url);
+                iv_image.setImageResource(R.drawable.ic_doctor);
+            }
+
+        });
 
         if (kategoriint == 1) {
             tv_diabetes.setVisibility(View.GONE);
@@ -152,60 +122,4 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
         }
     }
 
-    private void createCalls(String json, final VolleyCallBack callback) {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        int id_history = getIntent().getIntExtra("history", 0);
-        String URL = "http://apadok.com/pemeriksaan/show/" + id_history;
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("VOLLEY", response);
-                returnvalue = gson.fromJson(response, JsonObject.class);
-                callback.onSuccess();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("VOLLEY", error.toString());
-                if (error instanceof NetworkError || error instanceof AuthFailureError || error instanceof TimeoutError) {
-                    hasil = "Aplikasi gagal terhubung ke Internet";
-                } else if (error instanceof ServerError) {
-                    hasil = "Server sedang bermasalah";
-                } else if (error instanceof ParseError) {
-                    hasil = "Ada masalah di aplikasi Apadok";
-                }
-                callback.onError();
-            }
-        }) {
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-
-            @Override
-            public byte[] getBody() {
-                return json == null ? null : json.getBytes(StandardCharsets.UTF_8);
-            }
-
-//            @Override
-//            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-//                String responseString = "";
-//                if (response != null) {
-//                    responseString = String.valueOf(response.data);
-//
-//                    // can get more details such as response.headers
-//                }
-//                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-//            }
-        };
-
-        requestQueue.add(stringRequest);
-    }
-
-    private final View.OnClickListener RedirectToFinish = v -> {
-//        Use Finish Instead of Adding New Activity to the Stack
-//        startActivity(new Intent(StrokeResultActivity.this, MainActivity.class));
-        finish();
-    };
 }
