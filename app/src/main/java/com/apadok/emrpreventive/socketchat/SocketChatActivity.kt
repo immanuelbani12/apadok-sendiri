@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
 import org.json.JSONObject
+import android.content.Intent
 
 class SocketChatActivity : AppCompatActivity() {
     private val message : Button by lazy { findViewById(R.id.message) }
@@ -27,11 +28,12 @@ class SocketChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_socketchat)
 
+        val id_user = intent.getIntExtra("userid", 0)
         message.setOnClickListener {
             ws?.apply {
                 val text = entryText.text.toString()
                 output("ME: $text")
-                val data = JSONObject("""{"receiver_id":1, "message":"$text"}""")
+                val data = JSONObject("""{"receiver_id":1, "user_id":$id_user, "message":"$text"}""")
                 val datatext = data.toString()
                 send(datatext)
                 entryText.text.clear()

@@ -1,10 +1,11 @@
 package com.apadok.emrpreventive.socketchat
 
-import okhttp3.WebSocketListener
-import okhttp3.WebSocket
-import okio.ByteString
-import okhttp3.Response
 import com.google.gson.Gson
+import okhttp3.Response
+import okhttp3.WebSocket
+import okhttp3.WebSocketListener
+import okio.ByteString
+
 
 data class Message (
     var message: String,
