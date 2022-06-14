@@ -40,13 +40,13 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
     private JsonObject returnvalue;
     private String hasil = "";
     private TextView tv_title, tv_diabetes, tv_cardiovascular, tv_stroke, tv_kebugaran, tv_result;
-    private ImageView iv_trophy;
+    private ImageView iv_image;
     private Button btn_finish, btn_whatsapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_encyclopedia_detail);
+        setContentView(R.layout.activity_encyclopedia_infografis);
         setupItemView();
         // setupJson();
     }
@@ -65,7 +65,16 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
 //                String hasil_koles = returnvalue.get("hasil_kolesterol").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
 //                hasil = "Anda Memiliki\n"+hasil_diabet+" Penyakit Diabetes\n" + hasil_stroke+" Penyakit Stroke\n" + hasil_koles + " Penyakit Kardivoaskular";
 //                tv_score.setText(hasil);
-//                iv_trophy.setVisibility(View.VISIBLE);
+//                SET IMAGE
+//                String image = returnvalue.get("gambar_artikel").isJsonNull() ? "" : returnvalue.get("hasil_kolesterol").getAsString();
+//                if(image.isEmpty()){
+//                    iv_image.setVisibility(View.GONE)
+//                }
+//                else{
+//                    String url = "http://apadok.com/media/klinik/" + logo;
+//                    Picasso.get().load(url).into(iv_image);
+//                    iv_image.setVisibility(View.VISIBLE)
+//                }
 //                tv_informasi.setVisibility(View.VISIBLE);
 //            }
 //
@@ -99,6 +108,7 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
         tv_stroke = (TextView) findViewById(R.id.stroke_title);
         tv_cardiovascular = (TextView) findViewById(R.id.cardiovascular_title);
         tv_kebugaran = (TextView) findViewById(R.id.kebugaran_title);
+        iv_image = (ImageView) findViewById(R.id.iv_image);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_title.setTypeface(helvetica_font);

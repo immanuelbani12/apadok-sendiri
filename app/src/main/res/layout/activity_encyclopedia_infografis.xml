@@ -44,20 +44,6 @@
                 tools:src="@drawable/default_image" />
 
             <TextView
-                android:id="@+id/result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:text="Isi Artikel"
-                android:textColor="@color/grey_font"
-                android:textSize="15sp"
-                android:justificationMode="inter_word"
-                android:lineSpacingExtra="4dp"
-                android:lineSpacingMultiplier="1.2"
-                android:paddingHorizontal="10dp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/diabetes_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,7 +100,6 @@
                 android:text="Kebugaran"
                 android:textColor="@color/grey_font"
                 android:textSize="18sp" />
-
         </LinearLayout>
 
     </ScrollView>
