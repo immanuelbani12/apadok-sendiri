@@ -12,6 +12,7 @@ import com.apadok.emrpreventive.socketchat.EchoWebSocketListener.Companion.NORMA
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
+import org.json.JSONObject
 
 class SocketChatActivity : AppCompatActivity() {
     private val message : Button by lazy { findViewById(R.id.message) }
@@ -30,7 +31,9 @@ class SocketChatActivity : AppCompatActivity() {
             ws?.apply {
                 val text = entryText.text.toString()
                 output("ME: $text")
-                send(text)
+                val data = JSONObject("""{"receiver_id":1, "message":"$text"}""")
+                val datatext = data.toString()
+                send(datatext)
                 entryText.text.clear()
             } ?: ping("Error: Restart the App to reconnect")
         }

@@ -7,7 +7,7 @@ import okhttp3.Response
 import com.google.gson.Gson
 
 data class Message (
-    var messagebody: String,
+    var message: String,
     var author: String,
     var time: String
 )
@@ -28,7 +28,7 @@ internal class EchoWebSocketListener(
         else{
             val messagejson = Gson().fromJson(text, Message::class.java)
             val author = messagejson.author
-            val message = messagejson.messagebody
+            val message = messagejson.message
             output("$author: $message")
         }
     }
