@@ -260,7 +260,11 @@ public class SignupActivity extends AppApadokActivity {
                 DialogFragment newFragment = new PopUpMessage();
                 // Set Message
                 ((PopUpMessage) newFragment).setMessage(ErrorMsg);
-                newFragment.show(getSupportFragmentManager(), "");
+                try {
+                    newFragment.show(getSupportFragmentManager(), "");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 

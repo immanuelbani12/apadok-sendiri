@@ -128,7 +128,11 @@ public class LoginActivity extends AppApadokActivity {
                 DialogFragment newFragment = new ConfirmExiting();
                 //Pass the User ID to next activity
                 ((ConfirmExiting) newFragment).setMessage("Anda ingin keluar dari aplikasi?");
-                newFragment.show(getSupportFragmentManager(), "");
+                try {
+                    newFragment.show(getSupportFragmentManager(), "");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         };
         this.getOnBackPressedDispatcher().addCallback(this, callback);
@@ -174,7 +178,11 @@ public class LoginActivity extends AppApadokActivity {
                 DialogFragment newFragment = new PopUpMessage();
                 // Set Message
                 ((PopUpMessage) newFragment).setMessage(ErrorMsg);
-                newFragment.show(getSupportFragmentManager(), "");
+                try {
+                    newFragment.show(getSupportFragmentManager(), "");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
