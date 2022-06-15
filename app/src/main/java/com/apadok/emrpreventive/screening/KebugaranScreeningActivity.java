@@ -65,7 +65,7 @@ public class KebugaranScreeningActivity extends AppApadokActivity implements Vie
         // Init Logo RS
         ClinicLogo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://apadok.com/media/klinik/" + ClinicLogo;
+        String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
         // This callback will only be called when MyFragment is at least Started.

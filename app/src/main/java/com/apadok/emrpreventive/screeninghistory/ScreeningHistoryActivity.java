@@ -68,7 +68,7 @@ public class ScreeningHistoryActivity extends AppApadokActivity {
         // Init Logo RS
         String logo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://apadok.com/media/klinik/" + logo;
+        String url = "http://apadok.com/media/institusi/" + logo;
         Picasso.get().load(url).into(cliniclogo);
 
         l = findViewById(R.id.history_screening);

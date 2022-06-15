@@ -148,7 +148,7 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         // Init Logo RS
         ClinicLogo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://apadok.com/media/klinik/" + ClinicLogo;
+        String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
         title_result = (TextView) findViewById(R.id.title_result);

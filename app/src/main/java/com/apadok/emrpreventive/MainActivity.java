@@ -170,7 +170,7 @@ public class MainActivity extends AppApadokActivity {
 
         // Init Logo RS
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://apadok.com/media/klinik/" + ClinicLogo;
+        String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
         ImageView logout = (ImageView) findViewById(R.id.logout_icon);

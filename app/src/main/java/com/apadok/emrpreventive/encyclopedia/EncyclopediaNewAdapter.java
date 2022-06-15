@@ -64,7 +64,7 @@ public class EncyclopediaNewAdapter extends ArrayAdapter<EncyclopediaEntity> {
         ImageView imageView1 = currentItemView.findViewById(R.id.iv_article_image);
         if (currentNumberPosition.getGambar_artikel() != null) {
             String image = currentNumberPosition.getGambar_artikel();
-            String url = "http://apadok.com/media/klinik/" + image;
+            String url = "http://apadok.com/media/artikel/" + image;
             Picasso.get().load(url).into(imageView1, new Callback() {
                 @Override
                 public void onSuccess() {

@@ -60,7 +60,7 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
         // Init Logo RS
         String logo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://apadok.com/media/klinik/" + logo;
+        String url = "http://apadok.com/media/institusi/" + logo;
         Picasso.get().load(url).into(cliniclogo);
 
         tv_title = (TextView) findViewById(R.id.title_result);
@@ -80,7 +80,7 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
         tv_title.setText(getIntent().getStringExtra("judul_artikel"));
         String kategori = getIntent().getStringExtra("kategori_artikel");
         String image = getIntent().getStringExtra("gambar_artikel");
-        String urlimage = "http://apadok.com/media/klinik/" + image;
+        String urlimage = "http://apadok.com/media/artikel/" + image;
         int kategoriint = Integer.parseInt(kategori);
 
         Picasso.get().load(urlimage).into(iv_image, new Callback() {
