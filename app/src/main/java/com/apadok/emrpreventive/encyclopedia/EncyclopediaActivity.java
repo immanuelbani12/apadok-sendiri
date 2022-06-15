@@ -81,7 +81,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
         // Init Logo RS
         ClinicLogo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://apadok.com/media/klinik/" + ClinicLogo;
+        String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
         l = findViewById(R.id.history_screening);
