@@ -31,12 +31,8 @@ import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.database.entity.EncyclopediaEntity;
-import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
-import com.apadok.emrpreventive.kebugaranhistory.KebugaranHistoryAdapter;
-import com.apadok.emrpreventive.screeninghistory.ScreeningHistoryAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
@@ -331,7 +327,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
     }
 
 
-    private final void CreateFormList() {
+    private void CreateFormList() {
             ecl.add(new Encyclopedia("1", "Penyakit Stroke", "Stroke merupakan penyebab kematian tersering kedua di dunia. Setiap tahun, lebih dari 795.000 orang di Amerika Serikat mengalami stroke. Stroke terjadi ketika pembuluh darah di otak pecah dan berdarah, atau ketika ada penyumbatan suplai darah ke otak. Pecahnya atau penyumbatan mencegah darah dan oksigen mencapai jaringan otak. Tanpa oksigen, sel-sel otak dan jaringan menjadi rusak dan mulai mati dalam beberapa menit. \n\n" +
                     "Hilangnya aliran darah ke otak akan merusak jaringan di dalam otak. Gejala stroke muncul di bagian tubuh yang dikendalikan oleh area otak yang rusak. Gejala stroke dapat meliputi:\n" +
                             "•\tmati rasa atau kelemahan pada lengan, wajah, dan kaki, terutama pada satu sisi tubuh,\n" +
