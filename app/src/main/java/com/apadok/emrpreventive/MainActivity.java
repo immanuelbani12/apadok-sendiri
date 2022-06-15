@@ -572,7 +572,7 @@ public class MainActivity extends AppApadokActivity {
 
 
     private final View.OnClickListener RedirectToConsult = v -> {
-        Intent intent = new Intent(MainActivity.this, SocketChatActivity.class);
+        Intent intent = new Intent(MainActivity.this, ConsultActivity.class);
         //Pass the User ID to next activity
         intent.putExtra("userid", UserId);
         intent.putExtra("clinicname", ClinicName);
