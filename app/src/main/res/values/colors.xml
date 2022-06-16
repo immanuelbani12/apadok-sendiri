@@ -24,8 +24,9 @@
     <color name="dark_green_font">#17652D</color>
     <color name="yellow_font">#FAE315</color>
     <color name="yellow_dark">#EFCC00</color>
-
-
-
+    <color name="black_alpha_87">#de000000</color>
+    <color name="black_alpha_54">#8a000000</color>
+    <color name="black_alpha_38">#61000000</color>
+    <color name="black_alpha_12">#1f000000</color>
 
 </resources>

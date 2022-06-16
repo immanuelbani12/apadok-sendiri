@@ -56,6 +56,10 @@
             android:name=".encyclopedia.EncyclopediaInfografisActivity"
             android:exported="false" />
         <activity
+            android:name=".encyclopedia.EncyclopediaInfografisPhotoViewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Translucent"/>
+        <activity
             android:name=".screening.ScreeningActivity"
             android:exported="false" />
         <activity

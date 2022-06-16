@@ -1,5 +1,6 @@
 package com.apadok.emrpreventive.encyclopedia;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.apadok.emrpreventive.R;
@@ -73,10 +75,22 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
 
             @Override
             public void onError(Exception e) {
-                Log.e("err",url);
+                Log.e("err",urlimage);
                 iv_image.setImageResource(R.drawable.ic_doctor);
             }
 
+        });
+
+
+        iv_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EncyclopediaInfografisActivity.this, EncyclopediaInfografisPhotoViewActivity.class);
+                intent.putExtra("urlimage", urlimage);
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation(EncyclopediaInfografisActivity.this, view, getString(R.string.transition_test));
+                startActivity(intent,options.toBundle());
+            }
         });
 
         if (kategoriint == 1) {
@@ -103,5 +117,4 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
             tv_cardiovascular.setVisibility(View.GONE);
         }
     }
-
 }
