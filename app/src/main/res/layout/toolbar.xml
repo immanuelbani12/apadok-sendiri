@@ -12,19 +12,76 @@
         android:layout_height="wrap_content"
         android:paddingTop="8dp">
 
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/left_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/iv_cliniclogo"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:src="@drawable/apadok_white_crop" />-->
+
+<!--        </RelativeLayout>-->
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/center_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_toRightOf="@id/left_text"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_centerInParent="true">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_clinic"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/clinic_name"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="20sp" />-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="16dp"-->
+<!--                    android:src="@drawable/by_apadok" />-->
+<!--            </LinearLayout>-->
+<!--        </RelativeLayout>-->
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/right_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_toRightOf="@+id/center_text">-->
+<!--                        <ImageView-->
+<!--                            android:id="@+id/logout_icon"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentEnd="true"-->
+<!--                            android:rotation="180"-->
+<!--                            android:src="@drawable/ic_baseline_login_24" />-->
+<!--        </RelativeLayout>-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_cliniclogo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/apadok_white_crop" />
+        </LinearLayout>
+
+
         <RelativeLayout
             android:id="@+id/first_row_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/iv_cliniclogo"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="7dp"
-                android:layout_toLeftOf="@+id/tv_clinic"
-                android:layout_centerVertical="true"
-                android:src="@drawable/apadok_white_crop" />
 
             <TextView
                 android:id="@+id/tv_clinic"
@@ -42,8 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:rotation="180"
-                android:src="@drawable/ic_baseline_login_24"
-                android:visibility="gone"/>
+                android:src="@drawable/ic_baseline_login_24" />
 
         </RelativeLayout>
 
@@ -57,18 +113,10 @@
             android:orientation="horizontal"
             android:layout_below="@+id/first_row_layout">
 
-            <TextView
-                android:id="@+id/support_by"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="By"
-                android:textColor="@color/white"
-                android:textSize="13sp" />
-
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="20dp"
-                android:src="@drawable/apadok_white_crop" />
+                android:layout_width="114dp"
+                android:layout_height="15dp"
+                android:src="@drawable/by_apadok" />
         </LinearLayout>
     </RelativeLayout>
 

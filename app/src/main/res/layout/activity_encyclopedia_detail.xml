@@ -29,7 +29,7 @@
                 android:layout_marginBottom="15dp"
                 android:text="Judul Artikel"
                 android:textColor="@color/black_font"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <ImageView
