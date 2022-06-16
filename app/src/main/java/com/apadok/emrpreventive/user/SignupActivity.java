@@ -239,6 +239,7 @@ public class SignupActivity extends AppApadokActivity {
                 String idclinic = returnvalue.get("id_institusi").isJsonNull() ? "" : returnvalue.get("id_institusi").getAsString();
                 String clinicname = returnvalue.get("nama_institusi").isJsonNull() ? "" : returnvalue.get("nama_institusi").getAsString();
                 String cliniclogo = returnvalue.get("logo_institusi").isJsonNull() ? "" : returnvalue.get("logo_institusi").getAsString();
+                String id_login = returnvalue.get("id_login").isJsonNull() ? "" : returnvalue.get("id_login").getAsString();
                 String role = "U";
                 if (returnvalue.has("role")){
                     role = returnvalue.get("role").isJsonNull() ? role : returnvalue.get("role").getAsString();
@@ -251,6 +252,7 @@ public class SignupActivity extends AppApadokActivity {
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", cliniclogo);
                 intent.putExtra("token", token);
+                intent.putExtra("id_login", id_login);
                 startActivity(intent);
                 finish();
             }

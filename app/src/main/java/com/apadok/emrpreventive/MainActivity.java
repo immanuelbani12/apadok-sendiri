@@ -84,7 +84,7 @@ public class MainActivity extends AppApadokActivity {
 
     // Intent Variables
     private int UserId;
-    private String Token, UserName, Role, ClinicName, ClinicLogo;
+    private String Token, UserName, Role, ClinicName, ClinicLogo, LoginId;
 
     @Override
     protected void onRestart() {
@@ -108,6 +108,7 @@ public class MainActivity extends AppApadokActivity {
         Role = sharedPref.getString("rolelocal", "");
         ClinicName = sharedPref.getString("clinicnamelocal", "");
         ClinicLogo = sharedPref.getString("cliniclogolocal", "");
+        LoginId = sharedPref.getString("loginidlocal","");
         Token = sharedPref.getString("tokenlocal", "");
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("userid", 0);
@@ -115,6 +116,7 @@ public class MainActivity extends AppApadokActivity {
             Role = getIntent().getStringExtra("role");
             ClinicName = getIntent().getStringExtra("clinicname");
             ClinicLogo = getIntent().getStringExtra("cliniclogo");
+            LoginId = getIntent().getStringExtra("loginid");
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
 //                Change this code if cant login
@@ -142,6 +144,7 @@ public class MainActivity extends AppApadokActivity {
                 editor.putString("clinicnamelocal", ClinicName);
                 editor.putString("cliniclogolocal", ClinicLogo);
                 editor.putString("tokenlocal", Token);
+                editor.putString("loginidlocal", LoginId);
                 editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
             }
@@ -593,6 +596,19 @@ public class MainActivity extends AppApadokActivity {
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
         intent.putExtra("role", Role);
+        startActivity(intent);
+    };
+
+    private final View.OnClickListener RedirectToSocketChat = v -> {
+        Intent intent = new Intent(MainActivity.this, ConsultActivity.class);
+        //Pass the User ID to next activity
+        intent.putExtra("userid", UserId);
+        intent.putExtra("clinicname", ClinicName);
+        intent.putExtra("cliniclogo", ClinicLogo);
+        intent.putExtra("username", UserName);
+        intent.putExtra("token", Token);
+        intent.putExtra("role", Role);
+        intent.putExtra("loginid", LoginId);
         startActivity(intent);
     };
 
