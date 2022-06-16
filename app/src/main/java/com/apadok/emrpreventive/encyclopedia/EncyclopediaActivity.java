@@ -92,6 +92,9 @@ public class EncyclopediaActivity extends AppApadokActivity {
         CreateFormList();
         eclnew = FilterEncyclopedia();
         EncyclopediaAdapter numbersArrayAdapter = new EncyclopediaAdapter(getBaseContext(), eclnew);
+        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Menampilkan Artikel Alternatif karena terdapat permasalahan pada Apadok", Snackbar.LENGTH_SHORT);
+        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+        snackbar.show();
         l.setAdapter(numbersArrayAdapter);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

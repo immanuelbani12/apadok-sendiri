@@ -74,7 +74,7 @@ public class EncyclopediaNewAdapter extends ArrayAdapter<EncyclopediaEntity> {
                 @Override
                 public void onError(Exception e) {
                     Log.e("err",url);
-                    imageView1.setImageResource(R.drawable.ic_doctor);
+                    imageView1.setImageResource(R.drawable.ic_encyclopedia);
                 }
 
             });

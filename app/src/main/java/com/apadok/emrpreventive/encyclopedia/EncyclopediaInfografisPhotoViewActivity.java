@@ -36,7 +36,7 @@ public class EncyclopediaInfografisPhotoViewActivity extends AppApadokActivity {
 
             @Override
             public void onError(Exception e) {
-                iv_image.setImageResource(R.drawable.ic_doctor);
+                iv_image.setImageResource(R.drawable.ic_encyclopedia);
             }
 
         });

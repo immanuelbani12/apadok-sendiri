@@ -7,8 +7,13 @@
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/color_card_view.xml" value="0.157" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/default_option_border_bg.xml" value="0.157" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.1" />
+        <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/ic_brain.xml" value="0.1" />
+        <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/ic_doctor.xml" value="0.1" />
+        <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/ic_fitness.xml" value="0.1" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/ic_fitness_history.xml" value="0.1" />
+        <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/ic_medicine.xml" value="0.1" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/ic_medicine_orange.xml" value="0.1" />
+        <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/ic_nearest_clinic.xml" value="0.1" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/input_text.xml" value="0.1" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/drawable/stroke_details_border_bg.xml" value="0.157" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout-v26/activity_screening.xml" value="0.1796875" />
@@ -32,7 +37,7 @@
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/item_screening_history.xml" value="0.18072916666666666" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/item_screening_history_old.xml" value="0.18072916666666666" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/screening_option_dialog.xml" value="0.18072916666666666" />
-        <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/toolbar.xml" value="0.10460992907801418" />
+        <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/toolbar.xml" value="0.3333333333333333" />
         <entry key="..\:/Ihza/Coding/EMRPreventive2/app/src/main/res/layout/toolbar_with_back_button.xml" value="0.17798913043478262" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_encyclopedia.xml" value="0.21052631578947367" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_encyclopedia_detail.xml" value="0.21052631578947367" />
@@ -46,7 +51,7 @@
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/item_screening_history.xml" value="0.264" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/item_screening_history_old.xml" value="0.13508771929824562" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/screening_option_dialog.xml" value="0.264" />
-        <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/toolbar.xml" value="0.536" />
+        <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/toolbar.xml" value="0.21052631578947367" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/toolbar_with_back_button.xml" value="0.13508771929824562" />
         <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/drawable/default_option_border_bg.xml" value="0.1" />
         <entry key="..\:/PELAJARAN/KULIAH/BELAJAR/SEMESTER 7/Pra_TA/EMRPreventive2/app/src/main/res/drawable/ic_baseline_keyboard_backspace_24.xml" value="0.1" />
