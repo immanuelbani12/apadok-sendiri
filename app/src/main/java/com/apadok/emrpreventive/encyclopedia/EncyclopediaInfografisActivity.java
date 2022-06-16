@@ -15,13 +15,11 @@ import androidx.core.content.res.ResourcesCompat;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
-import com.google.gson.Gson;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class EncyclopediaInfografisActivity extends AppApadokActivity {
 
-    private final Gson gson = new Gson();
     private TextView tv_title, tv_diabetes, tv_cardiovascular, tv_stroke, tv_kebugaran;
     private ImageView iv_image;
 
