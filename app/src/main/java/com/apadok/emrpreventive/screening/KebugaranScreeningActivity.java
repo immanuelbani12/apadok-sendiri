@@ -73,7 +73,7 @@ public class KebugaranScreeningActivity extends AppApadokActivity implements Vie
             @Override
             public void handleOnBackPressed() {
                 DialogFragment newFragment = new ConfirmExiting();
-                //Pass the User ID to next activity
+                //Pass User Properties to next activity
                 ((ConfirmExiting) newFragment).setMessage("Anda ingin membatalkan proses skrining?");
                 newFragment.show(getSupportFragmentManager(), "");
             }

@@ -210,7 +210,7 @@ public class SignupActivity extends AppApadokActivity {
             @Override
             public void handleOnBackPressed() {
                 DialogFragment newFragment = new ConfirmExiting();
-                //Pass the User ID to next activity
+                //Pass User Properties to next activity
                 ((ConfirmExiting) newFragment).setMessage("Anda ingin keluar dari aplikasi?");
                 newFragment.show(getSupportFragmentManager(), "");
             }

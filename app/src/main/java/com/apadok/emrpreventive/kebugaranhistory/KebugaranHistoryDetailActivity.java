@@ -159,7 +159,7 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         btn_education = (Button) findViewById(R.id.btn_education);
         side_pic = (ImageView) findViewById(R.id.side_pic);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             kebugaran_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         }
 

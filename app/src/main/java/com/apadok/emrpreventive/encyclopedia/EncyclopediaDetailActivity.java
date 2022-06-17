@@ -5,7 +5,6 @@ import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,26 +13,12 @@ import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkError;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
-import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
-
-import java.nio.charset.StandardCharsets;
 
 public class EncyclopediaDetailActivity extends AppApadokActivity {
 
@@ -120,7 +105,7 @@ public class EncyclopediaDetailActivity extends AppApadokActivity {
         tv_stroke.setTypeface(helvetica_font);
         tv_cardiovascular.setTypeface(helvetica_font);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             tv_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         }
 

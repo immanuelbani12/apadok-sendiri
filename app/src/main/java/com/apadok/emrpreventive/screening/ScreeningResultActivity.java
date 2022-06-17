@@ -117,10 +117,10 @@ public class ScreeningResultActivity extends AppApadokActivity {
         btn_consult.setTypeface(helvetica_font);
         btn_education.setTypeface(helvetica_font);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             safe_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             dangerous_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         }
 

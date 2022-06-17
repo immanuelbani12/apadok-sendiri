@@ -6,6 +6,7 @@
         </trust-anchors>
     </base-config>
     <domain-config cleartextTrafficPermitted="true">
+        <!-- Connection Whitelist -->
         <domain includeSubdomains="true">apadok.com</domain>
         <domain includeSubdomains="true">192.168.1.245</domain>
     </domain-config>

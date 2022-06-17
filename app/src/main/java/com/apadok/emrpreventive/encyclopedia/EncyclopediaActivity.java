@@ -135,7 +135,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
                     return;
                 }
                 DialogFragment newFragment = new ConfirmArticleFormat();
-                //Pass the User ID to next activity
+                //Pass User Properties to next activity
                 ((ConfirmArticleFormat) newFragment).setPosition(position + 1);
                 ((ConfirmArticleFormat) newFragment).setData(eclnew.get(id_history));
                 ((ConfirmArticleFormat) newFragment).setClinicname(ClinicName);
@@ -157,7 +157,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
                 int id_encyclopedia = Integer.parseInt(idencyclopedia);
                 if (Objects.equals(eclnew_api.get(id_encyclopedia).getJenis_artikel(), "2")){
                     DialogFragment newFragment = new ConfirmArticleFormatNew();
-                    //Pass the User ID to next activity
+                    //Pass User Properties to next activity
                     ((ConfirmArticleFormatNew) newFragment).setPosition(position + 1);
                     ((ConfirmArticleFormatNew) newFragment).setData(eclnew_api.get(id_encyclopedia));
                     ((ConfirmArticleFormatNew) newFragment).setClinicname(ClinicName);
@@ -167,7 +167,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
                 }
                 else if (Objects.equals(eclnew_api.get(id_encyclopedia).getJenis_artikel(), "1")){
                     DialogFragment newFragment = new ConfirmArticleFormatNew();
-                    //Pass the User ID to next activity
+                    //Pass User Properties to next activity
                     ((ConfirmArticleFormatNew) newFragment).setPosition(position + 1);
                     ((ConfirmArticleFormatNew) newFragment).setData(eclnew_api.get(id_encyclopedia));
                     ((ConfirmArticleFormatNew) newFragment).setClinicname(ClinicName);
