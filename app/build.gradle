@@ -5,6 +5,7 @@ plugins {
 
 android {
     signingConfigs {
+        // Production Signing Properties
         release {
             Properties properties = new Properties()
             properties.load(rootProject.file('local.properties').newDataInputStream())
@@ -20,7 +21,7 @@ android {
         applicationId "com.apadok.emrpreventive"
         minSdk 21
         targetSdk 31
-        versionCode 36
+        versionCode 37
         versionName "1.0.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -53,9 +54,9 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'com.google.code.gson:gson:2.9.0'
@@ -66,6 +67,7 @@ dependencies {
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
     implementation 'me.grantland:autofittextview:0.2.+'
     implementation 'com.squareup.okhttp3:okhttp:4.9.2'
+    implementation 'androidx.security:security-crypto:1.0.0'
     implementation 'io.github.igreenwood.loupe:loupe:1.2.2'
     annotationProcessor "androidx.room:room-compiler:2.4.2"
     testImplementation 'junit:junit:'

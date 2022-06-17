@@ -126,7 +126,7 @@ public class LoginActivity extends AppApadokActivity {
             @Override
             public void handleOnBackPressed() {
                 DialogFragment newFragment = new ConfirmExiting();
-                //Pass the User ID to next activity
+                //Pass User Properties to next activity
                 ((ConfirmExiting) newFragment).setMessage("Anda ingin keluar dari aplikasi?");
                 try {
                     newFragment.show(getSupportFragmentManager(), "");
