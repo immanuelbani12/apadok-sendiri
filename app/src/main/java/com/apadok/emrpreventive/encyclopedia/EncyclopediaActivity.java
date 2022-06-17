@@ -89,60 +89,170 @@ public class EncyclopediaActivity extends AppApadokActivity {
     }
 
     private void setupContent() {
-        CreateFormList();
-        eclnew = FilterEncyclopedia();
-        EncyclopediaAdapter numbersArrayAdapter = new EncyclopediaAdapter(getBaseContext(), eclnew);
+//        CreateFormList();
+//        eclnew = FilterEncyclopedia();
+//        EncyclopediaAdapter numbersArrayAdapter = new EncyclopediaAdapter(getBaseContext(), eclnew);
+//        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Menampilkan Artikel Alternatif karena terdapat permasalahan pada Apadok", Snackbar.LENGTH_SHORT);
+//        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+//        snackbar.show();
+//        l.setAdapter(numbersArrayAdapter);
+//        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position,
+//                                    long id) {
+//                String idhistory = (String) view.getTag();
+//                int id_history = Integer.parseInt(idhistory);
+//                if (eclnew.get(id_history).getIsi_artikel().equals("")){
+//                    String videoid = getVideoId(eclnew.get(id_history).getLink_artikel());
+//                    if (videoid == null) {
+//                        //Toast
+//                        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Video Artikel Terkait Gagal Ditemukan", Snackbar.LENGTH_SHORT);
+//                        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(), R.color.orange_dark));
+//                        snackbar.show();
+//                        return;
+//                    }
+//                    try {
+//                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + videoid));
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intent);
+//
+//                    } catch (ActivityNotFoundException e) {
+//                        // youtube is not installed.Will be opened in other available apps
+//                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/watch?v=" + videoid));
+//                        startActivity(i);
+//                    }
+//                    return;
+//                }
+//                if (eclnew.get(id_history).getLink_artikel().equals("")){
+//                    Intent intent = new Intent(getBaseContext(), EncyclopediaDetailActivity.class);
+//                    intent.putExtra("position", position + 1);
+//                    intent.putExtra("judul_artikel", eclnew.get(id_history).getJudul_artikel());
+//                    intent.putExtra("isi_artikel", eclnew.get(id_history).getIsi_artikel());
+//                    intent.putExtra("kategori_artikel", eclnew.get(id_history).getKategori_artikel());
+//                    intent.putExtra("clinicname", ClinicName);
+//                    intent.putExtra("cliniclogo", ClinicLogo);
+//                    startActivity(intent);
+//                    return;
+//                }
+//                DialogFragment newFragment = new ConfirmArticleFormat();
+//                //Pass User Properties to next activity
+//                ((ConfirmArticleFormat) newFragment).setPosition(position + 1);
+//                ((ConfirmArticleFormat) newFragment).setData(eclnew.get(id_history));
+//                ((ConfirmArticleFormat) newFragment).setClinicname(ClinicName);
+//                ((ConfirmArticleFormat) newFragment).setCliniclogo(ClinicLogo);
+//                newFragment.show(getSupportFragmentManager(), "");
+//            }
+//        });
+
+//      Access string saved json response if API Fails
         Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Menampilkan Artikel Alternatif karena terdapat permasalahan pada Apadok", Snackbar.LENGTH_SHORT);
         snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
         snackbar.show();
-        l.setAdapter(numbersArrayAdapter);
-        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-                String idhistory = (String) view.getTag();
-                int id_history = Integer.parseInt(idhistory);
-                if (eclnew.get(id_history).getIsi_artikel().equals("")){
-                    String videoid = getVideoId(eclnew.get(id_history).getLink_artikel());
-                    if (videoid == null) {
-                        //Toast
-                        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Video Artikel Terkait Gagal Ditemukan", Snackbar.LENGTH_SHORT);
-                        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(), R.color.orange_dark));
-                        snackbar.show();
-                        return;
-                    }
-                    try {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + videoid));
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-
-                    } catch (ActivityNotFoundException e) {
-                        // youtube is not installed.Will be opened in other available apps
-                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/watch?v=" + videoid));
-                        startActivity(i);
-                    }
-                    return;
-                }
-                if (eclnew.get(id_history).getLink_artikel().equals("")){
-                    Intent intent = new Intent(getBaseContext(), EncyclopediaDetailActivity.class);
-                    intent.putExtra("position", position + 1);
-                    intent.putExtra("judul_artikel", eclnew.get(id_history).getJudul_artikel());
-                    intent.putExtra("isi_artikel", eclnew.get(id_history).getIsi_artikel());
-                    intent.putExtra("kategori_artikel", eclnew.get(id_history).getKategori_artikel());
-                    intent.putExtra("clinicname", ClinicName);
-                    intent.putExtra("cliniclogo", ClinicLogo);
-                    startActivity(intent);
-                    return;
-                }
-                DialogFragment newFragment = new ConfirmArticleFormat();
-                //Pass User Properties to next activity
-                ((ConfirmArticleFormat) newFragment).setPosition(position + 1);
-                ((ConfirmArticleFormat) newFragment).setData(eclnew.get(id_history));
-                ((ConfirmArticleFormat) newFragment).setClinicname(ClinicName);
-                ((ConfirmArticleFormat) newFragment).setCliniclogo(ClinicLogo);
-                newFragment.show(getSupportFragmentManager(), "");
-            }
-        });
+        String response = "[\n" +
+                "    {\n" +
+                "        \"id_artikel\": \"3\",\n" +
+                "        \"id_login\": \"1\",\n" +
+                "        \"judul_artikel\": \"Apakah yang dimaksud dengan penyakit diabetes?\",\n" +
+                "        \"gambar_artikel\": \"1655300890_7225c0caa7d8e38c06e3.jpg\",\n" +
+                "        \"isi_artikel\": \"<p>Diabetes mellitus dapat menyebabkan berbagai komplikasi yang membahayakan bila tidak segera ditangani. Komplikasi tersebut diantaranya adalah stroke, penyakit jantung, penyakit ginjal, gangguan penglihatan, infeksi kaki yang tidak segera sembuh hingga menyebabkan bagian tersebut harus diamputasi.</p><p><br></p><p>Diabetes mellitus, yang biasa dikenal dengan penyakit kencing manis, adalah penyakit metabolik yang menyebabkan gula darah tinggi. Hormon insulin memindahkan gula dari darah ke sel-sel Anda untuk disimpan atau digunakan untuk energi. Dengan diabetes, tubuh Anda tidak membuat cukup insulin atau tidak dapat secara efektif menggunakan insulin yang dihasilkannya.</p><p><br></p><p>Gejala umum diabetes yang sering ditemukan antara lain:</p><p>\\t•\\tPeningkatan rasa lapar</p><p>\\t•\\tPeningkatan rasa haus</p><p>\\t•\\tPenurunan berat badan</p><p>\\t•\\tSering buang air kecil</p><p>\\t•\\tPenglihatan kabur</p><p>\\t•\\tKelelahan ekstrim</p><p>\\t•\\tLuka yang tak kunjung sembuh</p><p><br></p><p>Diabetes tipe 1 tidak dapat dicegah karena disebabkan oleh masalah pada sistem kekebalan tubuh. Beberapa penyebab diabetes tipe 2, seperti gen atau usia Anda, juga tidak dapat Anda kendalikan.&nbsp;Namun banyak faktor risiko diabetes lainnya dapat dikendalikan. Sebagian besar strategi pencegahan diabetes melibatkan penyesuaian sederhana pada diet dan rutinitas kebugaran Anda. Berikut adalah beberapa hal yang dapat Anda lakukan untuk mencegah diabetes tipe 2:</p><p>\\t•\\tLakukan olah raga aerobic setidaknya 150 menit per minggu, seperti berjalan kaki atau bersepeda.</p><p>\\t•\\tKurangi lemak jenuh dan trans , bersama dengan karbohidrat olahan, dari diet Anda.</p><p>\\t•\\tMakan lebih banyak buah, sayuran, dan biji-bijian.</p><p>\\t•\\tMakan dengan porsi yang lebih kecil.</p><p>\\t•\\tCobalah untuk menurunkan 7 persen berat badan Anda jika Anda kelebihan berat badan atau obesitas.</p><p>\\t•\\tMengurangi konsumsi makanan dan minuman yang manis</p><p>\\t•\\tHindari makanan junkfood, alcohol, dan mengandung kolesterol tinggi</p>\",\n" +
+                "        \"kategori_artikel\": \"2\",\n" +
+                "        \"jenis_artikel\": \"1\",\n" +
+                "        \"updated_at\": null,\n" +
+                "        \"created_at\": \"2022-06-14 13:19:16\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"id_artikel\": \"4\",\n" +
+                "        \"id_login\": \"1\",\n" +
+                "        \"judul_artikel\": \"Bagaimana Stroke Bisa Terjadi\",\n" +
+                "        \"gambar_artikel\": \"1655212933_46ac7fac09815bcbad6a.png\",\n" +
+                "        \"isi_artikel\": \"<p>Stroke merupakan penyebab kematian tersering kedua di dunia. Setiap tahun, lebih dari 795.000 orang di Amerika Serikat mengalami stroke. Stroke terjadi ketika pembuluh darah di otak pecah dan berdarah, atau ketika ada penyumbatan suplai darah ke otak. Pecahnya atau penyumbatan mencegah darah dan oksigen mencapai jaringan otak. Tanpa oksigen, sel-sel otak dan jaringan menjadi rusak dan mulai mati dalam beberapa menit.</p><p><br></p><p>Hilangnya aliran darah ke otak akan merusak jaringan di dalam otak. Gejala stroke muncul di bagian tubuh yang dikendalikan oleh area otak yang rusak. Gejala stroke dapat meliputi:</p><p>\\t•\\tMati rasa atau kelemahan pada lengan, wajah, dan kaki, terutama pada satu sisi tubuh</p><p>\\t•\\tKesulitan berbicara atau memahami orang lain</p><p>\\t•\\tBicara tidak jelas</p><p>\\t•\\tKebingungan, disorientasi, atau kurang responsif</p><p>\\t•\\tPerubahan perilaku yang tiba-tiba, terutama peningkatan agitasi</p><p>\\t•\\tMasalah penglihatan, seperti kesulitan melihat pada satu atau kedua mata dengan penglihatan menghitam atau kabur, atau penglihatan ganda</p><p>\\t•\\tKesulitan berjalan</p><p>\\t•\\tKehilangan keseimbangan atau koordinasi</p><p>\\t•\\tPusing parah, sakit kepala mendadak dengan penyebab yang tidak diketahui</p><p>\\t•\\tKejang, mual, atau muntah</p><p><br></p><p>Perubahan gaya hidup dapat mencegah dan menurunkan risiko stroke. Perubahan gaya hidup tersebut antara lain sebagai berikut:</p><p>\\t•\\tBerhenti merokok. Jika Anda merokok, berhenti sekarang akan menurunkan risiko stroke. Anda dapat berkonsultasi dengan dokter untuk membuat rencana berhenti merokok.</p><p>\\t•\\tBatasi penggunaan alkohol. Konsumsi alkohol berat dapat meningkatkan tekanan darah Anda, yang pada gilirannya meningkatkan risiko stroke. Jika mengurangi asupan Anda sulit, hubungi dokter Anda untuk meminta bantuan.</p><p>\\t•\\tPertahankan berat badan yang ideal. Kegemukan dan obesitas meningkatkan risiko stroke. Untuk membantu mengelola berat badan Anda, makan makanan yang seimbang dan tetap aktif secara fisik lebih sering daripada tidak. Kedua langkah tersebut juga dapat menurunkan tekanan darah dan kadar kolesterol.</p><p>\\t•\\tPeriksa rutin. Bicarakan dengan dokter Anda tentang seberapa sering Anda harus memeriksakan tekanan darah, kolesterol, dan kondisi apa pun yang mungkin Anda miliki.</p>\",\n" +
+                "        \"kategori_artikel\": \"1\",\n" +
+                "        \"jenis_artikel\": \"1\",\n" +
+                "        \"updated_at\": null,\n" +
+                "        \"created_at\": \"2022-06-14 13:22:13\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"id_artikel\": \"5\",\n" +
+                "        \"id_login\": \"1\",\n" +
+                "        \"judul_artikel\": \"Apa itu Stroke?\",\n" +
+                "        \"gambar_artikel\": null,\n" +
+                "        \"isi_artikel\": \"https://www.youtube.com/watch?v=6iCdi5ANXLg\",\n" +
+                "        \"kategori_artikel\": \"1\",\n" +
+                "        \"jenis_artikel\": \"2\",\n" +
+                "        \"updated_at\": null,\n" +
+                "        \"created_at\": \"2022-06-14 14:29:20\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"id_artikel\": \"6\",\n" +
+                "        \"id_login\": \"1\",\n" +
+                "        \"judul_artikel\": \"Apakah yang dimaksud dengan penyakit kardiovaskular?\",\n" +
+                "        \"gambar_artikel\": \"1655217040_33768fbfaae86864cc5b.png\",\n" +
+                "        \"isi_artikel\": \"<p>Penyakit jantung merupakan penyebab kematian utama di dunia. Penyakit jantung mengacu pada setiap kondisi yang mempengaruhi jantung. Ada banyak jenis penyakit jantung, diantaranya adalah: penyakit jantung coroner, gagal jantung, kardiomiopati, aritmia, dan penyakit jantung bawaan.</p>\",\n" +
+                "        \"kategori_artikel\": \"3\",\n" +
+                "        \"jenis_artikel\": \"1\",\n" +
+                "        \"updated_at\": null,\n" +
+                "        \"created_at\": \"2022-06-14 14:30:40\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"id_artikel\": \"7\",\n" +
+                "        \"id_login\": \"1\",\n" +
+                "        \"judul_artikel\": \"Bagaimana gejala dari penyakit kardiovaskular?\",\n" +
+                "        \"gambar_artikel\": \"1655217122_4a26aaa39a4d134ef619.png\",\n" +
+                "        \"isi_artikel\": \"<p>Gejala yang sering muncul pada penyakit jantung: </p><p>\\t•\\tAngina, atau nyeri dada</p><p>\\t•\\tKesulitan bernapas</p><p>\\t•\\tKelelahan dan pusing</p><p>\\t•\\tBengkak karena retensi cairan, atau edema</p><p>\\t•\\tJantung berdebar</p><p>\\t•\\tMual</p><p>\\t•\\tNyeri perut</p><p>\\t•\\tBerkeringat</p><p>\\t•\\tLengan, rahang, punggung, atau kaki nyeri</p><p>\\t•\\tDetak jantung tidak teratur</p>\",\n" +
+                "        \"kategori_artikel\": \"3\",\n" +
+                "        \"jenis_artikel\": \"1\",\n" +
+                "        \"updated_at\": null,\n" +
+                "        \"created_at\": \"2022-06-14 14:32:02\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"id_artikel\": \"8\",\n" +
+                "        \"id_login\": \"1\",\n" +
+                "        \"judul_artikel\": \"Kok bisa Kencing Manis?\",\n" +
+                "        \"gambar_artikel\": null,\n" +
+                "        \"isi_artikel\": \"https://youtube.com/shorts/vgQL3cdiFXU?feature=share\",\n" +
+                "        \"kategori_artikel\": \"2\",\n" +
+                "        \"jenis_artikel\": \"2\",\n" +
+                "        \"updated_at\": null,\n" +
+                "        \"created_at\": \"2022-06-14 14:33:53\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"id_artikel\": \"9\",\n" +
+                "        \"id_login\": \"1\",\n" +
+                "        \"judul_artikel\": \"Bagaimana cara menolong penderita penyakit kardiovaskular?\",\n" +
+                "        \"gambar_artikel\": \"1655217323_5edec5b1c12e86b58b07.png\",\n" +
+                "        \"isi_artikel\": \"<p>Serangan jantung dapat menyebabkan henti jantung, yaitu ketika jantung jantung berhenti dan tubuh tidak dapat berfungsi lagi. Seseorang membutuhkan perhatian medis segera jika mereka memiliki gejala serangan jantung.</p><p><br></p><p>Jika serangan jantung terjadi, orang tersebut akan membutuhkan:</p><p>\\t•\\tBantuan medis segera</p><p>\\t•\\tResusitasi kardiopulmoner segera</p><p>\\t•\\tKejutan dari defibrillator eksternal otomatis, jika tersedia</p>\",\n" +
+                "        \"kategori_artikel\": \"3\",\n" +
+                "        \"jenis_artikel\": \"1\",\n" +
+                "        \"updated_at\": null,\n" +
+                "        \"created_at\": \"2022-06-14 14:35:23\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"id_artikel\": \"10\",\n" +
+                "        \"id_login\": \"1\",\n" +
+                "        \"judul_artikel\": \"Bagaimana cara mengurangi risiko terkena penyakit kardiovaskular?\",\n" +
+                "        \"gambar_artikel\": \"1655217360_acb6a4ca76f32b418a58.png\",\n" +
+                "        \"isi_artikel\": \"<p>Beberapa tindakan gaya hidup dapat membantu mengurangi risiko penyakit jantung. Diantaranya adalah :</p><p>\\t•\\tMakan makanan seimbang: Pilihlah makanan sehat jantung yang kaya serat dan menyukai biji-bijian dan buah-buahan dan sayuran segar. Diet Mediterania dan DASH mungkin baik untuk kesehatan jantung. Juga, mungkin membantu membatasi asupan makanan olahan dan menambahkan lemak, garam, dan gula.</p><p>\\t•\\tBerolahraga secara teratur: Ini dapat membantu memperkuat jantung dan sistem peredaran darah, mengurangi kolesterol, dan menjaga tekanan darah. Seseorang mungkin ingin berolahraga 150 menit per minggu.</p><p>\\t•\\tMempertahankan berat badan sedang: Indeks massa tubuh (BMI) yang sehat biasanya antara 20 dan 25. Orang dapat memeriksa BMI mereka di sini.</p><p>\\t•\\tBerhenti atau menghindari merokok: Merokok merupakan faktor risiko utama untuk kondisi jantung dan kardiovaskular.</p><p>\\t•\\tMembatasi asupan alkohol: Wanita tidak boleh mengonsumsi lebih dari satu minuman standar per hari, dan pria tidak boleh mengonsumsi lebih dari dua minuman standar per hari.</p><p>\\t•\\tMengelola kondisi yang mendasari: Carilah pengobatan untuk kondisi yang mempengaruhi kesehatan jantung, seperti tekanan darah tinggi, obesitas, dan diabetes.</p>\",\n" +
+                "        \"kategori_artikel\": \"3\",\n" +
+                "        \"jenis_artikel\": \"1\",\n" +
+                "        \"updated_at\": null,\n" +
+                "        \"created_at\": \"2022-06-14 14:36:00\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"id_artikel\": \"11\",\n" +
+                "        \"id_login\": \"1\",\n" +
+                "        \"judul_artikel\": \"Artikel Kebugaran\",\n" +
+                "        \"gambar_artikel\": \"1655217403_8475399ae27496f3bc45.png\",\n" +
+                "        \"isi_artikel\": \"<p>Penilaian Fungsional Terapi Penyakit Kronis – Kelelahan (FACIT-F) adalah ukuran 40 item yang menilai kelelahan yang dilaporkan sendiri dan dampaknya terhadap aktivitas dan fungsi sehari-hari. FACIT - F dikembangkan pada pertengahan 1990-an untuk memenuhi permintaan yang meningkat untuk evaluasi kelelahan yang lebih tepat terkait dengan anemia pada pasien kanker. FACIT - F adalah bagian dari Penilaian Fungsional Terapi Kanker – Anemia (FACT-An) yang lebih panjang (47 item), yang mencakup FACT-G 27 item dan subskala 20 item yang menangani masalah tambahan yang terkait dengan anemia kanker dan pengobatannya. Subskala 20 item ini, disebut sebagai subskala anemia, terdiri dari 13 item yang menilai kelelahan dan dampaknya (FACIT-Fatigue), dan 7 gejala tambahan yang terkait dengan anemia (misalnya, sesak napas; sakit kepala).</p>\",\n" +
+                "        \"kategori_artikel\": \"4\",\n" +
+                "        \"jenis_artikel\": \"1\",\n" +
+                "        \"updated_at\": null,\n" +
+                "        \"created_at\": \"2022-06-14 14:36:43\"\n" +
+                "    }\n" +
+                "]";
+        Type screenhistory = new TypeToken<List<EncyclopediaEntity>>() {
+        }.getType();
+        ecl_api = gson.fromJson(response, screenhistory);
+        setupAPIContent();
     }
 
     private void setupAPIContent() {
