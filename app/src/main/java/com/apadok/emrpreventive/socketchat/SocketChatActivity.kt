@@ -13,7 +13,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
 import org.json.JSONObject
-import android.content.Intent
 
 class SocketChatActivity : AppCompatActivity() {
     private val message : Button by lazy { findViewById(R.id.message) }
@@ -28,7 +27,7 @@ class SocketChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_socketchat)
 
-        val id_user = intent.getIntExtra("userid", 0)
+        val id_user = intent.getIntExtra("loginid", 0)
         message.setOnClickListener {
             ws?.apply {
                 val text = entryText.text.toString()
@@ -53,8 +52,7 @@ class SocketChatActivity : AppCompatActivity() {
 
     private fun start() {
         //Temporarily Get ID Pemeriksan From Main Activity
-        var token = intent.getStringExtra("token")
-        val id_user = intent.getIntExtra("userid", 0)
+        val token = intent.getStringExtra("token")
         val request: Request = Request.Builder().url("ws://192.168.1.245:31687?access_token=$token").build()
         Log.e("req", request.toString())
         val listener = EchoWebSocketListener(this::output, this::ping) { ws = null }
