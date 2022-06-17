@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,18 +15,12 @@ import androidx.core.content.res.ResourcesCompat;
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.SetupToolbar;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 public class EncyclopediaDetailActivity extends AppApadokActivity {
 
-    private final Gson gson = new Gson();
-    private JsonObject returnvalue;
-    private String hasil = "";
     private TextView tv_title, tv_diabetes, tv_cardiovascular, tv_stroke, tv_kebugaran, tv_result;
     private ImageView iv_image;
-    private Button btn_finish, btn_whatsapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

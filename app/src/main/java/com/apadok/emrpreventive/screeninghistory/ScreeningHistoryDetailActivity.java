@@ -29,12 +29,6 @@ import java.util.Objects;
 
 public class ScreeningHistoryDetailActivity extends AppApadokActivity {
 
-    // Gson related
-//    private Gson gson = new Gson();
-    // API return variables
-//    private JsonObject returnvalue;
-//    private String hasil = "";
-
     // Res/Layout Variables
     private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result, stroke_details;
     private Button btn_consult, btn_education;
