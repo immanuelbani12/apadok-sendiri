@@ -54,7 +54,7 @@ class SocketChatActivity : AppCompatActivity() {
     private fun start() {
         //Temporarily Get ID Pemeriksan From Main Activity
         val token = intent.getStringExtra("loginid")
-        val request: Request = Request.Builder().url("ws://192.168.1.245:31686?id_login=$token").build()
+        val request: Request = Request.Builder().url("ws://apadok.com:31686?id_login=$token").build()
         Log.e("req", request.toString())
         val listener = EchoWebSocketListener(this::output, this::ping) { ws = null }
         ws = client.newWebSocket(request, listener)
