@@ -161,6 +161,7 @@ public class LoginActivity extends AppApadokActivity {
                 String clinicname = returnvalue.get("nama_institusi").isJsonNull() ? "" : returnvalue.get("nama_institusi").getAsString();
                 String cliniclogo = returnvalue.get("logo_institusi").isJsonNull() ? "" : returnvalue.get("logo_institusi").getAsString();
                 String id_login = returnvalue.get("id_login").isJsonNull() ? "" : returnvalue.get("id_login").getAsString();
+                String id_login_institusi = returnvalue.get("id_login_institusi").isJsonNull() ? "" : returnvalue.get("id_login_institusi").getAsString();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
@@ -170,6 +171,7 @@ public class LoginActivity extends AppApadokActivity {
                 intent.putExtra("cliniclogo", cliniclogo);
                 intent.putExtra("token", token);
                 intent.putExtra("loginid", id_login);
+                intent.putExtra("logininstitusiid", id_login_institusi);
                 startActivity(intent);
                 finish();
             }

@@ -91,7 +91,7 @@ public class MainActivity extends AppApadokActivity {
 
     // Intent Variables
     private int UserId;
-    private String Token, UserName, Role, ClinicName, ClinicLogo, LoginId, ClinicId;
+    private String Token, UserName, Role, ClinicName, ClinicLogo, LoginId, ClinicId, LoginInstitusiId;
 
     @Override
     protected void onRestart() {
@@ -132,6 +132,7 @@ public class MainActivity extends AppApadokActivity {
         ClinicName = sharedPref.getString("clinicnamelocal", "");
         ClinicLogo = sharedPref.getString("cliniclogolocal", "");
         LoginId = sharedPref.getString("loginidlocal","");
+        LoginInstitusiId = sharedPref.getString("logininstitusiidlocal","");
         ClinicId = sharedPref.getString("clinicidlocal","");
         Token = sharedPref.getString("tokenlocal", "");
         if (UserId == 0) {
@@ -141,6 +142,7 @@ public class MainActivity extends AppApadokActivity {
             ClinicName = getIntent().getStringExtra("clinicname");
             ClinicLogo = getIntent().getStringExtra("cliniclogo");
             LoginId = getIntent().getStringExtra("loginid");
+            LoginInstitusiId = getIntent().getStringExtra("logininstitusiid");
             ClinicId = getIntent().getStringExtra("clinicid");
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
@@ -170,6 +172,7 @@ public class MainActivity extends AppApadokActivity {
                 editor.putString("cliniclogolocal", ClinicLogo);
                 editor.putString("tokenlocal", Token);
                 editor.putString("loginidlocal", LoginId);
+                editor.putString("logininstitusiidlocal", LoginInstitusiId);
                 editor.putString("clinicidlocal", ClinicId);
                 editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
@@ -647,9 +650,7 @@ public class MainActivity extends AppApadokActivity {
         intent.putExtra("token", Token);
         intent.putExtra("role", Role);
         intent.putExtra("loginid", LoginId);
-        intent.putExtra("clinicid",ClinicId);
-        Log.e("stringmsglogin",LoginId);
-        Log.e("stringmsgclinic",ClinicId);
+        intent.putExtra("logininstitusiid",LoginInstitusiId);
         startActivity(intent);
     };
 

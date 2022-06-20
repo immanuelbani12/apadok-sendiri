@@ -28,12 +28,12 @@ class SocketChatActivity : AppCompatActivity() {
         setContentView(R.layout.activity_socketchat)
 
         val id_user = intent.getStringExtra("loginid")
-        val clinicid = intent.getStringExtra("clinicid") //Disamain sama fromloginid di EchoWebSocketListener
+        val logininstitusiid = intent.getStringExtra("logininstitusiid") //Disamain sama fromloginid di EchoWebSocketListener
         message.setOnClickListener {
             ws?.apply {
                 val text = entryText.text.toString()
                 output("ME: $text")
-                val data = JSONObject("""{"to_login_id":"$clinicid", "from_login_id":"$id_user", "message":"$text"}""")
+                val data = JSONObject("""{"to_login_id":"$logininstitusiid", "from_login_id":"$id_user", "message":"$text"}""")
                 val datatext = data.toString()
                 send(datatext)
                 entryText.text.clear()
