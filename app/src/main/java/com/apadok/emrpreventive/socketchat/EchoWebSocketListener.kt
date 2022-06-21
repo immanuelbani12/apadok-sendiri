@@ -23,15 +23,16 @@ internal class EchoWebSocketListener(
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {
-        if (text.contains("id_connection")) {
-            output("A new user has joined the chat room!")
-        }
-        else{
-            val messagejson = Gson().fromJson(text, Message::class.java)
-            val author = messagejson.author
-            val message = messagejson.message
-            output("$author: $message")
-        }
+        output(text)
+//        if (text.contains("id_connection")) {
+//            output("A new user has joined the chat room!")
+//        }
+//        else{
+//            val messagejson = Gson().fromJson(text, Message::class.java)
+//            val author = messagejson.author
+//            val message = messagejson.message
+//            output("$author: $message")
+//        }
     }
 
     override fun onMessage(webSocket: WebSocket, bytes: ByteString) {

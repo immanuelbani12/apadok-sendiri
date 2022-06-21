@@ -53,6 +53,7 @@ import com.apadok.emrpreventive.screening.ConfirmRescreening;
 import com.apadok.emrpreventive.screening.KebugaranScreeningActivity;
 import com.apadok.emrpreventive.screening.ScreeningActivity;
 import com.apadok.emrpreventive.screeninghistory.ScreeningHistoryActivity;
+import com.apadok.emrpreventive.socketchat.SocketChatActivity;
 import com.apadok.emrpreventive.user.ConfirmLogOut;
 import com.apadok.emrpreventive.user.LogOutAuthError;
 import com.apadok.emrpreventive.user.LoginActivity;
@@ -93,7 +94,7 @@ public class MainActivity extends AppApadokActivity {
 
     // Intent Variables
     private int UserId;
-    private String Token, UserName, Role, ClinicName, ClinicLogo, LoginId;
+    private String Token, UserName, Role, ClinicName, ClinicLogo, LoginId, ClinicId, LoginInstitusiId;
 
     @Override
     protected void onRestart() {
@@ -134,6 +135,8 @@ public class MainActivity extends AppApadokActivity {
         ClinicName = sharedPref.getString("clinicnamelocal", "");
         ClinicLogo = sharedPref.getString("cliniclogolocal", "");
         LoginId = sharedPref.getString("loginidlocal","");
+        LoginInstitusiId = sharedPref.getString("logininstitusiidlocal","");
+        ClinicId = sharedPref.getString("clinicidlocal","");
         Token = sharedPref.getString("tokenlocal", "");
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("userid", 0);
@@ -142,6 +145,8 @@ public class MainActivity extends AppApadokActivity {
             ClinicName = getIntent().getStringExtra("clinicname");
             ClinicLogo = getIntent().getStringExtra("cliniclogo");
             LoginId = getIntent().getStringExtra("loginid");
+            LoginInstitusiId = getIntent().getStringExtra("logininstitusiid");
+            ClinicId = getIntent().getStringExtra("clinicid");
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
                 // Change this code if cant login
@@ -170,6 +175,8 @@ public class MainActivity extends AppApadokActivity {
                 editor.putString("cliniclogolocal", ClinicLogo);
                 editor.putString("tokenlocal", Token);
                 editor.putString("loginidlocal", LoginId);
+                editor.putString("logininstitusiidlocal", LoginInstitusiId);
+                editor.putString("clinicidlocal", ClinicId);
                 editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
             }
@@ -222,7 +229,7 @@ public class MainActivity extends AppApadokActivity {
         btn_screening.setOnClickListener(RedirectToScreening);
         btn_history_screening.setOnClickListener(RedirectToHistory);
         btn_history_screening.setEnabled(false);
-        btn_consult.setOnClickListener(RedirectToConsult);
+        btn_consult.setOnClickListener(RedirectToSocketChat);
         btn_consult.setEnabled(false);
 
         // Replace Button if Non-Member (Moved inside Consultation as for now)
@@ -630,7 +637,7 @@ public class MainActivity extends AppApadokActivity {
 
     // Handler for Chat Button (Work In Progress)
     private final View.OnClickListener RedirectToSocketChat = v -> {
-        Intent intent = new Intent(MainActivity.this, ConsultActivity.class);
+        Intent intent = new Intent(MainActivity.this, SocketChatActivity.class);
         //Pass User Properties to next activity
         intent.putExtra("userid", UserId);
         intent.putExtra("clinicname", ClinicName);
@@ -639,6 +646,7 @@ public class MainActivity extends AppApadokActivity {
         intent.putExtra("token", Token);
         intent.putExtra("role", Role);
         intent.putExtra("loginid", LoginId);
+        intent.putExtra("logininstitusiid",LoginInstitusiId);
         startActivity(intent);
     };
 
