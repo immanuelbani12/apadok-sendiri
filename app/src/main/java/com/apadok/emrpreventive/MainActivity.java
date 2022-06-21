@@ -9,9 +9,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.security.keystore.KeyGenParameterSpec;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
+
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -86,7 +89,7 @@ public class MainActivity extends AppApadokActivity {
 
     // Res/Layout Variables
     private Button btn_screening, btn_history_screening, btn_consult;
-    private TextView tv_subtitle, tv_greet, tv_risiko, tv_kebugaran;
+    private TextView tv_subtitle, tv_greet;
 
     // Intent Variables
     private int UserId;
@@ -103,7 +106,7 @@ public class MainActivity extends AppApadokActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SetupPreferenceAndSnackbar(); //Manage User Properties and Display Snackbar
-        setupItemView(); //Setup UI
+        setupItemView();
     }
 
     private void SetupPreferenceAndSnackbar() {
@@ -198,16 +201,9 @@ public class MainActivity extends AppApadokActivity {
         String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
-        // Handler for LogOut Button
-        ImageView logout = (ImageView) findViewById(R.id.logout_icon);
-        logout.setVisibility(View.VISIBLE);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment newFragment = new ConfirmLogOut();
-                newFragment.show(getSupportFragmentManager(), "");
-            }
-        });
+        // Handler for Option Button
+        ImageView option = (ImageView) findViewById(R.id.option_icon);
+        option.setVisibility(View.VISIBLE);
 
         //Button
         btn_screening = (Button) findViewById(R.id.btn_screening);
@@ -646,4 +642,20 @@ public class MainActivity extends AppApadokActivity {
         startActivity(intent);
     };
 
+    public void showPopUp(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(this::onMenuItemClick);
+        popup.inflate(R.menu.option_menu);
+        popup.show();
+    }
+
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                DialogFragment newFragment = new ConfirmLogOut();
+                newFragment.show(getSupportFragmentManager(), "");
+            default:
+                return false;
+        }
+    }
 }

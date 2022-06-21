@@ -1,14 +1,18 @@
 package com.apadok.emrpreventive.encyclopedia;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 
 import com.apadok.emrpreventive.R;
 import com.apadok.emrpreventive.common.AppApadokActivity;
+import com.apadok.emrpreventive.user.ConfirmLogOut;
 import com.igreenwood.loupe.Loupe;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -69,5 +73,22 @@ public class EncyclopediaInfografisPhotoViewActivity extends AppApadokActivity {
             }
         });
     }
+    public void showPopUp(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(this::onMenuItemClick);
+        popup.inflate(R.menu.option_menu);
+        popup.show();
+    }
+
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                DialogFragment newFragment = new ConfirmLogOut();
+                newFragment.show(getSupportFragmentManager(), "");
+            default:
+                return false;
+        }
+    }
+
 }
 

@@ -9,15 +9,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.DisplayMetrics;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.DialogFragment;
 
 import com.anychart.APIlib;
 import com.anychart.AnyChart;
@@ -35,6 +38,7 @@ import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
+import com.apadok.emrpreventive.user.ConfirmLogOut;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -206,5 +210,21 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
 //        intent.putExtra("cliniclogo", ClinicLogo);
 //        startActivity(intent);
 //    };
+public void showPopUp(View v) {
+    PopupMenu popup = new PopupMenu(this, v);
+    popup.setOnMenuItemClickListener(this::onMenuItemClick);
+    popup.inflate(R.menu.option_menu);
+    popup.show();
+}
+
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                DialogFragment newFragment = new ConfirmLogOut();
+                newFragment.show(getSupportFragmentManager(), "");
+            default:
+                return false;
+        }
+    }
 
 }
