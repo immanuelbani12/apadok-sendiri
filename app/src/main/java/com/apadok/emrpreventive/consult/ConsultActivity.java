@@ -93,8 +93,13 @@ public class ConsultActivity extends AppCompatActivity {
     private void setupItemData() {
         sch = getIntent().getParcelableExtra("data");
         String clinicphone = getIntent().getStringExtra("clinicphone");
-        ClinicPhone = "0" + clinicphone.substring(2);
-        ClinicPhoneWhatsapp = "+" + clinicphone.substring(0,2) + clinicphone.substring(2);
+        if (clinicphone.charAt(0) == '0'){
+            ClinicPhone = clinicphone;
+            ClinicPhoneWhatsapp = "+62" + clinicphone.substring(1);
+        } else {
+            ClinicPhone = "0" + clinicphone.substring(2);
+            ClinicPhoneWhatsapp = "+" + clinicphone.substring(0,2) + clinicphone.substring(2);
+        }
     }
 
 
