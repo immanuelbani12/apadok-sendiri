@@ -493,6 +493,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                         String token = getIntent().getStringExtra("token");
                         String username = getIntent().getStringExtra("username");
                         String role = getIntent().getStringExtra("role");
+                        String clinicphone = getIntent().getStringExtra("clinicphone");
                         answer[CurrentForm - 1].setAnswer(Integer.toString(id_user));
 
                         Intent intent = new Intent(ScreeningActivity.this, ScreeningResultActivity.class);
@@ -502,6 +503,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                         intent.putExtra("username", username);
                         intent.putExtra("clinicname", ClinicName);
                         intent.putExtra("cliniclogo", ClinicLogo);
+                        intent.putExtra("clinicphone", clinicphone);
                         intent.putExtra("role", role);
                         intent.putExtra("tekanan_darah", tekanan_darah);
                         intent.putExtra("kadar_gula", kadar_gula);

@@ -75,6 +75,8 @@ public class ScreeningHistoryActivity extends AppApadokActivity {
         String url = "http://apadok.com/media/institusi/" + logo;
         Picasso.get().load(url).into(cliniclogo);
 
+        String clinicphone = getIntent().getStringExtra("clinicphone");
+
         l = findViewById(R.id.history_screening);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,6 +91,7 @@ public class ScreeningHistoryActivity extends AppApadokActivity {
                 intent.putExtra("data", sch.get(position));
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", logo);
+                intent.putExtra("clinicphone", clinicphone);
                 String Role = getIntent().getStringExtra("role");
                 intent.putExtra("role", Role);
                 String token = getIntent().getStringExtra("token");

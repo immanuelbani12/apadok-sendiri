@@ -376,6 +376,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                     hasil = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
                     newFragment.show(getSupportFragmentManager(), "");
+                    newFragment.setCancelable(false);
                 } else if (error instanceof ParseError) {
                     hasil = "Ada masalah di aplikasi Apadok";
                 }
@@ -444,6 +445,8 @@ public class ScreeningResultActivity extends AppApadokActivity {
         intent.putExtra("data", sch.get(0));
         intent.putExtra("clinicname", ClinicName);
         intent.putExtra("cliniclogo", ClinicLogo);
+        String clinicphone = getIntent().getStringExtra("clinicphone");
+        intent.putExtra("clinicphone", clinicphone);
         startActivity(intent);
     };
 

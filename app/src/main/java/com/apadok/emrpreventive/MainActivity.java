@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -93,8 +95,8 @@ public class MainActivity extends AppApadokActivity {
     private TextView tv_subtitle, tv_greet;
 
     // Intent Variables
-    private int UserId;
-    private String Token, UserName, Role, ClinicName, ClinicLogo, LoginId, ClinicId, LoginInstitusiId;
+    private int UserId, LoginId, ClinicId, LoginInstitusiId;
+    private String Token, UserName, Role, ClinicName, ClinicLogo, ClinicPhone;
 
     @Override
     protected void onRestart() {
@@ -111,6 +113,7 @@ public class MainActivity extends AppApadokActivity {
     }
 
     private void SetupPreferenceAndSnackbar() {
+        // Prepare SharedPrefs based on Android Version
         Context context = getApplicationContext();
         SharedPreferences sharedPref = context.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -129,14 +132,25 @@ public class MainActivity extends AppApadokActivity {
                 e.printStackTrace();
             }
         }
+
+        // Get App Version
+        int versionCode = 0;
+        try {
+            versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Store or Receive the Data from SharedPref
         UserId = sharedPref.getInt("useridlocal", 0);
         UserName = sharedPref.getString("usernamelocal", "");
         Role = sharedPref.getString("rolelocal", "");
         ClinicName = sharedPref.getString("clinicnamelocal", "");
         ClinicLogo = sharedPref.getString("cliniclogolocal", "");
-        LoginId = sharedPref.getString("loginidlocal","");
-        LoginInstitusiId = sharedPref.getString("logininstitusiidlocal","");
-        ClinicId = sharedPref.getString("clinicidlocal","");
+        ClinicPhone = sharedPref.getString("clinicphonelocal", "");
+        LoginId = sharedPref.getInt("loginidlocal",0);
+        LoginInstitusiId = sharedPref.getInt("logininstitusiidlocal",0);
+        ClinicId = sharedPref.getInt("clinicidlocal",0);
         Token = sharedPref.getString("tokenlocal", "");
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("userid", 0);
@@ -144,9 +158,10 @@ public class MainActivity extends AppApadokActivity {
             Role = getIntent().getStringExtra("role");
             ClinicName = getIntent().getStringExtra("clinicname");
             ClinicLogo = getIntent().getStringExtra("cliniclogo");
-            LoginId = getIntent().getStringExtra("loginid");
-            LoginInstitusiId = getIntent().getStringExtra("logininstitusiid");
-            ClinicId = getIntent().getStringExtra("clinicid");
+            ClinicPhone = getIntent().getStringExtra("clinicphone");
+            LoginId = getIntent().getIntExtra("loginid", 0);
+            LoginInstitusiId = getIntent().getIntExtra("logininstitusiid", 0);
+            ClinicId = getIntent().getIntExtra("clinicid", 0);
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
                 // Change this code if cant login
@@ -173,14 +188,25 @@ public class MainActivity extends AppApadokActivity {
                 editor.putString("rolelocal", Role);
                 editor.putString("clinicnamelocal", ClinicName);
                 editor.putString("cliniclogolocal", ClinicLogo);
+                editor.putString("clinicphonelocal", ClinicPhone);
                 editor.putString("tokenlocal", Token);
-                editor.putString("loginidlocal", LoginId);
-                editor.putString("logininstitusiidlocal", LoginInstitusiId);
-                editor.putString("clinicidlocal", ClinicId);
+                editor.putInt("loginidlocal", LoginId);
+                editor.putInt("logininstitusiidlocal", LoginInstitusiId);
+                editor.putInt("clinicidlocal", ClinicId);
+                editor.putInt("versionlocal", versionCode);
                 editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
             }
         } else {
+
+            // Check App Version
+            if (sharedPref.getInt("versionlocal", 0) != versionCode) {
+                DialogFragment newFragment = new LogOutAuthError();
+                newFragment.show(getSupportFragmentManager(), "");
+                newFragment.setCancelable(false);
+                return;
+            }
+
             // Snackbar if Logged In Already
             CharSequence text = "Selamat datang kembali anggota " + ClinicName;
             if (ClinicName.contains("Apadok")){
@@ -229,7 +255,7 @@ public class MainActivity extends AppApadokActivity {
         btn_screening.setOnClickListener(RedirectToScreening);
         btn_history_screening.setOnClickListener(RedirectToHistory);
         btn_history_screening.setEnabled(false);
-        btn_consult.setOnClickListener(RedirectToSocketChat);
+        btn_consult.setOnClickListener(RedirectToConsult);
         btn_consult.setEnabled(false);
 
         // Replace Button if Non-Member (Moved inside Consultation as for now)
@@ -371,6 +397,7 @@ public class MainActivity extends AppApadokActivity {
                     ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
                     newFragment.show(getSupportFragmentManager(), "");
+                    newFragment.setCancelable(false);
                 } else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }
@@ -431,6 +458,7 @@ public class MainActivity extends AppApadokActivity {
                     ErrorMsg = "Anda butuh Sign-In kembali\nuntuk menggunakan Apadok";
                     DialogFragment newFragment = new LogOutAuthError();
                     newFragment.show(getSupportFragmentManager(), "");
+                    newFragment.setCancelable(false);
                 } else if (error instanceof ParseError) {
                     ErrorMsg = "Ada masalah di aplikasi Apadok";
                 }
@@ -489,6 +517,7 @@ public class MainActivity extends AppApadokActivity {
                     ((ConfirmRescreening) newFragment).setToken(Token);
                     ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
                     ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
+                    ((ConfirmRescreening) newFragment).setClinicphone(ClinicPhone);
                     ((ConfirmRescreening) newFragment).setUsername(UserName);
                     ((ConfirmRescreening) newFragment).setRole(Role);
                     ((ConfirmRescreening) newFragment).setIskebugaran(false);
@@ -499,6 +528,7 @@ public class MainActivity extends AppApadokActivity {
                     intent.putExtra("userid", UserId);
                     intent.putExtra("clinicname", ClinicName);
                     intent.putExtra("cliniclogo", ClinicLogo);
+                    intent.putExtra("clinicphone", ClinicPhone);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
                     intent.putExtra("role", Role);
@@ -519,6 +549,7 @@ public class MainActivity extends AppApadokActivity {
                     ((ConfirmRescreening) newFragment).setToken(Token);
                     ((ConfirmRescreening) newFragment).setClinicname(ClinicName);
                     ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
+                    ((ConfirmRescreening) newFragment).setClinicphone(ClinicPhone);
                     ((ConfirmRescreening) newFragment).setUsername(UserName);
                     ((ConfirmRescreening) newFragment).setRole(Role);
                     ((ConfirmRescreening) newFragment).setIskebugaran(true);
@@ -529,6 +560,7 @@ public class MainActivity extends AppApadokActivity {
                     intent.putExtra("userid", UserId);
                     intent.putExtra("clinicname", ClinicName);
                     intent.putExtra("cliniclogo", ClinicLogo);
+                    intent.putExtra("clinicphone", ClinicPhone);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
                     intent.putExtra("role", Role);
@@ -561,6 +593,7 @@ public class MainActivity extends AppApadokActivity {
                     intent.putExtra("userid", UserId);
                     intent.putExtra("clinicname", ClinicName);
                     intent.putExtra("cliniclogo", ClinicLogo);
+                    intent.putExtra("clinicphone", ClinicPhone);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
                     intent.putExtra("role", Role);
@@ -587,6 +620,7 @@ public class MainActivity extends AppApadokActivity {
                     intent.putExtra("userid", UserId);
                     intent.putExtra("clinicname", ClinicName);
                     intent.putExtra("cliniclogo", ClinicLogo);
+                    intent.putExtra("clinicphone", ClinicPhone);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
                     intent.putExtra("role", Role);
@@ -612,6 +646,7 @@ public class MainActivity extends AppApadokActivity {
         intent.putExtra("userid", UserId);
         intent.putExtra("clinicname", ClinicName);
         intent.putExtra("cliniclogo", ClinicLogo);
+        intent.putExtra("clinicphone", ClinicPhone);
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
         intent.putExtra("role", Role);
@@ -665,5 +700,9 @@ public class MainActivity extends AppApadokActivity {
             default:
                 return false;
         }
+    }
+
+    public void onUpdateFirstRun () {
+
     }
 }

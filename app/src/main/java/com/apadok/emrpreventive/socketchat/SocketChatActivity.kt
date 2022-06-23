@@ -27,8 +27,8 @@ class SocketChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_socketchat)
 
-        val id_user = intent.getStringExtra("loginid")
-        val logininstitusiid = intent.getStringExtra("logininstitusiid") //Disamain sama fromloginid di EchoWebSocketListener
+        val id_user = intent.getIntExtra("loginid",0)
+        val logininstitusiid = intent.getIntExtra("logininstitusiid",0) //Disamain sama fromloginid di EchoWebSocketListener
         message.setOnClickListener {
             ws?.apply {
                 val text = entryText.text.toString()
@@ -53,7 +53,7 @@ class SocketChatActivity : AppCompatActivity() {
 
     private fun start() {
         //Temporarily Get ID Pemeriksan From Main Activity
-        val token = intent.getStringExtra("loginid")
+        val token = intent.getIntExtra("loginid",0)
         val request: Request = Request.Builder().url("ws://apadok.com:31686?id_login=$token").build()
         Log.e("req", request.toString())
         val listener = EchoWebSocketListener(this::output, this::ping) { ws = null }

@@ -16,6 +16,7 @@ public class ConfirmRescreening extends DialogFragment {
     private String Role;
     private String clinicname;
     private String cliniclogo;
+    private String clinicphone;
     private String username;
     private Boolean iskebugaran;
 
@@ -34,6 +35,7 @@ public class ConfirmRescreening extends DialogFragment {
                             intent.putExtra("token", Token);
                             intent.putExtra("clinicname", clinicname);
                             intent.putExtra("cliniclogo", cliniclogo);
+                            intent.putExtra("clinicphone", clinicphone);
                             intent.putExtra("username", username);
                             startActivity(intent);
                         }
@@ -54,6 +56,7 @@ public class ConfirmRescreening extends DialogFragment {
                             intent.putExtra("token", Token);
                             intent.putExtra("clinicname", clinicname);
                             intent.putExtra("cliniclogo", cliniclogo);
+                            intent.putExtra("clinicphone", clinicphone);
                             intent.putExtra("username", username);
                             intent.putExtra("role", Role);
                             startActivity(intent);
@@ -99,5 +102,13 @@ public class ConfirmRescreening extends DialogFragment {
 
     public void setRole(String role) {
         Role = role;
+    }
+
+    public String getClinicphone() {
+        return clinicphone;
+    }
+
+    public void setClinicphone(String clinicphone) {
+        this.clinicphone = clinicphone;
     }
 }

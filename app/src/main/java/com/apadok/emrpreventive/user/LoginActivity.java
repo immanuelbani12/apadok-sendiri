@@ -162,16 +162,21 @@ public class LoginActivity extends AppApadokActivity {
                 String cliniclogo = returnvalue.get("logo_institusi").isJsonNull() ? "" : returnvalue.get("logo_institusi").getAsString();
                 String id_login = returnvalue.get("id_login").isJsonNull() ? "" : returnvalue.get("id_login").getAsString();
                 String id_login_institusi = returnvalue.get("id_login_institusi").isJsonNull() ? "" : returnvalue.get("id_login_institusi").getAsString();
+                String clinicphone = "6282260006070";
+                if (returnvalue.has("no_telp_institusi")){
+                    clinicphone = returnvalue.get("no_telp_institusi").isJsonNull() ? role : returnvalue.get("no_telp_institusi").getAsString();
+                }
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
                 intent.putExtra("role", role);
-                intent.putExtra("clinicid", idclinic);
+                intent.putExtra("clinicid", Integer.parseInt(idclinic));
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", cliniclogo);
+                intent.putExtra("clinicphone", clinicphone);
                 intent.putExtra("token", token);
-                intent.putExtra("loginid", id_login);
-                intent.putExtra("logininstitusiid", id_login_institusi);
+                intent.putExtra("loginid", Integer.parseInt(id_login));
+                intent.putExtra("logininstitusiid", Integer.parseInt(id_login_institusi));
                 startActivity(intent);
                 finish();
             }

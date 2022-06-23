@@ -362,6 +362,8 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         intent.putExtra("data", sch);
         intent.putExtra("clinicname", ClinicName);
         intent.putExtra("cliniclogo", ClinicLogo);
+        String clinicphone = getIntent().getStringExtra("clinicphone");
+        intent.putExtra("clinicphone", clinicphone);
         startActivity(intent);
     };
 

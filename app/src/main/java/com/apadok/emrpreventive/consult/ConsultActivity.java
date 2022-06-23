@@ -38,7 +38,7 @@ public class ConsultActivity extends AppCompatActivity {
 
     // Intent Variables
     private PemeriksaanEntity sch;
-    private String ClinicName, ClinicLogo;
+    private String ClinicName, ClinicLogo, ClinicPhoneWhatsapp, ClinicPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,13 +92,16 @@ public class ConsultActivity extends AppCompatActivity {
 
     private void setupItemData() {
         sch = getIntent().getParcelableExtra("data");
+        String clinicphone = getIntent().getStringExtra("clinicphone");
+        ClinicPhone = "0" + clinicphone.substring(2);
+        ClinicPhoneWhatsapp = "+" + clinicphone.substring(0,2) + clinicphone.substring(2);
     }
 
 
     private final View.OnClickListener openWhatsApp = v -> {
         PackageManager packageManager = ConsultActivity.this.getPackageManager();
         Intent i = new Intent(Intent.ACTION_VIEW);
-        String numero = "+62 82260006070";
+        String numero = ClinicPhoneWhatsapp;
         String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
         String hasil_kardio = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
@@ -145,7 +148,7 @@ public class ConsultActivity extends AppCompatActivity {
 
     private final View.OnClickListener RedirecttoCall = v -> {
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:082260006070"));
+        intent.setData(Uri.parse("tel:"+ClinicPhone));
         startActivity(intent);
     };
 
