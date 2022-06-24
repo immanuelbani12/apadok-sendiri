@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -103,7 +104,7 @@ public class NearestClinicActivity extends AppCompatActivity {
     private final View.OnClickListener openApadokClinic = v -> {
         PackageManager packageManager = NearestClinicActivity.this.getPackageManager();
         // Search for Clinics nearby
-        Uri gmmIntentUri = Uri.parse("geo:0,0?q=Klinik Permata Medika Insani");
+        Uri gmmIntentUri = Uri.parse("https://goo.gl/maps/K3G9TED4MCtPWct18");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         if (mapIntent.resolveActivity(packageManager) != null) {
