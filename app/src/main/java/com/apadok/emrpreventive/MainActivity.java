@@ -194,7 +194,7 @@ public class MainActivity extends AppApadokActivity {
                 editor.putInt("logininstitusiidlocal", LoginInstitusiId);
                 editor.putInt("clinicidlocal", ClinicId);
                 editor.putInt("versionlocal", versionCode);
-                editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
+//                editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
             }
         } else {
