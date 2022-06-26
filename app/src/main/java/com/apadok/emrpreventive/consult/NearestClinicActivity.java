@@ -73,10 +73,10 @@ public class NearestClinicActivity extends AppCompatActivity {
         iv_image_consult.setImageResource(R.drawable.ic_nearest_clinic);
         iv_image_consult.setVisibility(View.VISIBLE);
 
-        CharSequence text = "Konsultasi digantikan dengan Pencarian Klinik karena anda bukan member klinik";
-        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG);
-        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
-        snackbar.show();
+//        CharSequence text = "Konsultasi digantikan dengan Pencarian Klinik karena anda bukan member klinik";
+//        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG);
+//        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+//        snackbar.show();
     }
 
     private void setupItemData() {

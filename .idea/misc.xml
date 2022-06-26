@@ -47,9 +47,14 @@
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.2455" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/drawable/ic_baseline_table_rows_24.xml" value="0.2455" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/drawable/ic_baseline_view_list_24.xml" value="0.2455" />
+        <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/drawable/ic_medicine.xml" value="0.2485" />
+        <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/drawable/ic_medicine_orange.xml" value="0.2485" />
+        <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/drawable/ic_nearest_clinic.xml" value="0.2485" />
+        <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/drawable/ic_screening_history.xml" value="0.2485" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/drawable/input_text.xml" value="0.2455" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/drawable/selected_option_border_bg.xml" value="0.2455" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/drawable/stroke_details_border_bg.xml" value="0.2455" />
+        <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_consult.xml" value="0.21052631578947367" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_encyclopedia.xml" value="0.21052631578947367" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_encyclopedia_detail.xml" value="0.21052631578947367" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_kebugaran_screening.xml" value="0.13307984790874525" />
@@ -57,7 +62,7 @@
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_main.xml" value="0.13508771929824562" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_nearest_clinic.xml" value="0.13508771929824562" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_screening_history.xml" value="0.264" />
-        <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_screening_result.xml" value="0.12109375" />
+        <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/activity_screening_result.xml" value="0.2" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/history_option_dialog.xml" value="0.536" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/item_screening_history.xml" value="0.264" />
         <entry key="..\:/KULIAH/TA/EMRPreventive2/app/src/main/res/layout/item_screening_history_old.xml" value="0.13508771929824562" />
