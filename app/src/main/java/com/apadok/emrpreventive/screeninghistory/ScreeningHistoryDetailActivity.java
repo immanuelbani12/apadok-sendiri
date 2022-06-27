@@ -87,7 +87,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         btn_education.setTypeface(helvetica_font);
 
         int position = getIntent().getIntExtra("position", 0);
-        title_result.setText("Riwayat Skrining " + position);
+        title_result.setText("Riwayat Skrining Penyakit " + position);
         time_result.setText("Mengambil Data....");
         diabetes_result.setVisibility(View.GONE);
         stroke_result.setVisibility(View.GONE);

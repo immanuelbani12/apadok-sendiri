@@ -176,7 +176,8 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         btn_education.setTypeface(helvetica_font);
         kebugaran_result.setTypeface(helvetica_font);
 
-        title_result.setText("Hasil Skrining Kebugaran");
+        int position = getIntent().getIntExtra("position", 0);
+        title_result.setText("Riwayat Skrining Kebugaran " + position);
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
         anyChartView = findViewById(R.id.bar_chart);

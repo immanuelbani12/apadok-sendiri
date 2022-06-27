@@ -77,7 +77,7 @@ public class KebugaranHistoryActivity extends AppApadokActivity {
         Picasso.get().load(url).into(cliniclogo);
 
         TextView tv_title = (TextView) findViewById(R.id.tv_title_histories);
-        tv_title.setText("Riwayat Skrining Kebugaran");
+        tv_title.setText("Daftar Riwayat Skrining Kebugaran");
 
         l = findViewById(R.id.history_screening);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {

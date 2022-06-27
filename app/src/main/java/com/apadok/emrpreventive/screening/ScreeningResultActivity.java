@@ -127,7 +127,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
             dangerous_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         }
 
-        title_result.setText("Hasil Skrining");
+        title_result.setText("Hasil Skrining Penyakit");
         time_result.setText("Mengolah Data....");
         diabetes_result.setVisibility(View.GONE);
         stroke_result.setVisibility(View.GONE);

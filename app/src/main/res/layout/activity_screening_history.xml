@@ -22,7 +22,7 @@
                 android:id="@+id/tv_title_histories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Riwayat Skrining"
+                android:text="Daftar Riwayat Skrining Penyakit"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_marginTop="20dp"
@@ -36,7 +36,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="16dp"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="5dp"
                 android:weightSum="5">
 
                 <ListView
