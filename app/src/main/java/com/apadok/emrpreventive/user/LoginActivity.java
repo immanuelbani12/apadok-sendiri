@@ -175,8 +175,8 @@ public class LoginActivity extends AppApadokActivity {
                 intent.putExtra("cliniclogo", cliniclogo);
                 intent.putExtra("clinicphone", clinicphone);
                 intent.putExtra("token", token);
-                intent.putExtra("loginid", Integer.parseInt(id_login));
-                intent.putExtra("logininstitusiid", Integer.parseInt(id_login_institusi));
+                intent.putExtra("loginuserid", Integer.parseInt(id_login));
+                intent.putExtra("loginclinicid", Integer.parseInt(id_login_institusi));
                 startActivity(intent);
                 finish();
             }

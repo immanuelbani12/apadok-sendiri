@@ -95,7 +95,7 @@ public class MainActivity extends AppApadokActivity {
     private TextView tv_subtitle, tv_greet;
 
     // Intent Variables
-    private int UserId, LoginId, ClinicId, LoginInstitusiId;
+    private int UserId, LoginUserId, ClinicId, LoginClinicId;
     private String Token, UserName, Role, ClinicName, ClinicLogo, ClinicPhone;
 
     @Override
@@ -142,16 +142,16 @@ public class MainActivity extends AppApadokActivity {
         }
 
         // Store or Receive the Data from SharedPref
-        UserId = sharedPref.getInt("useridlocal", 0);
-        UserName = sharedPref.getString("usernamelocal", "");
-        Role = sharedPref.getString("rolelocal", "");
-        ClinicName = sharedPref.getString("clinicnamelocal", "");
-        ClinicLogo = sharedPref.getString("cliniclogolocal", "");
-        ClinicPhone = sharedPref.getString("clinicphonelocal", "");
-        LoginId = sharedPref.getInt("loginidlocal",0);
-        LoginInstitusiId = sharedPref.getInt("logininstitusiidlocal",0);
-        ClinicId = sharedPref.getInt("clinicidlocal",0);
-        Token = sharedPref.getString("tokenlocal", "");
+        UserId = sharedPref.getInt("user_id", 0);
+        UserName = sharedPref.getString("user_name", "");
+        Role = sharedPref.getString("user_role", "");
+        ClinicName = sharedPref.getString("clinic_name", "");
+        ClinicLogo = sharedPref.getString("clinic_logo", "");
+        ClinicPhone = sharedPref.getString("clinic_phone", "");
+        LoginUserId = sharedPref.getInt("user_login_id",0);
+        LoginClinicId = sharedPref.getInt("clinic_login_id",0);
+        ClinicId = sharedPref.getInt("clinic_id",0);
+        Token = sharedPref.getString("user_token", "");
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("userid", 0);
             UserName = getIntent().getStringExtra("username");
@@ -159,8 +159,8 @@ public class MainActivity extends AppApadokActivity {
             ClinicName = getIntent().getStringExtra("clinicname");
             ClinicLogo = getIntent().getStringExtra("cliniclogo");
             ClinicPhone = getIntent().getStringExtra("clinicphone");
-            LoginId = getIntent().getIntExtra("loginid", 0);
-            LoginInstitusiId = getIntent().getIntExtra("logininstitusiid", 0);
+            LoginUserId = getIntent().getIntExtra("loginuserid", 0);
+            LoginClinicId = getIntent().getIntExtra("loginclinicid", 0);
             ClinicId = getIntent().getIntExtra("clinicid", 0);
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
@@ -183,24 +183,24 @@ public class MainActivity extends AppApadokActivity {
                 setupJson();
 
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putInt("useridlocal", UserId);
-                editor.putString("usernamelocal", UserName);
-                editor.putString("rolelocal", Role);
-                editor.putString("clinicnamelocal", ClinicName);
-                editor.putString("cliniclogolocal", ClinicLogo);
-                editor.putString("clinicphonelocal", ClinicPhone);
-                editor.putString("tokenlocal", Token);
-                editor.putInt("loginidlocal", LoginId);
-                editor.putInt("logininstitusiidlocal", LoginInstitusiId);
-                editor.putInt("clinicidlocal", ClinicId);
-                editor.putInt("versionlocal", versionCode);
+                editor.putInt("user_id", UserId);
+                editor.putString("user_name", UserName);
+                editor.putString("user_role", Role);
+                editor.putString("clinic_name", ClinicName);
+                editor.putString("clinic_logo", ClinicLogo);
+                editor.putString("clinic_phone", ClinicPhone);
+                editor.putString("user_token", Token);
+                editor.putInt("user_login_id", LoginUserId);
+                editor.putInt("clinic_login_id", LoginClinicId);
+                editor.putInt("clinic_id", ClinicId);
+                editor.putInt("app_version", versionCode);
 //                editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
             }
         } else {
 
             // Check App Version
-            if (sharedPref.getInt("versionlocal", 0) != versionCode) {
+            if (sharedPref.getInt("app_version", 0) != versionCode) {
                 DialogFragment newFragment = new LogOutAuthError();
                 newFragment.show(getSupportFragmentManager(), "");
                 newFragment.setCancelable(false);
@@ -680,8 +680,8 @@ public class MainActivity extends AppApadokActivity {
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
         intent.putExtra("role", Role);
-        intent.putExtra("loginid", LoginId);
-        intent.putExtra("logininstitusiid",LoginInstitusiId);
+        intent.putExtra("loginid", LoginUserId);
+        intent.putExtra("logininstitusiid",LoginClinicId);
         startActivity(intent);
     };
 
