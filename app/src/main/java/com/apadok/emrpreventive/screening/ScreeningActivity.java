@@ -539,7 +539,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
         forms[1] = new Form(2, "Bulan dan tahun lahir", "", "", "", "", R.drawable.birthdate, "Bulan dan tahun lahir");
         forms[2] = new Form(3, "Masukkan tinggi badan (cm)", "", "", "", "", R.drawable.tinggi_badan, "Tinggi badan (cm)");
         forms[3] = new Form(4, "Masukkan berat badan (kg)", "", "", "", "", R.drawable.berat_badan, "Berat badan (kg)");
-        forms[4] = new Form(5, "Apakah anda aktif melakukan aktivitas fisik?", "Ya", "Tidak", "Jarang", "", R.drawable.default_image, null);
+        forms[4] = new Form(5, "Apakah anda aktif melakukan aktivitas fisik minimal 30 menit setiap hari?", "Ya", "Tidak", "Jarang", "", R.drawable.default_image, null);
         forms[5] = new Form(6, "Apakah anda merokok?", "Perokok Aktif", "Sedang berusaha berhenti merokok", "Tidak Merokok", "", R.drawable.default_image, null);
         forms[6] = new Form(7, "Ukuran lingkar pinggang (cm)", "", "", "", "", R.drawable.lingkar_pinggang, "Lingkar pinggang (cm)");
         forms[7] = new Form(8, "Apakah anda pernah mengalami tekanan darah tinggi?", "Ya", "Tidak", "", "", R.drawable.darah_tinggi, null);

@@ -170,7 +170,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
                 String hasil_stroke = sch.get(0).getHasil_stroke() == null ? "" : sch.get(0).getHasil_stroke();
                 String timestamp = sch.get(0).getUpdated_at() == null ? sch.get(0).getCreated_at() : sch.get(0).getUpdated_at();
 
-                time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH:mm"));
+                time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH:mm"));
                 diabetes_result.setText(hasil_diabet);
                 stroke_result.setText(hasil_stroke);
                 cardiovascular_result.setText(hasil_kardio);

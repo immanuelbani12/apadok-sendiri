@@ -116,7 +116,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 
-        time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH.mm"));
+        time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm"));
         diabetes_result.setText(hasil_diabet);
         stroke_result.setText(hasil_stroke);
         cardiovascular_result.setText(hasil_kardio);

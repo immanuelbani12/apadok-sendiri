@@ -132,7 +132,7 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         score_kebugaran = sch.getScore_kebugaran() == null ? "" : sch.getScore_kebugaran();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 
-        time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH.mm"));
+        time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm"));
         kebugaran_result.setText(score_kebugaran);
         kebugaran_result.setVisibility(View.VISIBLE);
         kebugaran_category.setText("Mengolah Grafik Data...");

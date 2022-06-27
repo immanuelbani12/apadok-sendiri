@@ -249,7 +249,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
                 score_kebugaran = returnvalue.get("score_kebugaran").isJsonNull() ? "" : returnvalue.get("score_kebugaran").getAsString();
                 String timestamp = returnvalue.get("updated_at").isJsonNull() ? returnvalue.get("created_at").getAsString() : returnvalue.get("updated_at").getAsString();
 
-                time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH.mm"));
+                time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm"));
                 kebugaran_result.setText(score_kebugaran);
                 kebugaran_result.setVisibility(View.VISIBLE);
                 kebugaran_category.setText("Mengolah Grafik Data...");
