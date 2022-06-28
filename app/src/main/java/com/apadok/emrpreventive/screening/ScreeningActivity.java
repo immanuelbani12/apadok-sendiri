@@ -543,9 +543,9 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
         forms[5] = new Form(6, "Apakah anda merokok?", "Perokok Aktif", "Sedang berusaha berhenti merokok", "Tidak Merokok", "", R.drawable.default_image, null);
         forms[6] = new Form(7, "Ukuran lingkar pinggang (cm)", "", "", "", "", R.drawable.lingkar_pinggang, "Lingkar pinggang (cm)");
         forms[7] = new Form(8, "Apakah anda pernah mengalami tekanan darah tinggi?", "Ya", "Tidak", "", "", R.drawable.darah_tinggi, null);
-        forms[8] = new Form(9, "Masukkan tekanan darah anda saat ini:", "> 140/90", "120 - 139 / 80 - 89", "< 120/80", "Tidak diketahui", R.drawable.default_image, null);
+        forms[8] = new Form(9, "Masukkan tekanan darah anda saat ini", "> 140/90", "120 - 139 / 80 - 89", "< 120/80", "Tidak diketahui", R.drawable.default_image, null);
         forms[9] = new Form(10, "Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?", "Ya", "Tidak", "", "", R.drawable.default_image, null);
-        forms[10] = new Form(11, "Masukkan kadar gula anda saat ini:", "< 120", "120 - 150", "> 150", "Tidak diketahui", R.drawable.default_image, null);
+        forms[10] = new Form(11, "Masukkan kadar gula anda saat ini", "< 120", "120 - 150", "> 150", "Tidak diketahui", R.drawable.default_image, null);
         forms[11] = new Form(12, "Berapa kadar kolesterol anda saat ini? (mmol/L)", "> 240", "200 - 239", "< 200", "Tidak diketahui", R.drawable.default_image, null);
         forms[12] = new Form(13, "Apakah keluarga memiliki riwayat stroke?", "Ya", "Tidak", "Tidak diketahui", "", R.drawable.default_image, null);
         forms[13] = new Form(14, "Apakah anda menderita gangguan irama jantung?", "Ya", "Tidak diketahui", "Tidak pernah", "", R.drawable.default_image, null);

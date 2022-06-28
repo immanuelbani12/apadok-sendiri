@@ -28,6 +28,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="25dp"
                 android:text="Judul Artikel"
+                android:gravity="center"
                 android:textColor="@color/black_font"
                 android:textSize="18sp"
                 android:textStyle="bold" />
