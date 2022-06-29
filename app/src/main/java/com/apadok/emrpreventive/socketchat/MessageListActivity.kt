@@ -48,6 +48,7 @@ class MessageListActivity : AppCompatActivity() {
         val request: Request = Request.Builder().url("ws://10.0.2.2:8082/").build()
         Log.e("req", request.toString())
         val listener = EchoWebSocketListener(this::output, this::ping) { ws = null }
+        listener.activity = supportFragmentManager
         ws = client.newWebSocket(request, listener)
     }
 

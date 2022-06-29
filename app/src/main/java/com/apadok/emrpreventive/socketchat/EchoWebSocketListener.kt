@@ -1,7 +1,11 @@
 package com.apadok.emrpreventive.socketchat
 
+import android.app.Activity
 import android.util.Log
-import com.google.gson.Gson
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import com.apadok.emrpreventive.user.LogOutAuthError
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
@@ -10,8 +14,9 @@ import okio.ByteString
 internal class EchoWebSocketListener(
     val output: (String) -> Unit,
     val ping: (String) -> Unit,
-    val closing: () -> Unit
+    val closing: () -> Unit,
 ) : WebSocketListener() {
+    var activity: FragmentManager? = null
     override fun onOpen(webSocket: WebSocket, response: Response) {
         ping("Connected!")
     }
@@ -42,6 +47,9 @@ internal class EchoWebSocketListener(
     }
 
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+        val newFragment: DialogFragment = ChatError()
+        newFragment.show(activity!!, "")
+        newFragment.isCancelable = false
         ping("Error : " + t.message)
         closing()
     }
