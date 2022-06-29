@@ -55,6 +55,7 @@ import com.apadok.emrpreventive.screening.ConfirmRescreening;
 import com.apadok.emrpreventive.screening.KebugaranScreeningActivity;
 import com.apadok.emrpreventive.screening.ScreeningActivity;
 import com.apadok.emrpreventive.screeninghistory.ScreeningHistoryActivity;
+import com.apadok.emrpreventive.socketchat.MessageListActivity;
 import com.apadok.emrpreventive.socketchat.SocketChatActivity;
 import com.apadok.emrpreventive.user.ConfirmLogOut;
 import com.apadok.emrpreventive.user.LogOutAuthError;
@@ -255,7 +256,7 @@ public class MainActivity extends AppApadokActivity {
         btn_screening.setOnClickListener(RedirectToScreening);
         btn_history_screening.setOnClickListener(RedirectToHistory);
         btn_history_screening.setEnabled(false);
-        btn_consult.setOnClickListener(RedirectToConsult);
+        btn_consult.setOnClickListener(RedirectToSocketChat);
         btn_consult.setEnabled(false);
 
         // Replace Button if Non-Member (Moved inside Consultation as for now)
@@ -672,7 +673,7 @@ public class MainActivity extends AppApadokActivity {
 
     // Handler for Chat Button (Work In Progress)
     private final View.OnClickListener RedirectToSocketChat = v -> {
-        Intent intent = new Intent(MainActivity.this, SocketChatActivity.class);
+        Intent intent = new Intent(MainActivity.this, MessageListActivity.class);
         //Pass User Properties to next activity
         intent.putExtra("userid", UserId);
         intent.putExtra("clinicname", ClinicName);

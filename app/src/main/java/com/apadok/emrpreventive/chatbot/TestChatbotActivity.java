@@ -51,7 +51,7 @@ public class TestChatbotActivity extends AppCompatActivity {
         clinic.setText(ClinicName);
         // Init Logo RS
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://apadok.com/media/klinik/" + ClinicLogo;
+        String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
         tv_title_activity = (TextView) findViewById(R.id.tv_title_activity);

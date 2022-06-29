@@ -22,6 +22,9 @@
         android:theme="@style/Theme.EMRPreventive"
         tools:ignore="UnusedAttribute">
         <activity
+            android:name=".socketchat.MessageListActivity"
+            android:exported="false" />
+        <activity
             android:name=".socketchat.SocketChatActivity"
             android:exported="false" />
         <activity

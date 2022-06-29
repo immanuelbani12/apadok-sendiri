@@ -59,7 +59,7 @@ public class ConsultActivity extends AppCompatActivity {
         // Init Logo RS
         ClinicLogo = getIntent().getStringExtra("cliniclogo");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
-        String url = "http://apadok.com/media/klinik/" + ClinicLogo;
+        String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
@@ -124,7 +124,7 @@ public class ConsultActivity extends AppCompatActivity {
         String tekanan_darah = sch.getTekanan_darah() == null ? "" : sch.getTekanan_darah();
         String kadar_kolesterol = sch.getKadar_kolesterol() == null ? "" : sch.getKadar_kolesterol();
         // Do some data manipulation here
-        String FormattedTimeStamp = StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd LLL yyyy HH.mm");
+        String FormattedTimeStamp = StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm");
         String stroke_warning = "";
         if (Objects.equals(kadar_gula, "4") || Objects.equals(tekanan_darah, "4") || Objects.equals(kadar_kolesterol, "4")) {
             if (kadar_gula.contains("4")) {

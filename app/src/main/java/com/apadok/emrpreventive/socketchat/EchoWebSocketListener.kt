@@ -1,17 +1,11 @@
 package com.apadok.emrpreventive.socketchat
 
+import android.util.Log
 import com.google.gson.Gson
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import okio.ByteString
-
-
-data class Message (
-    var message: String,
-    var author: String,
-    var time: String
-)
 
 internal class EchoWebSocketListener(
     val output: (String) -> Unit,
@@ -23,6 +17,7 @@ internal class EchoWebSocketListener(
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {
+        Log.e("wow",text)
         output(text)
 //        if (text.contains("id_connection")) {
 //            output("A new user has joined the chat room!")
@@ -36,6 +31,7 @@ internal class EchoWebSocketListener(
     }
 
     override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
+        Log.e("wow",bytes.hex())
         output("Receiving bytes : " + bytes.hex())
     }
 
