@@ -87,7 +87,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
         String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
-        l = findViewById(R.id.history_screening);
+        l = findViewById(R.id.lv_list_article);
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
     }
 

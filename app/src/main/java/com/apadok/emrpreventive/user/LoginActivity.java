@@ -68,7 +68,7 @@ public class LoginActivity extends AppApadokActivity {
         phone_text = (TextView) findViewById(R.id.phone_text);
         phone_input = (EditText) findViewById(R.id.phone_input);
         additional_text = (TextView) findViewById(R.id.additional_text);
-        register_text = (TextView) findViewById(R.id.register);
+        register_text = (TextView) findViewById(R.id.tv_register);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
 //        tv_support_by.setTypeface(helvetica_font);

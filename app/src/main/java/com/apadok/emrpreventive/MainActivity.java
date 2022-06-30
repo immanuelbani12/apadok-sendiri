@@ -503,8 +503,8 @@ public class MainActivity extends AppApadokActivity {
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_risiko.setTypeface(helvetica_font);
         tv_kebugaran.setTypeface(helvetica_font);
-        CardView cv_risiko = (CardView) dialog.findViewById(R.id.cv_first);
-        CardView cv_kebugaran = (CardView) dialog.findViewById(R.id.cv_second);
+        CardView cv_risiko = (CardView) dialog.findViewById(R.id.cv_pemeriksaan);
+        CardView cv_kebugaran = (CardView) dialog.findViewById(R.id.cv_pemeriksaan_kebugaran);
 
         // CardView for Pemeriksaan
         cv_risiko.setOnClickListener(new View.OnClickListener() {

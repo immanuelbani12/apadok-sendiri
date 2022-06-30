@@ -19,6 +19,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_title_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -38,7 +39,7 @@
                 android:weightSum="5">
 
                 <ListView
-                    android:id="@+id/history_screening"
+                    android:id="@+id/lv_list_article"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="4"

@@ -29,6 +29,7 @@
             android:padding="16dp">
 
             <ImageView
+                android:id="@+id/iv_apadok_welcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -121,7 +122,7 @@
                 android:gravity="center"/>
 
                 <TextView
-                    android:id="@+id/register"
+                    android:id="@+id/tv_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Klik disini untuk aktivasi"

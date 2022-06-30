@@ -49,12 +49,12 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
         String url = "http://apadok.com/media/institusi/" + logo;
         Picasso.get().load(url).into(cliniclogo);
 
-        tv_title = (TextView) findViewById(R.id.title_result);
+        tv_title = (TextView) findViewById(R.id.tv_title_infografis);
         tv_diabetes = (TextView) findViewById(R.id.diabetes_title);
         tv_stroke = (TextView) findViewById(R.id.stroke_title);
         tv_cardiovascular = (TextView) findViewById(R.id.cardiovascular_title);
         tv_kebugaran = (TextView) findViewById(R.id.kebugaran_title);
-        iv_image = (ImageView) findViewById(R.id.iv_image);
+        iv_image = (ImageView) findViewById(R.id.iv_image_infografis);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_title.setTypeface(helvetica_font);
