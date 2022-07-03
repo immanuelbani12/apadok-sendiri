@@ -388,7 +388,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                                 answer_input.setError("Berat badan tidak valid");
                             }
                             break;
-                        case 5:
+                        case 7:
                             // Regex when on 5th Question
                             if (regex.HipsChecker(answer_input.getText().toString())) {
                                 btn_submit.setEnabled(true);
@@ -547,6 +547,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
     }
 
     private void selectedOptionView(TextView tv, int selectedOptionNum) {
+        //Disable Other Options
         defaultOptionsView();
         
         //Update Selected Option & Enables Submit Button
