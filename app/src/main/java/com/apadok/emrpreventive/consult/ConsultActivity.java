@@ -117,7 +117,7 @@ public class ConsultActivity extends AppCompatActivity {
         Intent i = new Intent(Intent.ACTION_VIEW);
         String numero = ClinicPhoneWhatsapp;
         String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
-        String hasil_kardio = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
+        String hasil_kardio = sch.getHasil_kardiovaskular() == null ? "" : sch.getHasil_kardiovaskular();
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
         String kadar_gula = sch.getKadar_gula() == null ? "" : sch.getKadar_gula();
