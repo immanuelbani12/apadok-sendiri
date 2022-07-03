@@ -64,7 +64,6 @@ public class NearestClinicActivity extends AppCompatActivity {
         btn_apadokclinic = (Button) findViewById(R.id.btn_apadokclinic);
         btn_nearclinic.setOnClickListener(openNearestClinic);
         title_consult.setTypeface(helvetica_font);
-        tv_subtitle_consult.setTypeface(helvetica_font);
         btn_nearclinic.setTypeface(helvetica_font);
         btn_apadokclinic.setTypeface(helvetica_font);
         btn_apadokclinic.setOnClickListener(openApadokClinic);
