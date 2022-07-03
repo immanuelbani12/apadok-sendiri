@@ -13,7 +13,7 @@ public class ConfirmRescreening extends DialogFragment {
     // Intent Variables
     private int user_id;
     private String Token;
-    private String Role;
+//    private String Role;
     private String clinicname;
     private String cliniclogo;
     private String clinicphone;
@@ -58,7 +58,7 @@ public class ConfirmRescreening extends DialogFragment {
                             intent.putExtra("cliniclogo", cliniclogo);
                             intent.putExtra("clinicphone", clinicphone);
                             intent.putExtra("username", username);
-                            intent.putExtra("role", Role);
+//                            intent.putExtra("role", Role);
                             startActivity(intent);
                         }
                     })
@@ -96,13 +96,13 @@ public class ConfirmRescreening extends DialogFragment {
 
     public void setIskebugaran(Boolean iskebugaran) { this.iskebugaran = iskebugaran; }
 
-    public String getRole() {
-        return Role;
-    }
-
-    public void setRole(String role) {
-        Role = role;
-    }
+//    public String getRole() {
+//        return Role;
+//    }
+//
+//    public void setRole(String role) {
+//        Role = role;
+//    }
 
     public String getClinicphone() {
         return clinicphone;

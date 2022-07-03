@@ -38,7 +38,8 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
     private Button btn_consult, btn_education;
     // Intent Variables
     private int diabetval, strokeval, cardioval;
-    private String ClinicName, ClinicLogo, Role;
+    private String ClinicName, ClinicLogo;
+//    private String Role;
     private PemeriksaanEntity sch;
 
     @Override
@@ -100,13 +101,13 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
 
-        Role = getIntent().getStringExtra("role");
-        if (Role != null) {
-            if (Role.equals("N")) {
-                btn_consult.setText("Cari Klinik");
-                btn_consult.setOnClickListener(RedirectToNearestClinic);
-            }
-        }
+//        Role = getIntent().getStringExtra("role");
+//        if (Role != null) {
+//            if (Role.equals("N")) {
+//                btn_consult.setText("Cari Klinik");
+//                btn_consult.setOnClickListener(RedirectToNearestClinic);
+//            }
+//        }
     }
 
     private void setupItemData() {
@@ -248,11 +249,11 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         int position = getIntent().getIntExtra("position", 0);
         if (position > 1) {
             String text = "Konsultasi hanya tersedia pada riwayat skrining terbaru";
-            if (Role != null) {
-                if (Role.equals("N")) {
-                    text = "Pencarian Klinik hanya tersedia pada riwayat skrining terbaru";
-                }
-            }
+//            if (Role != null) {
+//                if (Role.equals("N")) {
+//                    text = "Pencarian Klinik hanya tersedia pada riwayat skrining terbaru";
+//                }
+//            }
             Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
             snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
             snackbar.show();

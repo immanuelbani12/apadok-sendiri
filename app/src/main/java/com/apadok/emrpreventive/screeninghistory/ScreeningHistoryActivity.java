@@ -92,8 +92,8 @@ public class ScreeningHistoryActivity extends AppApadokActivity {
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", logo);
                 intent.putExtra("clinicphone", clinicphone);
-                String Role = getIntent().getStringExtra("role");
-                intent.putExtra("role", Role);
+//                String Role = getIntent().getStringExtra("role");
+//                intent.putExtra("role", Role);
                 String token = getIntent().getStringExtra("token");
                 intent.putExtra("token", token);
                 startActivity(intent);

@@ -74,7 +74,8 @@ public class ScreeningResultActivity extends AppApadokActivity {
 
     // Intent Variables
     private int diabetval, strokeval, cardioval;
-    private String ClinicName, ClinicLogo, Role;
+    private String ClinicName, ClinicLogo;
+//    private String Role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,13 +141,13 @@ public class ScreeningResultActivity extends AppApadokActivity {
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
 
-        Role = getIntent().getStringExtra("role");
-        if (Role != null) {
-            if (Role.equals("N")) {
-                btn_consult.setText("Cari Klinik");
-                btn_consult.setOnClickListener(RedirectToNearestClinic);
-            }
-        }
+//        Role = getIntent().getStringExtra("role");
+//        if (Role != null) {
+//            if (Role.equals("N")) {
+//                btn_consult.setText("Cari Klinik");
+//                btn_consult.setOnClickListener(RedirectToNearestClinic);
+//            }
+//        }
     }
 
     private void setupJson() {

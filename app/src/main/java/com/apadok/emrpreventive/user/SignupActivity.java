@@ -241,18 +241,18 @@ public class SignupActivity extends AppApadokActivity {
                 String cliniclogo = returnvalue.get("logo_institusi").isJsonNull() ? "" : returnvalue.get("logo_institusi").getAsString();
                 String id_login = returnvalue.get("id_login").isJsonNull() ? "" : returnvalue.get("id_login").getAsString();
                 String id_login_institusi = returnvalue.get("id_login_institusi").isJsonNull() ? "" : returnvalue.get("id_login_institusi").getAsString();
-                String role = "U";
-                if (returnvalue.has("role")){
-                    role = returnvalue.get("role").isJsonNull() ? role : returnvalue.get("role").getAsString();
-                }
+//                String role = "U";
+//                if (returnvalue.has("role")){
+//                    role = returnvalue.get("role").isJsonNull() ? role : returnvalue.get("role").getAsString();
+//                }
                 String clinicphone = "6282260006070";
                 if (returnvalue.has("no_telp_institusi")){
-                    clinicphone = returnvalue.get("no_telp_institusi").isJsonNull() ? role : returnvalue.get("no_telp_institusi").getAsString();
+                    clinicphone = returnvalue.get("no_telp_institusi").isJsonNull() ? clinicphone : returnvalue.get("no_telp_institusi").getAsString();
                 }
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
-                intent.putExtra("role", role);
+//                intent.putExtra("role", role);
                 intent.putExtra("clinicid", Integer.parseInt(idclinic));
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", cliniclogo);

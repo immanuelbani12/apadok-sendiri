@@ -97,7 +97,8 @@ public class MainActivity extends AppApadokActivity {
 
     // Intent Variables
     private int UserId, LoginUserId, ClinicId, LoginClinicId;
-    private String Token, UserName, Role, ClinicName, ClinicLogo, ClinicPhone;
+    private String Token, UserName, ClinicName, ClinicLogo, ClinicPhone;
+//    private String Role;
 
     @Override
     protected void onRestart() {
@@ -145,7 +146,7 @@ public class MainActivity extends AppApadokActivity {
         // Store or Receive the Data from SharedPref
         UserId = sharedPref.getInt("user_id", 0);
         UserName = sharedPref.getString("user_name", "");
-        Role = sharedPref.getString("user_role", "");
+//        Role = sharedPref.getString("user_role", "");
         ClinicName = sharedPref.getString("clinic_name", "");
         ClinicLogo = sharedPref.getString("clinic_logo", "");
         ClinicPhone = sharedPref.getString("clinic_phone", "");
@@ -156,7 +157,7 @@ public class MainActivity extends AppApadokActivity {
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("userid", 0);
             UserName = getIntent().getStringExtra("username");
-            Role = getIntent().getStringExtra("role");
+//            Role = getIntent().getStringExtra("role");
             ClinicName = getIntent().getStringExtra("clinicname");
             ClinicLogo = getIntent().getStringExtra("cliniclogo");
             ClinicPhone = getIntent().getStringExtra("clinicphone");
@@ -173,9 +174,9 @@ public class MainActivity extends AppApadokActivity {
             } else {
                 // Snackbar First time Login
                 CharSequence text = "Anda berhasil masuk sebagai anggota " + ClinicName;
-                if (Role.equals("N")) {
-                    text = "Anda berhasil masuk sebagai non-anggota klinik";
-                }
+//                if (Role.equals("N")) {
+//                    text = "Anda berhasil masuk sebagai non-anggota klinik";
+//                }
                 Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
                 snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
                 snackbar.show();
@@ -186,7 +187,7 @@ public class MainActivity extends AppApadokActivity {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt("user_id", UserId);
                 editor.putString("user_name", UserName);
-                editor.putString("user_role", Role);
+//                editor.putString("user_role", Role);
                 editor.putString("clinic_name", ClinicName);
                 editor.putString("clinic_logo", ClinicLogo);
                 editor.putString("clinic_phone", ClinicPhone);
@@ -256,16 +257,16 @@ public class MainActivity extends AppApadokActivity {
         btn_screening.setOnClickListener(RedirectToScreening);
         btn_history_screening.setOnClickListener(RedirectToHistory);
         btn_history_screening.setEnabled(false);
-        btn_consult.setOnClickListener(RedirectToSocketChat);
+        btn_consult.setOnClickListener(RedirectToConsult);
         btn_consult.setEnabled(false);
 
         // Replace Button if Non-Member (Moved inside Consultation as for now)
-        if (Role != null) {
-            if (Role.equals("N")) {
-                btn_consult.setText("Pencarian Klinik");
-                btn_consult.setOnClickListener(RedirectToNearestClinic);
-            }
-        }
+//        if (Role != null) {
+//            if (Role.equals("N")) {
+//                btn_consult.setText("Pencarian Klinik");
+//                btn_consult.setOnClickListener(RedirectToNearestClinic);
+//            }
+//        }
 
         // Custom Handler for Back Button
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
@@ -520,7 +521,7 @@ public class MainActivity extends AppApadokActivity {
                     ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
                     ((ConfirmRescreening) newFragment).setClinicphone(ClinicPhone);
                     ((ConfirmRescreening) newFragment).setUsername(UserName);
-                    ((ConfirmRescreening) newFragment).setRole(Role);
+//                    ((ConfirmRescreening) newFragment).setRole(Role);
                     ((ConfirmRescreening) newFragment).setIskebugaran(false);
                     newFragment.show(getSupportFragmentManager(), "");
                 } else {
@@ -532,7 +533,7 @@ public class MainActivity extends AppApadokActivity {
                     intent.putExtra("clinicphone", ClinicPhone);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
-                    intent.putExtra("role", Role);
+//                    intent.putExtra("role", Role);
                     startActivity(intent);
                 }
             }
@@ -552,7 +553,7 @@ public class MainActivity extends AppApadokActivity {
                     ((ConfirmRescreening) newFragment).setCliniclogo(ClinicLogo);
                     ((ConfirmRescreening) newFragment).setClinicphone(ClinicPhone);
                     ((ConfirmRescreening) newFragment).setUsername(UserName);
-                    ((ConfirmRescreening) newFragment).setRole(Role);
+//                    ((ConfirmRescreening) newFragment).setRole(Role);
                     ((ConfirmRescreening) newFragment).setIskebugaran(true);
                     newFragment.show(getSupportFragmentManager(), "");
                 } else {
@@ -564,7 +565,7 @@ public class MainActivity extends AppApadokActivity {
                     intent.putExtra("clinicphone", ClinicPhone);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
-                    intent.putExtra("role", Role);
+//                    intent.putExtra("role", Role);
                     startActivity(intent);
                 }
             }
@@ -597,7 +598,7 @@ public class MainActivity extends AppApadokActivity {
                     intent.putExtra("clinicphone", ClinicPhone);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
-                    intent.putExtra("role", Role);
+//                    intent.putExtra("role", Role);
                     intent.putParcelableArrayListExtra("history", sch);
                     startActivity(intent);
                 } else {
@@ -624,7 +625,7 @@ public class MainActivity extends AppApadokActivity {
                     intent.putExtra("clinicphone", ClinicPhone);
                     intent.putExtra("username", UserName);
                     intent.putExtra("token", Token);
-                    intent.putExtra("role", Role);
+//                    intent.putExtra("role", Role);
                     intent.putParcelableArrayListExtra("history_bugar", sch_bugar);
                     startActivity(intent);
                 } else {
@@ -650,7 +651,7 @@ public class MainActivity extends AppApadokActivity {
         intent.putExtra("clinicphone", ClinicPhone);
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
-        intent.putExtra("role", Role);
+//        intent.putExtra("role", Role);
         //Pass Latest History Pemeriksaan to next activity
         if (!sch.isEmpty()) {
             intent.putExtra("data", sch.get(0));
@@ -667,7 +668,7 @@ public class MainActivity extends AppApadokActivity {
         intent.putExtra("cliniclogo", ClinicLogo);
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
-        intent.putExtra("role", Role);
+//        intent.putExtra("role", Role);
         startActivity(intent);
     };
 
@@ -680,7 +681,7 @@ public class MainActivity extends AppApadokActivity {
         intent.putExtra("cliniclogo", ClinicLogo);
         intent.putExtra("username", UserName);
         intent.putExtra("token", Token);
-        intent.putExtra("role", Role);
+//        intent.putExtra("role", Role);
         intent.putExtra("loginid", LoginUserId);
         intent.putExtra("logininstitusiid",LoginClinicId);
         startActivity(intent);

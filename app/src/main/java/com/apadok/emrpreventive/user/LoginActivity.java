@@ -155,7 +155,7 @@ public class LoginActivity extends AppApadokActivity {
                 // here you have the response from the volley.
                 String userid = returnvalue.get("id_user").isJsonNull() ? "" : returnvalue.get("id_user").getAsString();
                 String username = returnvalue.get("nama_user").isJsonNull() ? "" : returnvalue.get("nama_user").getAsString();
-                String role = returnvalue.get("role").isJsonNull() ? "" : returnvalue.get("role").getAsString();
+//                String role = returnvalue.get("role").isJsonNull() ? "" : returnvalue.get("role").getAsString();
                 String token = returnvalue.get("token").isJsonNull() ? "" : returnvalue.get("token").getAsString();
                 String idclinic = returnvalue.get("id_institusi").isJsonNull() ? "" : returnvalue.get("id_institusi").getAsString();
                 String clinicname = returnvalue.get("nama_institusi").isJsonNull() ? "" : returnvalue.get("nama_institusi").getAsString();
@@ -164,12 +164,12 @@ public class LoginActivity extends AppApadokActivity {
                 String id_login_institusi = returnvalue.get("id_login_institusi").isJsonNull() ? "" : returnvalue.get("id_login_institusi").getAsString();
                 String clinicphone = "6282260006070";
                 if (returnvalue.has("no_telp_institusi")){
-                    clinicphone = returnvalue.get("no_telp_institusi").isJsonNull() ? role : returnvalue.get("no_telp_institusi").getAsString();
+                    clinicphone = returnvalue.get("no_telp_institusi").isJsonNull() ? clinicphone : returnvalue.get("no_telp_institusi").getAsString();
                 }
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("userid", Integer.parseInt(userid));
                 intent.putExtra("username", username);
-                intent.putExtra("role", role);
+//                intent.putExtra("role", role);
                 intent.putExtra("clinicid", Integer.parseInt(idclinic));
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", cliniclogo);
