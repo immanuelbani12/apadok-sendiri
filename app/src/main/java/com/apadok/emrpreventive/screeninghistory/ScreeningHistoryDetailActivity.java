@@ -128,11 +128,11 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         // Need to Change SetTextColor 1=Merah, 2=Menengah(Kuning/Itam), 3=Hijau
         String dangtext = "";
         String safetext = "";
-        if (hasil_diabet.contains("Tinggi")) {
+        if (hasil_diabet.contains("Tinggi") && !hasil_diabet.contains("Sedikit Tinggi")) {
             diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_font));
             dangtext = "penyakit diabetes";
             diabetval = 3;
-        } else if (hasil_diabet.contains("Rendah")) {
+        } else if (hasil_diabet.contains("Rendah") || hasil_diabet.contains("Sedikit Tinggi")) {
             diabetes_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
             safetext = "penyakit diabetes";
             diabetval = 1;
