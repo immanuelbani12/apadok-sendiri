@@ -90,24 +90,32 @@ public class ConsultActivity extends AppCompatActivity {
     }
 
     private void setupItemData() {
+        //Get Latest Pemeriksaan from Previous Activity
         sch = getIntent().getParcelableExtra("data");
+        //Get Phone Number from Previous Activity
         String clinicphone = getIntent().getStringExtra("clinicphone");
+
+        //Phone Number Formattter
         String phone_formatted;
+        //IF starts with 021 disable whatsapp and no need to reformat
         if (clinicphone.startsWith("021")){
             ClinicPhone = clinicphone;
             btn_whatsapp.setEnabled(false);
             phone_formatted = ClinicPhone.substring(0,3) + "-" + ClinicPhone.substring(3,7) + "-" + ClinicPhone.substring(7);
         }
+        //IF starts with 0, reformat to +62 strictly for Whatsapp
         else if (clinicphone.charAt(0) == '0'){
             ClinicPhone = clinicphone;
             ClinicPhoneWhatsapp = "+62" + clinicphone.substring(1);
             phone_formatted = ClinicPhone.substring(0,4) + "-" + ClinicPhone.substring(4,8) + "-" + ClinicPhone.substring(8);
+        //IF starts with 62, reformat all
         } else {
             ClinicPhone = "0" + clinicphone.substring(2);
             ClinicPhoneWhatsapp = "+" + clinicphone.substring(0,2) + clinicphone.substring(2);
             phone_formatted = ClinicPhone.substring(0,4) + "-" + ClinicPhone.substring(4,8) + "-" + ClinicPhone.substring(8);
         }
 
+        //Update displayed Phone Number on Consult Activity
         tv_phone_consult.setText(phone_formatted);
     }
 
