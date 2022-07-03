@@ -112,7 +112,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
     private void setupItemData() {
         sch = getIntent().getParcelableExtra("data");
         String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
-        String hasil_kardio = sch.getHasil_kolesterol() == null ? "" : sch.getHasil_kolesterol();
+        String hasil_kardio = sch.getHasil_kardiovaskular() == null ? "" : sch.getHasil_kardiovaskular();
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 

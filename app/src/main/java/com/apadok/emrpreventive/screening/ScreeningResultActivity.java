@@ -166,7 +166,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
             public void onSuccess() {
                 // here you have the response from the volley.
                 String hasil_diabet = sch.get(0).getHasil_diabetes() == null ? "" : sch.get(0).getHasil_diabetes();
-                String hasil_kardio = sch.get(0).getHasil_kolesterol() == null ? "" : sch.get(0).getHasil_kolesterol();
+                String hasil_kardio = sch.get(0).getHasil_kardiovaskular() == null ? "" : sch.get(0).getHasil_kardiovaskular();
                 String hasil_stroke = sch.get(0).getHasil_stroke() == null ? "" : sch.get(0).getHasil_stroke();
                 String timestamp = sch.get(0).getUpdated_at() == null ? sch.get(0).getCreated_at() : sch.get(0).getUpdated_at();
 

@@ -20,8 +20,8 @@ public class PemeriksaanEntity implements Parcelable {
     @ColumnInfo(name = "hasil_diabetes")
     String hasil_diabetes;
 
-    @ColumnInfo(name = "hasil_kolesterol")
-    String hasil_kolesterol;
+    @ColumnInfo(name = "hasil_kardiovaskular")
+    String hasil_kardiovaskular;
 
     @ColumnInfo(name = "hasil_stroke")
     String hasil_stroke;
@@ -46,7 +46,7 @@ public class PemeriksaanEntity implements Parcelable {
         id_pemeriksaan = in.readString();
         id_user = in.readString();
         hasil_diabetes = in.readString();
-        hasil_kolesterol = in.readString();
+        hasil_kardiovaskular = in.readString();
         hasil_stroke = in.readString();
         created_at = in.readString();
         updated_at = in.readString();
@@ -55,11 +55,11 @@ public class PemeriksaanEntity implements Parcelable {
         kadar_kolesterol = in.readString();
     }
 
-    public PemeriksaanEntity(@NonNull String id_pemeriksaan, String id_user, String hasil_diabetes, String hasil_kolesterol, String hasil_stroke, String created_at, String updated_at, String kadar_gula, String tekanan_darah, String kadar_kolesterol) {
+    public PemeriksaanEntity(@NonNull String id_pemeriksaan, String id_user, String hasil_diabetes, String hasil_kardiovaskular, String hasil_stroke, String created_at, String updated_at, String kadar_gula, String tekanan_darah, String kadar_kolesterol) {
         this.id_pemeriksaan = id_pemeriksaan;
         this.id_user = id_user;
         this.hasil_diabetes = hasil_diabetes;
-        this.hasil_kolesterol = hasil_kolesterol;
+        this.hasil_kardiovaskular = hasil_kardiovaskular;
         this.hasil_stroke = hasil_stroke;
         this.created_at = created_at;
         this.updated_at = updated_at;
@@ -74,7 +74,7 @@ public class PemeriksaanEntity implements Parcelable {
         dest.writeString(id_pemeriksaan);
         dest.writeString(id_user);
         dest.writeString(hasil_diabetes);
-        dest.writeString(hasil_kolesterol);
+        dest.writeString(hasil_kardiovaskular);
         dest.writeString(hasil_stroke);
         dest.writeString(created_at);
         dest.writeString(updated_at);
@@ -125,12 +125,12 @@ public class PemeriksaanEntity implements Parcelable {
         this.hasil_diabetes = hasil_diabetes;
     }
 
-    public String getHasil_kolesterol() {
-        return hasil_kolesterol;
+    public String getHasil_kardiovaskular() {
+        return hasil_kardiovaskular;
     }
 
-    public void setHasil_kolesterol(String hasil_kolesterol) {
-        this.hasil_kolesterol = hasil_kolesterol;
+    public void setHasil_kardiovaskular(String hasil_kardiovaskular) {
+        this.hasil_kardiovaskular = hasil_kardiovaskular;
     }
 
     public String getHasil_stroke() {
