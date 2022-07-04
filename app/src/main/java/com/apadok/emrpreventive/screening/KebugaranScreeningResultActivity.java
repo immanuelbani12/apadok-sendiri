@@ -147,6 +147,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
         cartesian.interactivity().hoverMode(HoverMode.BY_X);
 
         cartesian.yAxis(0).title("Skor");
+        side_pic.setVisibility(View.VISIBLE);
         chart_result.setChart(cartesian);
         chart_result.setVisibility(View.VISIBLE);
         String sourceString = "Skor kebugaran anda <b>" + score_kebugaran + "</b> dari maksimal skor <b>52</b>.<br> Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar";
@@ -280,7 +281,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                Type screenhistory = new TypeToken<List<PemeriksaanEntity>>() {
+                Type screenhistory = new TypeToken<List<PemeriksaanKebugaranEntity>>() {
                 }.getType();
                 sch = gson.fromJson(response, screenhistory);
                 callback.onSuccess();
