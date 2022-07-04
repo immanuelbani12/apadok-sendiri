@@ -582,11 +582,11 @@ public class MainActivity extends AppApadokActivity {
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         tv_risiko.setTypeface(helvetica_font);
         tv_kebugaran.setTypeface(helvetica_font);
-        CardView cv_history_first = (CardView) dialog.findViewById(R.id.cv_history_first);
-        CardView cv_history_second = (CardView) dialog.findViewById(R.id.cv_history_second);
+        CardView cv_disease_screening_history = (CardView) dialog.findViewById(R.id.cv_disease_screening_history);
+        CardView cv_fitness_screening_history = (CardView) dialog.findViewById(R.id.cv_fitness_screening_history);
 
         // CardView for History Pemeriksaan
-        cv_history_first.setOnClickListener(new View.OnClickListener() {
+        cv_disease_screening_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!sch.isEmpty()) {
@@ -613,7 +613,7 @@ public class MainActivity extends AppApadokActivity {
         });
 
         // CardView for History Pemeriksaan Kebugaran
-        cv_history_second.setOnClickListener(new View.OnClickListener() {
+        cv_fitness_screening_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!sch_bugar.isEmpty()) {

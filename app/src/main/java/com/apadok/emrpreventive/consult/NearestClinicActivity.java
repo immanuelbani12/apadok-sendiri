@@ -28,9 +28,9 @@ import com.squareup.picasso.Picasso;
 public class NearestClinicActivity extends AppCompatActivity {
 
     // Res/Layout Variables
-    private TextView title_consult, tv_subtitle_consult;
-    private ImageView iv_image_consult;
-    private Button btn_nearclinic, btn_apadokclinic;
+    private TextView tv_title, tv_subtitle_consult;
+    private ImageView iv_image_nearest_clinic;
+    private Button btn_nearest_clinic, btn_apadok_clinic;
 
     // Intent Variables
     private String ClinicName, ClinicLogo;
@@ -58,24 +58,20 @@ public class NearestClinicActivity extends AppCompatActivity {
         Picasso.get().load(url).into(cliniclogo);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
-        title_consult = (TextView) findViewById(R.id.title_consult);
+        tv_title = (TextView) findViewById(R.id.tv_title);
         tv_subtitle_consult = (TextView) findViewById(R.id.tv_subtitle_consult);
-        btn_nearclinic = (Button) findViewById(R.id.btn_nearclinic);
-        btn_apadokclinic = (Button) findViewById(R.id.btn_apadokclinic);
-        btn_nearclinic.setOnClickListener(openNearestClinic);
-        title_consult.setTypeface(helvetica_font);
-        btn_nearclinic.setTypeface(helvetica_font);
-        btn_apadokclinic.setTypeface(helvetica_font);
-        btn_apadokclinic.setOnClickListener(openApadokClinic);
+        btn_nearest_clinic = (Button) findViewById(R.id.btn_nearest_clinic);
+        btn_apadok_clinic = (Button) findViewById(R.id.btn_apadok_clinic);
+        btn_nearest_clinic.setOnClickListener(openNearestClinic);
+        tv_title.setTypeface(helvetica_font);
+        btn_nearest_clinic.setTypeface(helvetica_font);
+        btn_apadok_clinic.setTypeface(helvetica_font);
+        btn_apadok_clinic.setOnClickListener(openApadokClinic);
 
-        iv_image_consult = (ImageView) findViewById(R.id.iv_image_consult);
-        iv_image_consult.setImageResource(R.drawable.ic_nearest_clinic);
-        iv_image_consult.setVisibility(View.VISIBLE);
+        iv_image_nearest_clinic = (ImageView) findViewById(R.id.iv_image_nearest_clinic);
+        iv_image_nearest_clinic.setImageResource(R.drawable.ic_nearest_clinic);
+        iv_image_nearest_clinic.setVisibility(View.VISIBLE);
 
-//        CharSequence text = "Konsultasi digantikan dengan Pencarian Klinik karena anda bukan member klinik";
-//        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG);
-//        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
-//        snackbar.show();
     }
 
     private void setupItemData() {

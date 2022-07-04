@@ -47,8 +47,8 @@ import java.util.List;
 public class KebugaranHistoryDetailActivity extends AppCompatActivity {
 
     // Res/Layout Variables
-    private AnyChartView anyChartView;
-    private TextView title_result, time_result, kebugaran_result, kebugaran_category;
+    private AnyChartView chart_result;
+    private TextView tv_title, tv_time_result, tv_score_title, tv_score_result, tv_description_result;
     private Button btn_education;
 
     // Intent Variables
@@ -79,7 +79,6 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kebugaran_screening_result);
         setupItemView();
         setupItemData();
-//        setupJson();
         setupChart();
     }
 
@@ -115,30 +114,31 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         cartesian.interactivity().hoverMode(HoverMode.BY_X);
 
         cartesian.yAxis(0).title("Skor");
-        anyChartView.setChart(cartesian);
+        side_pic.setVisibility(View.VISIBLE);
+        chart_result.setChart(cartesian);
+        chart_result.setVisibility(View.VISIBLE);
+
         String sourceString = "Skor kebugaran anda <b>" + score_kebugaran + "</b> dari maksimal skor <b>52</b>.<br> Semakin tinggi skor kebugaran menunjukkan bahwa tubuh anda juga semakin bugar, sebaliknya jika semakin rendah skor kebugaran maka menunjukkan tubuh anda kurang bugar";
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            kebugaran_category.setText(Html.fromHtml(sourceString, Html.FROM_HTML_MODE_COMPACT));
+            tv_description_result.setText(Html.fromHtml(sourceString, Html.FROM_HTML_MODE_COMPACT));
         } else {
-            kebugaran_category.setText(Html.fromHtml(sourceString));
+            tv_description_result.setText(Html.fromHtml(sourceString));
         }
-        anyChartView.setVisibility(View.VISIBLE);
+        btn_education.setVisibility(View.VISIBLE);
     }
 
     private void setupItemData() {
         sch = getIntent().getParcelableExtra("data");
-        String hasil_kebugaran = sch.gethasil_kebugaran() == null ? "" : sch.gethasil_kebugaran();
         score_kebugaran = sch.getScore_kebugaran() == null ? "" : sch.getScore_kebugaran();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 
-        time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm"));
-        kebugaran_result.setText(score_kebugaran);
-        kebugaran_result.setVisibility(View.VISIBLE);
-        kebugaran_category.setText("Mengolah Grafik Data...");
-        kebugaran_category.setVisibility(View.VISIBLE);
+        tv_time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm"));
+        tv_score_result.setText(score_kebugaran);
+        tv_score_result.setVisibility(View.VISIBLE);
+        tv_description_result.setText("Mengolah Grafik Data...");
+        tv_description_result.setVisibility(View.VISIBLE);
 
-        btn_education.setVisibility(View.VISIBLE);
     }
 
     private void setupItemView() {
@@ -155,33 +155,36 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
         String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
 
-        title_result = (TextView) findViewById(R.id.title_result);
-        time_result = (TextView) findViewById(R.id.time_result);
-        kebugaran_result = (TextView) findViewById(R.id.screening_result);
-        kebugaran_result.setVisibility(View.GONE);
-        kebugaran_category = (TextView) findViewById(R.id.kebugaran_result);
+        tv_title = (TextView) findViewById(R.id.tv_title);
+        tv_time_result = (TextView) findViewById(R.id.tv_time_result);
+        tv_score_title = (TextView) findViewById(R.id.tv_score_title);
+        tv_score_result = (TextView) findViewById(R.id.tv_score_result);
+        tv_description_result = (TextView) findViewById(R.id.tv_description_result);
         btn_education = (Button) findViewById(R.id.btn_education);
         side_pic = (ImageView) findViewById(R.id.side_pic);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            kebugaran_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+            tv_description_result.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         }
 
         side_pic.setImageResource(R.drawable.graph_side_pic);
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
-        title_result.setTypeface(helvetica_font);
-        time_result.setTypeface(helvetica_font);
-        kebugaran_category.setTypeface(helvetica_font);
-        kebugaran_category.setVisibility(View.GONE);
+        tv_title.setTypeface(helvetica_font);
+        tv_time_result.setTypeface(helvetica_font);
+        tv_score_title.setTypeface(helvetica_font);
+        tv_score_result.setTypeface(helvetica_font);
+        tv_description_result.setTypeface(helvetica_font);
         btn_education.setTypeface(helvetica_font);
-        kebugaran_result.setTypeface(helvetica_font);
 
         int position = getIntent().getIntExtra("position", 0);
-        title_result.setText("Riwayat Skrining Kebugaran " + position);
+        tv_title.setText("Riwayat Skrining Kebugaran " + position);
+        tv_score_result.setVisibility(View.GONE);
+        side_pic.setVisibility(View.GONE);
+        tv_description_result.setVisibility(View.GONE);
         btn_education.setVisibility(View.GONE);
         btn_education.setOnClickListener(RedirectToEducation);
-        anyChartView = findViewById(R.id.bar_chart);
-        anyChartView.setVisibility(View.GONE);
+        chart_result= findViewById(R.id.chart_result);
+        chart_result.setVisibility(View.GONE);
     }
 
 

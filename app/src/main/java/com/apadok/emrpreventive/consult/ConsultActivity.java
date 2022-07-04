@@ -32,9 +32,9 @@ import java.util.Objects;
 public class ConsultActivity extends AppCompatActivity {
 
     // Res/Layout Variables
-    private TextView title_consult, tv_subtitle_consult, tv_phone_consult, tv_time_consult;
+    private TextView tv_title, tv_subtitle_consult, tv_phone_consult, tv_time_consult;
     private ImageView iv_image_consult;
-    private Button btn_whatsapp, btn_call, btn_penjadwalanbeta;
+    private Button btn_whatsapp, btn_call, btn_clinic_search;
 
     // Intent Variables
     private PemeriksaanEntity sch;
@@ -63,26 +63,26 @@ public class ConsultActivity extends AppCompatActivity {
         Picasso.get().load(url).into(cliniclogo);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
-        title_consult = (TextView) findViewById(R.id.title_consult);
+        tv_title = (TextView) findViewById(R.id.tv_title);
         tv_subtitle_consult = (TextView) findViewById(R.id.tv_subtitle_consult);
         tv_phone_consult = (TextView) findViewById(R.id.tv_phone_consult);
         tv_time_consult = (TextView) findViewById(R.id.tv_time_consult);
         btn_whatsapp = (Button) findViewById(R.id.btn_whatsapp);
         btn_call = (Button) findViewById(R.id.btn_call);
-        btn_penjadwalanbeta = (Button) findViewById(R.id.btn_penjadwalanbeta);
+        btn_clinic_search = (Button) findViewById(R.id.btn_clinic_search);
         btn_whatsapp.setOnClickListener(openWhatsApp);
-        title_consult.setTypeface(helvetica_font);
+        tv_title.setTypeface(helvetica_font);
         tv_subtitle_consult.setTypeface(helvetica_font);
         tv_phone_consult.setTypeface(helvetica_font);
         tv_time_consult.setTypeface(helvetica_font);
         btn_call.setTypeface(helvetica_font);
         btn_whatsapp.setTypeface(helvetica_font);
-        btn_penjadwalanbeta.setTypeface(helvetica_font);
+        btn_clinic_search.setTypeface(helvetica_font);
         btn_call.setOnClickListener(RedirecttoCall);
-        btn_penjadwalanbeta.setOnClickListener(RedirectToNearestClinic);
-        btn_penjadwalanbeta.setText("Pencarian Klinik");
+        btn_clinic_search.setOnClickListener(RedirectToClinicSearch);
+        btn_clinic_search.setText("Pencarian Klinik");
 //      Remove Prototip Penjadwalan as for now
-        btn_penjadwalanbeta.setVisibility(View.VISIBLE);
+        btn_clinic_search.setVisibility(View.VISIBLE);
 
         iv_image_consult = (ImageView) findViewById(R.id.iv_image_consult);
         iv_image_consult.setImageResource(R.drawable.ic_doctor);
@@ -123,7 +123,7 @@ public class ConsultActivity extends AppCompatActivity {
     private final View.OnClickListener openWhatsApp = v -> {
         PackageManager packageManager = ConsultActivity.this.getPackageManager();
         Intent i = new Intent(Intent.ACTION_VIEW);
-        String numero = ClinicPhoneWhatsapp;
+        String whatsapp_number = ClinicPhoneWhatsapp;
         String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
         String hasil_kardio = sch.getHasil_kardiovaskular() == null ? "" : sch.getHasil_kardiovaskular();
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
@@ -146,11 +146,11 @@ public class ConsultActivity extends AppCompatActivity {
             }
             hasil_stroke = "Kemungkinan "+ hasil_stroke;
         }
-        String mensaje = "Risiko Diabetes : " + hasil_diabet + "\nRisiko Stroke : " + hasil_stroke + stroke_warning + "\nRisiko Kardiovaskular : " + hasil_kardio + "\ndata diperoleh pada " + FormattedTimeStamp;
-        Log.e("Print",mensaje);
+        String message = "Risiko Diabetes : " + hasil_diabet + "\nRisiko Stroke : " + hasil_stroke + stroke_warning + "\nRisiko Kardiovaskular : " + hasil_kardio + "\ndata diperoleh pada " + FormattedTimeStamp;
+        Log.e("Print",message);
         String url = null;
         try {
-            url = "https://wa.me/" + numero + "?text=" + URLEncoder.encode(mensaje, "UTF-8");
+            url = "https://wa.me/" + whatsapp_number + "?text=" + URLEncoder.encode(message, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -163,9 +163,7 @@ public class ConsultActivity extends AppCompatActivity {
                     new Intent("android.intent.action.VIEW",
                             Uri.parse("https://play.google.com/store/apps/details?id=com.whatsapp"));
             startActivity(viewIntent);
-//                KToast.errorToast(StrokeResultActivity.this, getString(R.string.no_whatsapp), Gravity.BOTTOM, KToast.LENGTH_SHORT);
         }
-
     };
 
     private final View.OnClickListener RedirecttoCall = v -> {
@@ -174,7 +172,7 @@ public class ConsultActivity extends AppCompatActivity {
         startActivity(intent);
     };
 
-    private final View.OnClickListener RedirectToNearestClinic = v -> {
+    private final View.OnClickListener RedirectToClinicSearch = v -> {
         Intent intent = new Intent(ConsultActivity.this, NearestClinicActivity.class);
         //Pass the Data to next activity
         intent.putExtra("data", sch);

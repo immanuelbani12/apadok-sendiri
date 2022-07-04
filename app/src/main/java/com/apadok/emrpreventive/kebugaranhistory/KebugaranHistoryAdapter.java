@@ -47,22 +47,22 @@ public class KebugaranHistoryAdapter extends ArrayAdapter<PemeriksaanKebugaranEn
 //        assert currentNumberPosition != null;
 //        numbersImage.setImageResource(currentNumberPosition.getNumbersImageId());
 
-        // then according to the position of the view assign the desired TextView 1 for the same
-        TextView textView1 = currentItemView.findViewById(R.id.tv_history);
-        textView1.setText("Riwayat " + (position + 1));
+        // then according to the position of the view assign the desired Title History for the same
+        TextView tv_title_history = currentItemView.findViewById(R.id.tv_history);
+        tv_title_history.setText("Riwayat " + (position + 1));
 
-        // then according to the position of the view assign the desired TextView 2 for the same
-        TextView textView2 = currentItemView.findViewById(R.id.tv_timestamp);
+        // then according to the position of the view assign the desired Timestamp for the same
+        TextView tv_timestamp = currentItemView.findViewById(R.id.tv_timestamp);
         if (currentNumberPosition.getUpdated_at() != null) {
-            textView2.setText(StringToTimeStampFormatting.changeFormat(currentNumberPosition.getUpdated_at(),"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm"));
+            tv_timestamp.setText(StringToTimeStampFormatting.changeFormat(currentNumberPosition.getUpdated_at(),"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm"));
         } else if (currentNumberPosition.getCreated_at() != null) {
-            textView2.setText(StringToTimeStampFormatting.changeFormat(currentNumberPosition.getCreated_at(),"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm"));
+            tv_timestamp.setText(StringToTimeStampFormatting.changeFormat(currentNumberPosition.getCreated_at(),"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm"));
         }
 
         currentItemView.setTag(currentNumberPosition.getId_pemeriksaan_kebugaran());
 
-        AutofitHelper.create(textView1);
-        AutofitHelper.create(textView2);
+        AutofitHelper.create(tv_title_history);
+        AutofitHelper.create(tv_timestamp);
 
         // then return the recyclable view
         return currentItemView;

@@ -25,7 +25,7 @@
             android:padding="20dp">
 
             <TextView
-                android:id="@+id/title_result"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -36,7 +36,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/time_result"
+                android:id="@+id/tv_time_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
@@ -46,7 +46,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/score_title"
+                android:id="@+id/tv_score_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -59,7 +59,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/screening_result"
+                android:id="@+id/tv_score_result"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="25"
@@ -79,7 +79,7 @@
                     android:src="@drawable/graph_side_pic"
                     android:layout_weight="1"/>
                 <com.anychart.AnyChartView
-                    android:id="@+id/bar_chart"
+                    android:id="@+id/chart_result"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="4"/>
@@ -94,7 +94,7 @@
 
 
                 <TextView
-                    android:id="@+id/kebugaran_result"
+                    android:id="@+id/tv_description_result"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
