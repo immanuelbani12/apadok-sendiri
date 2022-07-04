@@ -128,7 +128,6 @@ public class KebugaranHistoryDetailActivity extends AppCompatActivity {
 
     private void setupItemData() {
         sch = getIntent().getParcelableExtra("data");
-        String hasil_kebugaran = sch.gethasil_kebugaran() == null ? "" : sch.gethasil_kebugaran();
         score_kebugaran = sch.getScore_kebugaran() == null ? "" : sch.getScore_kebugaran();
         String timestamp = sch.getUpdated_at() == null ? sch.getCreated_at() : sch.getUpdated_at();
 
