@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Riwayat Risiko\nPenyakit"
+                    android:text="Riwayat Skrining \nRisiko Penyakit"
                     android:textColor="@color/black_font"
                     android:textSize="14sp" />
 
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Riwayat Kebugaran"
+                    android:text="Riwayat Skrining Kebugaran"
                     android:textColor="@color/black_font"
                     android:textSize="14sp" />
 

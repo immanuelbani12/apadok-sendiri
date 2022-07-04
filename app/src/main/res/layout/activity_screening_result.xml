@@ -32,7 +32,7 @@
                 android:text="Hasil Skrining Penyakit"
                 android:gravity="center"
                 android:textColor="@color/black_font"
-                android:textSize="22sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <TextView

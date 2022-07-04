@@ -22,7 +22,7 @@
                 android:id="@+id/tv_title_histories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Daftar Riwayat Skrining Penyakit"
+                android:text="Daftar Riwayat Skrining \nRisiko Penyakit"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_marginTop="20dp"

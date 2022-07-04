@@ -132,7 +132,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
         }
 
         //Set Default View
-        title_result.setText("Hasil Skrining Penyakit");
+        title_result.setText("Hasil Skrining Risiko Penyakit");
         time_result.setText("Mengolah Data....");
         diabetes_result.setVisibility(View.GONE);
         stroke_result.setVisibility(View.GONE);
