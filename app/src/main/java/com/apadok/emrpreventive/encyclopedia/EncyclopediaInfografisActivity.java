@@ -24,17 +24,17 @@ import com.squareup.picasso.Picasso;
 
 public class EncyclopediaInfografisActivity extends AppApadokActivity {
 
-    private TextView tv_title, tv_diabetes, tv_cardiovascular, tv_stroke, tv_kebugaran;
+    private TextView tv_title_infografis, tv_diabetes, tv_cardiovascular, tv_stroke, tv_kebugaran;
     private ImageView iv_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encyclopedia_infografis);
-        setupItemView();
+        setupItemView_Infografis();
     }
 
-    private void setupItemView() {
+    private void setupItemView_Infografis() {
         // Code to Setup Toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -49,7 +49,7 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
         String url = "http://apadok.com/media/institusi/" + logo;
         Picasso.get().load(url).into(cliniclogo);
 
-        tv_title = (TextView) findViewById(R.id.tv_title_infografis);
+        tv_title_infografis = (TextView) findViewById(R.id.tv_title_infografis);
         tv_diabetes = (TextView) findViewById(R.id.diabetes_title);
         tv_stroke = (TextView) findViewById(R.id.stroke_title);
         tv_cardiovascular = (TextView) findViewById(R.id.cardiovascular_title);
@@ -57,13 +57,13 @@ public class EncyclopediaInfografisActivity extends AppApadokActivity {
         iv_image = (ImageView) findViewById(R.id.iv_image_infografis);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
-        tv_title.setTypeface(helvetica_font);
+        tv_title_infografis.setTypeface(helvetica_font);
         tv_diabetes.setTypeface(helvetica_font);
         tv_stroke.setTypeface(helvetica_font);
         tv_cardiovascular.setTypeface(helvetica_font);
 
         int position = getIntent().getIntExtra("position", 0);
-        tv_title.setText(getIntent().getStringExtra("judul_artikel"));
+        tv_title_infografis.setText(getIntent().getStringExtra("judul_artikel"));
         String kategori = getIntent().getStringExtra("kategori_artikel");
         String image = getIntent().getStringExtra("gambar_artikel");
         String urlimage = "http://apadok.com/media/artikel/" + image;

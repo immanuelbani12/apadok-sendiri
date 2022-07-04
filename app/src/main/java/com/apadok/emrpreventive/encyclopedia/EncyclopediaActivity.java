@@ -91,7 +91,27 @@ public class EncyclopediaActivity extends AppApadokActivity {
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
     }
 
-    private void setupContent() {
+    private void setupJson() {
+        //NO API Form Data Yet
+        createCalls(new VolleyCallBack() {
+
+            @Override
+            public void onSuccess() {
+                if (ecl_api.isEmpty()) {
+                    setupAlternativeContent();
+                }
+                setupEncyclopediaList();
+            }
+
+            @Override
+            public void onError() {
+                setupAlternativeContent();
+            }
+        });
+        VolleyLog.DEBUG = true;
+    }
+
+    private void setupAlternativeContent() {
 //        CreateFormList();
 //        eclnew = FilterEncyclopedia();
 //        EncyclopediaAdapter numbersArrayAdapter = new EncyclopediaAdapter(getBaseContext(), eclnew);
@@ -147,10 +167,11 @@ public class EncyclopediaActivity extends AppApadokActivity {
 //            }
 //        });
 
-//      Access string saved json response if API Fails
+        //Display Snackbar Toast if Alternative Artikel appears
         Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Menampilkan Artikel Alternatif karena terdapat permasalahan pada Apadok", Snackbar.LENGTH_SHORT);
         snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
         snackbar.show();
+        //Alternative Response stored as String
         String response = "[\n" +
                 "    {\n" +
                 "        \"id_artikel\": \"3\",\n" +
@@ -252,22 +273,28 @@ public class EncyclopediaActivity extends AppApadokActivity {
                 "        \"created_at\": \"2022-06-14 14:36:43\"\n" +
                 "    }\n" +
                 "]";
+        //Turns Response into EncylcopediaEntity Object
         Type screenhistory = new TypeToken<List<EncyclopediaEntity>>() {
         }.getType();
         ecl_api = gson.fromJson(response, screenhistory);
-        setupAPIContent();
+        setupEncyclopediaList();
     }
 
-    private void setupAPIContent() {
+    private void setupEncyclopediaList() {
+        //Filter Encyclopedia by Category
         eclnew_api = FilterEncyclopediaAPI();
-        EncyclopediaNewAdapter numbersArrayAdapter = new EncyclopediaNewAdapter(getBaseContext(), eclnew_api);
-        l.setAdapter(numbersArrayAdapter);
+        //Attach Adapter Article
+        EncyclopediaNewAdapter articleAdapter = new EncyclopediaNewAdapter(getBaseContext(), eclnew_api);
+        l.setAdapter(articleAdapter);
+        //Set On Click Article
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
+                //Convert id_encylopedia to Integer
                 String idencyclopedia = (String) view.getTag();
                 int id_encyclopedia = Integer.parseInt(idencyclopedia);
+                //If Article format is video
                 if (Objects.equals(eclnew_api.get(id_encyclopedia).getJenis_artikel(), "2")){
                     DialogFragment newFragment = new ConfirmArticleFormatNew();
                     //Pass User Properties to next activity
@@ -278,6 +305,7 @@ public class EncyclopediaActivity extends AppApadokActivity {
                     ((ConfirmArticleFormatNew) newFragment).setVideo(true);
                     newFragment.show(getSupportFragmentManager(), "");
                 }
+                //If Article format is text
                 else if (Objects.equals(eclnew_api.get(id_encyclopedia).getJenis_artikel(), "1")){
                     DialogFragment newFragment = new ConfirmArticleFormatNew();
                     //Pass User Properties to next activity
@@ -292,24 +320,105 @@ public class EncyclopediaActivity extends AppApadokActivity {
         });
     }
 
-    private void setupJson() {
-        //NO API Form Data Yet
-        createCalls(new VolleyCallBack() {
-
-            @Override
-            public void onSuccess() {
-                if (ecl_api.isEmpty()) {
-                    setupContent();
+    private ArrayList<EncyclopediaEntity> FilterEncyclopediaAPI() {
+        //Prepare new array list
+        ArrayList<EncyclopediaEntity> ecl_api_parsed = new ArrayList<>();
+        //Filter kebugaran article
+        if (kebugaranval == 1) {
+            String filtered = "4";
+            strokeval = 3;
+            cardioval = 3;
+            diabetval = 3;
+            for (int counter = 0; counter < ecl_api.size(); counter++) {
+                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
+                    ecl_api_parsed.add(ecl_api.get(counter));
                 }
-                setupAPIContent();
+            }
+        }
+        //Filter stroke article if risk is rendah atau menengah
+        if (strokeval <= 2) {
+            String filtered = "1";
+            for (int counter = 0; counter < ecl_api.size(); counter++) {
+                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
+                    ecl_api_parsed.add(ecl_api.get(counter));
+                }
+            }
+        }
+        //Filter diabetes article if risk is rendah atau menengah
+        if (diabetval <= 2) {
+            String filtered = "2";
+            for (int counter = 0; counter < ecl_api.size(); counter++) {
+                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
+                    ecl_api_parsed.add(ecl_api.get(counter));
+                }
+            }
+        }
+        //Filter kardiovaskular article if risk is rendah atau menengah
+        if (cardioval <= 2) {
+            String filtered = "3";
+            for (int counter = 0; counter < ecl_api.size(); counter++) {
+                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
+                    ecl_api_parsed.add(ecl_api.get(counter));
+                }
+            }
+        }
+        return ecl_api_parsed;
+    }
+
+
+    private void createCalls(final VolleyCallBack callback) {
+        //Prepare Volley Request
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //Get Token from previous activity
+        String token = getIntent().getStringExtra("token");
+        //Construct API URL
+        String URL = "http://apadok.com/api/artikel";
+        //Prepare request in String Format
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            //Response when APICalls Success
+            public void onResponse(String response) {
+                Log.i("VOLLEY", response);
+                //Turns Response into Encyclopedia Object
+                Type screenhistory = new TypeToken<List<EncyclopediaEntity>>() {
+                }.getType();
+                //FailSafe
+//                if (response.charAt(response.length()-1) != ']'){
+//                    response = response + "]";
+//                }
+                ecl_api = gson.fromJson(response, screenhistory);
+                //Calls -> What to do when APICalls success
+                callback.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VOLLEY", error.toString());
+                //Calls -> What to do when APICalls fails
+                callback.onError();
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
             }
 
             @Override
-            public void onError() {
-                setupContent();
+            public byte[] getBody() {
+                //Set API Body
+                return "".getBytes(StandardCharsets.UTF_8);
             }
-        });
-        VolleyLog.DEBUG = true;
+
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // Basic Authentication
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP)
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
     private ArrayList<Encyclopedia> FilterEncyclopedia() {
@@ -351,97 +460,6 @@ public class EncyclopediaActivity extends AppApadokActivity {
         }
         return eclparsed;
     }
-
-    private ArrayList<EncyclopediaEntity> FilterEncyclopediaAPI() {
-        ArrayList<EncyclopediaEntity> ecl_api_parsed = new ArrayList<>();
-        if (kebugaranval == 1) {
-            String filtered = "4";
-            strokeval = 3;
-            cardioval = 3;
-            diabetval = 3;
-            for (int counter = 0; counter < ecl_api.size(); counter++) {
-                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
-                    ecl_api_parsed.add(ecl_api.get(counter));
-                }
-            }
-        }
-        if (strokeval <= 2) {
-            String filtered = "1";
-            for (int counter = 0; counter < ecl_api.size(); counter++) {
-                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
-                    ecl_api_parsed.add(ecl_api.get(counter));
-                }
-            }
-        }
-        if (diabetval <= 2) {
-            String filtered = "2";
-            for (int counter = 0; counter < ecl_api.size(); counter++) {
-                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
-                    ecl_api_parsed.add(ecl_api.get(counter));
-                }
-            }
-        }
-        if (cardioval <= 2) {
-            String filtered = "3";
-            for (int counter = 0; counter < ecl_api.size(); counter++) {
-                if (ecl_api.get(counter).getKategori_artikel().equals(filtered)) {
-                    ecl_api_parsed.add(ecl_api.get(counter));
-                }
-            }
-        }
-        return ecl_api_parsed;
-    }
-
-
-    private void createCalls(final VolleyCallBack callback) {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        //Temporarily Get ID Pemeriksan From Main Activity
-        String token = getIntent().getStringExtra("token");
-        String URL = "http://apadok.com/api/artikel";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("VOLLEY", response);
-                Type screenhistory = new TypeToken<List<EncyclopediaEntity>>() {
-                }.getType();
-                //FailSafe
-//                if (response.charAt(response.length()-1) != ']'){
-//                    response = response + "]";
-//                }
-                ecl_api = gson.fromJson(response, screenhistory);
-                callback.onSuccess();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("VOLLEY", error.toString());
-                callback.onError();
-            }
-        }) {
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-
-            @Override
-            public byte[] getBody() {
-                return "".getBytes(StandardCharsets.UTF_8);
-            }
-
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                // Basic Authentication
-                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP)
-                headers.put("Authorization", "Bearer " + token);
-                return headers;
-            }
-        };
-
-        requestQueue.add(stringRequest);
-    }
-
 
     private void CreateFormList() {
             ecl.add(new Encyclopedia("1", "Penyakit Stroke", "Stroke merupakan penyebab kematian tersering kedua di dunia. Setiap tahun, lebih dari 795.000 orang di Amerika Serikat mengalami stroke. Stroke terjadi ketika pembuluh darah di otak pecah dan berdarah, atau ketika ada penyumbatan suplai darah ke otak. Pecahnya atau penyumbatan mencegah darah dan oksigen mencapai jaringan otak. Tanpa oksigen, sel-sel otak dan jaringan menjadi rusak dan mulai mati dalam beberapa menit. \n\n" +

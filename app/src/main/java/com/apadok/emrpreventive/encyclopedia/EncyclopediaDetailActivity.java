@@ -30,7 +30,7 @@ public class EncyclopediaDetailActivity extends AppApadokActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encyclopedia_detail);
-        setupItemView();
+        setupItemView_Text();
         // setupJson();
     }
 
@@ -72,7 +72,7 @@ public class EncyclopediaDetailActivity extends AppApadokActivity {
 //        VolleyLog.DEBUG = true;
 //    }
 
-    private void setupItemView() {
+    private void setupItemView_Text() {
         // Code to Setup Toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
