@@ -17,9 +17,6 @@ public class PemeriksaanKebugaranEntity implements Parcelable {
     @ColumnInfo(name = "id_user")
     String id_user;
 
-    @ColumnInfo(name = "hasil_kebugaran")
-    String hasil_kebugaran;
-
     @ColumnInfo(name = "score_kebugaran")
     String score_kebugaran;
 
@@ -32,7 +29,6 @@ public class PemeriksaanKebugaranEntity implements Parcelable {
     protected PemeriksaanKebugaranEntity(Parcel in) {
         id_pemeriksaan_kebugaran = in.readString();
         id_user = in.readString();
-        hasil_kebugaran = in.readString();
         score_kebugaran = in.readString();
         created_at = in.readString();
         updated_at = in.readString();
@@ -41,7 +37,6 @@ public class PemeriksaanKebugaranEntity implements Parcelable {
     public PemeriksaanKebugaranEntity(@NonNull String id_pemeriksaan, String id_user, String hasil_kebugaran, String score_kebugaran, String created_at, String updated_at) {
         this.id_pemeriksaan_kebugaran = id_pemeriksaan;
         this.id_user = id_user;
-        this.hasil_kebugaran = hasil_kebugaran;
         this.score_kebugaran = score_kebugaran;
         this.created_at = created_at;
         this.updated_at = updated_at;
@@ -52,7 +47,6 @@ public class PemeriksaanKebugaranEntity implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id_pemeriksaan_kebugaran);
         dest.writeString(id_user);
-        dest.writeString(hasil_kebugaran);
         dest.writeString(score_kebugaran);
         dest.writeString(created_at);
         dest.writeString(updated_at);
@@ -90,14 +84,6 @@ public class PemeriksaanKebugaranEntity implements Parcelable {
 
     public void setId_user(String id_user) {
         this.id_user = id_user;
-    }
-
-    public String gethasil_kebugaran() {
-        return hasil_kebugaran;
-    }
-
-    public void sethasil_kebugaran(String hasil_kebugaran) {
-        this.hasil_kebugaran = hasil_kebugaran;
     }
 
     public String getCreated_at() {

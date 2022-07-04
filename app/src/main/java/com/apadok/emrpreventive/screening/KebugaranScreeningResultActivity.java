@@ -53,6 +53,7 @@ import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.database.entity.PemeriksaanEntity;
+import com.apadok.emrpreventive.database.entity.PemeriksaanKebugaranEntity;
 import com.apadok.emrpreventive.encyclopedia.EncyclopediaActivity;
 import com.apadok.emrpreventive.user.ConfirmLogOut;
 import com.apadok.emrpreventive.user.LogOutAuthError;
@@ -73,8 +74,7 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
     // Gson related
     // API return variables
     private final Gson gson = new Gson();
-    private JsonObject returnvalue;
-    private PemeriksaanEntity sch;
+    private ArrayList<PemeriksaanKebugaranEntity> sch;
     private String hasil = "";
     // API input Variables
     private final FormAnswer[] answer = new FormAnswer[17];
@@ -252,8 +252,8 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 // here you have the response from the volley.
-                score_kebugaran = returnvalue.get("score_kebugaran").isJsonNull() ? "" : returnvalue.get("score_kebugaran").getAsString();
-                String timestamp = returnvalue.get("updated_at").isJsonNull() ? returnvalue.get("created_at").getAsString() : returnvalue.get("updated_at").getAsString();
+                score_kebugaran =  sch.get(0).getScore_kebugaran() == null  ? "" : sch.get(0).getScore_kebugaran();
+                String timestamp = sch.get(0).getUpdated_at() == null ? sch.get(0).getCreated_at() : sch.get(0).getUpdated_at();
 
                 tv_time_result.setText(StringToTimeStampFormatting.changeFormat(timestamp,"yyyy-MM-dd HH:mm:ss", "dd MMMM yyyy HH.mm"));
                 tv_score_result.setText(score_kebugaran);
@@ -280,8 +280,9 @@ public class KebugaranScreeningResultActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                returnvalue = gson.fromJson(response, JsonObject.class);
-                sch = gson.fromJson(response, PemeriksaanEntity.class);
+                Type screenhistory = new TypeToken<List<PemeriksaanEntity>>() {
+                }.getType();
+                sch = gson.fromJson(response, screenhistory);
                 callback.onSuccess();
             }
         }, new Response.ErrorListener() {

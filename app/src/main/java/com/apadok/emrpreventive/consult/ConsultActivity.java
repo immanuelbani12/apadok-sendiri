@@ -167,6 +167,7 @@ public class ConsultActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener RedirecttoCall = v -> {
+        //Open Phone Application and Pass Admin Klinik Phone Number
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:"+ClinicPhone));
         startActivity(intent);
