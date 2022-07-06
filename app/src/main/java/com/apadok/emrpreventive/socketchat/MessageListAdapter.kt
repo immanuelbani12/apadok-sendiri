@@ -24,7 +24,7 @@ class MessageListAdapter(context: Context, messageList: List<Message>) :
     // Determines the appropriate ViewType according to the sender of the message.
     override fun getItemViewType(position: Int): Int {
         val message: Message = mMessageList[position] as Message
-        return if (message.to_login_id.equals(id_user)) {
+        return if (message.from.equals("Saya")) {
             // If the current user is the sender of the message
             VIEW_TYPE_MESSAGE_SENT
         } else {

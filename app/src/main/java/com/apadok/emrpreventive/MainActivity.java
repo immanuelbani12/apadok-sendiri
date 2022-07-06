@@ -94,7 +94,6 @@ public class MainActivity extends AppApadokActivity {
     // Res/Layout Variables
     private Button btn_screening, btn_history_screening, btn_consult;
     private TextView tv_subtitle, tv_greet;
-    private MenuItem chat;
 
     // Intent Variables
     private int UserId, LoginUserId, ClinicId, LoginClinicId;
@@ -692,8 +691,6 @@ public class MainActivity extends AppApadokActivity {
         PopupMenu popup = new PopupMenu(this, v);
         popup.setOnMenuItemClickListener(this::onMenuItemClick);
         popup.inflate(R.menu.option_menu);
-        chat = (MenuItem) findViewById(R.id.chat);
-        chat.setVisible(true);
         popup.show();
     }
 

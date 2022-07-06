@@ -49,7 +49,7 @@
             android:layout_marginStart="16dp"
             android:layout_toStartOf="@+id/button_gchat_send"
             android:background="@android:color/transparent"
-            android:hint="Enter Message"
+            android:hint="Tuliskan Pesan"
             android:inputType="text"
             android:maxLines="6"
             tools:ignore="Autofill" />
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:background="?attr/selectableItemBackground"
-            android:text="Send"
+            android:text="Kirim"
             android:textColor="#b49def" />
 
     </RelativeLayout>

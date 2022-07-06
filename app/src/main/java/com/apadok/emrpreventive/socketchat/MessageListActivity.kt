@@ -45,7 +45,8 @@ class MessageListActivity : AppCompatActivity() {
     private fun start() {
         //Temporarily Get ID Pemeriksan From Main Activity
         val token = intent.getIntExtra("loginid",0)
-        val request: Request = Request.Builder().url("ws://10.0.2.2:8082/").build()
+        val request: Request = Request.Builder().url("ws://apadok.com:31686?id_login=$token").build()
+        // val request: Request = Request.Builder().url("ws://10.0.2.2:8082/").build()
         Log.e("req", request.toString())
         val listener = EchoWebSocketListener(this::output, this::ping) { ws = null }
         listener.activity = supportFragmentManager
