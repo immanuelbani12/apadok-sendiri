@@ -94,6 +94,7 @@ public class MainActivity extends AppApadokActivity {
     // Res/Layout Variables
     private Button btn_screening, btn_history_screening, btn_consult;
     private TextView tv_subtitle, tv_greet;
+    private MenuItem chat;
 
     // Intent Variables
     private int UserId, LoginUserId, ClinicId, LoginClinicId;
@@ -691,6 +692,8 @@ public class MainActivity extends AppApadokActivity {
         PopupMenu popup = new PopupMenu(this, v);
         popup.setOnMenuItemClickListener(this::onMenuItemClick);
         popup.inflate(R.menu.option_menu);
+        chat = (MenuItem) findViewById(R.id.chat);
+        chat.setVisible(true);
         popup.show();
     }
 
@@ -699,6 +702,16 @@ public class MainActivity extends AppApadokActivity {
             case R.id.logout:
                 DialogFragment newFragment = new ConfirmLogOut();
                 newFragment.show(getSupportFragmentManager(), "");
+            case R.id.chat:
+                Intent intent = new Intent(MainActivity.this, MessageListActivity.class);
+                intent.putExtra("userid", UserId);
+                intent.putExtra("clinicname", ClinicName);
+                intent.putExtra("cliniclogo", ClinicLogo);
+                intent.putExtra("username", UserName);
+                intent.putExtra("token", Token);
+                intent.putExtra("loginid", LoginUserId);
+                intent.putExtra("logininstitusiid",LoginClinicId);
+                startActivity(intent);
             default:
                 return false;
         }
