@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.apadok.emrpreventive.R
 import com.apadok.emrpreventive.common.StringToTimeStampFormatting
+import java.text.DateFormatSymbols
+import java.util.*
 
 
 class MessageListAdapter(context: Context, messageList: List<Message>) :
@@ -16,6 +18,7 @@ class MessageListAdapter(context: Context, messageList: List<Message>) :
 
     private val mContext: Context
     var id_user: Int = 0
+    var datetrigger = 0
     private val mMessageList: List<Message>
     override fun getItemCount(): Int {
         return mMessageList.size
@@ -75,23 +78,43 @@ class MessageListAdapter(context: Context, messageList: List<Message>) :
         RecyclerView.ViewHolder(itemView) {
         var messageText: TextView
         var timeText: TextView
+        var dateText: TextView
         fun bind(message: Message) {
             messageText.setText(message.message)
 
             // Format the stored timestamp into a readable String using method.
 
             var timestamp = message.datetime
-            val FormattedTimeStamp = StringToTimeStampFormatting.changeFormat(
+            val FormattedTimeStamp = StringToTimeStampFormatting.changeFormatNoConvert(
                 timestamp,
                 "yyyy-MM-dd HH:mm:ss",
                 "HH:mm"
             )
             timeText.setText(FormattedTimeStamp)
+
+            val month = StringToTimeStampFormatting.changeFormat(
+                    timestamp,
+                    "yyyy-MM-dd HH:mm:ss",
+                    "MM"
+            )
+            val month2 = month.toInt()
+
+            val day = StringToTimeStampFormatting.changeFormat(
+                    timestamp,
+                    "yyyy-MM-dd HH:mm:ss",
+                    "dd"
+            )
+            day.toString()
+
+            val monthString = DateFormatSymbols().getMonths().get(month2 - 1)
+            val date = day + " " + monthString
+
         }
 
         init {
             messageText = itemView.findViewById<View>(R.id.text_gchat_message_me) as TextView
             timeText = itemView.findViewById<View>(R.id.text_gchat_timestamp_me) as TextView
+            dateText = itemView.findViewById<View>(R.id.text_gchat_date_me) as TextView
         }
     }
 
@@ -101,15 +124,16 @@ class MessageListAdapter(context: Context, messageList: List<Message>) :
         var timeText: TextView
         var nameText: TextView
         var profileImage: ImageView
+        var dateText: TextView
         fun bind(message: Message) {
             messageText.setText(message.message)
 
             // Format the stored timestamp into a readable String using method.
             var timestamp = message.datetime
-            val FormattedTimeStamp = StringToTimeStampFormatting.changeFormat(
+            var FormattedTimeStamp = StringToTimeStampFormatting.changeFormatNoConvert(
                 timestamp,
                 "yyyy-MM-dd HH:mm:ss",
-                "mm:ss"
+                "HH:mm"
             )
             timeText.setText(FormattedTimeStamp)
             nameText.setText(message.from)
@@ -120,12 +144,30 @@ class MessageListAdapter(context: Context, messageList: List<Message>) :
 //                message.getSender().getProfileUrl(),
 //                profileImage
 //            )
+
+            val month = StringToTimeStampFormatting.changeFormat(
+                    timestamp,
+                    "yyyy-MM-dd HH:mm:ss",
+                    "MM"
+            )
+            val month2 = month.toInt()
+
+            val day = StringToTimeStampFormatting.changeFormat(
+                    timestamp,
+                    "yyyy-MM-dd HH:mm:ss",
+                    "dd"
+            )
+            day.toString()
+
+            val monthString = DateFormatSymbols().getMonths().get(month2 - 1)
+            val date = day + " " + monthString
         }
 
         init {
             messageText = itemView.findViewById<View>(R.id.text_gchat_message_other) as TextView
             timeText = itemView.findViewById<View>(R.id.text_gchat_timestamp_other) as TextView
             nameText = itemView.findViewById<View>(R.id.text_gchat_user_other) as TextView
+            dateText = itemView.findViewById<View>(R.id.text_gchat_date_other) as TextView
             profileImage = itemView.findViewById<View>(R.id.image_gchat_profile_other) as ImageView
         }
     }
