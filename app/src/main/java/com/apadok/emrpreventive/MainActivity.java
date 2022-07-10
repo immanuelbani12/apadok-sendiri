@@ -690,7 +690,7 @@ public class MainActivity extends AppApadokActivity {
     public void showPopUp(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         popup.setOnMenuItemClickListener(this::onMenuItemClick);
-        popup.inflate(R.menu.option_menu);
+        popup.inflate(R.menu.option_main_menu);
         popup.show();
     }
 

@@ -1,22 +1,23 @@
 package com.apadok.emrpreventive.socketchat
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.apadok.emrpreventive.R
 import com.apadok.emrpreventive.common.SetupToolbar
+import com.apadok.emrpreventive.user.ConfirmLogOut
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
-import okhttp3.internal.notify
 import org.json.JSONObject
 
 
@@ -119,5 +120,23 @@ class MessageListActivity : AppCompatActivity() {
             Log.e("tag",url)
         }
         Picasso.get().load(url).into(cliniclogo)
+    }
+
+    fun showPopUp(v: View?) {
+        val popup = PopupMenu(this, v)
+        popup.setOnMenuItemClickListener { item: MenuItem -> onMenuItemClick(item) }
+        popup.inflate(R.menu.option_menu)
+        popup.show()
+    }
+
+    fun onMenuItemClick(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.logout -> {
+                val newFragment: DialogFragment = ConfirmLogOut()
+                newFragment.show(supportFragmentManager, "")
+                false
+            }
+            else -> false
+        }
     }
 }
