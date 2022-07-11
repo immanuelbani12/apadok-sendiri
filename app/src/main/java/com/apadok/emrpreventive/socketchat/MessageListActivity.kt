@@ -85,6 +85,8 @@ class MessageListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_socketchat_new)
         SetupItemView()
         mMessageRecycler = findViewById<View>(R.id.recycler_gchat) as RecyclerView
+        // Populate messageList here
+
         mMessageAdapter = MessageListAdapter(this, messageList)
         mMessageAdapter!!.id_user = intent.getIntExtra("loginid",0)
         mMessageRecycler!!.layoutManager = LinearLayoutManager(this)
@@ -99,7 +101,7 @@ class MessageListActivity : AppCompatActivity() {
                 val datatext = data.toString()
                 send(datatext)
                 entryText.text.clear()
-            } ?: ping("Error: Restart the App to reconnect")
+            } ?: ping("Gagal mengirim pesan, silahkan buka ulang laman chat untuk menghubungkan kembali")
         }
     }
 

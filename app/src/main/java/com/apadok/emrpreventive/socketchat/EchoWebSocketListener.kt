@@ -50,7 +50,8 @@ internal class EchoWebSocketListener(
         val newFragment: DialogFragment = ChatError()
         newFragment.show(activity!!, "")
         newFragment.isCancelable = false
-        ping("Error : " + t.message)
+        //ping("Error : " + t.message)
+        ping("Aplikasi mengalami permasalahan")
         closing()
     }
 
