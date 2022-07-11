@@ -91,12 +91,14 @@ public class MainActivity extends AppApadokActivity {
     private String ErrorMsg;
     private Boolean IsLatestScreenBugar;
 
-    // Res/Layout Variables
-    private Button btn_screening, btn_history_screening, btn_consult;
+    private Button btn_history_screening;
+    private Button btn_consult;
     private TextView tv_subtitle, tv_greet;
 
     // Intent Variables
-    private int UserId, LoginUserId, ClinicId, LoginClinicId;
+    private int UserId;
+    private int LoginUserId;
+    private int LoginClinicId;
     private String Token, UserName, ClinicName, ClinicLogo, ClinicPhone;
 //    private String Role;
 
@@ -152,7 +154,7 @@ public class MainActivity extends AppApadokActivity {
         ClinicPhone = sharedPref.getString("clinic_phone", "");
         LoginUserId = sharedPref.getInt("user_login_id",0);
         LoginClinicId = sharedPref.getInt("clinic_login_id",0);
-        ClinicId = sharedPref.getInt("clinic_id",0);
+        int clinicId = sharedPref.getInt("clinic_id", 0);
         Token = sharedPref.getString("user_token", "");
         if (UserId == 0) {
             UserId = getIntent().getIntExtra("userid", 0);
@@ -163,7 +165,7 @@ public class MainActivity extends AppApadokActivity {
             ClinicPhone = getIntent().getStringExtra("clinicphone");
             LoginUserId = getIntent().getIntExtra("loginuserid", 0);
             LoginClinicId = getIntent().getIntExtra("loginclinicid", 0);
-            ClinicId = getIntent().getIntExtra("clinicid", 0);
+            clinicId = getIntent().getIntExtra("clinicid", 0);
             Token = getIntent().getStringExtra("token");
             if (UserId == 0) {
                 // Change this code if cant login
@@ -194,7 +196,7 @@ public class MainActivity extends AppApadokActivity {
                 editor.putString("user_token", Token);
                 editor.putInt("user_login_id", LoginUserId);
                 editor.putInt("clinic_login_id", LoginClinicId);
-                editor.putInt("clinic_id", ClinicId);
+                editor.putInt("clinic_id", clinicId);
                 editor.putInt("app_version", versionCode);
 //                editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7));
                 editor.apply();
@@ -241,7 +243,8 @@ public class MainActivity extends AppApadokActivity {
         option.setVisibility(View.VISIBLE);
 
         //Button
-        btn_screening = (Button) findViewById(R.id.btn_screening);
+        // Res/Layout Variables
+        Button btn_screening = (Button) findViewById(R.id.btn_screening);
         btn_history_screening = (Button) findViewById(R.id.btn_history_screening);
         btn_consult = (Button) findViewById(R.id.btn_consult);
         tv_subtitle = (TextView) findViewById(R.id.tv_subtitle);

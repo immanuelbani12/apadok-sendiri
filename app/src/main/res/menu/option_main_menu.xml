@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/chat"
-        android:title="Tanya tentang Aplikasi" />
+        android:title="Tanya Admin Apadok" />
 
     <item
         android:id="@+id/log_out"
