@@ -696,9 +696,10 @@ public class MainActivity extends AppApadokActivity {
 
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.logout:
+            case R.id.log_out:
                 DialogFragment newFragment = new ConfirmLogOut();
                 newFragment.show(getSupportFragmentManager(), "");
+                return true;
             case R.id.chat:
                 Intent intent = new Intent(MainActivity.this, MessageListActivity.class);
                 intent.putExtra("userid", UserId);
@@ -709,6 +710,7 @@ public class MainActivity extends AppApadokActivity {
                 intent.putExtra("loginid", LoginUserId);
                 intent.putExtra("logininstitusiid",LoginClinicId);
                 startActivity(intent);
+                return true;
             default:
                 return false;
         }

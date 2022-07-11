@@ -6,7 +6,7 @@
         android:title="Tanya tentang Aplikasi" />
 
     <item
-        android:id="@+id/logout"
+        android:id="@+id/log_out"
         android:title="Logout" />
 
 </menu>
