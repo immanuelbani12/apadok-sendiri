@@ -78,7 +78,7 @@ class MessageListAdapter(context: Context, messageList: List<Message>) :
         RecyclerView.ViewHolder(itemView) {
         var messageText: TextView
         var timeText: TextView
-        var dateText: TextView
+        // var dateText: TextView
         fun bind(message: Message) {
             messageText.setText(message.message)
 
@@ -114,7 +114,7 @@ class MessageListAdapter(context: Context, messageList: List<Message>) :
         init {
             messageText = itemView.findViewById<View>(R.id.text_gchat_message_me) as TextView
             timeText = itemView.findViewById<View>(R.id.text_gchat_timestamp_me) as TextView
-            dateText = itemView.findViewById<View>(R.id.text_gchat_date_me) as TextView
+            // dateText = itemView.findViewById<View>(R.id.text_gchat_date_me) as TextView
         }
     }
 
@@ -124,7 +124,7 @@ class MessageListAdapter(context: Context, messageList: List<Message>) :
         var timeText: TextView
         var nameText: TextView
         var profileImage: ImageView
-        var dateText: TextView
+        // var dateText: TextView
         fun bind(message: Message) {
             messageText.setText(message.message)
 
@@ -167,7 +167,7 @@ class MessageListAdapter(context: Context, messageList: List<Message>) :
             messageText = itemView.findViewById<View>(R.id.text_gchat_message_other) as TextView
             timeText = itemView.findViewById<View>(R.id.text_gchat_timestamp_other) as TextView
             nameText = itemView.findViewById<View>(R.id.text_gchat_user_other) as TextView
-            dateText = itemView.findViewById<View>(R.id.text_gchat_date_other) as TextView
+            // dateText = itemView.findViewById<View>(R.id.text_gchat_date_other) as TextView
             profileImage = itemView.findViewById<View>(R.id.image_gchat_profile_other) as ImageView
         }
     }

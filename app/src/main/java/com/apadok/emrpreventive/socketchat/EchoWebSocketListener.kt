@@ -18,7 +18,7 @@ internal class EchoWebSocketListener(
 ) : WebSocketListener() {
     var activity: FragmentManager? = null
     override fun onOpen(webSocket: WebSocket, response: Response) {
-        ping("Connected!")
+        ping("Anda telah terhubung dengan Admin Apadok")
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {
@@ -42,7 +42,7 @@ internal class EchoWebSocketListener(
 
     override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
         webSocket.close(NORMAL_CLOSURE_STATUS, null)
-        ping("Closing : $code / $reason")
+        // ping("Closing : $code / $reason")
         closing()
     }
 
