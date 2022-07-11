@@ -32,6 +32,7 @@ import com.apadok.emrpreventive.common.EmptyTextWatcher;
 import com.apadok.emrpreventive.common.RegexorChecker;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.user.ConfirmLogOut;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
@@ -352,6 +353,9 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                     btn_submit.setEnabled(false);
                     if (CurrentForm == 2) {
                         answer_input.clearFocus();
+                        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Tekan foto untuk memilih kembali bulan", Snackbar.LENGTH_SHORT);
+                        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+                        snackbar.show();
                     }
                 }
 
