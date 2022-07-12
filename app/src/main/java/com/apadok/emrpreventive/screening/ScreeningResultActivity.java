@@ -244,8 +244,8 @@ public class ScreeningResultActivity extends AppApadokActivity {
                     } else {
                         safetext += ", penyakit kardiovaskular";
                     }
-                } else if (hasil_kardio.contains("Batas")) {
-                    cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_green_font));
+                } else if (hasil_kardio.contains("Tidak")) {
+                    cardiovascular_result.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.dark_green_font));
                     cardioval = 1;
                     if (safetext.equals("")) {
                         safetext = "penyakit kardiovaskular";
