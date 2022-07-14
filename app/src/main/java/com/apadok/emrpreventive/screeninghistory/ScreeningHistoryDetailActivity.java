@@ -253,7 +253,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
             if (diabetval == 3){
                 gradientDrawable.setStroke(2, Color.RED);
             }
-            diabetes_info.setText("Tingkat " + hasil_diabet + " kemungkinan muncul antara lain dikarenakan usia, Indeks Massa Tubuh (Berat Badan dan Tinggi Badan), lingkar pinggang, aktivitas fisik, konsumsi obat hipertensi, konsumsi buah serta sayur, pernah mengalami peningkatan gula darah serta riwayat keturunan diabetes");
+            diabetes_info.setText("Tingkat " + hasil_diabet + " kemungkinan muncul antara lain dikarenakan faktor usia, Indeks Massa Tubuh (Berat Badan dan Tinggi Badan), lingkar pinggang, aktivitas fisik, konsumsi obat hipertensi, konsumsi buah serta sayur, pernah mengalami peningkatan gula darah serta riwayat keturunan diabetes");
             diabetes_info.setVisibility(View.VISIBLE);
         }
 
