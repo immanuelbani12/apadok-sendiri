@@ -69,7 +69,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
     private List<FormAnswer> answers;
 
     // Res/Layout Variables
-    private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result, stroke_details;
+    private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result, stroke_details, diabetes_info;
     private Button btn_consult, btn_education;
 
     // Intent Variables
@@ -103,6 +103,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
         title_result = (TextView) findViewById(R.id.title_result);
         time_result = (TextView) findViewById(R.id.time_result);
         diabetes_result = (TextView) findViewById(R.id.diabetes_result);
+        diabetes_info = (TextView) findViewById(R.id.diabetes_info);
         stroke_result = (TextView) findViewById(R.id.stroke_result);
         stroke_details = (TextView) findViewById(R.id.stroke_details);
         cardiovascular_result = (TextView) findViewById(R.id.cardiovascular_result);
@@ -116,6 +117,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
         title_result.setTypeface(helvetica_font);
         time_result.setTypeface(helvetica_font);
         diabetes_result.setTypeface(helvetica_font);
+        diabetes_info.setTypeface(helvetica_font);
         stroke_result.setTypeface(helvetica_font);
         cardiovascular_result.setTypeface(helvetica_font);
         dangerous_result.setTypeface(helvetica_font);
@@ -135,6 +137,7 @@ public class ScreeningResultActivity extends AppApadokActivity {
         title_result.setText("Hasil Skrining Risiko Penyakit");
         time_result.setText("Mengolah Data....");
         diabetes_result.setVisibility(View.GONE);
+        diabetes_info.setVisibility(View.GONE);
         stroke_result.setVisibility(View.GONE);
         stroke_details.setVisibility(View.GONE);
         cardiovascular_result.setVisibility(View.GONE);
@@ -344,7 +347,15 @@ public class ScreeningResultActivity extends AppApadokActivity {
                     }
                 }
 
-
+                if(diabetval >= 2){
+                    GradientDrawable gradientDrawable = (GradientDrawable) diabetes_info.getBackground();
+                    gradientDrawable.setStroke(2, Color.parseColor("#EFCC00"));
+                    if (diabetval == 3){
+                        gradientDrawable.setStroke(2, Color.RED);
+                    }
+                    diabetes_info.setText("Tingkat " + hasil_diabet + " kemungkinan muncul antara lain dikarenakan usia, Indeks Massa Tubuh (Berat Badan dan Tinggi Badan), lingkar pinggang, aktivitas fisik, konsumsi obat hipertensi, konsumsi buah serta sayur, pernah mengalami peningkatan gula darah serta riwayat keturunan diabetes");
+                    diabetes_info.setVisibility(View.VISIBLE);
+                }
                 //Set Visibility for Konsultasi & Edukasi Text Paragraph
                 if (diabetval == 3 || strokeval == 3 || cardioval == 3) {
                     dangerous_result.setText("Anda memiliki risiko tinggi untuk " + dangtext + ". Anda disarankan untuk melakukan konsultasi secara luring ke dokter.");

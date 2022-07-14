@@ -34,7 +34,7 @@ import java.util.Objects;
 public class ScreeningHistoryDetailActivity extends AppApadokActivity {
 
     // Res/Layout Variables
-    private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result, stroke_details;
+    private TextView title_result, time_result, diabetes_result, stroke_result, cardiovascular_result, dangerous_result, safe_result, stroke_details, diabetes_info;
     private Button btn_consult, btn_education;
     // Intent Variables
     private int diabetval, strokeval, cardioval;
@@ -68,6 +68,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         title_result = (TextView) findViewById(R.id.title_result);
         time_result = (TextView) findViewById(R.id.time_result);
         diabetes_result = (TextView) findViewById(R.id.diabetes_result);
+        diabetes_info = (TextView) findViewById(R.id.diabetes_info);
         stroke_result = (TextView) findViewById(R.id.stroke_result);
         stroke_details = (TextView) findViewById(R.id.stroke_details);
         cardiovascular_result = (TextView) findViewById(R.id.cardiovascular_result);
@@ -80,6 +81,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         title_result.setTypeface(helvetica_font);
         time_result.setTypeface(helvetica_font);
         diabetes_result.setTypeface(helvetica_font);
+        diabetes_info.setTypeface(helvetica_font);
         stroke_result.setTypeface(helvetica_font);
         cardiovascular_result.setTypeface(helvetica_font);
         dangerous_result.setTypeface(helvetica_font);
@@ -91,6 +93,7 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
         title_result.setText("Riwayat Skrining Risiko Penyakit " + position);
         time_result.setText("Mengambil Data....");
         diabetes_result.setVisibility(View.GONE);
+        diabetes_info.setVisibility(View.GONE);
         stroke_result.setVisibility(View.GONE);
         stroke_details.setVisibility(View.GONE);
         cardiovascular_result.setVisibility(View.GONE);
@@ -243,6 +246,15 @@ public class ScreeningHistoryDetailActivity extends AppApadokActivity {
                 stroke_details.setText(hasil_stroke + " muncul karena anda mengisi tidak diketahui pada bagian " + stroke_warning);
                 stroke_details.setVisibility(View.VISIBLE);
             }
+        }
+        if(diabetval >= 2){
+            GradientDrawable gradientDrawable = (GradientDrawable) diabetes_info.getBackground();
+            gradientDrawable.setStroke(2, Color.parseColor("#EFCC00"));
+            if (diabetval == 3){
+                gradientDrawable.setStroke(2, Color.RED);
+            }
+            diabetes_info.setText("Tingkat " + hasil_diabet + " kemungkinan muncul antara lain dikarenakan usia, Indeks Massa Tubuh (Berat Badan dan Tinggi Badan), lingkar pinggang, aktivitas fisik, konsumsi obat hipertensi, konsumsi buah serta sayur, pernah mengalami peningkatan gula darah serta riwayat keturunan diabetes");
+            diabetes_info.setVisibility(View.VISIBLE);
         }
 
         // Skip Consultation for Past Histories
