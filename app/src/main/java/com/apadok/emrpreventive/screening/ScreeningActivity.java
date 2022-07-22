@@ -249,7 +249,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
         if (CurrentForm == 18) {
             btn_submit.setText("Selesai");
         } else {
-            btn_submit.setText("Submit");
+            btn_submit.setText("Selanjutnya");
         }
         // Hide Mundur Button on First Question
         if (CurrentForm == 1) {
@@ -404,7 +404,6 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                     }
                 }
             });
-
         }
     }
 

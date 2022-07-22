@@ -3,4 +3,19 @@
     <string name="clinic_name">Apadok</string>
     <string name="transition_test">test</string>
     <string name="preference_file_key">com.apadok.emrpreventive.PREFERENCE_FILE_KEY</string>
+    <?xml version="1.0" encoding="utf-8"?>
+    <string-array name="months_array">
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Maret</item>
+        <item>April</item>
+        <item>Mei</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>Agustus</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>Nopember</item>
+        <item>Desember</item>
+    </string-array>
 </resources>
