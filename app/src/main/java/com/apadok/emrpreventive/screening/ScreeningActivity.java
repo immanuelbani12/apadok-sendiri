@@ -37,11 +37,15 @@ import com.apadok.emrpreventive.common.EmptyTextWatcher;
 import com.apadok.emrpreventive.common.RegexorChecker;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.user.ConfirmLogOut;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
 
 import me.grantland.widget.AutofitHelper;
 
@@ -67,7 +71,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
     private ProgressBar progressBar;
     private ScrollView sv_screening;
     private final RegexorChecker regex = new RegexorChecker();
-    private Spinner month_picker;
+    private MaterialSpinner month_picker;
     private NumberPicker year_picker;
     private String Year = "", Month = "";
 
@@ -126,7 +130,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
         btn_backquestion = (Button) findViewById(R.id.btn_backquestion);
         answer_input = (EditText) findViewById(R.id.editText);
         iv_image_screening = (ImageView) findViewById(R.id.iv_image_screening);
-        month_picker = (Spinner) findViewById(R.id.month_picker);
+        month_picker = (MaterialSpinner) findViewById(R.id.month_picker);
         year_picker = (NumberPicker) findViewById(R.id.year_picker);
 
 
@@ -316,6 +320,9 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
         // Prerpare TextField if expected Answer is Essay
         if (formcheck.getOpt1().equals("") && formcheck.getOpt2().equals("") && formcheck.getOpt3().equals("") && formcheck.getOpt4().equals("")) {
             SelectedOptionPosititon = -1;
+            // Enable TextField and Show Hints on it
+            answer_input.setVisibility(View.VISIBLE);
+            answer_input.setHint(formcheck.getHint());
             // If TextField is on "Bulan dan tahun lahir" Question
             if (formcheck.getHint().equals("Bulan dan tahun lahir")) {
 
@@ -324,13 +331,15 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                 month_picker.setVisibility(View.VISIBLE);
                 year_picker.setVisibility(View.VISIBLE);
 
-                // Create an ArrayAdapter using the string array and a default spinner layout
-                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                        R.array.months_array, android.R.layout.simple_spinner_item);
-                // Specify the layout to use when the list of choices appears
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                // Apply the adapter to the spinner
-                month_picker.setAdapter(adapter);
+//                // Create an ArrayAdapter using the string array and a default spinner layout
+//                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                        R.array.months_array, android.R.layout.simple_spinner_item);
+//                // Specify the layout to use when the list of choices appears
+//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                // Apply the adapter to the spinner
+//                month_picker.setAdapter(adapter);
+
+                month_picker.setItems("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember");
 
                 Calendar cldr = Calendar.getInstance();
                 int indexofmonth = cldr.get(Calendar.MONTH);
@@ -339,28 +348,41 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                 year_picker.setMaxValue(year);
 
                 if (Year.equals("") || Month.equals("")){
-                    month_picker.setSelection(indexofmonth);
+                    month_picker.setSelectedIndex(indexofmonth);
                     year_picker.setValue(year-30);
                     Year = Integer.toString(year-30);
+                    Month = Integer.toString(indexofmonth);
+                    answer_input.setText((Month) + "/" + Year);
+                    btn_submit.setEnabled(true);
                 } else {
-                    month_picker.setSelection(Integer.parseInt(Month)-1);
+                    month_picker.setSelectedIndex(Integer.parseInt(Month)-1);
                     year_picker.setValue(Integer.parseInt(Year));
+                    answer_input.setText((Month) + "/" + Year);
                 }
 
-
-                month_picker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                month_picker.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
                     @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
-                        Month = Integer.toString(pos+1);
+                    public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+                        Month = Integer.toString(position+1);
                         Log.e("Month", Month);
                         answer_input.setText((Month) + "/" + Year);
                     }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                    }
                 });
+
+
+//                month_picker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+//                        Month = Integer.toString(pos+1);
+//                        Log.e("Month", Month);
+//                        answer_input.setText((Month) + "/" + Year);
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//                    }
+//                });
 
                 year_picker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
@@ -409,9 +431,6 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
 //                    }
 //                });
             } else {
-                // Enable TextField and Show Hints on it
-                answer_input.setVisibility(View.VISIBLE);
-                answer_input.setHint(formcheck.getHint());
                 // Change TextField input to Number
                 answer_input.setInputType(InputType.TYPE_CLASS_NUMBER);
             }
