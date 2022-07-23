@@ -320,9 +320,6 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
         // Prerpare TextField if expected Answer is Essay
         if (formcheck.getOpt1().equals("") && formcheck.getOpt2().equals("") && formcheck.getOpt3().equals("") && formcheck.getOpt4().equals("")) {
             SelectedOptionPosititon = -1;
-            // Enable TextField and Show Hints on it
-            answer_input.setVisibility(View.VISIBLE);
-            answer_input.setHint(formcheck.getHint());
             // If TextField is on "Bulan dan tahun lahir" Question
             if (formcheck.getHint().equals("Bulan dan tahun lahir")) {
 
@@ -431,6 +428,9 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
 //                    }
 //                });
             } else {
+                // Enable TextField and Show Hints on it
+                answer_input.setVisibility(View.VISIBLE);
+                answer_input.setHint(formcheck.getHint());
                 // Change TextField input to Number
                 answer_input.setInputType(InputType.TYPE_CLASS_NUMBER);
             }
