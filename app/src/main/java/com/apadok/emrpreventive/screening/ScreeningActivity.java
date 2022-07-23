@@ -8,15 +8,20 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
@@ -32,9 +37,7 @@ import com.apadok.emrpreventive.common.EmptyTextWatcher;
 import com.apadok.emrpreventive.common.RegexorChecker;
 import com.apadok.emrpreventive.common.SetupToolbar;
 import com.apadok.emrpreventive.user.ConfirmLogOut;
-import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
-import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +57,7 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
     private int CurrentForm = 1;
     private int SelectedOptionPosititon = 0;
     private Boolean isOptionSubmitted = false;
+    private Boolean isMonthFilled = false;
 
     // Res/Layout Variables
     private TextView tv_option_one, tv_option_two, tv_option_three, tv_option_four, tv_progress, tv_question_screening;
@@ -63,6 +67,9 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
     private ProgressBar progressBar;
     private ScrollView sv_screening;
     private final RegexorChecker regex = new RegexorChecker();
+    private Spinner month_picker;
+    private NumberPicker year_picker;
+    private String Year = "", Month = "";
 
     // Intent Variables
     private String ClinicName, ClinicLogo;
@@ -119,6 +126,9 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
         btn_backquestion = (Button) findViewById(R.id.btn_backquestion);
         answer_input = (EditText) findViewById(R.id.editText);
         iv_image_screening = (ImageView) findViewById(R.id.iv_image_screening);
+        month_picker = (Spinner) findViewById(R.id.month_picker);
+        year_picker = (NumberPicker) findViewById(R.id.year_picker);
+
 
         //Assign Font Type
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
@@ -222,7 +232,8 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                         break;
                 }
             } catch (NumberFormatException e){
-                if (previous_data.equals("Laki-Laki")){
+                Log.e("prev",previous_data);
+                if (previous_data.equals("Laki-laki")){
                     if (!isOptionSubmitted) selectedOptionView(tv_option_one, 1);
                 } else if (previous_data.equals("Perempuan")){
                     if (!isOptionSubmitted) selectedOptionView(tv_option_two, 2);
@@ -230,6 +241,12 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                     SelectedOptionPosititon = -1;
                     previous_data = previous_data.substring(2);
                     answer_input.setText(previous_data);
+//                    try {
+//                        String[] splitted = previous_data.split("/");
+//                        Month = splitted[0];
+//                        Year = splitted[1];
+//                        isMonthFilled = true;
+//                    } catch (NullPointerException nothing){}
                 }
             }
         }
@@ -241,6 +258,8 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
     private void CheckForms(Form formcheck) {
         // Hide TextField on New Question
         answer_input.setVisibility(View.GONE);
+        month_picker.setVisibility(View.GONE);
+        year_picker.setVisibility(View.GONE);
         answer_input.setText(null);
         // Reset the Click Behavior on Image & TextField
         answer_input.setOnFocusChangeListener(null);
@@ -296,51 +315,103 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
 
         // Prerpare TextField if expected Answer is Essay
         if (formcheck.getOpt1().equals("") && formcheck.getOpt2().equals("") && formcheck.getOpt3().equals("") && formcheck.getOpt4().equals("")) {
-            // Enable TextField and Show Hints on it
             SelectedOptionPosititon = -1;
-            answer_input.setVisibility(View.VISIBLE);
-            answer_input.setHint(formcheck.getHint());
-
             // If TextField is on "Bulan dan tahun lahir" Question
             if (formcheck.getHint().equals("Bulan dan tahun lahir")) {
 
                 // Change TextField input to DateTime
                 answer_input.setInputType(InputType.TYPE_CLASS_DATETIME);
+                month_picker.setVisibility(View.VISIBLE);
+                year_picker.setVisibility(View.VISIBLE);
 
-                //Display MonthPicker
-                answer_input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                // Create an ArrayAdapter using the string array and a default spinner layout
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                        R.array.months_array, android.R.layout.simple_spinner_item);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                // Apply the adapter to the spinner
+                month_picker.setAdapter(adapter);
+
+                Calendar cldr = Calendar.getInstance();
+                int indexofmonth = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                year_picker.setMinValue(year-100);
+                year_picker.setMaxValue(year);
+
+                if (Year.equals("") || Month.equals("")){
+                    month_picker.setSelection(indexofmonth);
+                    year_picker.setValue(year-30);
+                    Year = Integer.toString(year-30);
+                } else {
+                    month_picker.setSelection(Integer.parseInt(Month)-1);
+                    year_picker.setValue(Integer.parseInt(Year));
+                }
+
+
+                month_picker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
-                    public void onFocusChange(View v, boolean hasFocus) {
-                        if (hasFocus) {
-                            // Start Calendar from 12 Years ago
-                            Calendar cldr = Calendar.getInstance();
-                            cldr.add(Calendar.YEAR, -30);
-                            int month = cldr.get(Calendar.MONTH);
-                            int year = cldr.get(Calendar.YEAR);
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                        Month = Integer.toString(pos+1);
+                        Log.e("Month", Month);
+                        answer_input.setText((Month) + "/" + Year);
+                    }
 
-                            // Set MonthPicker
-                            MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(ScreeningActivity.this, new MonthPickerDialog.OnDateSetListener() {
-                                @Override
-                                public void onDateSet(int selectedMonth, int selectedYear) {
-                                    answer_input.setText((selectedMonth + 1) + "/" + selectedYear);
-                                }
-                            }, year, month);
-                            builder.setActivatedMonth(Calendar.MONTH)
-                                    .build()
-                                    .show();
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+
+                year_picker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                    @Override
+                    public void onValueChange(NumberPicker numberPicker, int oldval, int newval) {
+                        Year = Integer.toString(newval);
+                        Log.e("Year",Year);
+                        if (!Month.equals("")){
+                            answer_input.setText((Month) + "/" + Year);
                         }
                     }
                 });
 
-                // Use Image to Reset DatePicker
-                iv_image_screening.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        answer_input.clearFocus();
-                        answer_input.requestFocus();
-                    }
-                });
+
+
+//                //Display MonthPicker
+//                answer_input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//                    @Override
+//                    public void onFocusChange(View v, boolean hasFocus) {
+//                        if (hasFocus) {
+//                            // Start Calendar from 12 Years ago
+//                            Calendar cldr = Calendar.getInstance();
+//                            cldr.add(Calendar.YEAR, -30);
+//                            int month = cldr.get(Calendar.MONTH);
+//                            int year = cldr.get(Calendar.YEAR);
+//
+//                            // Set MonthPicker
+//                            MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(ScreeningActivity.this, new MonthPickerDialog.OnDateSetListener() {
+//                                @Override
+//                                public void onDateSet(int selectedMonth, int selectedYear) {
+//                                    answer_input.setText((selectedMonth + 1) + "/" + selectedYear);
+//                                }
+//                            }, year, month);
+//                            builder.setActivatedMonth(Calendar.MONTH)
+//                                    .build()
+//                                    .show();
+//                        }
+//                    }
+//                });
+//
+//                // Use Image to Reset DatePicker
+//                iv_image_screening.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        answer_input.clearFocus();
+//                        answer_input.requestFocus();
+//                    }
+//                });
             } else {
+                // Enable TextField and Show Hints on it
+                answer_input.setVisibility(View.VISIBLE);
+                answer_input.setHint(formcheck.getHint());
                 // Change TextField input to Number
                 answer_input.setInputType(InputType.TYPE_CLASS_NUMBER);
             }
@@ -351,12 +422,12 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                 // When TextField is empty
                 public void onEmptyField() {
                     btn_submit.setEnabled(false);
-                    if (CurrentForm == 2) {
-                        answer_input.clearFocus();
-                        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Tekan foto untuk memilih kembali bulan", Snackbar.LENGTH_SHORT);
-                        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
-                        snackbar.show();
-                    }
+//                    if (CurrentForm == 2) {
+//                        answer_input.clearFocus();
+//                        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Tekan foto untuk memilih kembali bulan", Snackbar.LENGTH_SHORT);
+//                        snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+//                        snackbar.show();
+//                    }
                 }
 
                 // When TextField is filled
@@ -370,7 +441,10 @@ public class ScreeningActivity extends AppApadokActivity implements View.OnClick
                                 answer_input.setError(null);
                             } else {
                                 btn_submit.setEnabled(false);
-                                answer_input.setError("Format bulan/tahun tidak valid");
+//                                answer_input.setError("Format bulan/tahun tidak valid");
+//                                Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Format bulan/tahun tidak valid", Snackbar.LENGTH_SHORT);
+//                                snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
+//                                snackbar.show();
                             }
                             break;
                         case 3:

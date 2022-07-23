@@ -3,7 +3,6 @@
     <string name="clinic_name">Apadok</string>
     <string name="transition_test">test</string>
     <string name="preference_file_key">com.apadok.emrpreventive.PREFERENCE_FILE_KEY</string>
-    <?xml version="1.0" encoding="utf-8"?>
     <string-array name="months_array">
         <item>Januari</item>
         <item>Februari</item>
