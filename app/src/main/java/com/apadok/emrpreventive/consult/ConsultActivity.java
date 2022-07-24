@@ -58,7 +58,7 @@ public class ConsultActivity extends AppCompatActivity {
         clinic.setText(ClinicName);
         // Init Logo RS
         ClinicLogo = getIntent().getStringExtra("cliniclogo");
-        Username = getIntent().getStringExtra("user_name");
+        Username = getIntent().getStringExtra("username");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
         String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);

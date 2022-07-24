@@ -76,6 +76,7 @@ public class ScreeningHistoryActivity extends AppApadokActivity {
         Picasso.get().load(url).into(cliniclogo);
 
         String clinicphone = getIntent().getStringExtra("clinicphone");
+        String username = getIntent().getStringExtra("username");
 
         l = findViewById(R.id.history_screening);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -92,6 +93,7 @@ public class ScreeningHistoryActivity extends AppApadokActivity {
                 intent.putExtra("clinicname", clinicname);
                 intent.putExtra("cliniclogo", logo);
                 intent.putExtra("clinicphone", clinicphone);
+                intent.putExtra("username", username);
 //                String Role = getIntent().getStringExtra("role");
 //                intent.putExtra("role", Role);
                 String token = getIntent().getStringExtra("token");
