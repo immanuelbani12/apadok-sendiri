@@ -14,11 +14,12 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="4sp">
             <ImageView
                 android:id="@+id/iv_cliniclogo"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/apadok_white_crop" />
         </LinearLayout>
@@ -52,8 +53,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_baseline_more_vert_24"
-                android:onClick="showPopUp"/>
+                android:onClick="showPopUp"
+                android:paddingRight="7sp"
+                android:src="@drawable/ic_baseline_more_vert_24" />
 
         </RelativeLayout>
 
@@ -65,11 +67,12 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
+            android:layout_marginTop="3sp"
             android:layout_below="@+id/first_row_layout">
 
             <ImageView
                 android:layout_width="114dp"
-                android:layout_height="15dp"
+                android:layout_height="18dp"
                 android:src="@drawable/by_apadok" />
         </LinearLayout>
     </RelativeLayout>
