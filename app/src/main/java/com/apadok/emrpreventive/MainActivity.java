@@ -179,7 +179,7 @@ public class MainActivity extends AppApadokActivity {
 //                if (Role.equals("N")) {
 //                    text = "Anda berhasil masuk sebagai non-anggota klinik";
 //                }
-                Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG);
                 snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
                 snackbar.show();
 
@@ -216,7 +216,7 @@ public class MainActivity extends AppApadokActivity {
             if (ClinicName.contains("Apadok")){
                 text = "Selamat datang kembali non-anggota klinik";
             }
-            Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_SHORT);
+            Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG);
             snackbar.setBackgroundTint(ContextCompat.getColor(getBaseContext(),R.color.orange_dark));
             snackbar.show();
 
