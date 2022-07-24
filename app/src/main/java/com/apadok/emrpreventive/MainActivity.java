@@ -45,6 +45,7 @@ import com.android.volley.toolbox.Volley;
 import com.apadok.emrpreventive.common.AppApadokActivity;
 import com.apadok.emrpreventive.common.ConfirmExiting;
 import com.apadok.emrpreventive.common.SetupToolbar;
+import com.apadok.emrpreventive.common.StringToTimeStampFormatting;
 import com.apadok.emrpreventive.common.VolleyCallBack;
 import com.apadok.emrpreventive.consult.ConsultActivity;
 import com.apadok.emrpreventive.consult.NearestClinicActivity;
@@ -76,8 +77,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppApadokActivity {
@@ -93,7 +96,7 @@ public class MainActivity extends AppApadokActivity {
 
     private Button btn_history_screening;
     private Button btn_consult;
-    private TextView tv_subtitle, tv_greet;
+    private TextView tv_subtitle, tv_greet, tv_time;
 
     // Intent Variables
     private int UserId;
@@ -249,6 +252,7 @@ public class MainActivity extends AppApadokActivity {
         btn_consult = (Button) findViewById(R.id.btn_consult);
         tv_subtitle = (TextView) findViewById(R.id.tv_subtitle);
         tv_greet = (TextView) findViewById(R.id.tv_greet);
+        tv_time = (TextView) findViewById(R.id.tv_time);
 
         Typeface helvetica_font = ResourcesCompat.getFont(getApplicationContext(), R.font.helvetica_neue);
         btn_screening.setTypeface(helvetica_font);
@@ -263,6 +267,13 @@ public class MainActivity extends AppApadokActivity {
         btn_consult.setOnClickListener(RedirectToConsult);
         btn_consult.setEnabled(false);
 
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE, dd MMMM y");
+        String str_time = formatter.format(date);
+        String str_time_id = StringToTimeStampFormatting.changeFormatEngToIdNoConvert(str_time,"EEEE, dd MMMM y", "EEEE, dd MMMM y");
+        tv_time.setText(str_time_id);
+//        tv_time.setText(str_time);
+        tv_time.setVisibility(View.VISIBLE);
         // Replace Button if Non-Member (Moved inside Consultation as for now)
 //        if (Role != null) {
 //            if (Role.equals("N")) {
@@ -344,7 +355,7 @@ public class MainActivity extends AppApadokActivity {
                 long differenceDays = differenceMinutes / (24 * 60);
                 //Add Clinic Greeting
 //                String Greeting = "Selamat Datang " + UserName + "\n\n" + "Di " + ClinicName;
-                String Greeting = "Selamat Datang " + UserName;
+                String Greeting = "Selamat datang, " + UserName;
                 tv_greet.setText(Greeting);
                 if (differenceMinutes == -1) {
                     tv_subtitle.setText("Tidak ada data skrining sebelumnya");

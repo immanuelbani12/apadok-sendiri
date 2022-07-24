@@ -38,7 +38,7 @@ public class ConsultActivity extends AppCompatActivity {
 
     // Intent Variables
     private PemeriksaanEntity sch;
-    private String ClinicName, ClinicLogo, ClinicPhoneWhatsapp, ClinicPhone;
+    private String ClinicName, ClinicLogo, ClinicPhoneWhatsapp, ClinicPhone, Username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,7 @@ public class ConsultActivity extends AppCompatActivity {
         clinic.setText(ClinicName);
         // Init Logo RS
         ClinicLogo = getIntent().getStringExtra("cliniclogo");
+        Username = getIntent().getStringExtra("user_name");
         ImageView cliniclogo = (ImageView) findViewById(R.id.iv_cliniclogo);
         String url = "http://apadok.com/media/institusi/" + ClinicLogo;
         Picasso.get().load(url).into(cliniclogo);
@@ -124,6 +125,7 @@ public class ConsultActivity extends AppCompatActivity {
         PackageManager packageManager = ConsultActivity.this.getPackageManager();
         Intent i = new Intent(Intent.ACTION_VIEW);
         String whatsapp_number = ClinicPhoneWhatsapp;
+        String nama = Username;
         String hasil_diabet = sch.getHasil_diabetes() == null ? "" : sch.getHasil_diabetes();
         String hasil_kardio = sch.getHasil_kardiovaskular() == null ? "" : sch.getHasil_kardiovaskular();
         String hasil_stroke = sch.getHasil_stroke() == null ? "" : sch.getHasil_stroke();
@@ -146,7 +148,7 @@ public class ConsultActivity extends AppCompatActivity {
             }
             hasil_stroke = "Kemungkinan "+ hasil_stroke;
         }
-        String message = "Risiko Diabetes : " + hasil_diabet + "\nRisiko Stroke : " + hasil_stroke + stroke_warning + "\nRisiko Kardiovaskular : " + hasil_kardio + "\ndata diperoleh pada " + FormattedTimeStamp;
+        String message = "Nama Pasien : " + nama + "\nRisiko Diabetes : " + hasil_diabet + "\nRisiko Stroke : " + hasil_stroke + stroke_warning + "\nRisiko Kardiovaskular : " + hasil_kardio + "\ndata diperoleh pada " + FormattedTimeStamp;
         Log.e("Print",message);
         String url = null;
         try {

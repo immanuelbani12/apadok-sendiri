@@ -39,6 +39,22 @@ public class StringToTimeStampFormatting {
         return str;
     }
 
+    public static String changeFormatEngToIdNoConvert(String time, String inputPattern, String outputPattern) {
+        Locale locale = new Locale("in", "ID");
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern, Locale.ENGLISH);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern, locale);
+        Date date;
+        String str = null;
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+
     public static Date addHoursToJavaUtilDate(Date date, int hours) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
