@@ -268,7 +268,7 @@ public class MainActivity extends AppApadokActivity {
         btn_consult.setEnabled(false);
 
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("EEEE, dd MMMM y");
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE, dd MMMM y", Locale.ENGLISH);
         String str_time = formatter.format(date);
         String str_time_id = StringToTimeStampFormatting.changeFormatEngToIdNoConvert(str_time,"EEEE, dd MMMM y", "EEEE, dd MMMM y");
         tv_time.setText(str_time_id);
