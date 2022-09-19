@@ -11,7 +11,7 @@ Langkah - langkah untuk menjalankan aplikasi:
 4. Lakukan proses build dan jalankan aplikasi menggunakan android studio
 
 TO-DO LIST:
-1. Add Room Database (WIP)
+1. Add Room Database (WIP) - Room Database dipakai untuk mode offline kalau masih diminta dokter
 2. Change Chat WebSocket into Background Service
 3. Add push notification for Chat WebSocket
 4. Improve on UI & UX
