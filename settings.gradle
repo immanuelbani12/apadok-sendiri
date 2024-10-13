@@ -5,6 +5,7 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { url 'https://jitpack.io' }
         jcenter() // Warning: this repository is going to shut down soon
+        mavenCentral()
     }
 }
 rootProject.name = "EMR Preventive"
